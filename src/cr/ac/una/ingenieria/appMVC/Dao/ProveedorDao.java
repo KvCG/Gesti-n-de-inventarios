@@ -37,14 +37,13 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
     @Override
     public void insertar(Proveedores obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into proveedores(Nombre,Direccion,CorreoElectronico,"
-                                             + "Telefono,ultUsuario,ultFecha) values "
-                                             + "(?,?,?,?,?,curdate())");
+        CallableStatement cs = con.prepareCall("insert into proveedor(nombre,email,telefono,"
+                                             + "direccion) values "
+                                             + "(?,?,?,?)");
         cs.setString(1, obj.getNombre());
-        cs.setString(2, obj.getDireccion());
-        cs.setString(3, obj.getCorreoElectronico());
-        cs.setString(4, obj.getTelefono());
-        cs.setString(5, obj.getUltUsuario());
+        cs.setString(2, obj.getEmail());
+        cs.setString(3, obj.getTelefono());
+        cs.setString(4, obj.getDireccion());
         cs.executeUpdate();
         con.close();
     }
@@ -58,17 +57,15 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
     public void modificar(Proveedores obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("update proveedores set Nombre= ?,"
-                                            + "Direccion=?, correoElectronico=?,"
-                                            + "Telefono=?, ultUsuario=?,"
-                                            + "ultFecha = curdate() "
+        CallableStatement cs = con.prepareCall("update proveedores set nombre= ?,"
+                                            + "email=?, telefono=?,"
+                                            + "direccion=?,"
                                             + "where PK_IDProvedor=? ");
         cs.setString(1, obj.getNombre());
-        cs.setString(2, obj.getDireccion());
-        cs.setString(3, obj.getCorreoElectronico());
-        cs.setString(4, obj.getTelefono());
-        cs.setString(5, obj.getUltUsuario());
-        cs.setInt(6, obj.getPK_IDProvedor());
+        cs.setString(2, obj.getEmail());
+        cs.setString(3, obj.getTelefono());
+        cs.setString(4, obj.getDireccion());;
+        cs.setInt(5, obj.getIdProvedor());
         cs.executeUpdate();
         con.close();
     }
@@ -82,8 +79,8 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
     public void eliminar(Proveedores obj) throws SQLException {
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from proveedores where PK_IDProvedor = ?");
-        cs.setInt(1, obj.getPK_IDProvedor());
+        CallableStatement cs = con.prepareCall("delete from proveedores where idproveedor = ?");
+        cs.setInt(1, obj.getIdProvedor());
         
         cs.executeUpdate();
         con.close();
@@ -100,18 +97,17 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         Proveedores p = null;
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("select * from proveedores where PK_IDProvedor = ? " );
-        cs.setInt(1, obj.getPK_IDProvedor());
+        CallableStatement cs = con.prepareCall("select * from proveedores where idproveedor = ? " );
+        cs.setInt(1, obj.getIdProvedor());
         
         ResultSet result = cs.executeQuery();
         while(result.next()){
             p = new Proveedores();
-            p.setPK_IDProvedor(result.getInt("PK_IDProvedor"));
-            p.setNombre(result.getString("Nombre"));
-            p.setDireccion(result.getString("Direccion"));
-            p.setCorreoElectronico(result.getString("correoElectronico"));
-            p.setTelefono(result.getString("Telefono"));
-            p.setUltUsuario(result.getString("UltUsuario"));
+            p.setIdProvedor(result.getInt("idproveedor"));
+            p.setNombre(result.getString("nombre"));
+            p.setEmail(result.getString("email"));
+            p.setTelefono(result.getString("telefono"));
+            p.setDireccion(result.getString("direccion"));
         }
         con.close();
         return p;
@@ -127,17 +123,16 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         Connection con = conexion.getConexion();
         ArrayList<Proveedores> l = new ArrayList();
         
-        PreparedStatement ps = con.prepareStatement("select * from proveedores ");
+        PreparedStatement ps = con.prepareStatement("select * from proveedor ");
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Proveedores p = new Proveedores();
-            p.setPK_IDProvedor(result.getInt("PK_IDProvedor"));
-            p.setNombre(result.getString("Nombre"));
-            p.setDireccion(result.getString("Direccion"));
-            p.setCorreoElectronico(result.getString("correoElectronico"));
-            p.setTelefono(result.getString("Telefono"));
-            p.setUltUsuario(result.getString("UltUsuario"));
+            p.setIdProvedor(result.getInt("idproveedor"));
+            p.setNombre(result.getString("nombre"));
+            p.setEmail(result.getString("email"));
+            p.setTelefono(result.getString("telefono"));
+            p.setDireccion(result.getString("direccion"));
             l.add(p);
         }
         con.close();
@@ -155,17 +150,16 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         Connection con = conexion.getConexion();
         ArrayList<Proveedores> l = new ArrayList();
         
-        PreparedStatement ps = con.prepareStatement("select * from proveedores "+where );
+        PreparedStatement ps = con.prepareStatement("select * from proveedor "+where );
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Proveedores p = new Proveedores();
-            p.setPK_IDProvedor(result.getInt("PK_IDProvedor"));
-            p.setNombre(result.getString("Nombre"));
-            p.setDireccion(result.getString("Direccion"));
-            p.setCorreoElectronico(result.getString("correoElectronico"));
-            p.setTelefono(result.getString("Telefono"));
-            p.setUltUsuario(result.getString("UltUsuario"));
+            p.setIdProvedor(result.getInt("idproveedor"));
+            p.setNombre(result.getString("nombre"));
+            p.setEmail(result.getString("email"));
+            p.setTelefono(result.getString("telefono"));
+            p.setDireccion(result.getString("direccion"));
             l.add(p);
         }
         con.close();

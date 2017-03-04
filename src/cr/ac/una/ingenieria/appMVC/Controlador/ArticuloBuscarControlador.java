@@ -131,7 +131,7 @@ public class ArticuloBuscarControlador implements  ActionListener {
         try {
             for (Object oAux : ArticuloBLModelo.obtenerConWhere(new Articulos(), Sql)) {
                 Articulos a = (Articulos) oAux;
-                fila[0] = a.getPK_IDArticulo();
+                fila[0] = a.getIdarticulo();
                 fila[1] = a.getNombre();
                 fila[2] = a.getDescripcion();
                 

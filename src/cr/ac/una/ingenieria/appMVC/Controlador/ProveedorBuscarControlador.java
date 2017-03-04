@@ -135,10 +135,10 @@ public class ProveedorBuscarControlador implements  ActionListener {
         try {
             for (Object oAux : proveedorBLModelo.obtenerConWhere(new Proveedores(), Sql)) {
                 Proveedores p = (Proveedores) oAux;
-                fila[0] = p.getPK_IDProvedor();
+                fila[0] = p.getIdProvedor();
                 fila[1] = p.getNombre();
                 fila[2] = p.getTelefono();
-                fila[3] = p.getCorreoElectronico();
+                fila[3] = p.getEmail();
                 modeloTabla.addRow(fila);
             }
         } catch (SQLException ex) {

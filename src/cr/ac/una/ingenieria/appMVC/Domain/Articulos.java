@@ -9,138 +9,104 @@ package cr.ac.una.ingenieria.appMVC.Domain;
  *
  * @author Gustavo
  */
-public class Articulos extends BaseDomain {
+public class Articulos {
     
-    private Integer PK_IDArticulo;
-    private Integer FK_idProveedor;
+    private Integer idarticulo;
+    private String codigo;
     private String Nombre;
     private String Descripcion;
-    private Integer CantidadExistencia;
-    private double PrecioUnitario;
+    private Integer cod_tipo_articulo;
+    private double PrecioVenta;
+    private Integer Cantidad;
+    private Integer Bodega;
+    private Integer Punto_de_Pedido;
 
-    /**
-     *
-     */
+    public Articulos(Integer idarticulo, String codigo, String Nombre, String Descripcion, Integer cod_tipo_articulo, double PrecioVenta, Integer Cantidad, Integer Bodega, Integer Punto_de_Pedido) {
+        this.idarticulo = idarticulo;
+        this.codigo = codigo;
+        this.Nombre = Nombre;
+        this.Descripcion = Descripcion;
+        this.cod_tipo_articulo = cod_tipo_articulo;
+        this.PrecioVenta = PrecioVenta;
+        this.Cantidad = Cantidad;
+        this.Bodega = Bodega;
+        this.Punto_de_Pedido = Punto_de_Pedido;
+    }
+
     public Articulos() {
     }
 
-    /**
-     *
-     * @param PK_IDArticulo
-     * @param FK_idProveedor
-     * @param Nombre
-     * @param Descripcion
-     * @param CantidadExistencia
-     * @param PrecioUnitario
-     * @param ultUsuario
-     * @param ultFecha
-     */
-    public Articulos(Integer PK_IDArticulo, Integer FK_idProveedor, String Nombre, String Descripcion, Integer CantidadExistencia, double PrecioUnitario,String ultUsuario, String ultFecha) {
-        super(ultUsuario, ultFecha);
-        this.PK_IDArticulo = PK_IDArticulo;
-        this.FK_idProveedor = FK_idProveedor;
-        this.Nombre = Nombre;
-        this.Descripcion = Descripcion;
-        this.CantidadExistencia = CantidadExistencia;
-        this.PrecioUnitario = PrecioUnitario;
-       
+    public Integer getIdarticulo() {
+        return idarticulo;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Integer getPK_IDArticulo() {
-        return PK_IDArticulo;
+    public void setIdarticulo(Integer idarticulo) {
+        this.idarticulo = idarticulo;
     }
 
-    /**
-     *
-     * @param PK_IDArticulo
-     */
-    public void setPK_IDArticulo(Integer PK_IDArticulo) {
-        this.PK_IDArticulo = PK_IDArticulo;
+    public String getCodigo() {
+        return codigo;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Integer getFK_idProveedor() {
-        return FK_idProveedor;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
-    /**
-     *
-     * @param FK_idProveedor
-     */
-    public void setFK_idProveedor(Integer FK_idProveedor) {
-        this.FK_idProveedor = FK_idProveedor;
-    }
-
-    /**
-     *
-     * @return
-     */
     public String getNombre() {
         return Nombre;
     }
 
-    /**
-     *
-     * @param Nombre
-     */
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getDescripcion() {
         return Descripcion;
     }
 
-    /**
-     *
-     * @param Descripcion
-     */
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Integer getCantidadExistencia() {
-        return CantidadExistencia;
+    public Integer getCod_tipo_articulo() {
+        return cod_tipo_articulo;
     }
 
-    /**
-     *
-     * @param CantidadExistencia
-     */
-    public void setCantidadExistencia(Integer CantidadExistencia) {
-        this.CantidadExistencia = CantidadExistencia;
+    public void setCod_tipo_articulo(Integer cod_tipo_articulo) {
+        this.cod_tipo_articulo = cod_tipo_articulo;
     }
 
-    /**
-     *
-     * @return
-     */
-    public double getPrecioUnitario() {
-        return PrecioUnitario;
+    public double getPrecioVenta() {
+        return PrecioVenta;
     }
 
-    /**
-     *
-     * @param PrecioUnitario
-     */
-    public void setPrecioUnitario(double PrecioUnitario) {
-        this.PrecioUnitario = PrecioUnitario;
-    }    
-    
+    public void setPrecioVenta(double PrecioVenta) {
+        this.PrecioVenta = PrecioVenta;
+    }
+
+    public Integer getCantidad() {
+        return Cantidad;
+    }
+
+    public void setCantidad(Integer Cantidad) {
+        this.Cantidad = Cantidad;
+    }
+
+    public Integer getBodega() {
+        return Bodega;
+    }
+
+    public void setBodega(Integer Bodega) {
+        this.Bodega = Bodega;
+    }
+
+    public Integer getPunto_de_Pedido() {
+        return Punto_de_Pedido;
+    }
+
+    public void setPunto_de_Pedido(Integer Punto_de_Pedido) {
+        this.Punto_de_Pedido = Punto_de_Pedido;
+    }
+
+ 
 }
-
