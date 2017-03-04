@@ -5,12 +5,6 @@
  */
 package cr.ac.una.ingenieria.appMVC.Vista;
 
-
-import java.awt.BorderLayout;
-import java.awt.Frame;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 /**
  *
  * @author Gustavo
@@ -23,12 +17,28 @@ public class PantallaPrincipal extends javax.swing.JFrame {
      */
     public PantallaPrincipal() {
         initComponents();
-        setTitle("Sistema de Administracion SIGACI");
+        setTitle("SIGACI");
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        this.setExtendedState(PantallaPrincipal.MAXIMIZED_BOTH);
         
         
        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -42,13 +52,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jLabel2 = new javax.swing.JLabel();
+        jdpPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuArchivo = new javax.swing.JMenu();
         jMenuMantenimiento = new javax.swing.JMenu();
-        jMenuArticulo = new javax.swing.JMenuItem();
         jMenuProveedores = new javax.swing.JMenuItem();
         jMenuUsuario = new javax.swing.JMenuItem();
+        jMenuArticulo = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
         ReportesArticulos = new javax.swing.JMenu();
         ReporteArticulos = new javax.swing.JMenuItem();
@@ -68,28 +78,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/fiber-optic-cables_0-1.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1260, 730));
+        jMenuBar1.setBorder(null);
 
-        jMenuArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/Archivo.png"))); // NOI18N
         jMenuArchivo.setText("Archivo");
+        jMenuArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuBar1.add(jMenuArchivo);
 
-        jMenuMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/Mantenimiento.png"))); // NOI18N
-        jMenuMantenimiento.setText("CRUD");
-
-        jMenuArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/Agregar Articulos.png"))); // NOI18N
-        jMenuArticulo.setText("Articulos");
-        jMenuArticulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuArticuloActionPerformed(evt);
-            }
-        });
-        jMenuMantenimiento.add(jMenuArticulo);
+        jMenuMantenimiento.setText("Modulos");
+        jMenuMantenimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         jMenuProveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jMenuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/ProvedorPequeño.png"))); // NOI18N
@@ -101,9 +98,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuUsuario.setText("Usuarios");
         jMenuMantenimiento.add(jMenuUsuario);
 
+        jMenuArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/Agregar Articulos.png"))); // NOI18N
+        jMenuArticulo.setText("Articulos");
+        jMenuArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuArticuloActionPerformed(evt);
+            }
+        });
+        jMenuMantenimiento.add(jMenuArticulo);
+
         jMenuBar1.add(jMenuMantenimiento);
 
         jMenuEstadisticas.setText("Reportes");
+        jMenuEstadisticas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         ReportesArticulos.setText("Reporte de Articulos");
 
@@ -138,9 +146,27 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuEstadisticas);
 
         jMInformacion.setText("Informacion");
+        jMInformacion.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuBar1.add(jMInformacion);
 
         setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -203,7 +229,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem ReporteProveedores;
     public javax.swing.JMenuItem ReporteUsuarios;
     private javax.swing.JMenu ReportesArticulos;
-    private javax.swing.JLabel jLabel2;
     public javax.swing.JMenu jMInformacion;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuArchivo;
@@ -214,5 +239,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuMantenimiento;
     public javax.swing.JMenuItem jMenuProveedores;
     public javax.swing.JMenuItem jMenuUsuario;
+    private javax.swing.JDesktopPane jdpPrincipal;
     // End of variables declaration//GEN-END:variables
 }
