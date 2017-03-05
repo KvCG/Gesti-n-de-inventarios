@@ -90,36 +90,36 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
     
     private void inicializarPantalla() {
        this.mantProveedorView.txtIdProveedor.setEnabled(false);
-        llenarTabla(this.mantProveedorView.jTableProveedor);
+        //llenarTabla(this.mantProveedorView.jTableProveedor);
     }
      
     /**
      *
      * @param TablaProovedores
      */
-    public void llenarTabla(JTable TablaProovedores) {
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        TablaProovedores.setModel(modeloTabla);
-        modeloTabla.addColumn("Id Proveedor");
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Telefono");
-        modeloTabla.addColumn("Correo Elec");
-
-        Object fila[] = new Object[4];
-
-        try {
-            for (Object oAux : ProveedorBLModelo.obtenerTodos()) {
-                Proveedores p = (Proveedores) oAux;
-                fila[0] = p.getIdProvedor();
-                fila[1] = p.getNombre();
-                fila[2] = p.getTelefono();
-                fila[3] = p.getEmail();
-                modeloTabla.addRow(fila);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(mantProveedorView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+////    public void llenarTabla(JTable TablaProovedores) {
+////        DefaultTableModel modeloTabla = new DefaultTableModel();
+////        TablaProovedores.setModel(modeloTabla);
+////        modeloTabla.addColumn("Id Proveedor");
+////        modeloTabla.addColumn("Nombre");
+////        modeloTabla.addColumn("Telefono");
+////        modeloTabla.addColumn("Correo Elec");
+////
+////        Object fila[] = new Object[4];
+////
+////        try {
+////            for (Object oAux : ProveedorBLModelo.obtenerTodos()) {
+////                Proveedores p = (Proveedores) oAux;
+////                fila[0] = p.getIdProvedor();
+////                fila[1] = p.getNombre();
+////                fila[2] = p.getTelefono();
+////                fila[3] = p.getEmail();
+////                modeloTabla.addRow(fila);
+////            }
+////        } catch (SQLException ex) {
+////            JOptionPane.showMessageDialog(mantProveedorView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+////        }
+////    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -138,7 +138,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
             try {
                 if(this.isEmail(this.mantProveedorView.txtCorreo.getText())){
                 this.ProveedorBLModelo.insertar(p);
-                llenarTabla(this.mantProveedorView.jTableProveedor);
+                //llenarTabla(this.mantProveedorView.jTableProveedor);
                 JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido ingresado correctamente", "Proveedor Agreagado", JOptionPane.INFORMATION_MESSAGE);
                 this.mantProveedorView.txtNombre.setText(null);
                 this.mantProveedorView.txtIdProveedor.setText(null);
@@ -173,7 +173,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
                     resp=JOptionPane.showConfirmDialog(mantProveedorView, "Esta seguro que desea eliminar el Proveedor");
                     if(resp==0){
                     ProveedorBLModelo.eliminar(p);
-                    llenarTabla(this.mantProveedorView.jTableProveedor);
+                    //llenarTabla(this.mantProveedorView.jTableProveedor);
                     JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
                     this.mantProveedorView.txtNombre.setText(null);
                     this.mantProveedorView.txtIdProveedor.setText(null);
@@ -248,7 +248,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
                    try {
                 
                         this.ProveedorBLModelo.modificar(p);
-                        llenarTabla(this.mantProveedorView.jTableProveedor);
+                        //llenarTabla(this.mantProveedorView.jTableProveedor);
                         JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido modificado correctamente", 
                                 "Proveedor Modificado", JOptionPane.INFORMATION_MESSAGE);
                         this.mantProveedorView.txtNombre.setText(null);

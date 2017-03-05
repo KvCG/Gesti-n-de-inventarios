@@ -84,44 +84,44 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         this.mantUsuarioview.txtidUsuario.getDocument().addDocumentListener(this);
         this.mantUsuarioview.btEliminar.setEnabled(false);
         this.mantUsuarioview.btModificar.setEnabled(false);
-        inicializarPantalla();
+        //inicializarPantalla();
     }
     
     private void inicializarPantalla() {
         this.mantUsuarioview.txtidUsuario.setEnabled(false);
-        llenarTabla(this.mantUsuarioview.jTableusuarios);
+        //llenarTabla(this.mantUsuarioview.jTableusuarios);
     }
     
     /**
      *
      * @param tablaUsuarios
      */
-    public void llenarTabla(JTable tablaUsuarios) {
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        tablaUsuarios.setModel(modeloTabla);
-        modeloTabla.addColumn("Id Usuario");
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Usuario");
-        
-        
-
-        Object fila[] = new Object[3];
-
-        try {
-            for (Object oAux : usuarioBlModelo.obtenerTodos()) {
-                Usuario u = (Usuario) oAux;
-                fila[0] = u.getIdUsuario();
-                fila[1] = u.getIdPersona();
-                fila[2] = u.getAlias();
-                fila[3] = u.getRol();
-                
-                
-                modeloTabla.addRow(fila);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(mantUsuarioview, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+//    public void llenarTabla(JTable tablaUsuarios) {
+//        DefaultTableModel modeloTabla = new DefaultTableModel();
+//        tablaUsuarios.setModel(modeloTabla);
+//        modeloTabla.addColumn("Id Usuario");
+//        modeloTabla.addColumn("Nombre");
+//        modeloTabla.addColumn("Usuario");
+//        
+//        
+//
+//        Object fila[] = new Object[3];
+//
+//        try {
+//            for (Object oAux : usuarioBlModelo.obtenerTodos()) {
+//                Usuario u = (Usuario) oAux;
+//                fila[0] = u.getIdUsuario();
+//                fila[1] = u.getIdPersona();
+//                fila[2] = u.getAlias();
+//                fila[3] = u.getRol();
+//                
+//                
+//                modeloTabla.addRow(fila);
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(mantUsuarioview, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
 
 
     @Override
@@ -138,7 +138,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
             try {
                 //se agrega el socio a la base de datos
                 this.usuarioBlModelo.insertar(u);
-                llenarTabla(this.mantUsuarioview.jTableusuarios);
+                //llenarTabla(this.mantUsuarioview.jTableusuarios);
                 JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido ingresado correctamente", "Usuario Agreagado", JOptionPane.INFORMATION_MESSAGE);
                 this.mantUsuarioview.txtContraseña.setText(null);
                 this.mantUsuarioview.txtNombre.setText(null);
@@ -165,7 +165,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 resp=JOptionPane.showConfirmDialog(mantUsuarioview, "Esta seguro que desea eliminar el Usuario");
                 if(resp==0){
                 usuarioBlModelo.eliminar(u);
-                llenarTabla(this.mantUsuarioview.jTableusuarios);
+                //llenarTabla(this.mantUsuarioview.jTableusuarios);
                 JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido eliminado correctamente",
                         "Usuario Eliminado", JOptionPane.INFORMATION_MESSAGE);
                 this.mantUsuarioview.txtContraseña.setText(null);
@@ -234,7 +234,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                    try {
                 
                         this.usuarioBlModelo.modificar(u);
-                        llenarTabla(this.mantUsuarioview.jTableusuarios);
+                        //llenarTabla(this.mantUsuarioview.jTableusuarios);
                         JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido modificado correctamente", 
                                 "Usuario Modificado", JOptionPane.INFORMATION_MESSAGE);
                         this.mantUsuarioview.txtidUsuario.setText(u.getIdUsuario().toString());

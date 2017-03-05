@@ -133,42 +133,42 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private void inicializarPantalla() {
        this.mantArticuloView.txtIdArticulo.setEnabled(false);
        this.mantArticuloView.txtIdProveedor.setEnabled(false);
-        llenarTabla(this.mantArticuloView.jTableArticulos);
+        //llenarTabla(this.mantArticuloView.jTableArticulos);
     }
     
     /**
      *
      * @param tablaArticulos
      */
-    public void llenarTabla(JTable tablaArticulos) {
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        tablaArticulos.setModel(modeloTabla);
-        modeloTabla.addColumn("Codigo");
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Descripcion");
-        modeloTabla.addColumn("Cantidad");
-        modeloTabla.addColumn("Precio");
-        modeloTabla.addColumn("Cantidad minima");
-        
-
-        Object fila[] = new Object[6];
-
-        try {
-            for (Object oAux : ArticuloBLModelo.obtenerTodos()) {
-                Articulos a = (Articulos) oAux;
-                fila[1] = a.getIdarticulo();
-                fila[2] = a.getNombre();
-                fila[3] = a.getDescripcion();
-                fila[4] = a.getCantidad();
-                fila[5] = a.getPrecioVenta();
-                fila[6] = a.getPunto_de_Pedido();
-                
-                modeloTabla.addRow(fila);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(mantArticuloView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+//    public void llenarTabla(JTable tablaArticulos) {
+//        DefaultTableModel modeloTabla = new DefaultTableModel();
+//        tablaArticulos.setModel(modeloTabla);
+//        modeloTabla.addColumn("Codigo");
+//        modeloTabla.addColumn("Nombre");
+//        modeloTabla.addColumn("Descripcion");
+//        modeloTabla.addColumn("Cantidad");
+//        modeloTabla.addColumn("Precio");
+//        modeloTabla.addColumn("Cantidad minima");
+//        
+//
+//        Object fila[] = new Object[6];
+//
+//        try {
+//            for (Object oAux : ArticuloBLModelo.obtenerTodos()) {
+//                Articulos a = (Articulos) oAux;
+//                fila[1] = a.getIdarticulo();
+//                fila[2] = a.getNombre();
+//                fila[3] = a.getDescripcion();
+//                fila[4] = a.getCantidad();
+//                fila[5] = a.getPrecioVenta();
+//                fila[6] = a.getPunto_de_Pedido();
+//                
+//                modeloTabla.addRow(fila);
+//            }
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(mantArticuloView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
     
     
     @Override
@@ -190,7 +190,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             try {
                
                 this.ArticuloBLModelo.insertar(a);
-                llenarTabla(this.mantArticuloView.jTableArticulos);
+                //llenarTabla(this.mantArticuloView.jTableArticulos);
                 JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
                 this.mantArticuloView.TxtCantidad.setText(null);
                 this.mantArticuloView.TxtPrecio.setText(null);
@@ -220,7 +220,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 resp=JOptionPane.showConfirmDialog(mantArticuloView, "Esta seguro que desea eliminar el Articulo");
                 if(resp==0){
                 ArticuloBLModelo.eliminar(a);
-                llenarTabla(this.mantArticuloView.jTableArticulos);
+                //llenarTabla(this.mantArticuloView.jTableArticulos);
                 JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
                 this.mantArticuloView.TxtCantidad.setText(null);
                 this.mantArticuloView.TxtPrecio.setText(null);
@@ -296,7 +296,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                    try {
                 
                         this.ArticuloBLModelo.modificar(a);
-                        llenarTabla(this.mantArticuloView.jTableArticulos);
+                        //llenarTabla(this.mantArticuloView.jTableArticulos);
                         JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido modificado correctamente", 
                                 "Articulo maodificado Modificado", JOptionPane.INFORMATION_MESSAGE);
                         this.mantArticuloView.TxtCantidad.setText(null);
