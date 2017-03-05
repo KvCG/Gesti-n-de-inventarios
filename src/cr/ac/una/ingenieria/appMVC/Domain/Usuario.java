@@ -9,12 +9,13 @@ package cr.ac.una.ingenieria.appMVC.Domain;
  *
  * @author Gustavo
  */
-public class Usuario extends BaseDomain {
+public class Usuario {
     
-    private Integer PK_idUsuario;
-    private String nombre;
-    private String usuario;
-    private String contraseña;
+    private Integer idUsuario;
+    private Integer idPersona;
+    private String alias;
+    private String password;
+    private Integer rol;
 
     /**
      *
@@ -22,86 +23,56 @@ public class Usuario extends BaseDomain {
     public Usuario() {
     }
 
-    /**
-     *
-     * @param PK_idUsuario
-     * @param nombre
-     * @param usuario
-     * @param contraseña
-     * @param ultUsuario
-     * @param ultFecha
-     */
-    public Usuario(Integer PK_idUsuario, String nombre, String usuario, String contraseña, String ultUsuario, String ultFecha) {
-        super(ultUsuario, ultFecha);
-        this.PK_idUsuario = PK_idUsuario;
-        this.nombre = nombre;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
+    public Usuario(Integer idUsuario, Integer idPersona, String alias, String password, Integer rol) {
+        
+        this.idUsuario = idUsuario;
+        this.idPersona = idPersona;
+        this.alias = alias;
+        this.password = password;
+        this.rol = rol;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Integer getPK_idUsuario() {
-        return PK_idUsuario;
+    public Integer getIdUsuario() {
+        return idUsuario;
     }
 
-    /**
-     *
-     * @param PK_idUsuario
-     */
-    public void setPK_idUsuario(Integer PK_idUsuario) {
-        this.PK_idUsuario = PK_idUsuario;
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getNombre() {
-        return nombre;
+    public Integer getIdPersona() {
+        return idPersona;
     }
 
-    /**
-     *
-     * @param nombre
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setIdPersona(Integer idPersona) {
+        this.idPersona = idPersona;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getUsuario() {
-        return usuario;
+    public String getAlias() {
+        return alias;
     }
 
-    /**
-     *
-     * @param usuario
-     */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    /**
-     *
-     * @param contraseña
-     */
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+    public Integer getRol() {
+        return rol;
+    }
+
+    public void setRol(Integer rol) {
+        this.rol = rol;
+    }
+
+   
     
     
     

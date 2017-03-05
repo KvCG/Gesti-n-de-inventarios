@@ -40,14 +40,12 @@ public class UsuarioDao implements IBaseDao<Usuario> {
     public void insertar(Usuario obj) throws SQLException {
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("insert into Usuarios (nombre,usuario,"
-                                             + "contraseña,ultUsuario,"
-                                             + "ultFecha) values "
-                                             + "(?,?,?,?,curdate())");
-        cs.setString(1, obj.getNombre());
-        cs.setString(2, obj.getUsuario());
-        cs.setString(3, obj.getContraseña());
-        cs.setString(4, obj.getUltUsuario()); 
+        CallableStatement cs = con.prepareCall("insert into usuario (alias,"
+                                             + "password,rol) values "
+                                             + "(?,?,?)");
+        cs.setString(1, obj.getAlias());
+        cs.setString(2, obj.getPassword());
+        cs.setInt(3, obj.getRol()); 
         cs.executeUpdate();
         con.close();
     }
@@ -61,16 +59,14 @@ public class UsuarioDao implements IBaseDao<Usuario> {
     public void modificar(Usuario obj) throws SQLException {
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("update Usuarios set nombre = ?, "
-                                            + "Usuario = ?, Contraseña = ?,"
-                                            + "ultUsuario = ?,"
-                                            + "ultFecha = curdate() "
-                                            + "where PK_idUsuario = ?");
-        cs.setString(1, obj.getNombre());
-        cs.setString(2, obj.getUsuario());
-        cs.setString(3, obj.getContraseña());
-        cs.setString(4, obj.getUltUsuario()); 
-        cs.setInt(5, obj.getPK_idUsuario());
+        CallableStatement cs = con.prepareCall("update usuario "
+                                            + "alias = ?, password = ?,"
+                                            + "rol = ?,"
+                                            + "where idusuario = ?");
+        cs.setString(1, obj.getAlias());
+        cs.setString(2, obj.getPassword());
+        cs.setInt(3, obj.getRol());
+        cs.setInt(4, obj.getIdUsuario());
         cs.executeUpdate();
         con.close();
     }
@@ -84,8 +80,8 @@ public class UsuarioDao implements IBaseDao<Usuario> {
     public void eliminar(Usuario obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from Usuarios where PK_idUsuario = ?");
-        cs.setInt(1, obj.getPK_idUsuario());
+        CallableStatement cs = con.prepareCall("delete from usuario where idusuario = ?");
+        cs.setInt(1, obj.getIdUsuario());
         
         cs.executeUpdate();
         con.close();
@@ -101,16 +97,16 @@ public class UsuarioDao implements IBaseDao<Usuario> {
     public Usuario obtenerPorId(Usuario obj) throws SQLException {
         Usuario u = null;
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("select * from Usuarios where PK_idUsuario = ? " );
-        cs.setInt(1, obj.getPK_idUsuario());
+        CallableStatement cs = con.prepareCall("select * from usuario where idusuario = ? " );
+        cs.setInt(1, obj.getIdUsuario());
         ResultSet result = cs.executeQuery();
         while(result.next()){
             u = new Usuario();
-            u.setPK_idUsuario(result.getInt("PK_idUsuario"));
-            u.setNombre(result.getString("nombre"));
-            u.setUsuario(result.getString("Usuario"));
-            u.setContraseña(result.getString("Contraseña"));
-            u.setUltUsuario(result.getString("UltUsuario"));
+            u.setIdUsuario(result.getInt("idusuario"));
+            u.setIdPersona(result.getInt("idpersona"));
+            u.setAlias(result.getString("alias"));
+            u.setPassword(result.getString("password"));
+            u.setRol(result.getInt("rol"));
         }
         con.close();
         return u;
@@ -126,16 +122,16 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         Connection con = conexion.getConexion();
         ArrayList<Usuario> l = new ArrayList();
         
-        PreparedStatement ps = con.prepareStatement("select * from Usuarios ");
+        PreparedStatement ps = con.prepareStatement("select * from usuario ");
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Usuario u = new Usuario();
-            u.setPK_idUsuario(result.getInt("PK_idUsuario"));
-            u.setNombre(result.getString("nombre"));
-            u.setUsuario(result.getString("Usuario"));
-            u.setContraseña(result.getString("Contraseña"));
-            u.setUltUsuario(result.getString("UltUsuario"));
+            u.setIdUsuario(result.getInt("idusuario"));
+            u.setIdPersona(result.getInt("idpersona"));
+            u.setAlias(result.getString("alias"));
+            u.setPassword(result.getString("password"));
+            u.setRol(result.getInt("rol"));
             l.add(u);
         }
         con.close();
@@ -153,16 +149,16 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         Connection con = conexion.getConexion();
         ArrayList<Usuario> l = new ArrayList();
         
-        PreparedStatement ps = con.prepareStatement("select * from Usuarios "+where);
+        PreparedStatement ps = con.prepareStatement("select * from usuario "+where);
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Usuario u = new Usuario();
-            u.setPK_idUsuario(result.getInt("PK_idUsuario"));
-            u.setNombre(result.getString("nombre"));
-            u.setUsuario(result.getString("Usuario"));
-            u.setContraseña(result.getString("Contraseña"));
-            u.setUltUsuario(result.getString("UltUsuario"));
+            u.setIdUsuario(result.getInt("idusuario"));
+            u.setIdPersona(result.getInt("idpersona"));
+            u.setAlias(result.getString("alias"));
+            u.setPassword(result.getString("password"));
+            u.setRol(result.getInt("rol"));
             l.add(u);
         }
         con.close();

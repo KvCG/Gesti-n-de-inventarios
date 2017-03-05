@@ -9,118 +9,69 @@ package cr.ac.una.ingenieria.appMVC.Domain;
  *
  * @author Gustavo
  */
-public class Proveedores extends BaseDomain {
+public class Proveedores {
     
-    private Integer PK_IDProvedor;
+    private Integer IdProvedor;
     private String Nombre;
-    private String Direccion;
-    private String CorreoElectronico;
+    private String direccion;
+    private String email;
     private String Telefono;
 
-    /**
-     *
-     */
     public Proveedores() {
     }
 
-    /**
-     *
-     * @param PK_IDProvedor
-     * @param Nombre
-     * @param Direccion
-     * @param CorreoElectronico
-     * @param Telefono
-     * @param ultUsuario
-     * @param ultFecha
-     */
-    public Proveedores(Integer PK_IDProvedor, String Nombre, String Direccion, String CorreoElectronico, String Telefono, String ultUsuario, String ultFecha) {
-        super(ultUsuario, ultFecha);
-        this.PK_IDProvedor = PK_IDProvedor;
+    public Proveedores(Integer IdProvedor, String Nombre, String direccion, String email, String Telefono) {
+        
+        this.IdProvedor = IdProvedor;
         this.Nombre = Nombre;
-        this.Direccion = Direccion;
-        this.CorreoElectronico = CorreoElectronico;
+        this.direccion = direccion;
+        this.email = email;
         this.Telefono = Telefono;
     }
 
-    /**
-     *
-     * @return
-     */
-    public Integer getPK_IDProvedor() {
-        return PK_IDProvedor;
+    public Integer getIdProvedor() {
+        return IdProvedor;
     }
 
-    /**
-     *
-     * @param PK_IDProvedor
-     */
-    public void setPK_IDProvedor(Integer PK_IDProvedor) {
-        this.PK_IDProvedor = PK_IDProvedor;
+    public void setIdProvedor(Integer IdProvedor) {
+        this.IdProvedor = IdProvedor;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getNombre() {
         return Nombre;
     }
 
-    /**
-     *
-     * @param Nombre
-     */
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
-    /**
-     *
-     * @param Direccion
-     */
-    public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    /**
-     *
-     * @return
-     */
-    public String getCorreoElectronico() {
-        return CorreoElectronico;
+    public String getEmail() {
+        return email;
     }
 
-    /**
-     *
-     * @param CorreoElectronico
-     */
-    public void setCorreoElectronico(String CorreoElectronico) {
-        this.CorreoElectronico = CorreoElectronico;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    /**
-     *
-     * @return
-     */
     public String getTelefono() {
         return Telefono;
     }
 
-    /**
-     *
-     * @param Telefono
-     */
     public void setTelefono(String Telefono) {
         this.Telefono = Telefono;
     }
-  
+
+    /**
+     *
+     */
     
+   
 }

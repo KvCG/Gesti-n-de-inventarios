@@ -143,24 +143,25 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     public void llenarTabla(JTable tablaArticulos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulos.setModel(modeloTabla);
-        modeloTabla.addColumn("Id Proveedor");
-        modeloTabla.addColumn("Id Articulo");
+        modeloTabla.addColumn("Codigo");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Descripcion");
         modeloTabla.addColumn("Cantidad");
         modeloTabla.addColumn("Precio");
+        modeloTabla.addColumn("Cantidad minima");
+        
 
         Object fila[] = new Object[6];
 
         try {
             for (Object oAux : ArticuloBLModelo.obtenerTodos()) {
                 Articulos a = (Articulos) oAux;
-                fila[0] = a.getFK_idProveedor();
-                fila[1] = a.getPK_IDArticulo();
+                fila[1] = a.getIdarticulo();
                 fila[2] = a.getNombre();
                 fila[3] = a.getDescripcion();
-                fila[4] = a.getCantidadExistencia();
-                fila[5] = a.getPrecioUnitario();
+                fila[4] = a.getCantidad();
+                fila[5] = a.getPrecioVenta();
+                fila[6] = a.getPunto_de_Pedido();
                 
                 modeloTabla.addRow(fila);
             }
@@ -180,12 +181,12 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             }
             else{
             Articulos a = new Articulos();
-            a.setPK_IDArticulo(1); //como es auto generado no es relavante tomar el campo de texto id.
+            //a.setIdarticulo(this.mantArticuloView.txt); //Falta hacerlo en la vista
             a.setNombre(this.mantArticuloView.txtNombre.getText());
             a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
-            a.setCantidadExistencia(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
-            a.setPrecioUnitario(Integer.parseInt(this.mantArticuloView.TxtPrecio.getText()));
-            a.setFK_idProveedor(Integer.parseInt(this.mantArticuloView.txtIdProveedor.getText()));
+            a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
+            a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
+            
             try {
                
                 this.ArticuloBLModelo.insertar(a);
@@ -212,8 +213,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             Articulos a = new Articulos();
             int fila = this.mantArticuloView.jTableArticulos.getSelectedRow();
             int idArticulo = Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText());
-            a.setPK_IDArticulo(idArticulo);
-               System.out.println("ojo "+a.getPK_IDArticulo());
+            a.setIdarticulo(idArticulo);
+               System.out.println("ojo "+a.getIdarticulo());
             try {
                 int resp;
                 resp=JOptionPane.showConfirmDialog(mantArticuloView, "Esta seguro que desea eliminar el Articulo");
@@ -249,16 +250,16 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             if(this.mantArticuloView.jTableArticulos.getRowCount()!=0&&this.mantArticuloView.jTableArticulos.getRowCount()!=-1){
                 Articulos a = new Articulos();
                 int fila = this.mantArticuloView.jTableArticulos.getSelectedRow();
-                a.setPK_IDArticulo(Integer.parseInt(this.mantArticuloView.jTableArticulos.getValueAt(fila, 1).toString()));
+                a.setIdarticulo(Integer.parseInt(this.mantArticuloView.jTableArticulos.getValueAt(fila, 1).toString()));
                 
                 try {                    
                     a = ArticuloBLModelo.obtenerPorId(a);
-                    this.mantArticuloView.txtIdArticulo.setText(String.valueOf(a.getPK_IDArticulo().toString()));
-                    this.mantArticuloView.txtNombre.setText(a.getNombre().toString());
-                    this.mantArticuloView.txtDescripcion.setText(a.getDescripcion().toString());
-                    this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidadExistencia().toString()));
-                    this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioUnitario()));
-                    this.mantArticuloView.txtIdProveedor.setText(String.valueOf(a.getFK_idProveedor().toString()));
+                    this.mantArticuloView.txtIdArticulo.setText(String.valueOf(a.getIdarticulo().toString()));
+                    //this.mantArticuloView.txtCodigo.setText();
+                    this.mantArticuloView.txtNombre.setText(a.getNombre());
+                    this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
+                    this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
+                    this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
                     this.mantArticuloView.btEliminar.setEnabled(true);
                                 
                 } catch (SQLException ex) {
@@ -280,7 +281,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
              Articulos a = new Articulos();
             
             
-             a.setPK_IDArticulo(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
+             a.setIdarticulo(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
                 
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
@@ -289,9 +290,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             }
                     a.setNombre(this.mantArticuloView.txtNombre.getText());
                     a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
-                    a.setCantidadExistencia(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
-                    a.setPrecioUnitario(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
-                    a.setFK_idProveedor(Integer.parseInt(this.mantArticuloView.txtIdProveedor.getText()));
+                    a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
+                    a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
                     
                    try {
                 
@@ -354,31 +354,30 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     @Override
     public void insertUpdate(DocumentEvent de) {
         cargarArticulo();
-        cargarIdProveedor();
+
     }
 
     @Override
     public void removeUpdate(DocumentEvent de) {
         cargarArticulo();
-        cargarIdProveedor();
+
     }
 
     @Override
     public void changedUpdate(DocumentEvent de) {
         cargarArticulo();
-        cargarIdProveedor();
+
     }
     private void cargarArticulo() {
         Articulos a = new Articulos();
         if (!this.mantArticuloView.txtIdArticulo.getText().isEmpty()) {
-            a.setPK_IDArticulo(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
+            a.setIdarticulo(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
-                this.mantArticuloView.txtNombre.setText(a.getNombre().toString());
-                this.mantArticuloView.txtDescripcion.setText(a.getDescripcion().toString());
-                this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidadExistencia().toString()));
-                this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioUnitario()));
-                this.mantArticuloView.txtIdProveedor.setText(String.valueOf(a.getFK_idProveedor().toString()));                                
+                this.mantArticuloView.txtNombre.setText(a.getNombre());
+                this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
+                this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
+                this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));                                
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
@@ -386,20 +385,4 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             }
         }
     }
-    
-    private void cargarIdProveedor(){
-        Proveedores p= new Proveedores();
-        if (!this.mantArticuloView.txtIdArticulo.getText().isEmpty()) {
-            p.setPK_IDProvedor(Integer.parseInt(this.mantArticuloView.txtIdProveedor.getText()));
-            try {
-                p = ProveedorBLModelo.obtenerPorId(p);
-                    
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Proveedor (" + ex.getMessage() + ")",
-                        "Error al cargar el proveedor", JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }    
-}
 }

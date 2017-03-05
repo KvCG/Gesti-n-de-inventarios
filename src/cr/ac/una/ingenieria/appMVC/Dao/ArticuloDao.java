@@ -37,16 +37,18 @@ public class ArticuloDao implements IBaseDao<Articulos> {
     @Override
     public void insertar(Articulos obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into Articulos(FK_idProveedor,nombre,Descripcion,CantidadExistencia,"
-                                             + "PrecioUnitario,ultUsuario,ultFecha) values "
-                                             + "(?,?,?,?,?,?,curdate())");
+        CallableStatement cs = con.prepareCall("insert into articulo(codigo,nombre,descripcion,cod_tipo_articulo,"
+                                             + "precio_venta,cantidad,bodega,punto_de_pedido) values "
+                                             + "(?,?,?,?,?,?,?,?)");
         
-        cs.setInt(1, obj.getFK_idProveedor());
+        cs.setString(1, obj.getCodigo());
         cs.setString(2, obj.getNombre());
         cs.setString(3, obj.getDescripcion());
-        cs.setInt(4, obj.getCantidadExistencia());
-        cs.setDouble(5, obj.getPrecioUnitario());
-        cs.setString(6, obj.getUltUsuario());     
+        cs.setInt(4, obj.getCod_tipo_articulo());
+        cs.setDouble(5, obj.getPrecioVenta());
+        cs.setInt(6, obj.getCantidad());
+        cs.setInt(7, obj.getBodega());
+        cs.setInt(8, obj.getPunto_de_Pedido());
         cs.executeUpdate();
         con.close();
     }
@@ -59,20 +61,22 @@ public class ArticuloDao implements IBaseDao<Articulos> {
     @Override
     public void modificar(Articulos obj) throws SQLException {
         Connection con = conexion.getConexion();
-         CallableStatement cs = con.prepareCall("update Articulos set Nombre= ?,"
-                                                +"Descripcion=?,CantidadExistencia=?,"
-                                                +"PrecioUnitario=?,"  
-                                                +"FK_idProveedor=?,"
-                                                +"ultUsuario=?,"
-                                                +"ultFecha = curdate()"
-                                                +"where PK_IDArticulo=? ");
-        cs.setString(1, obj.getNombre());
-        cs.setString(2, obj.getDescripcion());
-        cs.setInt(3, obj.getCantidadExistencia());
-        cs.setDouble(4, obj.getPrecioUnitario());
-        cs.setInt(5, obj.getFK_idProveedor());
-        cs.setString(6, obj.getUltUsuario());  
-        cs.setInt(7,obj.getPK_IDArticulo());
+         CallableStatement cs = con.prepareCall("update articulo set codigo= ?,set nombre= ?,"
+                                                +"descripcion=?,cod_tipo_articulo=?,"
+                                                +"precio_venta=?,"  
+                                                +"cantidad=?,"
+                                                +"bodega=?,"
+                                                +"punto_de_pedido = ?"
+                                                +"where idarticulo=? ");
+        cs.setString(1, obj.getCodigo()); 
+        cs.setString(2, obj.getNombre());
+        cs.setString(3, obj.getDescripcion());
+        cs.setInt(4, obj.getCod_tipo_articulo());
+        cs.setDouble(5, obj.getPrecioVenta());
+        cs.setInt(6, obj.getCantidad());
+        cs.setInt(7, obj.getBodega());
+        cs.setInt(8, obj.getPunto_de_Pedido());
+        cs.setInt(9, obj.getIdarticulo());
         cs.executeUpdate();
         con.close();
        
@@ -89,8 +93,8 @@ public class ArticuloDao implements IBaseDao<Articulos> {
     public void eliminar(Articulos obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from Articulos where PK_IDArticulo = ?");
-        cs.setInt(1, obj.getPK_IDArticulo());
+        CallableStatement cs = con.prepareCall("delete from articulo where idarticulo = ?");
+        cs.setInt(1, obj.getIdarticulo());
         
         cs.executeUpdate();
         con.close();
@@ -107,19 +111,22 @@ public class ArticuloDao implements IBaseDao<Articulos> {
        Articulos a = null;
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("select * from Articulos where PK_IDArticulo = ? " );
-        cs.setInt(1, obj.getPK_IDArticulo());
+        CallableStatement cs = con.prepareCall("select * from articulo where idarticulo = ? " );
+        cs.setInt(1, obj.getIdarticulo());
         
         ResultSet result = cs.executeQuery();
         while(result.next()){
             a = new Articulos();
-            a.setPK_IDArticulo(result.getInt("PK_IDArticulo"));
-            a.setFK_idProveedor(result.getInt("FK_idProveedor"));
-            a.setNombre(result.getString("Nombre"));
-            a.setDescripcion(result.getString("Descripcion"));
-            a.setCantidadExistencia(result.getInt("CantidadExistencia"));
-            a.setPrecioUnitario(result.getDouble("PrecioUnitario"));
-            a.setUltUsuario(result.getString("UltUsuario"));
+            a.setIdarticulo(result.getInt("idarticulo"));
+            a.setCodigo(result.getString("codigo"));
+            a.setNombre(result.getString("nombre"));
+            a.setDescripcion(result.getString("descripcion"));
+            a.setCod_tipo_articulo(result.getInt("cod_tipo_articulo"));
+            a.setPrecioVenta(result.getDouble("precio_venta"));
+            a.setCantidad(result.getInt("cantidad"));
+            a.setBodega(result.getInt("bodega"));
+            a.setPunto_de_Pedido(result.getInt("punto_de_pedido"));
+            
         }
         con.close();
         return a;
@@ -135,18 +142,21 @@ public class ArticuloDao implements IBaseDao<Articulos> {
        Connection con = conexion.getConexion();
         ArrayList<Articulos> l = new ArrayList();
         
-        PreparedStatement ps = con.prepareStatement("select * from Articulos ");
+        PreparedStatement ps = con.prepareStatement("select * from articulo ");
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Articulos a = new Articulos();
-            a.setPK_IDArticulo(result.getInt("PK_IDArticulo"));
-            a.setFK_idProveedor(result.getInt("FK_idProveedor"));
-            a.setNombre(result.getString("Nombre"));
-            a.setDescripcion(result.getString("Descripcion"));
-            a.setCantidadExistencia(result.getInt("CantidadExistencia"));
-            a.setPrecioUnitario(result.getDouble("PrecioUnitario"));
-            a.setUltUsuario(result.getString("UltUsuario"));
+            a = new Articulos();
+            a.setIdarticulo(result.getInt("idarticulo"));
+            a.setCodigo(result.getString("codigo"));
+            a.setNombre(result.getString("nombre"));
+            a.setDescripcion(result.getString("descripcion"));
+            a.setCod_tipo_articulo(result.getInt("cod_tipo_articulo"));
+            a.setPrecioVenta(result.getDouble("precio_venta"));
+            a.setCantidad(result.getInt("cantidad"));
+            a.setBodega(result.getInt("bodega"));
+            a.setPunto_de_Pedido(result.getInt("punto_de_pedido"));
             l.add(a);
         }
         con.close();
@@ -164,18 +174,21 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         Connection con = conexion.getConexion();
         ArrayList<Articulos> l = new ArrayList();
         
-        PreparedStatement ps = con.prepareStatement("select * from Articulos "+where );
+        PreparedStatement ps = con.prepareStatement("select * from articulo "+where );
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Articulos a = new Articulos();
-             a.setPK_IDArticulo(result.getInt("PK_IDArticulo"));
-            a.setFK_idProveedor(result.getInt("FK_idProveedor"));
-            a.setNombre(result.getString("Nombre"));
-            a.setDescripcion(result.getString("Descripcion"));
-            a.setCantidadExistencia(result.getInt("CantidadExistencia"));
-            a.setPrecioUnitario(result.getDouble("PrecioUnitario"));
-            a.setUltUsuario(result.getString("UltUsuario"));
+             a = new Articulos();
+            a.setIdarticulo(result.getInt("idarticulo"));
+            a.setCodigo(result.getString("codigo"));
+            a.setNombre(result.getString("nombre"));
+            a.setDescripcion(result.getString("descripcion"));
+            a.setCod_tipo_articulo(result.getInt("cod_tipo_articulo"));
+            a.setPrecioVenta(result.getDouble("precio_venta"));
+            a.setCantidad(result.getInt("cantidad"));
+            a.setBodega(result.getInt("bodega"));
+            a.setPunto_de_Pedido(result.getInt("punto_de_pedido"));
             l.add(a);
         }
         con.close();

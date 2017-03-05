@@ -110,9 +110,10 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         try {
             for (Object oAux : usuarioBlModelo.obtenerTodos()) {
                 Usuario u = (Usuario) oAux;
-                fila[0] = u.getPK_idUsuario();
-                fila[1] = u.getNombre();
-                fila[2] = u.getUsuario();
+                fila[0] = u.getIdUsuario();
+                fila[1] = u.getIdPersona();
+                fila[2] = u.getAlias();
+                fila[3] = u.getRol();
                 
                 
                 modeloTabla.addRow(fila);
@@ -130,10 +131,9 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 JOptionPane.showMessageDialog(mantUsuarioview, "Error faltan espacios por rellenar:", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
             }else{
             Usuario u = new Usuario();
-            u.setPK_idUsuario(1); 
-            u.setNombre(this.mantUsuarioview.txtNombre.getText());
-            u.setUsuario(this.mantUsuarioview.txtUsuario.getText());
-            u.setContraseña(String.valueOf(this.mantUsuarioview.txtContraseña.getPassword()));
+            u.setIdUsuario(1);
+            u.setAlias(this.mantUsuarioview.txtUsuario.getText());
+            u.setPassword(String.valueOf(this.mantUsuarioview.txtContraseña.getPassword()));
             
             try {
                 //se agrega el socio a la base de datos
@@ -159,7 +159,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
             Usuario u = new Usuario();
             int fila = this.mantUsuarioview.jTableusuarios.getSelectedRow();
             int idUsuario = Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText());
-            u.setPK_idUsuario(idUsuario);
+            u.setIdUsuario(idUsuario);
             try {
                 int resp;
                 resp=JOptionPane.showConfirmDialog(mantUsuarioview, "Esta seguro que desea eliminar el Usuario");
@@ -197,14 +197,13 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                  Usuario u = new Usuario();
                 int fila = this.mantUsuarioview.jTableusuarios.getSelectedRow();
                               
-                u.setPK_idUsuario(Integer.parseInt(this.mantUsuarioview.jTableusuarios.getValueAt(fila, 0).toString()));
+                u.setIdUsuario(Integer.parseInt(this.mantUsuarioview.jTableusuarios.getValueAt(fila, 0).toString()));
                 
                 try {
                     u = usuarioBlModelo.obtenerPorId(u);
-                    this.mantUsuarioview.txtidUsuario.setText(u.getPK_idUsuario().toString());
-                    this.mantUsuarioview.txtNombre.setText(u.getNombre().toString());
-                    this.mantUsuarioview.txtUsuario.setText(u.getUsuario().toString());
-                    this.mantUsuarioview.txtContraseña.setText(u.getContraseña());
+                    this.mantUsuarioview.txtidUsuario.setText(u.getIdUsuario().toString());
+                    this.mantUsuarioview.txtUsuario.setText(u.getAlias().toString());
+                    this.mantUsuarioview.txtContraseña.setText(u.getPassword());
                     this.mantUsuarioview.btEliminar.setEnabled(true);
                     this.mantUsuarioview.btModificar.setEnabled(true);
                  
@@ -223,26 +222,24 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
              Usuario u = new Usuario();
             
              
-             u.setPK_idUsuario(Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText()));
+             u.setIdUsuario(Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText()));
                 
             try {
                 u = usuarioBlModelo.obtenerPorId(u);
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
-                    u.setNombre(this.mantUsuarioview.txtNombre.getText());
-                    u.setUsuario(this.mantUsuarioview.txtUsuario.getText());
-                    u.setContraseña(this.mantUsuarioview.txtContraseña.getText());
+                    u.setAlias(this.mantUsuarioview.txtUsuario.getText());
+                    u.setPassword(this.mantUsuarioview.txtContraseña.getText());
                    try {
                 
                         this.usuarioBlModelo.modificar(u);
                         llenarTabla(this.mantUsuarioview.jTableusuarios);
                         JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido modificado correctamente", 
                                 "Usuario Modificado", JOptionPane.INFORMATION_MESSAGE);
-                        this.mantUsuarioview.txtidUsuario.setText(u.getPK_idUsuario().toString());
-                        this.mantUsuarioview.txtNombre.setText(u.getNombre().toString());
-                        this.mantUsuarioview.txtUsuario.setText(u.getUsuario().toString());
-                        this.mantUsuarioview.txtContraseña.setText(u.getContraseña().toString());
+                        this.mantUsuarioview.txtidUsuario.setText(u.getIdUsuario().toString());
+                        this.mantUsuarioview.txtUsuario.setText(u.getAlias().toString());
+                        this.mantUsuarioview.txtContraseña.setText(u.getPassword().toString());
                         this.mantUsuarioview.txtContraseña.setText(null);
                         this.mantUsuarioview.txtNombre.setText(null);
                         this.mantUsuarioview.txtUsuario.setText(null);
@@ -297,12 +294,11 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
      private void cargarusuario() {
         Usuario u = new Usuario();
         if (!this.mantUsuarioview.txtidUsuario.getText().isEmpty()) {
-            u.setPK_idUsuario(Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText()));
+            u.setIdUsuario(Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText()));
             try {
                 u = usuarioBlModelo.obtenerPorId(u);
-                this.mantUsuarioview.txtNombre.setText(u.getNombre());
-                this.mantUsuarioview.txtUsuario.setText(u.getUsuario());
-                this.mantUsuarioview.txtContraseña.setText(u.getContraseña());
+                this.mantUsuarioview.txtUsuario.setText(u.getAlias());
+                this.mantUsuarioview.txtContraseña.setText(u.getPassword());
                 
                 
 
