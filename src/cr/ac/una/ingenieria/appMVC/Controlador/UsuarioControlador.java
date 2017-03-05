@@ -15,10 +15,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -89,39 +87,13 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
     
     private void inicializarPantalla() {
         this.mantUsuarioview.txtidUsuario.setEnabled(false);
-        //llenarTabla(this.mantUsuarioview.jTableusuarios);
+
     }
     
     /**
      *
      * @param tablaUsuarios
      */
-//    public void llenarTabla(JTable tablaUsuarios) {
-//        DefaultTableModel modeloTabla = new DefaultTableModel();
-//        tablaUsuarios.setModel(modeloTabla);
-//        modeloTabla.addColumn("Id Usuario");
-//        modeloTabla.addColumn("Nombre");
-//        modeloTabla.addColumn("Usuario");
-//        
-//        
-//
-//        Object fila[] = new Object[3];
-//
-//        try {
-//            for (Object oAux : usuarioBlModelo.obtenerTodos()) {
-//                Usuario u = (Usuario) oAux;
-//                fila[0] = u.getIdUsuario();
-//                fila[1] = u.getIdPersona();
-//                fila[2] = u.getAlias();
-//                fila[3] = u.getRol();
-//                
-//                
-//                modeloTabla.addRow(fila);
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(mantUsuarioview, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
 
 
     @Override

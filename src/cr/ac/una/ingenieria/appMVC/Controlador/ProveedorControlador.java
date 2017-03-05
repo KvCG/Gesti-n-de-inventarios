@@ -18,10 +18,8 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -97,29 +95,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
      *
      * @param TablaProovedores
      */
-////    public void llenarTabla(JTable TablaProovedores) {
-////        DefaultTableModel modeloTabla = new DefaultTableModel();
-////        TablaProovedores.setModel(modeloTabla);
-////        modeloTabla.addColumn("Id Proveedor");
-////        modeloTabla.addColumn("Nombre");
-////        modeloTabla.addColumn("Telefono");
-////        modeloTabla.addColumn("Correo Elec");
-////
-////        Object fila[] = new Object[4];
-////
-////        try {
-////            for (Object oAux : ProveedorBLModelo.obtenerTodos()) {
-////                Proveedores p = (Proveedores) oAux;
-////                fila[0] = p.getIdProvedor();
-////                fila[1] = p.getNombre();
-////                fila[2] = p.getTelefono();
-////                fila[3] = p.getEmail();
-////                modeloTabla.addRow(fila);
-////            }
-////        } catch (SQLException ex) {
-////            JOptionPane.showMessageDialog(mantProveedorView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
-////        }
-////    }
+
     
     @Override
     public void actionPerformed(ActionEvent e) {

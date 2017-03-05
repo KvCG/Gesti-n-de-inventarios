@@ -8,7 +8,6 @@ package cr.ac.una.ingenieria.appMVC.Controlador;
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantProovedorBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.ManteArticulos;
@@ -19,10 +18,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -133,43 +130,13 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private void inicializarPantalla() {
        this.mantArticuloView.txtIdArticulo.setEnabled(false);
        this.mantArticuloView.txtIdProveedor.setEnabled(false);
-        //llenarTabla(this.mantArticuloView.jTableArticulos);
     }
     
     /**
      *
      * @param tablaArticulos
      */
-//    public void llenarTabla(JTable tablaArticulos) {
-//        DefaultTableModel modeloTabla = new DefaultTableModel();
-//        tablaArticulos.setModel(modeloTabla);
-//        modeloTabla.addColumn("Codigo");
-//        modeloTabla.addColumn("Nombre");
-//        modeloTabla.addColumn("Descripcion");
-//        modeloTabla.addColumn("Cantidad");
-//        modeloTabla.addColumn("Precio");
-//        modeloTabla.addColumn("Cantidad minima");
-//        
-//
-//        Object fila[] = new Object[6];
-//
-//        try {
-//            for (Object oAux : ArticuloBLModelo.obtenerTodos()) {
-//                Articulos a = (Articulos) oAux;
-//                fila[1] = a.getIdarticulo();
-//                fila[2] = a.getNombre();
-//                fila[3] = a.getDescripcion();
-//                fila[4] = a.getCantidad();
-//                fila[5] = a.getPrecioVenta();
-//                fila[6] = a.getPunto_de_Pedido();
-//                
-//                modeloTabla.addRow(fila);
-//            }
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(mantArticuloView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
-    
+
     
     @Override
     public void actionPerformed(ActionEvent e) {
