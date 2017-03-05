@@ -107,6 +107,4 @@ public class Articulos {
     public void setPunto_de_Pedido(Integer Punto_de_Pedido) {
         this.Punto_de_Pedido = Punto_de_Pedido;
     }
-
- 
 }
