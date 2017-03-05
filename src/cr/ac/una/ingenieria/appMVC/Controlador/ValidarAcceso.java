@@ -137,7 +137,7 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
         String password= String.valueOf(solUsePa.TxtPassword.getPassword());
         
         int resultado= 0;
-        String SSQL="SELECT * FROM usuarios WHERE usuario='"+ usuario+"'AND Contraseña=('"+password+"')";
+        String SSQL="SELECT * FROM usuario WHERE alias='"+ usuario+"'AND password=('"+password+"')";
         Connection connect= null;
         try {
             connect= metodos.getConexion();

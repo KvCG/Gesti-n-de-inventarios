@@ -147,7 +147,6 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Articulos a = new Articulos();
-            a = new Articulos();
             a.setIdarticulo(result.getInt("idarticulo"));
             a.setCodigo(result.getString("codigo"));
             a.setNombre(result.getString("nombre"));
@@ -179,7 +178,6 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Articulos a = new Articulos();
-             a = new Articulos();
             a.setIdarticulo(result.getInt("idarticulo"));
             a.setCodigo(result.getString("codigo"));
             a.setNombre(result.getString("nombre"));
@@ -193,10 +191,5 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         }
         con.close();
         return l;
-        
-     
     }
-
-    
-    
 }
