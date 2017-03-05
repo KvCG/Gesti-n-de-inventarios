@@ -61,13 +61,11 @@ public class ArticuloDao implements IBaseDao<Articulos> {
     @Override
     public void modificar(Articulos obj) throws SQLException {
         Connection con = conexion.getConexion();
-         CallableStatement cs = con.prepareCall("update articulo set codigo= ?,set nombre= ?,"
-                                                +"descripcion=?,cod_tipo_articulo=?,"
-                                                +"precio_venta=?,"  
-                                                +"cantidad=?,"
-                                                +"bodega=?,"
-                                                +"punto_de_pedido = ?"
-                                                +"where idarticulo=? ");
+         CallableStatement cs = con.prepareCall("update articulo set codigo = ?, nombre = ?,"
+                                                +"descripcion=?,cod_tipo_articulo = ?,"
+                                                +"precio_venta = ?, cantidad = ?,"
+                                                +"bodega=?, punto_de_pedido = ?"
+                                                +"where idarticulo = ?");
         cs.setString(1, obj.getCodigo()); 
         cs.setString(2, obj.getNombre());
         cs.setString(3, obj.getDescripcion());
