@@ -30,9 +30,7 @@ public class SolicitudUsuarioPassword extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIGACI");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(460, 310));
         setMinimumSize(new java.awt.Dimension(450, 300));
-        setPreferredSize(new java.awt.Dimension(450, 300));
 
         Usuario12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         Usuario12.setText("Usuario");
