@@ -110,10 +110,10 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
         try {
             for (Object oAux : ProveedorBLModelo.obtenerTodos()) {
                 Proveedores p = (Proveedores) oAux;
-                fila[0] = p.getPK_IDProvedor();
+                fila[0] = p.getIdProvedor();
                 fila[1] = p.getNombre();
                 fila[2] = p.getTelefono();
-                fila[3] = p.getCorreoElectronico();
+                fila[3] = p.getEmail();
                 modeloTabla.addRow(fila);
             }
         } catch (SQLException ex) {
@@ -130,10 +130,10 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
             }
             else{
             Proveedores p = new Proveedores();
-            p.setPK_IDProvedor(1); //como es auto generado no es relavante tomar el campo de texto id.
+            p.setIdProvedor(1); //como es auto generado no es relavante tomar el campo de texto id.
             p.setNombre(this.mantProveedorView.txtNombre.getText());
             p.setTelefono(this.mantProveedorView.txtTelefono.getText());
-            p.setCorreoElectronico(this.mantProveedorView.txtCorreo.getText());
+            p.setEmail(this.mantProveedorView.txtCorreo.getText());
             p.setDireccion(this.mantProveedorView.txtDireccion.getText());
             try {
                 if(this.isEmail(this.mantProveedorView.txtCorreo.getText())){
@@ -167,7 +167,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
             int fila = this.mantProveedorView.jTableProveedor.getSelectedRow();
             
             int idProveedor = Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText());
-            p.setPK_IDProvedor(idProveedor);
+            p.setIdProvedor(idProveedor);
                 try {
                     int resp;
                     resp=JOptionPane.showConfirmDialog(mantProveedorView, "Esta seguro que desea eliminar el Proveedor");
@@ -206,13 +206,13 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
                 
                 int fila = this.mantProveedorView.jTableProveedor.getSelectedRow();
                 
-                p.setPK_IDProvedor(Integer.parseInt(this.mantProveedorView.jTableProveedor.getValueAt(fila, 0).toString()));
+                p.setIdProvedor(Integer.parseInt(this.mantProveedorView.jTableProveedor.getValueAt(fila, 0).toString()));
                 try {
                     p = ProveedorBLModelo.obtenerPorId(p);
-                    this.mantProveedorView.txtIdProveedor.setText(p.getPK_IDProvedor().toString());
+                    this.mantProveedorView.txtIdProveedor.setText(p.getIdProvedor().toString());
                     this.mantProveedorView.txtNombre.setText(p.getNombre().toString());
-                    this.mantProveedorView.txtCorreo.setText(p.getTelefono().toString());
-                    this.mantProveedorView.txtCorreo.setText(p.getCorreoElectronico().toString());
+                    this.mantProveedorView.txtTelefono.setText(p.getTelefono().toString());
+                    this.mantProveedorView.txtCorreo.setText(p.getEmail().toString());
                     this.mantProveedorView.txtDireccion.setText(p.getDireccion().toString());
                     this.mantProveedorView.btModificar.setEnabled(true);
                     this.mantProveedorView.btEliminar.setEnabled(true);
@@ -232,7 +232,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
              Proveedores p = new Proveedores();
             
             
-             p.setPK_IDProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
+             p.setIdProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
                 
             try {
                 p = ProveedorBLModelo.obtenerPorId(p);
@@ -240,7 +240,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
                 Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
                     p.setNombre(this.mantProveedorView.txtNombre.getText());
-                    p.setCorreoElectronico(this.mantProveedorView.txtCorreo.getText());
+                    p.setEmail(this.mantProveedorView.txtCorreo.getText());
                     p.setTelefono(String.valueOf(this.mantProveedorView.txtTelefono.getText()));
                     p.setDireccion(this.mantProveedorView.txtDireccion.getText());
                    
@@ -328,13 +328,13 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
     private void cargarProveedor() {
         Proveedores p = new Proveedores();
         if (!this.mantProveedorView.txtIdProveedor.getText().isEmpty()) {
-            p.setPK_IDProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
+            p.setIdProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
             try {
                 p = ProveedorBLModelo.obtenerPorId(p);
                 this.mantProveedorView.txtNombre.setText(p.getNombre());
                 this.mantProveedorView.txtDireccion.setText(p.getDireccion());
                 this.mantProveedorView.txtTelefono.setText(p.getTelefono());
-                this.mantProveedorView.txtCorreo.setText(p.getCorreoElectronico());
+                this.mantProveedorView.txtCorreo.setText(p.getEmail());
                 
                 
 
