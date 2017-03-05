@@ -35,6 +35,7 @@ public class InventarioSprint {
         SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
         ValidarAcceso validar = new ValidarAcceso(pantPrinView, solUsePa);
         validar.getSolUsePa().setVisible(true);
+        pantPrinView.setVisible(true);
     }
     
 }

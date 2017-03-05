@@ -39,7 +39,8 @@ public class MySQLConexion {
      */
     public MySQLConexion(){
         this.usuario = "root";
-        this.password = "root";
+//        this.password = "root";
+        this.password = "";
         this.server = "127.0.0.1";
         this.baseDatos = "mydb";
         this.puerto = "3306";

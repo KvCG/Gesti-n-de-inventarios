@@ -53,9 +53,9 @@ public class PantallaPrincipalControlador implements ActionListener{
         this.articuloBlModelo = articuloBlModelo;
         this.pantPrinView.jMenuArticulo.addActionListener(this);
         this.pantPrinView.jMenuProveedores.addActionListener(this);
-        this.pantPrinView.jMenuUsuario.addActionListener(this);
+//        this.pantPrinView.jMenuUsuario.addActionListener(this);
         this.pantPrinView.ReporteProveedores.addActionListener(this);
-        this.pantPrinView.ReporteUsuarios.addActionListener(this);
+//        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         this.pantPrinView.ReporteArticulos.addActionListener(this);
         this.pantPrinView.Articulos5.addActionListener(this);
         inicializarPantalla();
@@ -110,12 +110,12 @@ public class PantallaPrincipalControlador implements ActionListener{
         
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.pantPrinView.jMenuUsuario) {
-            MantUsuario mantClienteView = new MantUsuario();
-            UsuarioControlador usuControlador;
-            usuControlador = new UsuarioControlador(mantClienteView, usuarioBLModelo);
-            usuControlador.getMantUsuarioview().setVisible(true);
-        }
+//        if (e.getSource() == this.pantPrinView.jMenuUsuario) {
+//            MantUsuario mantClienteView = new MantUsuario();
+//            UsuarioControlador usuControlador;
+//            usuControlador = new UsuarioControlador(mantClienteView, usuarioBLModelo);
+//            usuControlador.getMantUsuarioview().setVisible(true);
+//        }
         
         if (e.getSource() == this.pantPrinView.jMenuProveedores) {
             ManteProveedores mantProveedoresView = new ManteProveedores();
@@ -132,41 +132,42 @@ public class PantallaPrincipalControlador implements ActionListener{
             ArticuloControlador artControlador;
             artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo, proveedorBlModelo, mantProveedoresView);
             artControlador.getMantArticuloView().setVisible(true);
-        }if (e.getSource() == this.pantPrinView.ReporteUsuarios) {
-            InputStream inputStream = null;
-            //JasperReport jr = null; 
-            try {
-                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\Inventario(Sprint 1)\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\ReporteUsuarios.jrxml");
-                //URL in=this.getClass().getResource("\\Reportes\\ReporteProvedores.jrxml");
-                Map parameters = new HashMap();
-                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-                //jr= (JasperReport) JRLoader.loadObject(in); 
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-                MySQLConexion Con = new MySQLConexion();
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
-                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
-
-                File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
-                if (file.toString().endsWith(".pdf")) {
-                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-                } else {
-                    Desktop desktop = Desktop.getDesktop();
-                    desktop.open(file);
-                }
-
-            } catch (FileNotFoundException ex) {
-
-                System.err.println(ex.getMessage());
-            } catch (IOException ex) {
-                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JRException ex) {
-                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
         }
+//        if (e.getSource() == this.pantPrinView.ReporteUsuarios) {
+//            InputStream inputStream = null;
+//            //JasperReport jr = null; 
+//            try {
+//                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\Inventario(Sprint 1)\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\ReporteUsuarios.jrxml");
+//                //URL in=this.getClass().getResource("\\Reportes\\ReporteProvedores.jrxml");
+//                Map parameters = new HashMap();
+//                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+//                //jr= (JasperReport) JRLoader.loadObject(in); 
+//                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+//
+//                MySQLConexion Con = new MySQLConexion();
+//                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+//                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
+//
+//                File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
+//                if (file.toString().endsWith(".pdf")) {
+//                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+//                } else {
+//                    Desktop desktop = Desktop.getDesktop();
+//                    desktop.open(file);
+//                }
+//
+//            } catch (FileNotFoundException ex) {
+//
+//                System.err.println(ex.getMessage());
+//            } catch (IOException ex) {
+//                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (JRException ex) {
+//                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        }
         
     }
 }

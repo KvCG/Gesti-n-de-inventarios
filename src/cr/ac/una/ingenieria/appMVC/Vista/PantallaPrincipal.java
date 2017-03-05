@@ -15,14 +15,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form InterFazSistemaAdministracion
      */
-    public PantallaPrincipal() {
-        initComponents();
+    public PantallaPrincipal() {        
         setTitle("SIGACI");
         this.setLocationRelativeTo(null);
         this.setExtendedState(PantallaPrincipal.MAXIMIZED_BOTH);
         
-        
-       
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -39,6 +36,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        
+        initComponents();
     }
 
     /**
@@ -54,100 +53,121 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jdpPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuArchivo = new javax.swing.JMenu();
         jMenuMantenimiento = new javax.swing.JMenu();
-        jMenuProveedores = new javax.swing.JMenuItem();
-        jMenuUsuario = new javax.swing.JMenuItem();
         jMenuArticulo = new javax.swing.JMenuItem();
+        jMenuProveedores = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jmiPersona = new javax.swing.JMenuItem();
+        jmiUsuario = new javax.swing.JMenuItem();
+        jmMovimiento = new javax.swing.JMenu();
         jMenuEstadisticas = new javax.swing.JMenu();
         ReportesArticulos = new javax.swing.JMenu();
         ReporteArticulos = new javax.swing.JMenuItem();
         Articulos5 = new javax.swing.JMenuItem();
+        jmiArticuloGravado = new javax.swing.JMenuItem();
+        jmiArticuloExento = new javax.swing.JMenuItem();
         ReporteProveedores = new javax.swing.JMenuItem();
-        ReporteUsuarios = new javax.swing.JMenuItem();
-        jMInformacion = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jmInformacion = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Adminsitracion Internet Cafe");
+        setTitle("SIGACI");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
 
-        jMenuBar1.setBorder(null);
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenuBar1.setFocusable(false);
 
-        jMenuArchivo.setText("Archivo");
-        jMenuArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuBar1.add(jMenuArchivo);
-
+        jMenuMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Modulo.png"))); // NOI18N
         jMenuMantenimiento.setText("Modulos");
         jMenuMantenimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        jMenuProveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/ProvedorPequeño.png"))); // NOI18N
+        jMenuArticulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Inventario 00.png"))); // NOI18N
+        jMenuArticulo.setText("Inventario");
+        jMenuMantenimiento.add(jMenuArticulo);
+
+        jMenuProveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
         jMenuProveedores.setText("Proveedores");
         jMenuMantenimiento.add(jMenuProveedores);
 
-        jMenuUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/usuariope.png"))); // NOI18N
-        jMenuUsuario.setText("Usuarios");
-        jMenuMantenimiento.add(jMenuUsuario);
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Registro.png"))); // NOI18N
+        jMenu2.setText("Registro");
+        jMenu2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        jMenuArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/Agregar Articulos.png"))); // NOI18N
-        jMenuArticulo.setText("Articulos");
-        jMenuArticulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuArticuloActionPerformed(evt);
-            }
-        });
-        jMenuMantenimiento.add(jMenuArticulo);
+        jmiPersona.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jmiPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cliente01.png"))); // NOI18N
+        jmiPersona.setText("Persona");
+        jMenu2.add(jmiPersona);
+
+        jmiUsuario.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jmiUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Usuario01.png"))); // NOI18N
+        jmiUsuario.setText("Usuario");
+        jMenu2.add(jmiUsuario);
+
+        jMenuMantenimiento.add(jMenu2);
 
         jMenuBar1.add(jMenuMantenimiento);
 
+        jmMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Movimiento.png"))); // NOI18N
+        jmMovimiento.setText("Movimientos");
+        jmMovimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuBar1.add(jmMovimiento);
+
+        jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 02.png"))); // NOI18N
         jMenuEstadisticas.setText("Reportes");
         jMenuEstadisticas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        ReportesArticulos.setText("Reporte de Articulos");
+        ReportesArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Articulo.png"))); // NOI18N
+        ReportesArticulos.setText("Articulos");
+        ReportesArticulos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        ReporteArticulos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
-        ReporteArticulos.setText("Reporte Articulos");
+        ReporteArticulos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        ReporteArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        ReporteArticulos.setText("General");
         ReportesArticulos.add(ReporteArticulos);
 
-        Articulos5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.SHIFT_MASK));
-        Articulos5.setText("Reportes con menos de 5 Articulos");
-        Articulos5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Articulos5ActionPerformed(evt);
-            }
-        });
+        Articulos5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Articulos5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        Articulos5.setText("Minimos");
         ReportesArticulos.add(Articulos5);
+
+        jmiArticuloGravado.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jmiArticuloGravado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        jmiArticuloGravado.setText("Gravado");
+        ReportesArticulos.add(jmiArticuloGravado);
+
+        jmiArticuloExento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jmiArticuloExento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        jmiArticuloExento.setText("Exento");
+        ReportesArticulos.add(jmiArticuloExento);
 
         jMenuEstadisticas.add(ReportesArticulos);
 
-        ReporteProveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK));
-        ReporteProveedores.setText("Reporte Proveedores");
-        ReporteProveedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReporteProveedoresActionPerformed(evt);
-            }
-        });
+        ReporteProveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        ReporteProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
+        ReporteProveedores.setText("Proveedores");
         jMenuEstadisticas.add(ReporteProveedores);
 
-        ReporteUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK));
-        ReporteUsuarios.setText("Reporte Usuarios");
-        jMenuEstadisticas.add(ReporteUsuarios);
+        jMenuItem6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Lista01.png"))); // NOI18N
+        jMenuItem6.setText("Lista Precios");
+        jMenuEstadisticas.add(jMenuItem6);
 
         jMenuBar1.add(jMenuEstadisticas);
 
-        jMInformacion.setText("Informacion");
-        jMInformacion.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuBar1.add(jMInformacion);
+        jmInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Info.png"))); // NOI18N
+        jmInformacion.setText("Informacion");
+        jmInformacion.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuBar1.add(jmInformacion);
 
         setJMenuBar(jMenuBar1);
 
@@ -157,14 +177,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -174,18 +194,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
-
-    private void jMenuArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuArticuloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuArticuloActionPerformed
-
-    private void ReporteProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteProveedoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ReporteProveedoresActionPerformed
-
-    private void Articulos5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Articulos5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Articulos5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,18 +235,22 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem Articulos5;
     public javax.swing.JMenuItem ReporteArticulos;
     public javax.swing.JMenuItem ReporteProveedores;
-    public javax.swing.JMenuItem ReporteUsuarios;
     private javax.swing.JMenu ReportesArticulos;
-    public javax.swing.JMenu jMInformacion;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenuArchivo;
+    private javax.swing.JMenu jMenu2;
     public javax.swing.JMenuItem jMenuArticulo;
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenu jMenuEstadisticas;
     private javax.swing.JMenuItem jMenuItem1;
+    public javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenuMantenimiento;
     public javax.swing.JMenuItem jMenuProveedores;
-    public javax.swing.JMenuItem jMenuUsuario;
     private javax.swing.JDesktopPane jdpPrincipal;
+    public javax.swing.JMenu jmInformacion;
+    private javax.swing.JMenu jmMovimiento;
+    public javax.swing.JMenuItem jmiArticuloExento;
+    public javax.swing.JMenuItem jmiArticuloGravado;
+    private javax.swing.JMenuItem jmiPersona;
+    private javax.swing.JMenuItem jmiUsuario;
     // End of variables declaration//GEN-END:variables
 }
