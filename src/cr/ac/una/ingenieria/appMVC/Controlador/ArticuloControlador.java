@@ -111,7 +111,19 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btInsertar.addActionListener(this);
         this.mantArticuloView.btBuscar.addActionListener(this);
         this.mantArticuloView.btCancelar.addActionListener(this);
-        this.mantArticuloView.btCargar.addActionListener(this);
+        this.mantArticuloView.btEliminar.addActionListener(this);
+        this.mantArticuloView.btModificar.addActionListener(this);
+        this.mantArticuloView.btModificar.setEnabled(false);
+        this.mantArticuloView.btEliminar.setEnabled(false);
+        inicializarPantalla();
+    }
+    
+    public ArticuloControlador(ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo) {
+        this.mantArticuloView = mantArticuloView;
+        this.ArticuloBLModelo = ArticuloBLModelo;
+        this.mantArticuloView.btInsertar.addActionListener(this);
+        this.mantArticuloView.btBuscar.addActionListener(this);
+        this.mantArticuloView.btCancelar.addActionListener(this);
         this.mantArticuloView.btEliminar.addActionListener(this);
         this.mantArticuloView.btModificar.addActionListener(this);
         this.mantArticuloView.btModificar.setEnabled(false);
@@ -205,37 +217,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        if (e.getSource() == this.mantArticuloView.btCargar) {
-            if (!this.mantArticuloView.txtCodigo.getText().isEmpty()) {
-                Articulo a = new Articulo();
-                String codigo = this.mantArticuloView.txtCodigo.getText();
-                a.setCodigo(codigo);
-                try {
-                    a = ArticuloBLModelo.obtenerPorId(a);
-                    if (a != null) {
-                        this.mantArticuloView.txtCodigo.setText(a.getCodigo());
-                        this.mantArticuloView.txtNombre.setText(a.getNombre());
-                        this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
-                        this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
-                        this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
-                        this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
-                        this.mantArticuloView.cbBodega.setSelectedIndex(a.getBodega());
-                        this.mantArticuloView.cbTipo.setSelectedIndex(a.getTipo());
-                        this.mantArticuloView.btEliminar.setEnabled(true);
-                        this.mantArticuloView.btModificar.setEnabled(true);
-                        this.mantArticuloView.txtCodigo.setEnabled(false);
-                    } else {
-                        JOptionPane.showMessageDialog(mantArticuloView, "No se encontro el articulo", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } catch (SQLException ex) {
-                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                JOptionPane.showMessageDialog(mantArticuloView, "Debes introducir el codigo primero.", "Error al buscar", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-
+        
         if (e.getSource() == this.mantArticuloView.btModificar) {
             if (this.isEmpty()) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error primero debe seleccionar un Articulo:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);

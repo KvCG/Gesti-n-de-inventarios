@@ -1,6 +1,8 @@
 
 package cr.ac.una.ingenieria.appMVC.Vista;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Michael
@@ -39,8 +41,18 @@ public class SolicitudUsuarioPassword extends javax.swing.JFrame {
         Password.setText("Contraseña");
 
         txtUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         TxtPassword.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        TxtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TxtPasswordKeyTyped(evt);
+            }
+        });
 
         BtIngresar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         BtIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Ingresar.png"))); // NOI18N
@@ -72,7 +84,7 @@ public class SolicitudUsuarioPassword extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -97,12 +109,26 @@ public class SolicitudUsuarioPassword extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TxtPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtPasswordKeyTyped
+       char tecla =evt.getKeyChar();
+       if(tecla == KeyEvent.VK_ENTER){
+           this.BtIngresar.doClick();
+       }
+    }//GEN-LAST:event_TxtPasswordKeyTyped
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+       char tecla =evt.getKeyChar();
+       if(tecla == KeyEvent.VK_ENTER){
+           this.BtIngresar.doClick();
+       }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
 
     /**
      * @param args the command line arguments

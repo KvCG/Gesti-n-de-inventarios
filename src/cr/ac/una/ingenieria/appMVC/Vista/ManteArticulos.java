@@ -5,19 +5,19 @@
  */
 package cr.ac.una.ingenieria.appMVC.Vista;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
- * @author Gustavo
+ * @author Michael
  */
-public class ManteArticulos extends javax.swing.JFrame {
+public class ManteArticulos extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form JFrameAgregarArticulos
+     * Creates new form ManteArticulo
      */
     public ManteArticulos() {
         initComponents();
-        setTitle("Agregar Articulo");
-        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -29,320 +29,299 @@ public class ManteArticulos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btEliminar = new javax.swing.JButton();
-        lbCodigo = new javax.swing.JLabel();
-        btCancelar = new javax.swing.JButton();
-        txtCodigo = new javax.swing.JTextField();
         lbNombre = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        btCargar = new javax.swing.JButton();
-        btInsertar = new javax.swing.JButton();
-        btModificar = new javax.swing.JButton();
-        btBuscar = new javax.swing.JButton();
-        lbCantidad = new javax.swing.JLabel();
-        TxtCantidad = new javax.swing.JTextField();
-        lbPrecio = new javax.swing.JLabel();
         TxtPrecio = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         lbPuntoPedido = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
         txtPuntoPedido = new javax.swing.JTextField();
-        Icono = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         lbTipo = new javax.swing.JLabel();
         lbBodega = new javax.swing.JLabel();
         cbTipo = new javax.swing.JComboBox<>();
+        btBuscar = new javax.swing.JButton();
         cbBodega = new javax.swing.JComboBox<>();
+        lbCodigo = new javax.swing.JLabel();
+        lbCantidad = new javax.swing.JLabel();
+        TxtCantidad = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
+        lbPrecio = new javax.swing.JLabel();
+        btInsertar = new javax.swing.JButton();
+        btModificar = new javax.swing.JButton();
+        btEliminar = new javax.swing.JButton();
+        btCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Mantenimiento de Articulos");
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("MODULO INVENTARIO");
 
-        btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/elimiar.png"))); // NOI18N
-        btEliminar.setText("Eliminar");
+        lbNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbNombre.setText("NOMBRE");
 
-        lbCodigo.setText("Codigo:");
-
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/cancelar.png"))); // NOI18N
-        btCancelar.setText("Cancelar");
-
-        txtCodigo.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                txtCodigoPropertyChange(evt);
-            }
-        });
-
-        lbNombre.setText("Nombre:");
-
-        jLabel3.setText("Descripcion:");
-
-        btCargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/upload.png"))); // NOI18N
-        btCargar.setText("Cargar");
-        btCargar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCargarActionPerformed(evt);
-            }
-        });
-
-        btInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/agregar.png"))); // NOI18N
-        btInsertar.setText("Insertar");
-        btInsertar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btInsertarActionPerformed(evt);
-            }
-        });
-
-        btModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/modificar.png"))); // NOI18N
-        btModificar.setText("Modificar");
-
-        btBuscar.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/buscar.png"))); // NOI18N
-        btBuscar.setText("Buscar");
-        btBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarActionPerformed(evt);
-            }
-        });
-
-        lbCantidad.setText("Cantidad en Existencia:");
-
-        TxtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TxtCantidadKeyTyped(evt);
-            }
-        });
-
-        lbPrecio.setText("Precio:");
-
-        TxtPrecio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtPrecioActionPerformed(evt);
-            }
-        });
+        TxtPrecio.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         TxtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 TxtPrecioKeyTyped(evt);
             }
         });
 
-        lbPuntoPedido.setText("Punto de pedido:");
-
-        txtPuntoPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPuntoPedidoActionPerformed(evt);
+        txtNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
             }
         });
 
-        Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/article.png"))); // NOI18N
+        lbPuntoPedido.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbPuntoPedido.setText("MINIMO");
 
-        lbTipo.setText("Tipo:");
+        txtDescripcion.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescripcionKeyTyped(evt);
+            }
+        });
 
-        lbBodega.setText("Bodega:");
+        txtPuntoPedido.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtPuntoPedido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPuntoPedidoKeyTyped(evt);
+            }
+        });
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setText("DESRIPCION");
+
+        lbTipo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbTipo.setText("TIPO");
+
+        lbBodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbBodega.setText("BODEGA");
+
+        cbTipo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enlatados", "Embutidos", "Cartones", "Congelados", "Quesos", "Otros" }));
-        cbTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbTipoActionPerformed(evt);
+        cbTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cbTipoKeyTyped(evt);
             }
         });
 
-        cbBodega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fria", "Seca" }));
-        cbBodega.addActionListener(new java.awt.event.ActionListener() {
+        btBuscar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"))); // NOI18N
+        btBuscar.setText("BUSCAR");
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbBodegaActionPerformed(evt);
+                btBuscarActionPerformed(evt);
             }
         });
+
+        cbBodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        cbBodega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fria", "Seca" }));
+        cbBodega.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cbBodegaKeyTyped(evt);
+            }
+        });
+
+        lbCodigo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbCodigo.setText("CODIGO");
+
+        lbCantidad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbCantidad.setText("CANTIDAD");
+
+        TxtCantidad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        TxtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TxtCantidadKeyTyped(evt);
+            }
+        });
+
+        txtCodigo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
+
+        lbPrecio.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbPrecio.setText("PRECIO");
+
+        btInsertar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Guardar 00.png"))); // NOI18N
+        btInsertar.setText("GUARDAR");
+
+        btModificar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Editar 01.png"))); // NOI18N
+        btModificar.setText("EDITAR");
+
+        btEliminar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Eliminar.png"))); // NOI18N
+        btEliminar.setText("ELIMINAR");
+
+        btCancelar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cancelar.png"))); // NOI18N
+        btCancelar.setText("CANCELAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbPrecio)
-                            .addComponent(lbPuntoPedido)))
-                    .addComponent(lbCantidad, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbCodigo, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbBodega, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbTipo, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(TxtCantidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
-                            .addComponent(TxtPrecio, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtPuntoPedido, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Icono))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)
-                                .addComponent(btBuscar))
-                            .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(btInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(lbCodigo)
+                                .addGap(32, 32, 32)
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbCantidad)
+                                .addGap(18, 18, 18)
+                                .addComponent(TxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lbBodega)
+                                        .addGap(33, 33, 33))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lbTipo)
+                                        .addGap(58, 58, 58)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cbBodega, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(58, 58, 58)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(lbNombre)
+                            .addComponent(lbPrecio)
+                            .addComponent(lbPuntoPedido))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPuntoPedido)
+                            .addComponent(TxtPrecio)
+                            .addComponent(txtDescripcion)
+                            .addComponent(txtNombre))
+                        .addGap(78, 78, 78))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(21, 21, 21))))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btBuscar)
+                    .addComponent(lbCodigo)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbCodigo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbNombre))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbCantidad)
-                            .addComponent(TxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbPrecio)
-                            .addComponent(TxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPuntoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbPuntoPedido)))
-                    .addComponent(Icono))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(lbNombre)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTipo)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel3)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCantidad)
+                    .addComponent(TxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbBodega)
-                    .addComponent(cbBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbPrecio)
+                    .addComponent(TxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(lbPuntoPedido)
+                    .addComponent(txtPuntoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTipo)
+                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCodigoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtCodigoPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoPropertyChange
+    private void TxtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtPrecioKeyTyped
+        char c = evt.getKeyChar();
 
-    private void btCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btCargarActionPerformed
-
-    private void btInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInsertarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btInsertarActionPerformed
+        if(c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_TxtPrecioKeyTyped
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
 
     }//GEN-LAST:event_btBuscarActionPerformed
 
-    private void TxtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtPrecioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtPrecioActionPerformed
-
-    private void txtPuntoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPuntoPedidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPuntoPedidoActionPerformed
-
-    private void TxtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtPrecioKeyTyped
-        char c = evt.getKeyChar();
-        
-        if(c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_TxtPrecioKeyTyped
-
     private void TxtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCantidadKeyTyped
         char c = evt.getKeyChar();
-        
+
         if(c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_TxtCantidadKeyTyped
 
-    private void cbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbTipoActionPerformed
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+       char tecla =evt.getKeyChar();
+       if(tecla == KeyEvent.VK_ENTER){
+           this.btInsertar.doClick();
+       }
+    }//GEN-LAST:event_txtCodigoKeyTyped
 
-    private void cbBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbBodegaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbBodegaActionPerformed
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+       char tecla =evt.getKeyChar();
+       if(tecla == KeyEvent.VK_ENTER){
+           this.btInsertar.doClick();
+       }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManteArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManteArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManteArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManteArticulos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
+        char tecla =evt.getKeyChar();
+        if(tecla == KeyEvent.VK_ENTER){
+           this.btInsertar.doClick();
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_txtDescripcionKeyTyped
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManteArticulos().setVisible(true);
-            }
-        });
-    }
+    private void txtPuntoPedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPuntoPedidoKeyTyped
+        char tecla =evt.getKeyChar();
+        if(tecla == KeyEvent.VK_ENTER){
+           this.btInsertar.doClick();
+        } 
+    }//GEN-LAST:event_txtPuntoPedidoKeyTyped
+
+    private void cbBodegaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbBodegaKeyTyped
+        char tecla =evt.getKeyChar();
+        if(tecla == KeyEvent.VK_ENTER){
+           this.btInsertar.doClick();
+        }
+    }//GEN-LAST:event_cbBodegaKeyTyped
+
+    private void cbTipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cbTipoKeyTyped
+        char tecla =evt.getKeyChar();
+        if(tecla == KeyEvent.VK_ENTER){
+           this.btInsertar.doClick();
+        }
+    }//GEN-LAST:event_cbTipoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Icono;
     public javax.swing.JTextField TxtCantidad;
     public javax.swing.JTextField TxtPrecio;
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btCancelar;
-    public javax.swing.JButton btCargar;
     public javax.swing.JButton btEliminar;
     public javax.swing.JButton btInsertar;
     public javax.swing.JButton btModificar;
