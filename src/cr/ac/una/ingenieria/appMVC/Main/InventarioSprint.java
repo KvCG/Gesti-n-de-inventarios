@@ -6,10 +6,12 @@
 package cr.ac.una.ingenieria.appMVC.Main;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ValidarAcceso;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
+import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
@@ -77,13 +79,21 @@ public class InventarioSprint {
 //            System.out.println("error");
 //        }
 //        
-
-        SolicitudUsuarioPassword solUsuarioPassword =new SolicitudUsuarioPassword();
-        PantallaPrincipal pantPrinView = new PantallaPrincipal();
-        SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
-        ValidarAcceso validar = new ValidarAcceso(pantPrinView, solUsePa);
-        validar.getSolUsePa().setVisible(true);
-        pantPrinView.setVisible(true);
+            PersonaBL pbl = new PersonaBL();
+            //Persona p = new Persona(1,"112620870","Gustavo","Rojas","grcantill@gmail.com");
+            Persona p =new Persona(1,"112620870","Gustavo","Rojas","grcantill@gmail.com");
+            try{
+                pbl.insertar(p);
+            }catch(Exception e){
+                System.out.println("error al insertar a la persona");
+            }
+            
+//        SolicitudUsuarioPassword solUsuarioPassword =new SolicitudUsuarioPassword();
+//        PantallaPrincipal pantPrinView = new PantallaPrincipal();
+//        SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
+//        ValidarAcceso validar = new ValidarAcceso(pantPrinView, solUsePa);
+//        validar.getSolUsePa().setVisible(true);
+//        pantPrinView.setVisible(true);
     }
     
 }
