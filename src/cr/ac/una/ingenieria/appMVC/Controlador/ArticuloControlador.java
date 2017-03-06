@@ -211,17 +211,21 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 a.setCodigo(codigo);
                 try {
                     a = ArticuloBLModelo.obtenerPorId(a);
-                    this.mantArticuloView.txtCodigo.setText(a.getCodigo());
-                    this.mantArticuloView.txtNombre.setText(a.getNombre());
-                    this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
-                    this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
-                    this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
-                    this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
-                    this.mantArticuloView.cbBodega.setSelectedIndex(a.getBodega());
-                    this.mantArticuloView.cbTipo.setSelectedIndex(a.getTipo());
-                    this.mantArticuloView.btEliminar.setEnabled(true);
-                    this.mantArticuloView.btModificar.setEnabled(true);
-                    this.mantArticuloView.txtCodigo.setEnabled(false);
+                    if (a != null) {
+                        this.mantArticuloView.txtCodigo.setText(a.getCodigo());
+                        this.mantArticuloView.txtNombre.setText(a.getNombre());
+                        this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
+                        this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
+                        this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
+                        this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
+                        this.mantArticuloView.cbBodega.setSelectedIndex(a.getBodega());
+                        this.mantArticuloView.cbTipo.setSelectedIndex(a.getTipo());
+                        this.mantArticuloView.btEliminar.setEnabled(true);
+                        this.mantArticuloView.btModificar.setEnabled(true);
+                        this.mantArticuloView.txtCodigo.setEnabled(false);
+                    } else {
+                        JOptionPane.showMessageDialog(mantArticuloView, "No se encontro el articulo", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
 
                 } catch (SQLException ex) {
                     Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -274,9 +278,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         if (e.getSource() == this.mantArticuloView.btBuscar) {
             MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
             ArticuloBuscarControlador articuloBControlador;
-            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView,
-                    ArticuloBLModelo,
-                    this.mantArticuloView.txtCodigo);
+            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigo);
             articuloBControlador.getArticuloBuscarView().setVisible(true);
             this.mantArticuloView.btEliminar.setEnabled(true);
 
