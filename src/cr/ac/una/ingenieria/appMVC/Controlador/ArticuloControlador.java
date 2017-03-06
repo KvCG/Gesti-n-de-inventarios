@@ -142,6 +142,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.txtCodigo.setText(null);
         this.mantArticuloView.txtPuntoPedido.setText(null);
         this.mantArticuloView.txtNombre.setText(null);
+        
     }
 
     /**
@@ -281,7 +282,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigo);
             articuloBControlador.getArticuloBuscarView().setVisible(true);
             this.mantArticuloView.btEliminar.setEnabled(true);
-
         }
 
     }
