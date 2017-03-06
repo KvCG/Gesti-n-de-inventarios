@@ -8,7 +8,11 @@ package cr.ac.una.ingenieria.appMVC.Dao;
 
 
 
+
+import cr.ac.una.ingenieria.appMVC.Domain.Persona;
+
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import java.sql.SQLException;
@@ -34,6 +38,9 @@ public class GenericDao {
      * @throws SQLException
      */
     public void insertar(Object obj) throws SQLException {
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
@@ -53,7 +60,9 @@ public class GenericDao {
      * @throws SQLException
      */
     public void modificar(Object obj) throws SQLException {
-        
+         if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
@@ -72,6 +81,9 @@ public class GenericDao {
      * @throws SQLException
      */
     public void eliminar(Object obj) throws SQLException {
+         if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
@@ -91,6 +103,9 @@ public class GenericDao {
      * @throws SQLException
      */
     public Object obtenerPorId(Object obj) throws SQLException {
+         if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
@@ -110,6 +125,9 @@ public class GenericDao {
      * @throws SQLException
      */
     public ArrayList obtenerTodos(Object obj) throws SQLException {
+         if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
@@ -130,7 +148,9 @@ public class GenericDao {
      * @throws SQLException
      */
     public ArrayList obtenerConWhere(Object obj, String where) throws SQLException {
-        
+         if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }

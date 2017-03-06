@@ -60,7 +60,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         Connection con = conexion.getConexion();
         
         CallableStatement cs = con.prepareCall("update usuario "
-                                            + "alias = ?, password = ?,"
+                                            + "set alias = ?, password = ?,"
                                             + "rol = ?,"
                                             + "where idusuario = ?");
         cs.setString(1, obj.getAlias());
