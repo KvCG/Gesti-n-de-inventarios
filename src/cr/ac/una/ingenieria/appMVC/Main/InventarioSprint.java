@@ -25,7 +25,7 @@ public class InventarioSprint {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-<<<<<<< HEAD
+
 
 //        PantallaPrincipal pantPrinView = new PantallaPrincipal();
 //       UsuarioBL usuBL = new UsuarioBL();
@@ -51,7 +51,7 @@ public class InventarioSprint {
 //        catch(Exception e){
 //            System.out.println("error");
 //        }
-=======
+
 ////        PantallaPrincipal pantPrinView = new PantallaPrincipal();
 //       UsuarioBL usuBL = new UsuarioBL();
 //       ArticuloBL articuloBlModelo= new ArticuloBL();
@@ -77,13 +77,7 @@ public class InventarioSprint {
 //            System.out.println("error");
 //        }
 //        
->>>>>>> origin/master
-        
-        
-<<<<<<< HEAD
-        
-=======
->>>>>>> origin/master
+
         SolicitudUsuarioPassword solUsuarioPassword =new SolicitudUsuarioPassword();
         PantallaPrincipal pantPrinView = new PantallaPrincipal();
         SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
