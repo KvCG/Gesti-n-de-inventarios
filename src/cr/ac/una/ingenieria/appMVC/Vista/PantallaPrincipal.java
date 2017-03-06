@@ -2,18 +2,22 @@
 package cr.ac.una.ingenieria.appMVC.Vista;
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
+import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
+import cr.ac.una.ingenieria.appMVC.Controlador.UsuarioControlador;
 
 
 public class PantallaPrincipal extends javax.swing.JFrame {
     //control de pantalla
     boolean Mod_Inv = false;
     boolean Mod_Reg_Per = false;
+    boolean Mod_Reg_Usu = false;
     
     //pantallas
-    ManteArticulos Mante_ArticulosView;
+    Modulo_Inventario Mante_ArticulosView;
     Modulo_Registo_Persona Mod_Reg_PerView;
+    Modulo_Registo_Usuario Mod_Reg_UsuView;
            
     //constructor       
     public PantallaPrincipal() {        
@@ -40,7 +44,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         initComponents();
         
         //para la venta modulo inventario
-        this.Mante_ArticulosView = new ManteArticulos();
+        this.Mante_ArticulosView = new Modulo_Inventario();
         ArticuloBL ArtBL = new ArticuloBL();
         ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView,ArtBL);
         ArtControl.getMantArticuloView();
@@ -49,7 +53,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.Mod_Reg_PerView = new Modulo_Registo_Persona();
         PersonaBL perBL = new PersonaBL();
         PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
-        perControl.getMod_Reg_PersonaView();        
+        perControl.getMod_Reg_PersonaView(); 
+        
+        //para la venta modulo Modulo_Registo_Persona
+        this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
+        UsuarioBL usuBL = new UsuarioBL();
+        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView, usuBL);
+        UsuControl.getMantUsuarioview();
     }
 
     @SuppressWarnings("unchecked")
@@ -91,6 +101,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuMantenimiento.setText("Modulos");
         jMenuMantenimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
+        jMenuArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         jMenuArticulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Inventario 00.png"))); // NOI18N
         jMenuArticulo.setText("Inventario");
@@ -101,6 +112,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenuMantenimiento.add(jMenuArticulo);
 
+        jMenuProveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         jMenuProveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
         jMenuProveedores.setText("Proveedores");
@@ -110,6 +122,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Registro");
         jMenu2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
+        jmiPersona.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         jmiPersona.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jmiPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cliente01.png"))); // NOI18N
         jmiPersona.setText("Persona");
@@ -120,9 +133,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jmiPersona);
 
+        jmiUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         jmiUsuario.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jmiUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Usuario01.png"))); // NOI18N
         jmiUsuario.setText("Usuario");
+        jmiUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiUsuarioActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmiUsuario);
 
         jMenuMantenimiento.add(jMenu2);
@@ -229,15 +248,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jmiPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPersonaActionPerformed
         try {
             if(this.Mod_Reg_Per == false){
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mante_ArticulosView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mante_ArticulosView.getHeight() / 2);
+                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_PerView.getWidth() / 2);
+                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_Reg_PerView.getHeight() / 2);
                 this.Mod_Reg_PerView.setLocation(x, y);
                 
                 this.jdpPrincipal.add(this.Mod_Reg_PerView);
                 this.jdpPrincipal.updateUI();
                 this.jdpPrincipal.repaint();
                 this.Mod_Reg_PerView.show();
-                this.Mod_Inv = true;
+                this.Mod_Reg_Per = true;
             }
             else{
                 this.Mod_Reg_PerView.show();
@@ -248,6 +267,29 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_jmiPersonaActionPerformed
+
+    private void jmiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUsuarioActionPerformed
+       try {
+            if(this.Mod_Reg_Usu == false){
+                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_UsuView.getWidth() / 2);
+                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_Reg_UsuView.getHeight() / 2);
+                this.Mod_Reg_UsuView.setLocation(x, y);
+                
+                this.jdpPrincipal.add(this.Mod_Reg_UsuView);
+                this.jdpPrincipal.updateUI();
+                this.jdpPrincipal.repaint();
+                this.Mod_Reg_UsuView.show();
+                this.Mod_Reg_Usu = true;
+            }
+            else{
+                this.Mod_Reg_UsuView.show();
+                this.Mod_Reg_UsuView.toFront();
+                this.Mod_Reg_Usu = false;
+            }
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_jmiUsuarioActionPerformed
 
     /**
      * @param args the command line arguments

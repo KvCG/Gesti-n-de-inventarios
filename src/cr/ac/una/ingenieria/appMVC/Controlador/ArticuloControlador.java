@@ -10,7 +10,7 @@ import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantProovedorBuscar;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteArticulos;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
 import cr.ac.una.ingenieria.appMVC.Vista.ManteProveedores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +27,7 @@ import javax.swing.event.DocumentListener;
  */
 public class ArticuloControlador implements ActionListener, DocumentListener {
 
-    private ManteArticulos mantArticuloView;
+    private Modulo_Inventario mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
     private ProveedorBL ProveedorBLModelo;
     private ManteProveedores mantProveedoresView;
@@ -68,7 +68,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
      *
      * @return
      */
-    public ManteArticulos getMantArticuloView() {
+    public Modulo_Inventario getMantArticuloView() {
         return mantArticuloView;
     }
 
@@ -76,7 +76,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
      *
      * @param mantArticuloView
      */
-    public void setMantArticuloView(ManteArticulos mantArticuloView) {
+    public void setMantArticuloView(Modulo_Inventario mantArticuloView) {
         this.mantArticuloView = mantArticuloView;
     }
 
@@ -103,7 +103,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
      * @param ProveedorBLModelo
      * @param mantProveedoresView
      */
-    public ArticuloControlador(ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, ProveedorBL ProveedorBLModelo, ManteProveedores mantProveedoresView) {
+    public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo, ProveedorBL ProveedorBLModelo, ManteProveedores mantProveedoresView) {
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.ProveedorBLModelo = ProveedorBLModelo;
@@ -118,7 +118,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         inicializarPantalla();
     }
     
-    public ArticuloControlador(ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo) {
+    public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.mantArticuloView.btInsertar.addActionListener(this);

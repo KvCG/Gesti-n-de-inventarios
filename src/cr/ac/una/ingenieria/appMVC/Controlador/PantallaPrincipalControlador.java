@@ -9,8 +9,8 @@ import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
-import cr.ac.una.ingenieria.appMVC.Vista.MantUsuario;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteArticulos;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Usuario;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
 import cr.ac.una.ingenieria.appMVC.Vista.ManteProveedores;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
 import java.awt.Desktop;
@@ -126,7 +126,7 @@ public class PantallaPrincipalControlador implements ActionListener{
         }
         
         if (e.getSource() == this.pantPrinView.jMenuArticulo) {
-            ManteArticulos mantArticuloView = new ManteArticulos();
+            Modulo_Inventario mantArticuloView = new Modulo_Inventario();
             ManteProveedores mantProveedoresView = new ManteProveedores();
             mantArticuloView.setVisible(true);
             ArticuloControlador artControlador;

@@ -11,12 +11,12 @@ import java.awt.event.KeyEvent;
  *
  * @author Michael
  */
-public class ManteArticulos extends javax.swing.JInternalFrame {
+public class Modulo_Inventario extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ManteArticulo
      */
-    public ManteArticulos() {
+    public Modulo_Inventario() {
         initComponents();
     }
 
