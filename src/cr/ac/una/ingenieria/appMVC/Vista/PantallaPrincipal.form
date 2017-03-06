@@ -90,6 +90,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Persona"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiPersonaActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jmiUsuario">
                   <Properties>

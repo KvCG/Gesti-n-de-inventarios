@@ -1,6 +1,8 @@
 
 package cr.ac.una.ingenieria.appMVC.Vista;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
 /**
@@ -17,6 +19,14 @@ public class SolicitudUsuarioPassword extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
+    
+    
+//    @Override
+//    public Image getIconImage() {
+//        Image retValue = Toolkit.getDefaultToolkit().
+//                getImage(ClassLoader.getSystemResource("SIGACI\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Imagen\\Logo00.jpg"));
+//        return retValue;
+//    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

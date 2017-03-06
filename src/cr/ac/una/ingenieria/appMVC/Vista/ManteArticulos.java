@@ -56,6 +56,7 @@ public class ManteArticulos extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("MODULO INVENTARIO");
+        setMinimumSize(new java.awt.Dimension(750, 290));
 
         lbNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbNombre.setText("NOMBRE");

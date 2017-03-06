@@ -1,15 +1,19 @@
 
 package cr.ac.una.ingenieria.appMVC.Vista;
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
+import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 
 
 public class PantallaPrincipal extends javax.swing.JFrame {
     //control de pantalla
     boolean Mod_Inv = false;
+    boolean Mod_Reg_Per = false;
     
     //pantallas
     ManteArticulos Mante_ArticulosView;
+    Modulo_Registo_Persona Mod_Reg_PerView;
            
     //constructor       
     public PantallaPrincipal() {        
@@ -40,6 +44,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ArticuloBL ArtBL = new ArticuloBL();
         ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView,ArtBL);
         ArtControl.getMantArticuloView();
+        
+        //para la venta modulo Modulo_Registo_Persona
+        this.Mod_Reg_PerView = new Modulo_Registo_Persona();
+        PersonaBL perBL = new PersonaBL();
+        PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
+        perControl.getMod_Reg_PersonaView();        
     }
 
     @SuppressWarnings("unchecked")
@@ -103,6 +113,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmiPersona.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jmiPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cliente01.png"))); // NOI18N
         jmiPersona.setText("Persona");
+        jmiPersona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiPersonaActionPerformed(evt);
+            }
+        });
         jMenu2.add(jmiPersona);
 
         jmiUsuario.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -207,10 +222,32 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 this.Mod_Inv = false;
             }
         } catch (Exception e) {
+            
         }
-        
-        
     }//GEN-LAST:event_jMenuArticuloActionPerformed
+
+    private void jmiPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPersonaActionPerformed
+        try {
+            if(this.Mod_Reg_Per == false){
+                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mante_ArticulosView.getWidth() / 2);
+                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mante_ArticulosView.getHeight() / 2);
+                this.Mod_Reg_PerView.setLocation(x, y);
+                
+                this.jdpPrincipal.add(this.Mod_Reg_PerView);
+                this.jdpPrincipal.updateUI();
+                this.jdpPrincipal.repaint();
+                this.Mod_Reg_PerView.show();
+                this.Mod_Inv = true;
+            }
+            else{
+                this.Mod_Reg_PerView.show();
+                this.Mod_Reg_PerView.toFront();
+                this.Mod_Reg_Per = false;
+            }
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_jmiPersonaActionPerformed
 
     /**
      * @param args the command line arguments
