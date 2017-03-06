@@ -8,8 +8,11 @@ package cr.ac.una.ingenieria.appMVC.Dao;
 
 
 
-import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
+
 import cr.ac.una.ingenieria.appMVC.Domain.Persona;
+
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import java.sql.SQLException;
@@ -44,7 +47,7 @@ public class GenericDao {
          if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
          }
-          if (obj instanceof Articulos) {
+          if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         
@@ -66,7 +69,7 @@ public class GenericDao {
          if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
          }
-          if (obj instanceof Articulos) {
+          if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         iBaseDato.modificar(obj);
@@ -87,7 +90,7 @@ public class GenericDao {
          if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
          }
-          if (obj instanceof Articulos) {
+          if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         iBaseDato.eliminar(obj);
@@ -109,7 +112,7 @@ public class GenericDao {
          if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
          }
-          if (obj instanceof Articulos) {
+          if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         return iBaseDato.obtenerPorId(obj);
@@ -131,7 +134,7 @@ public class GenericDao {
          if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
          }
-          if (obj instanceof Articulos) {
+          if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         return iBaseDato.obtenerTodos();
@@ -154,7 +157,7 @@ public class GenericDao {
          if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
          }
-          if (obj instanceof Articulos) {
+          if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         return iBaseDato.obtenerConWhere(where);

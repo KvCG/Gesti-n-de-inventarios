@@ -146,14 +146,9 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
             if(rs.next()){
                 resultado=1;
             }
+            connect.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error de Conexion ", JOptionPane.ERROR_MESSAGE);
-        }finally{
-            try {
-                connect.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex, "Error de Desconexion ", JOptionPane.ERROR_MESSAGE);
-            }
         }
         return resultado;
     }

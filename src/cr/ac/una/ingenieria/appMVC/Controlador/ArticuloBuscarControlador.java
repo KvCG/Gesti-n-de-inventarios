@@ -6,7 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
-import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -129,8 +129,8 @@ public class ArticuloBuscarControlador implements  ActionListener {
         String Sql = "where Nombre like '%"+ this.articuloBuscarView.txtBuscar.getText() +"%'";
 
         try {
-            for (Object oAux : ArticuloBLModelo.obtenerConWhere(new Articulos(), Sql)) {
-                Articulos a = (Articulos) oAux;
+            for (Object oAux : ArticuloBLModelo.obtenerConWhere(new Articulo(), Sql)) {
+                Articulo a = (Articulo) oAux;
                 fila[0] = a.getIdarticulo();
                 fila[1] = a.getNombre();
                 fila[2] = a.getDescripcion();

@@ -10,8 +10,12 @@ import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ValidarAcceso;
+<<<<<<< HEAD
 import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
 import cr.ac.una.ingenieria.appMVC.Domain.Persona;
+=======
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+>>>>>>> origin/master
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
@@ -79,6 +83,7 @@ public class InventarioSprint {
 //            System.out.println("error");
 //        }
 //        
+<<<<<<< HEAD
             PersonaBL pbl = new PersonaBL();
             //Persona p = new Persona(1,"112620870","Gustavo","Rojas","grcantill@gmail.com");
             Persona p =new Persona(1,"112620870","Gustavo","Rojas","grcantill@gmail.com");
@@ -94,6 +99,15 @@ public class InventarioSprint {
 //        ValidarAcceso validar = new ValidarAcceso(pantPrinView, solUsePa);
 //        validar.getSolUsePa().setVisible(true);
 //        pantPrinView.setVisible(true);
+=======
+
+        SolicitudUsuarioPassword solUsuarioPassword =new SolicitudUsuarioPassword();
+        PantallaPrincipal pantPrinView = new PantallaPrincipal();
+        SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
+        ValidarAcceso validar = new ValidarAcceso(pantPrinView, solUsePa);
+        validar.getSolUsePa().setVisible(true);
+        //pantPrinView.setVisible(true);
+>>>>>>> origin/master
     }
     
 }
