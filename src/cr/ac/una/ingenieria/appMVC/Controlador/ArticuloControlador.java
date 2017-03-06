@@ -138,10 +138,10 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private void clean() {
         this.mantArticuloView.TxtCantidad.setText(null);
         this.mantArticuloView.TxtPrecio.setText(null);
+        this.mantArticuloView.txtNombre.setText(null);
         this.mantArticuloView.txtDescripcion.setText(null);
         this.mantArticuloView.txtCodigo.setText(null);
         this.mantArticuloView.txtPuntoPedido.setText(null);
-        this.mantArticuloView.txtNombre.setText(null);
         
     }
 
