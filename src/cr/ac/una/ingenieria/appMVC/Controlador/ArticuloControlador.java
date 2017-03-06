@@ -281,7 +281,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigo);
             articuloBControlador.getArticuloBuscarView().setVisible(true);
             this.mantArticuloView.btEliminar.setEnabled(true);
-
         }
 
     }
