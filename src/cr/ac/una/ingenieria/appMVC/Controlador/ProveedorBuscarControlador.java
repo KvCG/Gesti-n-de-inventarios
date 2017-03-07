@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,6 +45,14 @@ public class ProveedorBuscarControlador implements  ActionListener {
         this.proveedorBLModelo = proveedorBLModelo;
         this.txtRespuesta = txtRespuesta;
         this.proovedorBuscarView.btBuscar.addActionListener(this);
+        this.proovedorBuscarView.btSeleccionar.addActionListener(this);
+       this.proovedorBuscarView.txtBuscar.addCaretListener(new CaretListener(){
+           @Override
+            public void caretUpdate(CaretEvent e) {
+                llenarTabla(proovedorBuscarView.jTableProovedor);
+            }
+        });
+       
         this.proovedorBuscarView.btSeleccionar.addActionListener(this);
         llenarTabla(this.proovedorBuscarView.jTableProovedor);
     }
@@ -130,7 +140,7 @@ public class ProveedorBuscarControlador implements  ActionListener {
 
         Object fila[] = new Object[4];
         
-        String Sql = "where Nombre like '%"+ this.proovedorBuscarView.txtBuscar.getText() +"%'";
+        String Sql = "where nombre like '%"+ this.proovedorBuscarView.txtBuscar.getText() +"%'";
 
         try {
             for (Object oAux : proveedorBLModelo.obtenerConWhere(new Proveedores(), Sql)) {
