@@ -33,7 +33,7 @@ public class PersonaDao implements IBaseDao<Persona> {
     @Override
     public void insertar(Persona obj) throws SQLException {
         Connection con = conexion.getConexion();  
-        CallableStatement cs = con.prepareCall("insert into persona (cedula,nombre,apellidos,correo"
+        CallableStatement cs = con.prepareCall("insert into persona (cedula,nombre,apellidos,correo)"
                                              + " values (?,?,?,?)");
         
         cs.setString(1, obj.getCedula());
