@@ -31,7 +31,7 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
         txtUsuario = new javax.swing.JTextField();
         jtxtContraseña = new javax.swing.JLabel();
         jtxtCedPersona = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
         btEliminar = new javax.swing.JButton();
         btInsertar = new javax.swing.JButton();
@@ -58,7 +58,7 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
         jtxtCedPersona.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jtxtCedPersona.setText("CEDULA PERSONA:");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCedula.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         txtContraseña.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
@@ -117,7 +117,7 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
                             .addComponent(jtxUsuario))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
+                            .addComponent(txtCedula)
                             .addComponent(txtUsuario)
                             .addComponent(txtContraseña))
                         .addGap(32, 32, 32)
@@ -130,7 +130,7 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtCedPersona)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxUsuario)
@@ -164,10 +164,10 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
     public javax.swing.JButton btEliminar;
     public javax.swing.JButton btInsertar;
     public javax.swing.JButton btModificar;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jtxUsuario;
     private javax.swing.JLabel jtxtCedPersona;
     private javax.swing.JLabel jtxtContraseña;
+    public javax.swing.JTextField txtCedula;
     public javax.swing.JPasswordField txtContraseña;
     public javax.swing.JTextField txtUsuario;
     public javax.swing.JTextField txtUsuarioBuscar;

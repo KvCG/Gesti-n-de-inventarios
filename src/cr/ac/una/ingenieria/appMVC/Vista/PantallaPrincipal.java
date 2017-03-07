@@ -6,6 +6,7 @@ import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.UsuarioControlador;
+import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 
 
 public class PantallaPrincipal extends javax.swing.JFrame {
@@ -58,7 +59,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //para la venta modulo Modulo_Registo_Persona
         this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
         UsuarioBL usuBL = new UsuarioBL();
-        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView, usuBL);
+        this.Mod_Reg_PerView = new Modulo_Registo_Persona();
+        PersonaBL perBL1 = new PersonaBL();
+        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView,usuBL,perBL1,Mod_Reg_PerView);
         UsuControl.getMantUsuarioview();
     }
 

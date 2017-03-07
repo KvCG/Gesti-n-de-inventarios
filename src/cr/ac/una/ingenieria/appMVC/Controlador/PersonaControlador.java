@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -66,7 +68,11 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         this.Mod_Reg_PersonaView.btCancelar.addActionListener(this);
         this.Mod_Reg_PersonaView.btEliminar.addActionListener(this);
         this.Mod_Reg_PersonaView.jtxtId.getDocument().addDocumentListener(this);
+        this.Mod_Reg_PersonaView.btModificar.setEnabled(false);
+        this.Mod_Reg_PersonaView.btEliminar.setEnabled(false);
         this.Mod_Reg_PersonaView.txtCodigoBuscar.setVisible(false);
+        this.Mod_Reg_PersonaView.jtxtId.setVisible(false);
+        
     }
 
     public PersonaControlador() {
@@ -93,6 +99,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                 p.setApellidos(this.Mod_Reg_PersonaView.jtxtApellido.getText());
                 p.setCorreo(this.Mod_Reg_PersonaView.jtxtCorreo.getText());
                 try {
+                    if(this.isEmail(this.Mod_Reg_PersonaView.jtxtCorreo.getText())){
                     this.PersBL.insertar(p);
                     JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "La persona ha sido ingresada correctamente", "Persona Agreagada", JOptionPane.INFORMATION_MESSAGE);
                     this.Mod_Reg_PersonaView.jtxtCedula.setText(null);
@@ -100,6 +107,11 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                     this.Mod_Reg_PersonaView.jtxtApellido.setText(null);
                     this.Mod_Reg_PersonaView.jtxtCorreo.setText(null);
                     this.Mod_Reg_PersonaView.btModificar.setEnabled(true);
+                    }
+                    else{
+                    JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error ingrese el correo nuevamente:", "Error en ingresar correo", JOptionPane.ERROR_MESSAGE);
+                     this.Mod_Reg_PersonaView.jtxtCorreo.setText(null);
+            }        
 
                 } catch (SQLException ex) {
                     Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -148,6 +160,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                 p.setCedula(this.Mod_Reg_PersonaView.jtxtCedula.getText());
 
                 try {
+                    if(this.isEmail(this.Mod_Reg_PersonaView.jtxtCorreo.getText())){
                     p = PersBL.obtenerPorId(p);
                      p.setCedula(this.Mod_Reg_PersonaView.jtxtCedula.getText());
                      p.setNombre(this.Mod_Reg_PersonaView.jtxtNombre.getText());
@@ -159,6 +172,11 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                     this.Mod_Reg_PersonaView.jtxtCedula.setEnabled(true);
                     JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "La Persona ha sido modificada correctamente",
                             "Persona madificada", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else{
+                    JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error ingrese el correo nuevamente:", "Error en ingresar correo", JOptionPane.ERROR_MESSAGE);
+                     this.Mod_Reg_PersonaView.jtxtCorreo.setText(null);
+            }        
                 } catch (SQLException ex) {
                     Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error al modificar a la Persona:" + ex.getMessage(),
@@ -189,7 +207,17 @@ public class PersonaControlador implements ActionListener, DocumentListener{
             }
         }
     }
-
+public boolean isEmail(String correo) {
+    Pattern pat = null;
+    Matcher mat = null; 
+    pat = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");
+    mat = pat.matcher(correo);
+    if (mat.find()) {
+    return true;
+    }else{
+    return false;
+    } 
+}
 
     @Override
     public void insertUpdate(DocumentEvent e) {

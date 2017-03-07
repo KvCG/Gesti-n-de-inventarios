@@ -1,9 +1,11 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
+import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Usuario;
 import cr.ac.una.ingenieria.appMVC.Vista.MantUsuarioBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Persona;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
@@ -18,10 +20,14 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
 
     private Modulo_Registo_Usuario mantUsuarioView;
     private UsuarioBL usuarioBlModelo;
+    private PersonaBL personaBLModelo;
+    private Modulo_Registo_Persona mantPersonaView;
 
-    public UsuarioControlador(Modulo_Registo_Usuario mantUsuarioview, UsuarioBL usuarioBlModelo) {
+    public UsuarioControlador(Modulo_Registo_Usuario mantUsuarioview, UsuarioBL usuarioBlModelo,PersonaBL personaBLModelo,Modulo_Registo_Persona mantPersonaView) {
         this.mantUsuarioView = mantUsuarioview;
         this.usuarioBlModelo = usuarioBlModelo;
+        this.mantPersonaView = mantPersonaView;
+        this.personaBLModelo = personaBLModelo;
         this.mantUsuarioView.btBuscar.addActionListener(this);
         this.mantUsuarioView.btInsertar.addActionListener(this);
         this.mantUsuarioView.btCancelar.addActionListener(this);
@@ -29,19 +35,39 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         this.mantUsuarioView.btModificar.addActionListener(this);
         this.mantUsuarioView.btEliminar.setEnabled(false);
         this.mantUsuarioView.btModificar.setEnabled(false);
+        this.mantUsuarioView.btBuscarPersona.addActionListener(this);
         this.mantUsuarioView.txtUsuarioBuscar.getDocument().addDocumentListener(this);
         this.mantUsuarioView.btModificar.setEnabled(false);
         this.mantUsuarioView.btEliminar.setEnabled(false);
         this.mantUsuarioView.txtUsuarioBuscar.setVisible(false);
+        this.mantUsuarioView.txtCedula.setEnabled(false);
     }
 
     public UsuarioControlador() {
+    }
+
+    
+    
+    public PersonaBL getPersonaBLModelo() {
+        return personaBLModelo;
+    }
+
+    public void setPersonaBLModelo(PersonaBL personaBLModelo) {
+        this.personaBLModelo = personaBLModelo;
+    }
+
+    public Modulo_Registo_Persona getMantPersonaView() {
+        return mantPersonaView;
     }
 
     /**
      *
      * @return
      */
+    public void setMantPersonaView(Modulo_Registo_Persona mantPersonaView) {
+        this.mantPersonaView = mantPersonaView;
+    }
+
     public Modulo_Registo_Usuario getMantUsuarioview() {
         return mantUsuarioView;
     }

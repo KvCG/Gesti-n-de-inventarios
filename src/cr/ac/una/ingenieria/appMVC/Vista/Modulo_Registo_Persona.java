@@ -27,7 +27,6 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lb_idPersona = new javax.swing.JLabel();
         lb_Cedula = new javax.swing.JLabel();
         lb_Nombre = new javax.swing.JLabel();
         lb_Apellidos = new javax.swing.JLabel();
@@ -43,6 +42,22 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         btCancelar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         txtCodigoBuscar = new javax.swing.JTextField();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        lb_Cedula1 = new javax.swing.JLabel();
+        lb_Nombre1 = new javax.swing.JLabel();
+        lb_Apellidos1 = new javax.swing.JLabel();
+        lb_Correo1 = new javax.swing.JLabel();
+        jtxtId1 = new javax.swing.JTextField();
+        jtxtCedula1 = new javax.swing.JTextField();
+        jtxtNombre1 = new javax.swing.JTextField();
+        jtxtApellido1 = new javax.swing.JTextField();
+        jtxtCorreo1 = new javax.swing.JTextField();
+        btGuardar1 = new javax.swing.JButton();
+        btModificar1 = new javax.swing.JButton();
+        btBuscar1 = new javax.swing.JButton();
+        btCancelar1 = new javax.swing.JButton();
+        btEliminar1 = new javax.swing.JButton();
+        txtCodigoBuscar1 = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -50,9 +65,6 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("MODULO REGISTRO - PERSONA");
         setMinimumSize(new java.awt.Dimension(730, 310));
-
-        lb_idPersona.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lb_idPersona.setText("ID");
 
         lb_Cedula.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lb_Cedula.setText("CEDULA");
@@ -93,6 +105,128 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
             }
         });
 
+        jInternalFrame1.setClosable(true);
+        jInternalFrame1.setIconifiable(true);
+        jInternalFrame1.setMaximizable(true);
+        jInternalFrame1.setResizable(true);
+        jInternalFrame1.setTitle("MODULO REGISTRO - PERSONA");
+        jInternalFrame1.setMinimumSize(new java.awt.Dimension(730, 310));
+
+        lb_Cedula1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lb_Cedula1.setText("CEDULA");
+
+        lb_Nombre1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lb_Nombre1.setText("NOMBRE");
+
+        lb_Apellidos1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lb_Apellidos1.setText("APELLIDOS");
+
+        lb_Correo1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lb_Correo1.setText("CORREO ELEC.");
+
+        btGuardar1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Guardar 00.png"))); // NOI18N
+        btGuardar1.setText("GUARDAR");
+
+        btModificar1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btModificar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Editar 01.png"))); // NOI18N
+        btModificar1.setText("EDITAR");
+
+        btBuscar1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"))); // NOI18N
+        btBuscar1.setText("BUSCAR");
+
+        btCancelar1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cancelar.png"))); // NOI18N
+        btCancelar1.setText("CANCELAR");
+
+        btEliminar1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btEliminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Eliminar.png"))); // NOI18N
+        btEliminar1.setText("ELIMINAR");
+
+        txtCodigoBuscar1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCodigoBuscar1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoBuscar1KeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_Nombre1)
+                            .addComponent(lb_Cedula1))
+                        .addGap(62, 62, 62)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtxtNombre1)
+                            .addComponent(jtxtCedula1)))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_Correo1)
+                            .addComponent(lb_Apellidos1))
+                        .addGap(18, 18, 18)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtxtApellido1)
+                            .addComponent(jtxtCorreo1))))
+                .addGap(40, 40, 40))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btGuardar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btModificar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btBuscar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btCancelar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btEliminar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtCodigoBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxtId1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigoBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtxtCedula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lb_Cedula1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_Nombre1)
+                    .addComponent(jtxtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_Apellidos1)
+                    .addComponent(jtxtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lb_Correo1)
+                    .addComponent(jtxtCorreo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btGuardar1)
+                    .addComponent(btModificar1)
+                    .addComponent(btBuscar1)
+                    .addComponent(btCancelar1)
+                    .addComponent(btEliminar1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,25 +235,21 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lb_Apellidos)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtxtApellido))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_Nombre)
+                            .addComponent(lb_Cedula))
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtxtNombre)
+                            .addComponent(jtxtCedula)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lb_Nombre)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_Correo)
+                            .addComponent(lb_Apellidos))
                         .addGap(18, 18, 18)
-                        .addComponent(jtxtNombre))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lb_idPersona)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtxtId)
-                        .addGap(18, 18, 18)
-                        .addComponent(lb_Cedula)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtxtCedula))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lb_Correo)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtxtCorreo)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtxtApellido)
+                            .addComponent(jtxtCorreo))))
                 .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -136,19 +266,26 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_Cedula)
                     .addComponent(jtxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lb_idPersona))
+                    .addComponent(lb_Cedula))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lb_Nombre)
@@ -168,7 +305,12 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
                     .addComponent(btBuscar)
                     .addComponent(btCancelar)
                     .addComponent(btEliminar))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -178,23 +320,42 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoBuscarKeyTyped
 
+    private void txtCodigoBuscar1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBuscar1KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoBuscar1KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btBuscar;
+    public javax.swing.JButton btBuscar1;
     public javax.swing.JButton btCancelar;
+    public javax.swing.JButton btCancelar1;
     public javax.swing.JButton btEliminar;
+    public javax.swing.JButton btEliminar1;
     public javax.swing.JButton btGuardar;
+    public javax.swing.JButton btGuardar1;
     public javax.swing.JButton btModificar;
+    public javax.swing.JButton btModificar1;
+    private javax.swing.JInternalFrame jInternalFrame1;
     public javax.swing.JTextField jtxtApellido;
+    public javax.swing.JTextField jtxtApellido1;
     public javax.swing.JTextField jtxtCedula;
+    public javax.swing.JTextField jtxtCedula1;
     public javax.swing.JTextField jtxtCorreo;
+    public javax.swing.JTextField jtxtCorreo1;
     public javax.swing.JTextField jtxtId;
+    public javax.swing.JTextField jtxtId1;
     public javax.swing.JTextField jtxtNombre;
+    public javax.swing.JTextField jtxtNombre1;
     private javax.swing.JLabel lb_Apellidos;
+    private javax.swing.JLabel lb_Apellidos1;
     private javax.swing.JLabel lb_Cedula;
+    private javax.swing.JLabel lb_Cedula1;
     private javax.swing.JLabel lb_Correo;
+    private javax.swing.JLabel lb_Correo1;
     private javax.swing.JLabel lb_Nombre;
-    private javax.swing.JLabel lb_idPersona;
+    private javax.swing.JLabel lb_Nombre1;
     public javax.swing.JTextField txtCodigoBuscar;
+    public javax.swing.JTextField txtCodigoBuscar1;
     // End of variables declaration//GEN-END:variables
 }
