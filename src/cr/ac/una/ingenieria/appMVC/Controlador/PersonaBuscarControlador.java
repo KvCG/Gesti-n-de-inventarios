@@ -72,7 +72,21 @@ public class PersonaBuscarControlador implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       if (e.getSource() == this.personaBuscarView.btBuscar) {
+            llenarTabla(this.personaBuscarView.jTBuscarPersona);
+        }
+
+        if (e.getSource() == this.personaBuscarView.btSeleccionar) {
+            int fila = this.personaBuscarView.jTBuscarPersona.getSelectedRow();
+            if (fila != -1) {
+                String codigo = this.personaBuscarView.jTBuscarPersona.getValueAt(fila, 0).toString();
+                txtRespuesta.setText(codigo);
+                this.personaBuscarView.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(personaBuscarView, "Error debe seleccionar una Persona:", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
     }
     public void llenarTabla(JTable tablaPersona) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
