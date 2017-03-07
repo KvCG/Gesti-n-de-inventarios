@@ -1,5 +1,5 @@
-
 package cr.ac.una.ingenieria.appMVC.Controlador;
+
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Usuario;
@@ -15,13 +15,26 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 public class UsuarioControlador implements ActionListener, DocumentListener {
-    
-    private Modulo_Registo_Usuario mantUsuarioview;
+
+    private Modulo_Registo_Usuario mantUsuarioView;
     private UsuarioBL usuarioBlModelo;
 
-    /**
-     *
-     */
+    public UsuarioControlador(Modulo_Registo_Usuario mantUsuarioview, UsuarioBL usuarioBlModelo) {
+        this.mantUsuarioView = mantUsuarioview;
+        this.usuarioBlModelo = usuarioBlModelo;
+        this.mantUsuarioView.btBuscar.addActionListener(this);
+        this.mantUsuarioView.btInsertar.addActionListener(this);
+        this.mantUsuarioView.btCancelar.addActionListener(this);
+        this.mantUsuarioView.btEliminar.addActionListener(this);
+        this.mantUsuarioView.btModificar.addActionListener(this);
+        this.mantUsuarioView.btEliminar.setEnabled(false);
+        this.mantUsuarioView.btModificar.setEnabled(false);
+        this.mantUsuarioView.txtUsuarioBuscar.getDocument().addDocumentListener(this);
+        this.mantUsuarioView.btModificar.setEnabled(false);
+        this.mantUsuarioView.btEliminar.setEnabled(false);
+        this.mantUsuarioView.txtUsuarioBuscar.setVisible(false);
+    }
+
     public UsuarioControlador() {
     }
 
@@ -30,7 +43,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
      * @return
      */
     public Modulo_Registo_Usuario getMantUsuarioview() {
-        return mantUsuarioview;
+        return mantUsuarioView;
     }
 
     /**
@@ -38,7 +51,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
      * @param mantUsuarioview
      */
     public void setMantUsuarioview(Modulo_Registo_Usuario mantUsuarioview) {
-        this.mantUsuarioview = mantUsuarioview;
+        this.mantUsuarioView = mantUsuarioview;
     }
 
     /**
@@ -56,69 +69,45 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
     public void setUsuarioBlModelo(UsuarioBL usuarioBlModelo) {
         this.usuarioBlModelo = usuarioBlModelo;
     }
-    
-    /**
-     *
-     * @param mantUsuarioview
-     * @param usuarioBlModelo
-     */
-    public UsuarioControlador(Modulo_Registo_Usuario mantUsuarioview, UsuarioBL usuarioBlModelo) {
-        this.mantUsuarioview = mantUsuarioview;
-        this.usuarioBlModelo = usuarioBlModelo;
-        this.mantUsuarioview.btBuscar.addActionListener(this);
-        this.mantUsuarioview.btInsertar.addActionListener(this);
-        this.mantUsuarioview.btCancelar.addActionListener(this);
-        this.mantUsuarioview.btEliminar.addActionListener(this);
-        this.mantUsuarioview.btModificar.addActionListener(this);
-        this.mantUsuarioview.txtidUsuario.getDocument().addDocumentListener(this);
-        this.mantUsuarioview.btEliminar.setEnabled(false);
-        this.mantUsuarioview.btModificar.setEnabled(false);
-        //inicializarPantalla();
-    }
-    
-    private void inicializarPantalla() {
-        this.mantUsuarioview.txtidUsuario.setEnabled(false);
 
+    private boolean isEmpty() {
+        if (this.mantUsuarioView.txtUsuario.getText().equals("")
+                || this.mantUsuarioView.txtContraseña.getPassword().equals("")) {
+            return true;
+        }
+        return false;
     }
-    
-    /**
-     *
-     * @param tablaUsuarios
-     */
 
+    private void clean() {
+        this.mantUsuarioView.txtContraseña.setText(null);
+        this.mantUsuarioView.txtUsuario.setText(null);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.mantUsuarioview.btInsertar) {
-//            if(this.mantUsuarioview.txtRol.getText().equals("")||this.mantUsuarioview.txtUsuario.getText().equals("")||this.mantUsuarioview.txtContraseña.getPassword().equals("")){
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error faltan espacios por rellenar:", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
-//            }else{
-//            Usuario u = new Usuario();
-//            u.setIdUsuario(1);
-//            u.setAlias(this.mantUsuarioview.txtUsuario.getText());
-//            u.setPassword(String.valueOf(this.mantUsuarioview.txtContraseña.getPassword()));
-//            
-//            try {
-//                //se agrega el socio a la base de datos
-//                this.usuarioBlModelo.insertar(u);
-//                //llenarTabla(this.mantUsuarioview.jTableusuarios);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido ingresado correctamente", "Usuario Agreagado", JOptionPane.INFORMATION_MESSAGE);
-//                this.mantUsuarioview.txtContraseña.setText(null);
-//                this.mantUsuarioview.txtRol.setText(null);
-//                this.mantUsuarioview.txtUsuario.setText(null);
-//                this.mantUsuarioview.txtidUsuario.setText(null);
-//                this.mantUsuarioview.btModificar.setEnabled(true);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al agregar el Usuario:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//            } catch (Exception ex) {
-//                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al eliminar el Usuario:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
-            
+        if (e.getSource() == this.mantUsuarioView.btInsertar) {
+            if (this.isEmpty()) {
+                JOptionPane.showMessageDialog(mantUsuarioView, "Error faltan espacios por rellenar:", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Usuario u = new Usuario();
+                u.setAlias(this.mantUsuarioView.txtUsuario.getText());
+                u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
+                //u.getRol();
+                try {
+                    this.usuarioBlModelo.insertar(u);
+                    JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido ingresado correctamente", "Usuario Agreagado", JOptionPane.INFORMATION_MESSAGE);
+                    this.clean();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantUsuarioView, "Error al agregar el Usuario:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantUsuarioView, "Error al agregar el Usuario:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
         }
-        if (e.getSource() == this.mantUsuarioview.btEliminar) {
+        if (e.getSource() == this.mantUsuarioView.btEliminar) {
 //            if(this.mantUsuarioview.jTableusuarios.getRowCount()!=0&&this.mantUsuarioview.jTableusuarios.getRowCount()!=-1){
 //            Usuario u = new Usuario();
 //            int fila = this.mantUsuarioview.jTableusuarios.getSelectedRow();
@@ -155,67 +144,59 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
 //                JOptionPane.showMessageDialog(mantUsuarioview, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
 //            }
         }
-        
-        if(e.getSource()==this.mantUsuarioview.btModificar){
-//            if(this.mantUsuarioview.txtNombre.getText().equals("")||this.mantUsuarioview.txtUsuario.getText().equals("")||this.mantUsuarioview.txtContraseña.getText().equals("")){
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error primero debe seleccionar un Usuario:", "Error", JOptionPane.ERROR_MESSAGE);
-//            }else{
-//             if(this.mantUsuarioview.jTableusuarios.getRowCount()!=0&&this.mantUsuarioview.jTableusuarios.getRowCount()!=-1){
-//             Usuario u = new Usuario();
-//            
-//             
-//             u.setIdUsuario(Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText()));
-//                
-//            try {
-//                u = usuarioBlModelo.obtenerPorId(u);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//                    u.setAlias(this.mantUsuarioview.txtUsuario.getText());
-//                    u.setPassword(this.mantUsuarioview.txtContraseña.getText());
-//                   try {
-//                
-//                        this.usuarioBlModelo.modificar(u);
-//                        //llenarTabla(this.mantUsuarioview.jTableusuarios);
-//                        JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido modificado correctamente", 
-//                                "Usuario Modificado", JOptionPane.INFORMATION_MESSAGE);
-//                        this.mantUsuarioview.txtidUsuario.setText(u.getIdUsuario().toString());
-//                        this.mantUsuarioview.txtUsuario.setText(u.getAlias().toString());
-//                        this.mantUsuarioview.txtContraseña.setText(u.getPassword().toString());
-//                        this.mantUsuarioview.txtContraseña.setText(null);
-//                        this.mantUsuarioview.txtNombre.setText(null);
-//                        this.mantUsuarioview.txtUsuario.setText(null);
-//                        this.mantUsuarioview.txtidUsuario.setText(null);
-//                        this.mantUsuarioview.btEliminar.setEnabled(false);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al modificar  al Usuario:" + ex.getMessage(), 
-//                        "Error", JOptionPane.ERROR_MESSAGE);
-//            } catch (Exception ex) {
-//                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al eliminar al Usuario:" + ex.getMessage(), 
-//                        "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//              }else{
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
-//            }          
-//          } 
+
+        if (e.getSource() == this.mantUsuarioView.btModificar) {
+            if (this.isEmpty()) {
+                JOptionPane.showMessageDialog(mantUsuarioView, "Error primero debe seleccionar un Usuario:", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+
+                Usuario u = new Usuario();
+
+                u.setAlias(this.mantUsuarioView.txtUsuario.getText());
+
+                try {
+                    u = usuarioBlModelo.obtenerPorId(u);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                u.setAlias(this.mantUsuarioView.txtUsuario.getText());
+                u.setPassword(this.mantUsuarioView.txtContraseña.getText());
+                try {
+                    this.usuarioBlModelo.modificar(u);
+                    JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido modificado correctamente",
+                            "Usuario Modificado", JOptionPane.INFORMATION_MESSAGE);
+
+                    this.mantUsuarioView.txtUsuario.setText(u.getAlias());
+                    this.mantUsuarioView.txtContraseña.setText(u.getPassword());
+                    this.clean();
+                    this.mantUsuarioView.btEliminar.setEnabled(false);
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantUsuarioView, "Error al modificar usuario:" + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantUsuarioView, "Error al modificar usuario:" + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+//        
         }
-        if (e.getSource() == this.mantUsuarioview.btCancelar){
-            this.mantUsuarioview.txtRol.setText(null);
-            this.mantUsuarioview.txtUsuario.setText(null);
-            this.mantUsuarioview.txtContraseña.setText(null);
-            this.mantUsuarioview.txtidUsuario.setText(null);
-            this.mantUsuarioview.btEliminar.setEnabled(false);
-            
-        }if (e.getSource() == this.mantUsuarioview.btBuscar) { 
-            MantUsuarioBuscar mantUsuarioBuscarView = new MantUsuarioBuscar();
-            UsuarioBuscarControlador usuarioBControlador ;
-            usuarioBControlador = new UsuarioBuscarControlador(mantUsuarioBuscarView, 
-                    usuarioBlModelo, 
-                    this.mantUsuarioview.txtidUsuario);
-            usuarioBControlador.getUsuarioBuscarView().setVisible(true);
-            this.mantUsuarioview.btEliminar.setEnabled(true);
+        if (e.getSource() == this.mantUsuarioView.btCancelar) {
+            this.clean();
+            this.mantUsuarioView.btEliminar.setEnabled(false);
+            this.mantUsuarioView.btModificar.setEnabled(false);
+        }
+        if (e.getSource() == this.mantUsuarioView.btBuscar) {
+            if (!mantUsuarioView.txtUsuario.getText().isEmpty()) {
+                MantUsuarioBuscar mantUsuarioBuscarView = new MantUsuarioBuscar();
+                UsuarioBuscarControlador usuarioBControlador;
+                usuarioBControlador = new UsuarioBuscarControlador(mantUsuarioBuscarView, usuarioBlModelo, mantUsuarioView.txtUsuarioBuscar);
+                this.mantUsuarioView.btEliminar.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(mantUsuarioView, "Debes digitar un codigo primero", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -234,24 +215,20 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         cargarusuario();
     }
 
-     private void cargarusuario() {
+    private void cargarusuario() {
         Usuario u = new Usuario();
-        if (!this.mantUsuarioview.txtidUsuario.getText().isEmpty()) {
-            u.setIdUsuario(Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText()));
+        if (!this.mantUsuarioView.txtUsuarioBuscar.getText().isEmpty()) {
             try {
+                u.setAlias(this.mantUsuarioView.txtUsuarioBuscar.getText());
                 u = usuarioBlModelo.obtenerPorId(u);
-                this.mantUsuarioview.txtUsuario.setText(u.getAlias());
-                this.mantUsuarioview.txtContraseña.setText(u.getPassword());
-                
-                
-
+                this.mantUsuarioView.txtUsuario.setText(u.getAlias());
+                this.mantUsuarioView.txtContraseña.setText(u.getPassword());
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(mantUsuarioview, "Error no se pudo consultar el Usuario (" + ex.getMessage() + ")",
+                JOptionPane.showMessageDialog(mantUsuarioView, "Error no se pudo consultar el Usuario (" + ex.getMessage() + ")",
                         "Error al cargar el Usuario", JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
 
-    
 }

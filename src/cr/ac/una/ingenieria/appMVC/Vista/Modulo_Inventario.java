@@ -50,6 +50,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         btModificar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
+        txtCodigoBuscar = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -165,6 +166,13 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cancelar.png"))); // NOI18N
         btCancelar.setText("CANCELAR");
 
+        txtCodigoBuscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCodigoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoBuscarKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -217,12 +225,16 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                         .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(21, 21, 21))))
+                        .addGap(21, 21, 21))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbCodigo)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,7 +265,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                     .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,6 +329,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_cbTipoKeyTyped
 
+    private void txtCodigoBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBuscarKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoBuscarKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField TxtCantidad;
@@ -337,6 +353,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbPuntoPedido;
     private javax.swing.JLabel lbTipo;
     public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtCodigoBuscar;
     public javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtPuntoPedido;

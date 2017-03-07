@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Gustavo
  */
-public class UsuarioBuscarControlador implements  ActionListener {
-    
+public class UsuarioBuscarControlador implements ActionListener {
+
     private MantUsuarioBuscar usuarioBuscarView;
     private UsuarioBL UsuarioBLModelo;
     private JTextField txtRespuesta;
@@ -94,7 +94,7 @@ public class UsuarioBuscarControlador implements  ActionListener {
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
-    
+
     /**
      *
      * @param tablaUsuarios
@@ -102,51 +102,40 @@ public class UsuarioBuscarControlador implements  ActionListener {
     public void llenarTabla(JTable tablaUsuarios) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaUsuarios.setModel(modeloTabla);
-
-        modeloTabla.addColumn("Id Usuario");
-        modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Usuario");
-        
-        
 
-        Object fila[] = new Object[3];
-        
-        String Sql = "where Nombre like '%"+ this.usuarioBuscarView.txtBuscar.getText() +"%'";
+        Object fila[] = new Object[2];
+
+        String Sql = "where alias like '%" + this.usuarioBuscarView.txtBuscar.getText() + "%'";
 
         try {
             for (Object oAux : UsuarioBLModelo.obtenerConWhere(new Usuario(), Sql)) {
                 Usuario u = (Usuario) oAux;
-                fila[0] = u.getIdUsuario();
-                fila[1] = u.getAlias();
-                
+                fila[0] = u.getAlias();
+
                 modeloTabla.addRow(fila);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         if(e.getSource() == this.usuarioBuscarView.btBuscar){
+        if (e.getSource() == this.usuarioBuscarView.btBuscar) {
             llenarTabla(this.usuarioBuscarView.jTableusuarios);
         }
-        
-        if(e.getSource() == this.usuarioBuscarView.btSeleccionar){
+
+        if (e.getSource() == this.usuarioBuscarView.btSeleccionar) {
             int fila = this.usuarioBuscarView.jTableusuarios.getSelectedRow();
             if (fila != -1) {
-            Integer idCliente = Integer.parseInt(this.usuarioBuscarView.jTableusuarios.getValueAt(fila, 0).toString());
-            txtRespuesta.setText(String.valueOf(idCliente));
-            this.usuarioBuscarView.setVisible(false);
-            }else{
-               JOptionPane.showMessageDialog(usuarioBuscarView, "Error debe seleccionar un usuario:", "Error", JOptionPane.ERROR_MESSAGE); 
+                String alias = this.usuarioBuscarView.jTableusuarios.getValueAt(fila, 0).toString();
+                txtRespuesta.setText(String.valueOf(alias));
+                this.usuarioBuscarView.setVisible(false);
+            } else {
+                JOptionPane.showMessageDialog(usuarioBuscarView, "Error debe seleccionar un usuario:", "Error", JOptionPane.ERROR_MESSAGE);
             }
-                            
+
         }
     }
-    
 }
-

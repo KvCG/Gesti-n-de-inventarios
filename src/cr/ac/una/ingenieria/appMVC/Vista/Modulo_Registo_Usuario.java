@@ -29,10 +29,6 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
 
         jtxUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
-        txtidUsuario = new javax.swing.JTextField();
-        txtRol = new javax.swing.JTextField();
-        IdUsuario = new javax.swing.JLabel();
-        jtxtNombre = new javax.swing.JLabel();
         jtxtContraseña = new javax.swing.JLabel();
         jtxtCedPersona = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -43,6 +39,7 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
         btBuscar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btBuscarPersona = new javax.swing.JButton();
+        txtUsuarioBuscar = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -51,35 +48,15 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
         setTitle("MODULO REGISTRO - USUARIO");
 
         jtxUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jtxUsuario.setText("USUARIO");
+        jtxUsuario.setText("USUARIO:");
 
         txtUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
-        txtidUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtidUsuario.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                txtidUsuarioPropertyChange(evt);
-            }
-        });
-
-        txtRol.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtRol.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRolKeyTyped(evt);
-            }
-        });
-
-        IdUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        IdUsuario.setText("ID");
-
-        jtxtNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jtxtNombre.setText("ROL");
-
         jtxtContraseña.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jtxtContraseña.setText("CONTRASEÑA");
+        jtxtContraseña.setText("CONTRASEÑA:");
 
         jtxtCedPersona.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jtxtCedPersona.setText("CEDULA PERSONA");
+        jtxtCedPersona.setText("CEDULA PERSONA:");
 
         jTextField1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
@@ -109,6 +86,8 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
         btBuscarPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cliente01.png"))); // NOI18N
         btBuscarPersona.setText("BUSCAR PERSONA");
 
+        txtUsuarioBuscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,27 +110,18 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
                                 .addGap(31, 31, 31)
                                 .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtxtContraseña)
+                            .addComponent(jtxtCedPersona)
+                            .addComponent(jtxUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(IdUsuario)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtidUsuario)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtxtCedPersona)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtxtContraseña)
-                                    .addComponent(jtxtNombre)
-                                    .addComponent(jtxUsuario))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtUsuario)
-                                    .addComponent(txtRol)
-                                    .addComponent(txtContraseña))))
-                        .addGap(53, 53, 53)))
+                            .addComponent(jTextField1)
+                            .addComponent(txtUsuario)
+                            .addComponent(txtContraseña))
+                        .addGap(32, 32, 32)
+                        .addComponent(txtUsuarioBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -159,23 +129,18 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IdUsuario)
-                    .addComponent(txtidUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtxtCedPersona)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxUsuario)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuarioBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtContraseña)
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtNombre)
-                    .addComponent(txtRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btInsertar)
                     .addComponent(btModificar)
@@ -191,19 +156,8 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtidUsuarioPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtidUsuarioPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtidUsuarioPropertyChange
-
-    private void txtRolKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRolKeyTyped
-        char c = evt.getKeyChar();
-
-        if(!(c<'0'||c>'9')) evt.consume();
-    }//GEN-LAST:event_txtRolKeyTyped
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel IdUsuario;
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btBuscarPersona;
     public javax.swing.JButton btCancelar;
@@ -214,10 +168,8 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jtxUsuario;
     private javax.swing.JLabel jtxtCedPersona;
     private javax.swing.JLabel jtxtContraseña;
-    private javax.swing.JLabel jtxtNombre;
     public javax.swing.JPasswordField txtContraseña;
-    public javax.swing.JTextField txtRol;
     public javax.swing.JTextField txtUsuario;
-    public javax.swing.JTextField txtidUsuario;
+    public javax.swing.JTextField txtUsuarioBuscar;
     // End of variables declaration//GEN-END:variables
 }

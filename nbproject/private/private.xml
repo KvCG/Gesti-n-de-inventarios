@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/BL/ArticuloBL.java</file>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Dao/GenericDao.java</file>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Domain/Articulo.java</file>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Dao/ArticuloDao.java</file>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Vista/Modulo_Inventario.java</file>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Controlador/ArticuloBuscarControlador.java</file>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Vista/Modulo_Registo_Persona.java</file>
+            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Controlador/UsuarioControlador.java</file>
             <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Vista/Modulo_Registo_Usuario.java</file>
-            <file>file:/C:/Users/Kev/Desktop/Inge3/SIGACI/src/cr/ac/una/ingenieria/appMVC/Controlador/ArticuloControlador.java</file>
         </group>
     </open-files>
 </project-private>

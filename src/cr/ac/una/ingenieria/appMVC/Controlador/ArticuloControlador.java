@@ -30,7 +30,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
-        this.mantArticuloView.txtCodigo.getDocument().addDocumentListener(this);
+        this.mantArticuloView.txtCodigoBuscar.getDocument().addDocumentListener(this);
         this.mantArticuloView.btInsertar.addActionListener(this);
         this.mantArticuloView.btBuscar.addActionListener(this);
         this.mantArticuloView.btCancelar.addActionListener(this);
@@ -38,6 +38,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btModificar.addActionListener(this);
         this.mantArticuloView.btModificar.setEnabled(false);
         this.mantArticuloView.btEliminar.setEnabled(false);
+        this.mantArticuloView.txtCodigoBuscar.setVisible(false);
         inicializarPantalla();
     }
 
@@ -105,7 +106,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.mantArticuloView.btInsertar) {
-
             if (this.isEmpty()) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error faltan espacios por rellenar:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -123,7 +123,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     this.ArticuloBLModelo.insertar(a);
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
                     this.clean();
-                    this.mantArticuloView.btModificar.setEnabled(true);
+                    this.mantArticuloView.btEliminar.setEnabled(false);
+                    this.mantArticuloView.btModificar.setEnabled(false);
                 } catch (SQLException ex) {
                     Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(mantArticuloView, "Error al agregar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -145,7 +146,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido eliminado correctamente", "Articulo Eliminado", JOptionPane.INFORMATION_MESSAGE);
                     this.clean();
                     this.mantArticuloView.btEliminar.setEnabled(false);
-                    this.mantArticuloView.btModificar.setEnabled(true);
+                    this.mantArticuloView.btModificar.setEnabled(false);
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo no sera eliminado ",
@@ -202,11 +203,15 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         }
 
         if (e.getSource() == this.mantArticuloView.btBuscar) {
-            MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
-            ArticuloBuscarControlador articuloBControlador;
-            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigo);
-            articuloBControlador.getArticuloBuscarView().setVisible(true);
-            this.mantArticuloView.btEliminar.setEnabled(true);
+            if (!mantArticuloView.txtCodigo.getText().isEmpty()) {
+                MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
+                ArticuloBuscarControlador articuloBControlador;
+                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigoBuscar);
+                articuloBControlador.getArticuloBuscarView().setVisible(true);
+                this.mantArticuloView.btEliminar.setEnabled(true);
+            }else{
+                JOptionPane.showMessageDialog(mantArticuloView, "Debes digitar un codigo primero", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
 
     }
@@ -231,8 +236,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
 
     private void cargarArticulo() {
         Articulo a = new Articulo();
-        if (!this.mantArticuloView.txtCodigo.getText().isEmpty()) {
-            a.setCodigo(this.mantArticuloView.txtCodigo.getText());
+        if (!this.mantArticuloView.txtCodigoBuscar.getText().isEmpty()) {
+            a.setCodigo(this.mantArticuloView.txtCodigoBuscar.getText());
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
                 this.mantArticuloView.txtNombre.setText(a.getNombre());
