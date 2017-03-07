@@ -6,12 +6,9 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
-import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
-import cr.ac.una.ingenieria.appMVC.Vista.MantProovedorBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteProveedores;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -29,39 +26,19 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
 
     private Modulo_Inventario mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
-    private ProveedorBL ProveedorBLModelo;
-    private ManteProveedores mantProveedoresView;
 
-    /**
-     *
-     * @return
-     */
-    public ProveedorBL getProveedorBLModelo() {
-        return ProveedorBLModelo;
-    }
-
-    /**
-     *
-     * @param ProveedorBLModelo
-     */
-    public void setProveedorBLModelo(ProveedorBL ProveedorBLModelo) {
-        this.ProveedorBLModelo = ProveedorBLModelo;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public ManteProveedores getMantProveedoresView() {
-        return mantProveedoresView;
-    }
-
-    /**
-     *
-     * @param mantProveedoresView
-     */
-    public void setMantProveedoresView(ManteProveedores mantProveedoresView) {
-        this.mantProveedoresView = mantProveedoresView;
+    public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
+        this.mantArticuloView = mantArticuloView;
+        this.ArticuloBLModelo = ArticuloBLModelo;
+        this.mantArticuloView.txtCodigo.getDocument().addDocumentListener(this);
+        this.mantArticuloView.btInsertar.addActionListener(this);
+        this.mantArticuloView.btBuscar.addActionListener(this);
+        this.mantArticuloView.btCancelar.addActionListener(this);
+        this.mantArticuloView.btEliminar.addActionListener(this);
+        this.mantArticuloView.btModificar.addActionListener(this);
+        this.mantArticuloView.btModificar.setEnabled(false);
+        this.mantArticuloView.btEliminar.setEnabled(false);
+        inicializarPantalla();
     }
 
     /**
@@ -96,41 +73,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.ArticuloBLModelo = ArticuloBLModelo;
     }
 
-    /**
-     *
-     * @param mantArticuloView
-     * @param ArticuloBLModelo
-     * @param ProveedorBLModelo
-     * @param mantProveedoresView
-     */
-    public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo, ProveedorBL ProveedorBLModelo, ManteProveedores mantProveedoresView) {
-        this.mantArticuloView = mantArticuloView;
-        this.ArticuloBLModelo = ArticuloBLModelo;
-        this.ProveedorBLModelo = ProveedorBLModelo;
-        this.mantProveedoresView = mantProveedoresView;
-        this.mantArticuloView.btInsertar.addActionListener(this);
-        this.mantArticuloView.btBuscar.addActionListener(this);
-        this.mantArticuloView.btCancelar.addActionListener(this);
-        this.mantArticuloView.btEliminar.addActionListener(this);
-        this.mantArticuloView.btModificar.addActionListener(this);
-        this.mantArticuloView.btModificar.setEnabled(false);
-        this.mantArticuloView.btEliminar.setEnabled(false);
-        inicializarPantalla();
-    }
-    
-    public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
-        this.mantArticuloView = mantArticuloView;
-        this.ArticuloBLModelo = ArticuloBLModelo;
-        this.mantArticuloView.btInsertar.addActionListener(this);
-        this.mantArticuloView.btBuscar.addActionListener(this);
-        this.mantArticuloView.btCancelar.addActionListener(this);
-        this.mantArticuloView.btEliminar.addActionListener(this);
-        this.mantArticuloView.btModificar.addActionListener(this);
-        this.mantArticuloView.btModificar.setEnabled(false);
-        this.mantArticuloView.btEliminar.setEnabled(false);
-        inicializarPantalla();
-    }
-
     private void inicializarPantalla() {
 
     }
@@ -154,12 +96,11 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.txtDescripcion.setText(null);
         this.mantArticuloView.txtCodigo.setText(null);
         this.mantArticuloView.txtPuntoPedido.setText(null);
-        
+
     }
 
     /**
      *
-     * @param tablaArticulos
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -204,6 +145,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido eliminado correctamente", "Articulo Eliminado", JOptionPane.INFORMATION_MESSAGE);
                     this.clean();
                     this.mantArticuloView.btEliminar.setEnabled(false);
+                    this.mantArticuloView.btModificar.setEnabled(true);
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo no sera eliminado ",
@@ -217,7 +159,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
+
         if (e.getSource() == this.mantArticuloView.btModificar) {
             if (this.isEmpty()) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error primero debe seleccionar un Articulo:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
@@ -255,6 +197,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         if (e.getSource() == this.mantArticuloView.btCancelar) {
             this.clean();
             this.mantArticuloView.btEliminar.setEnabled(false);
+            this.mantArticuloView.btModificar.setEnabled(false);
             this.mantArticuloView.txtCodigo.setEnabled(true);
         }
 
@@ -292,7 +235,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             a.setCodigo(this.mantArticuloView.txtCodigo.getText());
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
-                this.mantArticuloView.txtCodigo.setText(a.getCodigo());
                 this.mantArticuloView.txtNombre.setText(a.getNombre());
                 this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
                 this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
@@ -300,6 +242,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
                 this.mantArticuloView.cbBodega.setSelectedIndex(a.getBodega());
                 this.mantArticuloView.cbTipo.setSelectedIndex(a.getTipo());
+                this.mantArticuloView.btModificar.setEnabled(true);
+                this.mantArticuloView.txtCodigo.setEnabled(false);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
