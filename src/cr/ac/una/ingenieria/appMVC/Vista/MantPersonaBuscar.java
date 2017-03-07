@@ -30,7 +30,7 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
         LbNombre = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTBuscarArticulo = new javax.swing.JTable();
+        jTBuscarPersona = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
         btBuscar = new javax.swing.JButton();
 
@@ -45,7 +45,7 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
             }
         });
 
-        jTBuscarArticulo.setModel(new javax.swing.table.DefaultTableModel(
+        jTBuscarPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,7 +56,7 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
                 "IdPersona", "Cedula", "Nombre", "Apellido"
             }
         ));
-        jScrollPane1.setViewportView(jTBuscarArticulo);
+        jScrollPane1.setViewportView(jTBuscarPersona);
 
         btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/aprobado.png"))); // NOI18N
         btSeleccionar.setText("Seleccionar");
@@ -156,7 +156,7 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTBuscarArticulo;
+    public javax.swing.JTable jTBuscarPersona;
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
