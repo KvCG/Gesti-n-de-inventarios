@@ -42,6 +42,7 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         btBuscar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
+        txtCodigoBuscar = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -85,6 +86,13 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Eliminar.png"))); // NOI18N
         btEliminar.setText("ELIMINAR");
 
+        txtCodigoBuscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCodigoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoBuscarKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,11 +133,17 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(6, 6, 6)
+                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lb_Cedula)
@@ -160,6 +174,10 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtCodigoBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBuscarKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoBuscarKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btBuscar;
@@ -177,5 +195,6 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lb_Correo;
     private javax.swing.JLabel lb_Nombre;
     private javax.swing.JLabel lb_idPersona;
+    public javax.swing.JTextField txtCodigoBuscar;
     // End of variables declaration//GEN-END:variables
 }

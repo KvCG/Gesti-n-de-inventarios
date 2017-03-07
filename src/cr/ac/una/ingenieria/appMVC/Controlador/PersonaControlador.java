@@ -59,12 +59,14 @@ public class PersonaControlador implements ActionListener, DocumentListener{
     public PersonaControlador(Modulo_Registo_Persona Mod_Reg_PersonaView, PersonaBL PersBL) {
         this.Mod_Reg_PersonaView = Mod_Reg_PersonaView;
         this.PersBL = PersBL;
+        this.Mod_Reg_PersonaView.txtCodigoBuscar.getDocument().addDocumentListener(this);
         this.Mod_Reg_PersonaView.btGuardar.addActionListener(this);
         this.Mod_Reg_PersonaView.btModificar.addActionListener(this);
         this.Mod_Reg_PersonaView.btBuscar.addActionListener(this);
         this.Mod_Reg_PersonaView.btCancelar.addActionListener(this);
         this.Mod_Reg_PersonaView.btEliminar.addActionListener(this);
         this.Mod_Reg_PersonaView.jtxtId.getDocument().addDocumentListener(this);
+        this.Mod_Reg_PersonaView.txtCodigoBuscar.setVisible(false);
     }
 
     public PersonaControlador() {
@@ -176,11 +178,15 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         }
 
         if (e.getSource() == this.Mod_Reg_PersonaView.btBuscar) {
-//            MantPersonaBuscar mantPersonaBuscarView = new MantPersonaBuscar();
-//            PersonaControlador personaBControlador;
-//            personaBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigo);
-//            articuloBControlador.getArticuloBuscarView().setVisible(true);
-//            this.mantArticuloView.btEliminar.setEnabled(true);
+            if (!Mod_Reg_PersonaView.jtxtCedula.getText().isEmpty()) {
+                MantPersonaBuscar mantPersonaBuscarView = new MantPersonaBuscar();
+                PersonaBuscarControlador personaBControlador;
+                personaBControlador = new PersonaBuscarControlador(mantPersonaBuscarView, PersBL, this.Mod_Reg_PersonaView.txtCodigoBuscar);
+                personaBControlador.getPersonaBuscarView().setVisible(true);
+                this.Mod_Reg_PersonaView.btEliminar.setEnabled(true);
+            }else{
+                JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Debes digitar una cedula primero", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -202,14 +208,16 @@ public class PersonaControlador implements ActionListener, DocumentListener{
     
      private void cargarPersona() {
         Persona p = new Persona();
-        if (!this.Mod_Reg_PersonaView.jtxtCedula.getText().isEmpty()) {
-            p.setCedula(this.Mod_Reg_PersonaView.jtxtCedula.getText());
+        if (!this.Mod_Reg_PersonaView.txtCodigoBuscar.getText().isEmpty()) {
+            p.setCedula(this.Mod_Reg_PersonaView.txtCodigoBuscar.getText());
             try {
                 p = PersBL.obtenerPorId(p);
                 this.Mod_Reg_PersonaView.jtxtCedula.setText(p.getCedula());
                 this.Mod_Reg_PersonaView.jtxtNombre.setText(p.getNombre());
                 this.Mod_Reg_PersonaView.jtxtApellido.setText(p.getApellidos());
                 this.Mod_Reg_PersonaView.jtxtCorreo.setText(p.getCorreo());
+                this.Mod_Reg_PersonaView.btModificar.setEnabled(true);
+                this.Mod_Reg_PersonaView.jtxtCedula.setEnabled(false);
                 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error no se pudo consultar la Persona (" + ex.getMessage() + ")",

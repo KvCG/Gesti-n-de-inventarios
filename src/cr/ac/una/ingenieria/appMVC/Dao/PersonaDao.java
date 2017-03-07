@@ -47,13 +47,14 @@ public class PersonaDao implements IBaseDao<Persona> {
     @Override
     public void modificar(Persona obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("update persona set cedula =?,nombre = ?,apellidos = ?,correo = ?"
-                                             + " where idpersona = ?");
+        CallableStatement cs = con.prepareCall("update persona set nombre = ?,apellidos = ?,correo = ?"
+                                             + " where cedula = ?");
         
-        cs.setString(1, obj.getCedula());
-        cs.setString(2, obj.getNombre());
-        cs.setString(3, obj.getApellidos());
-        cs.setString(4, obj.getCorreo());
+        
+        cs.setString(1, obj.getNombre());
+        cs.setString(2, obj.getApellidos());
+        cs.setString(3, obj.getCorreo());
+        cs.setString(4, obj.getCedula());
         cs.executeUpdate();
         con.close();
     }
@@ -62,8 +63,8 @@ public class PersonaDao implements IBaseDao<Persona> {
     public void eliminar(Persona obj) throws SQLException {
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from persona where idpersona = ?");
-        cs.setInt(1, obj.getIdpersona());
+        CallableStatement cs = con.prepareCall("delete from persona where cedula = ?");
+        cs.setString(1, obj.getCedula());
         
         cs.executeUpdate();
         con.close();
@@ -73,10 +74,10 @@ public class PersonaDao implements IBaseDao<Persona> {
     public Persona obtenerPorId(Persona obj) throws SQLException {
         Persona p = null;
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("select * from persona where idpersona = ? " );
-        cs.setInt(1, obj.getIdpersona());
+        CallableStatement cs = con.prepareCall("select * from persona where cedula = ? " );
+        cs.setString(1, obj.getCedula());
         
-         ResultSet result = cs.executeQuery();
+        ResultSet result = cs.executeQuery();
         while(result.next()){
         p = new Persona();
         p.setIdpersona(result.getInt("idpersona"));

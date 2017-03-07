@@ -79,8 +79,8 @@ public class PersonaBuscarControlador implements ActionListener {
         if (e.getSource() == this.personaBuscarView.btSeleccionar) {
             int fila = this.personaBuscarView.jTBuscarPersona.getSelectedRow();
             if (fila != -1) {
-                String codigo = this.personaBuscarView.jTBuscarPersona.getValueAt(fila, 0).toString();
-                txtRespuesta.setText(codigo);
+                String cedula = this.personaBuscarView.jTBuscarPersona.getValueAt(fila, 0).toString();
+                txtRespuesta.setText(cedula);
                 this.personaBuscarView.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(personaBuscarView, "Error debe seleccionar una Persona:", "Error", JOptionPane.ERROR_MESSAGE);
@@ -92,12 +92,12 @@ public class PersonaBuscarControlador implements ActionListener {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaPersona.setModel(modeloTabla);
 
-        modeloTabla.addColumn("IdPersona");
+        
         modeloTabla.addColumn("Cedula");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Apellido");
 
-        Object fila[] = new Object[4];
+        Object fila[] = new Object[3];
 
         String Sql = "where nombre like '%" + this.personaBuscarView.txtBuscar.getText() + "%'"
                 + " or cedula like '%" + this.personaBuscarView.txtBuscar.getText() + "%'";
@@ -105,10 +105,9 @@ public class PersonaBuscarControlador implements ActionListener {
         try {
             for (Object oAux : PersonaBLModelo.obtenerConWhere(new Persona(), Sql)) {
                 Persona p = (Persona) oAux;
-                fila[0] = p.getIdpersona();
-                fila[1] = p.getCedula();
-                fila[2] = p.getNombre();
-                fila[3] = p.getApellidos();
+                fila[0] = p.getCedula();
+                fila[1] = p.getNombre();
+                fila[2] = p.getApellidos();
 
                 modeloTabla.addRow(fila);
             }
