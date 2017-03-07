@@ -130,7 +130,7 @@ public class PantallaPrincipalControlador implements ActionListener{
             ManteProveedores mantProveedoresView = new ManteProveedores();
             mantArticuloView.setVisible(true);
             ArticuloControlador artControlador;
-            artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo, proveedorBlModelo, mantProveedoresView);
+            artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo);
             artControlador.getMantArticuloView().setVisible(true);
         }
 //        if (e.getSource() == this.pantPrinView.ReporteUsuarios) {

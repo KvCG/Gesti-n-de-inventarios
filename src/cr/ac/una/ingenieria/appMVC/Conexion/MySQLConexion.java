@@ -171,7 +171,7 @@ public class MySQLConexion {
 
     /**
      *
-     * @param select_MAXPK_idFacturacion_from_Facturaci
+     * @param 
      * @return
      */
     public CallableStatement prepareCall(String select_MAXPK_idFacturacion_from_Facturaci) {
