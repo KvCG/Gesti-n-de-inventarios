@@ -23,6 +23,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     Modulo_Registo_Persona Mod_Reg_PerView;
     Modulo_Registo_Usuario Mod_Reg_UsuView;
     Modulo_Proveedores Mod_ProveView;
+    MantPersonaBuscar mantPersonaBView;
            
     //constructor       
     public PantallaPrincipal() {        
@@ -64,8 +65,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
         UsuarioBL usuBL = new UsuarioBL();
         this.Mod_Reg_PerView = new Modulo_Registo_Persona();
+        this.mantPersonaBView = new MantPersonaBuscar();
 //        PersonaBL perBL1 = new PersonaBL();
-        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView,usuBL,perBL,Mod_Reg_PerView);
+        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView,usuBL,perBL,Mod_Reg_PerView,mantPersonaBView);
         UsuControl.getMantUsuarioview();
         
         //para la venta modulo Modulo_Registo_Persona

@@ -39,11 +39,12 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         Connection con = conexion.getConexion();
 
         CallableStatement cs = con.prepareCall("insert into usuario (alias,"
-                + "password,rol) values "
-                + "(?,?,?)");
+                + "password,rol,persona) values "
+                + "(?,?,?,?)");
         cs.setString(1, obj.getAlias());
         cs.setString(2, obj.getPassword());
         cs.setInt(3, 1);//obj.getRol());
+        cs.setInt(4, obj.getIdPersona());
         cs.executeUpdate();
         con.close();
     }
