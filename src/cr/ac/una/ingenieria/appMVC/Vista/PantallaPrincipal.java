@@ -61,7 +61,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
         perControl.getMod_Reg_PersonaView(); 
         
-        //para la venta modulo Modulo_Registo_Persona
+        //para la venta modulo Modulo_Registo_Usuario
         this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
         UsuarioBL usuBL = new UsuarioBL();
         this.Mod_Reg_PerView = new Modulo_Registo_Persona();

@@ -6,6 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
@@ -101,6 +102,7 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
                 ArticuloBL articuloBlModelo = new ArticuloBL();
                 ProveedorBL proveedorBlModelo = new ProveedorBL();
                 UsuarioBL usuarioBLModelo = new UsuarioBL();
+                
                 PantallaPrincipalControlador controlador = new PantallaPrincipalControlador(ManteAdmiView,usuarioBLModelo, proveedorBlModelo,articuloBlModelo);
                 controlador.getPantPrinView().setVisible(true);
             }else{

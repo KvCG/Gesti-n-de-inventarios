@@ -6,6 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
@@ -45,12 +46,14 @@ public class PantallaPrincipalControlador implements ActionListener{
     private UsuarioBL usuarioBLModelo;
     private ProveedorBL proveedorBlModelo;
     private ArticuloBL articuloBlModelo;
+    
 
     public PantallaPrincipalControlador(PantallaPrincipal pantPrinView, UsuarioBL usuarioBLModelo, ProveedorBL proveedorBlModelo,ArticuloBL articuloBlModelo) {
         this.pantPrinView = pantPrinView;
         this.usuarioBLModelo = usuarioBLModelo;
         this.proveedorBlModelo = proveedorBlModelo;
         this.articuloBlModelo = articuloBlModelo;
+       
         this.pantPrinView.jMenuArticulo.addActionListener(this);
         this.pantPrinView.jMenuProveedores.addActionListener(this);
 //        this.pantPrinView.jMenuUsuario.addActionListener(this);
@@ -98,9 +101,6 @@ public class PantallaPrincipalControlador implements ActionListener{
         this.articuloBlModelo = articuloBlModelo;
     }
 
-   
-
-    
 
     
     private void inicializarPantalla() {
