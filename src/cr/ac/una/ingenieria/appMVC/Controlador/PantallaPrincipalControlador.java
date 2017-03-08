@@ -11,7 +11,7 @@ import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Usuario;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteProveedores;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Proveedores;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -57,7 +57,7 @@ public class PantallaPrincipalControlador implements ActionListener{
         this.pantPrinView.ReporteProveedores.addActionListener(this);
 //        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         this.pantPrinView.ReporteArticulos.addActionListener(this);
-        this.pantPrinView.Articulos5.addActionListener(this);
+        this.pantPrinView.jmiArticulosMinimo.addActionListener(this);
         inicializarPantalla();
     }
 
@@ -118,7 +118,7 @@ public class PantallaPrincipalControlador implements ActionListener{
 //        }
         
         if (e.getSource() == this.pantPrinView.jMenuProveedores) {
-            ManteProveedores mantProveedoresView = new ManteProveedores();
+            Modulo_Proveedores mantProveedoresView = new Modulo_Proveedores();
             mantProveedoresView.setVisible(true);
             ProveedorControlador provControlador;
             provControlador = new ProveedorControlador(mantProveedoresView, proveedorBlModelo);
@@ -127,7 +127,7 @@ public class PantallaPrincipalControlador implements ActionListener{
         
         if (e.getSource() == this.pantPrinView.jMenuArticulo) {
             Modulo_Inventario mantArticuloView = new Modulo_Inventario();
-            ManteProveedores mantProveedoresView = new ManteProveedores();
+            Modulo_Proveedores mantProveedoresView = new Modulo_Proveedores();
             mantArticuloView.setVisible(true);
             ArticuloControlador artControlador;
             artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo);
