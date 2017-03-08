@@ -2,9 +2,11 @@
 package cr.ac.una.ingenieria.appMVC.Vista;
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
+import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
+import cr.ac.una.ingenieria.appMVC.Controlador.ProveedorControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.UsuarioControlador;
 import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 
@@ -14,11 +16,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     boolean Mod_Inv = false;
     boolean Mod_Reg_Per = false;
     boolean Mod_Reg_Usu = false;
+    boolean Mod_Pro = false;
     
     //pantallas
     Modulo_Inventario Mante_ArticulosView;
     Modulo_Registo_Persona Mod_Reg_PerView;
     Modulo_Registo_Usuario Mod_Reg_UsuView;
+    Modulo_Proveedores Mod_ProveView;
            
     //constructor       
     public PantallaPrincipal() {        
@@ -60,9 +64,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
         UsuarioBL usuBL = new UsuarioBL();
         this.Mod_Reg_PerView = new Modulo_Registo_Persona();
-        PersonaBL perBL1 = new PersonaBL();
-        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView,usuBL,perBL1,Mod_Reg_PerView);
+//        PersonaBL perBL1 = new PersonaBL();
+        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView,usuBL,perBL,Mod_Reg_PerView);
         UsuControl.getMantUsuarioview();
+        
+        //para la venta modulo Modulo_Registo_Persona
+        this.Mod_ProveView = new Modulo_Proveedores();
+        ProveedorBL proveBL = new ProveedorBL();
+        ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
+        proveeControl.getMantProveedorView();
     }
 
     @SuppressWarnings("unchecked")
@@ -83,7 +93,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuEstadisticas = new javax.swing.JMenu();
         ReportesArticulos = new javax.swing.JMenu();
         ReporteArticulos = new javax.swing.JMenuItem();
-        Articulos5 = new javax.swing.JMenuItem();
+        jmiArticulosMinimo = new javax.swing.JMenuItem();
         jmiArticuloGravado = new javax.swing.JMenuItem();
         jmiArticuloExento = new javax.swing.JMenuItem();
         ReporteProveedores = new javax.swing.JMenuItem();
@@ -119,6 +129,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuProveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
         jMenuProveedores.setText("Proveedores");
+        jMenuProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuProveedoresActionPerformed(evt);
+            }
+        });
         jMenuMantenimiento.add(jMenuProveedores);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Registro.png"))); // NOI18N
@@ -169,10 +184,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ReporteArticulos.setText("General");
         ReportesArticulos.add(ReporteArticulos);
 
-        Articulos5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        Articulos5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
-        Articulos5.setText("Minimos");
-        ReportesArticulos.add(Articulos5);
+        jmiArticulosMinimo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jmiArticulosMinimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        jmiArticulosMinimo.setText("Minimos");
+        ReportesArticulos.add(jmiArticulosMinimo);
 
         jmiArticuloGravado.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jmiArticuloGravado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
@@ -294,6 +309,29 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jmiUsuarioActionPerformed
 
+    private void jMenuProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProveedoresActionPerformed
+        try {
+            if(this.Mod_Pro == false){
+                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_ProveView.getWidth() / 2);
+                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_ProveView.getHeight() / 2);
+                this.Mod_ProveView.setLocation(x, y);
+                
+                this.jdpPrincipal.add(this.Mod_ProveView);
+                this.jdpPrincipal.updateUI();
+                this.jdpPrincipal.repaint();
+                this.Mod_ProveView.show();
+                this.Mod_Pro = true;
+            }
+            else{
+                this.Mod_ProveView.show();
+                this.Mod_ProveView.toFront();
+                this.Mod_Pro = false;
+            }
+        } catch (Exception e) {
+            
+        }
+    }//GEN-LAST:event_jMenuProveedoresActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -331,7 +369,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JMenuItem Articulos5;
     public javax.swing.JMenuItem ReporteArticulos;
     public javax.swing.JMenuItem ReporteProveedores;
     private javax.swing.JMenu ReportesArticulos;
@@ -349,6 +386,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmMovimiento;
     public javax.swing.JMenuItem jmiArticuloExento;
     public javax.swing.JMenuItem jmiArticuloGravado;
+    public javax.swing.JMenuItem jmiArticulosMinimo;
     private javax.swing.JMenuItem jmiPersona;
     private javax.swing.JMenuItem jmiUsuario;
     // End of variables declaration//GEN-END:variables
