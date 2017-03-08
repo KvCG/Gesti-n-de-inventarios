@@ -67,20 +67,20 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         this.Mod_Reg_PersonaView.btBuscar.addActionListener(this);
         this.Mod_Reg_PersonaView.btCancelar.addActionListener(this);
         this.Mod_Reg_PersonaView.btEliminar.addActionListener(this);
-        this.Mod_Reg_PersonaView.jtxtId.getDocument().addDocumentListener(this);
+        //this.Mod_Reg_PersonaView.jtxtId.getDocument().addDocumentListener(this);
         this.Mod_Reg_PersonaView.btModificar.setEnabled(false);
         this.Mod_Reg_PersonaView.btEliminar.setEnabled(false);
         this.Mod_Reg_PersonaView.txtCodigoBuscar.setVisible(false);
         this.Mod_Reg_PersonaView.jtxtId.setVisible(false);
+        //inicializarPantalla();
         
     }
 
-    public PersonaControlador() {
-    }
+   
     
     private void inicializarPantalla() {
-        this.Mod_Reg_PersonaView.jtxtId.setEnabled(false);
-    }
+        
+   }
         
    
 
@@ -93,7 +93,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
 
             } else {
                 Persona p = new Persona();
-                p.setIdpersona(1);
+                //p.setIdpersona(1);
                 p.setCedula(this.Mod_Reg_PersonaView.jtxtCedula.getText());
                 p.setNombre(this.Mod_Reg_PersonaView.jtxtNombre.getText());
                 p.setApellidos(this.Mod_Reg_PersonaView.jtxtApellido.getText());
