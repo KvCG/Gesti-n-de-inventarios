@@ -8,7 +8,7 @@ import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.ProveedorControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.UsuarioControlador;
-import cr.ac.una.ingenieria.appMVC.Domain.Persona;
+
 
 
 public class PantallaPrincipal extends javax.swing.JFrame {
@@ -64,7 +64,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         //para la venta modulo Modulo_Registo_Usuario
         this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
         UsuarioBL usuBL = new UsuarioBL();
-        this.Mod_Reg_PerView = new Modulo_Registo_Persona();
+        //this.Mod_Reg_PerView = new Modulo_Registo_Persona();
         this.mantPersonaBView = new MantPersonaBuscar();
 //        PersonaBL perBL1 = new PersonaBL();
         UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView,usuBL,perBL,Mod_Reg_PerView,mantPersonaBView);
@@ -389,7 +389,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem jmiArticuloExento;
     public javax.swing.JMenuItem jmiArticuloGravado;
     public javax.swing.JMenuItem jmiArticulosMinimo;
-    private javax.swing.JMenuItem jmiPersona;
+    public javax.swing.JMenuItem jmiPersona;
     private javax.swing.JMenuItem jmiUsuario;
     // End of variables declaration//GEN-END:variables
 }

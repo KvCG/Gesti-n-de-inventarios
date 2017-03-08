@@ -102,8 +102,8 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
                 ArticuloBL articuloBlModelo = new ArticuloBL();
                 ProveedorBL proveedorBlModelo = new ProveedorBL();
                 UsuarioBL usuarioBLModelo = new UsuarioBL();
-                
-                PantallaPrincipalControlador controlador = new PantallaPrincipalControlador(ManteAdmiView,usuarioBLModelo, proveedorBlModelo,articuloBlModelo);
+                PersonaBL personaBLModelo = new PersonaBL();
+                PantallaPrincipalControlador controlador = new PantallaPrincipalControlador(ManteAdmiView,usuarioBLModelo, proveedorBlModelo,articuloBlModelo,personaBLModelo);
                 controlador.getPantPrinView().setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Acceso Denegado"
