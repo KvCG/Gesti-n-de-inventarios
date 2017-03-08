@@ -127,6 +127,11 @@ public class ArticuloDao implements IBaseDao<Articulo> {
         con.close();
         return a;
     }
+    
+    
+    @Override
+    public Articulo obtenerPorId2(Articulo obj) throws SQLException {return null;
+}
 
     /**
      *

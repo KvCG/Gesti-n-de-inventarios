@@ -43,6 +43,9 @@ public interface IBaseDao<T> {
      * @throws SQLException
      */
     public T obtenerPorId(T obj) throws SQLException;
+            
+            
+    public T obtenerPorId2(T obj) throws SQLException;
 
     /**
      *

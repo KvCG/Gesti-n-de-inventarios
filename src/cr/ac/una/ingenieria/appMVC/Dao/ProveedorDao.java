@@ -112,6 +112,12 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         con.close();
         return p;
     }
+    
+    
+    
+    @Override
+    public Proveedores obtenerPorId2(Proveedores obj) throws SQLException {return null;
+}
 
     /**
      *

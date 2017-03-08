@@ -86,6 +86,11 @@ public class ProveedorBL implements IBaseBL<Proveedores> {
     public ArrayList<Proveedores> obtenerConWhere(Proveedores obj, String where ) throws SQLException {
         return this.pDao.obtenerConWhere(obj, where);
     } 
+
+    @Override
+    public Proveedores obtenerPorId2(Proveedores obj) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
 

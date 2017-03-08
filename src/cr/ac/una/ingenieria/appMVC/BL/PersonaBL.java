@@ -44,6 +44,10 @@ public class PersonaBL implements IBaseBL<Persona>{
     public Persona obtenerPorId(Persona obj) throws SQLException {
         return (Persona)this.peDao.obtenerPorId(obj);
     }
+    
+    public Persona obtenerPorId2(Persona obj) throws SQLException {
+        return (Persona)this.peDao.obtenerPorId2(obj);
+    }
 
     @Override
     public ArrayList<Persona> obtenerTodos() throws SQLException {

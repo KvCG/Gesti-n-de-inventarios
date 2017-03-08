@@ -87,5 +87,10 @@ public class UsuarioBL implements IBaseBL<Usuario> {
     public ArrayList<Usuario> obtenerConWhere(Usuario obj, String where ) throws SQLException {
         return this.uDao.obtenerConWhere(obj, where);
     } 
+
+    @Override
+    public Usuario obtenerPorId2(Usuario obj) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
