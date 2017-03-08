@@ -67,12 +67,12 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         this.Mod_Reg_PersonaView.btBuscar.addActionListener(this);
         this.Mod_Reg_PersonaView.btCancelar.addActionListener(this);
         this.Mod_Reg_PersonaView.btEliminar.addActionListener(this);
-        //this.Mod_Reg_PersonaView.jtxtId.getDocument().addDocumentListener(this);
+//        this.Mod_Reg_PersonaView.jtxtId.getDocument().addDocumentListener(this);
         this.Mod_Reg_PersonaView.btModificar.setEnabled(false);
         this.Mod_Reg_PersonaView.btEliminar.setEnabled(false);
         this.Mod_Reg_PersonaView.txtCodigoBuscar.setVisible(false);
         this.Mod_Reg_PersonaView.jtxtId.setVisible(false);
-        //inicializarPantalla();
+        inicializarPantalla();
         
     }
 
