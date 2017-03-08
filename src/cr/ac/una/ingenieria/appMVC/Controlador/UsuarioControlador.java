@@ -234,9 +234,10 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 MantUsuarioBuscar mantUsuarioBuscarView = new MantUsuarioBuscar();
                 UsuarioBuscarControlador usuarioBControlador;
                 usuarioBControlador = new UsuarioBuscarControlador(mantUsuarioBuscarView, usuarioBlModelo, mantUsuarioView.txtUsuarioBuscar);
+                usuarioBControlador.getUsuarioBuscarView().setVisible(true);
                 this.mantUsuarioView.btEliminar.setEnabled(true);
             } else {
-                JOptionPane.showMessageDialog(mantUsuarioView, "Debes digitar un codigo primero", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mantUsuarioView, "Debes digitar el nombre del usuario primero", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
@@ -251,27 +252,18 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
     }
 
     @Override
-    public void insertUpdate(DocumentEvent e
-    ) {
-
-        cargaPersona();
-
+    public void insertUpdate(DocumentEvent e) {
+        cargarusuario();
     }
 
     @Override
-    public void removeUpdate(DocumentEvent e
-    ) {
-
+    public void removeUpdate(DocumentEvent e) {
         cargarusuario();
-
     }
 
     @Override
-    public void changedUpdate(DocumentEvent e
-    ) {
-
+    public void changedUpdate(DocumentEvent e) {
         cargarusuario();
-
     }
 
     private void cargaPersona() {
@@ -279,7 +271,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         u.setCedula(this.mantUsuarioView.txtPersonaId.getText());
         try {
             u = personaBLModelo.obtenerPorId(u);
-            mantUsuarioView.txtCedula.setText(u.getCedula() + " - " + u.getNombre() +" "+ u.getApellidos());
+            mantUsuarioView.txtCedula.setText(u.getCedula() + " - " + u.getNombre() + " " + u.getApellidos());
         } catch (SQLException ex) {
         }
     }
@@ -288,8 +280,15 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         Usuario u = new Usuario();
         if (!this.mantUsuarioView.txtUsuarioBuscar.getText().isEmpty()) {
             try {
+                Persona p = new Persona();
+
                 u.setAlias(this.mantUsuarioView.txtUsuarioBuscar.getText());
                 u = usuarioBlModelo.obtenerPorId(u);
+                p.setIdpersona(u.getIdPersona());
+                p = personaBLModelo.obtenerPorId2(p);
+
+                this.mantUsuarioView.txtPersonaId.setText(p.getCedula());
+
                 this.mantUsuarioView.txtUsuario.setText(u.getAlias());
                 this.mantUsuarioView.txtContraseña.setText(u.getPassword());
             } catch (SQLException ex) {

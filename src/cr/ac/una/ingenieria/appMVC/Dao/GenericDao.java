@@ -117,6 +117,22 @@ public class GenericDao {
         }
         return iBaseDato.obtenerPorId(obj);
     }
+    
+    public Object obtenerPorId2(Object obj) throws SQLException {
+         if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
+        if (obj instanceof Usuario) {
+            iBaseDato = new UsuarioDao();
+        }
+         if (obj instanceof Proveedores) {
+            iBaseDato = new ProveedorDao();
+         }
+          if (obj instanceof Articulo) {
+            iBaseDato = new ArticuloDao();
+        }
+        return iBaseDato.obtenerPorId2(obj);
+    }
 
     /**
      *

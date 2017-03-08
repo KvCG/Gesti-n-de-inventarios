@@ -88,7 +88,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         while (result.next()) {
             u = new Usuario();
             u.setIdUsuario(result.getInt("idusuario"));
-            u.setIdPersona(result.getInt("idpersona"));
+            u.setIdPersona(result.getInt("persona"));
             u.setAlias(result.getString("alias"));
             u.setPassword(result.getString("password"));
             u.setRol(result.getInt("rol"));
@@ -96,6 +96,10 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         con.close();
         return u;
     }
+    
+    
+    public Usuario obtenerPorId2(Usuario obj) throws SQLException {return null;
+}
 
     @Override
     public ArrayList<Usuario> obtenerTodos() throws SQLException {
@@ -108,7 +112,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         while (result.next()) {
             Usuario u = new Usuario();
             u.setIdUsuario(result.getInt("idusuario"));
-            u.setIdPersona(result.getInt("idpersona"));
+            u.setIdPersona(result.getInt("persona"));
             u.setAlias(result.getString("alias"));
             u.setPassword(result.getString("password"));
             u.setRol(result.getInt("rol"));
@@ -130,7 +134,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         while (result.next()) {
             Usuario u = new Usuario();
             u.setIdUsuario(result.getInt("idusuario"));
-            u.setIdPersona(result.getInt("idpersona"));
+            u.setIdPersona(result.getInt("persona"));
             u.setAlias(result.getString("alias"));
             u.setPassword(result.getString("password"));
             u.setRol(result.getInt("rol"));

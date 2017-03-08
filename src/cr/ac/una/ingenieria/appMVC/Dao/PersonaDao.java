@@ -89,6 +89,25 @@ public class PersonaDao implements IBaseDao<Persona> {
         con.close();
         return p;
     }
+    
+    public Persona obtenerPorId2(Persona obj) throws SQLException {
+        Persona p = null;
+        Connection con = conexion.getConexion();
+        CallableStatement cs = con.prepareCall("select * from persona where idpersona = ? " );
+        cs.setInt(1, obj.getIdpersona());
+        
+        ResultSet result = cs.executeQuery();
+        while(result.next()){
+        p = new Persona();
+        p.setIdpersona(result.getInt("idpersona"));
+        p.setCedula(result.getString("cedula"));
+        p.setNombre(result.getString("nombre"));
+        p.setApellidos(result.getString("apellidos"));
+        p.setCorreo(result.getString("correo"));
+        }
+        con.close();
+        return p;
+    }
 
     @Override
     public ArrayList<Persona> obtenerTodos() throws SQLException {
