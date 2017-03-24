@@ -7,7 +7,7 @@ package cr.ac.una.ingenieria.appMVC.BL;
 
 import cr.ac.una.ingenieria.appMVC.Dao.GenericDao;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -84,7 +84,7 @@ public class ArticuloBL implements IBaseBL<Articulo> {
      * @return
      * @throws SQLException
      */
-    public ArrayList<Proveedores> obtenerConWhere(Articulo obj, String where ) throws SQLException {
+    public ArrayList<Proveedor> obtenerConWhere(Articulo obj, String where ) throws SQLException {
         return this.aDao.obtenerConWhere(obj, where);
     } 
 

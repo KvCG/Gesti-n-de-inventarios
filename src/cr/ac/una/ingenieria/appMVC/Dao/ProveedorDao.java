@@ -6,7 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.Dao;
 
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *
  * @author Gustavo
  */
-public class ProveedorDao implements IBaseDao<Proveedores> {
+public class ProveedorDao implements IBaseDao<Proveedor> {
 
     private final MySQLConexion conexion;
      
@@ -35,7 +35,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public void insertar(Proveedores obj) throws SQLException {
+    public void insertar(Proveedor obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into proveedor(nombre,email,telefono,"
                                              + "direccion) values "
@@ -54,7 +54,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public void modificar(Proveedores obj) throws SQLException {
+    public void modificar(Proveedor obj) throws SQLException {
        Connection con = conexion.getConexion();
         
         CallableStatement cs = con.prepareCall("update proveedor set nombre= ?,"
@@ -76,7 +76,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public void eliminar(Proveedores obj) throws SQLException {
+    public void eliminar(Proveedor obj) throws SQLException {
         Connection con = conexion.getConexion();
         
         CallableStatement cs = con.prepareCall("delete from proveedor where idproveedor = ?");
@@ -93,8 +93,8 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public Proveedores obtenerPorId(Proveedores obj) throws SQLException {
-        Proveedores p = null;
+    public Proveedor obtenerPorId(Proveedor obj) throws SQLException {
+        Proveedor p = null;
         Connection con = conexion.getConexion();
         
         CallableStatement cs = con.prepareCall("select * from proveedor where idproveedor = ? " );
@@ -102,7 +102,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         
         ResultSet result = cs.executeQuery();
         while(result.next()){
-            p = new Proveedores();
+            p = new Proveedor();
             p.setIdProvedor(result.getInt("idproveedor"));
             p.setNombre(result.getString("nombre"));
             p.setEmail(result.getString("email"));
@@ -116,7 +116,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
     
     
     @Override
-    public Proveedores obtenerPorId2(Proveedores obj) throws SQLException {return null;
+    public Proveedor obtenerPorId2(Proveedor obj) throws SQLException {return null;
 }
 
     /**
@@ -125,15 +125,15 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public ArrayList<Proveedores> obtenerTodos() throws SQLException {
+    public ArrayList<Proveedor> obtenerTodos() throws SQLException {
         Connection con = conexion.getConexion();
-        ArrayList<Proveedores> l = new ArrayList();
+        ArrayList<Proveedor> l = new ArrayList();
         
         PreparedStatement ps = con.prepareStatement("select * from proveedor ");
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
-            Proveedores p = new Proveedores();
+            Proveedor p = new Proveedor();
             p.setIdProvedor(result.getInt("idproveedor"));
             p.setNombre(result.getString("nombre"));
             p.setEmail(result.getString("email"));
@@ -152,15 +152,15 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public ArrayList<Proveedores> obtenerConWhere(String where) throws SQLException {
+    public ArrayList<Proveedor> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();
-        ArrayList<Proveedores> l = new ArrayList();
+        ArrayList<Proveedor> l = new ArrayList();
         
         PreparedStatement ps = con.prepareStatement("select * from proveedor "+where );
         
         ResultSet result = ps.executeQuery();
         while(result.next()){
-            Proveedores p = new Proveedores();
+            Proveedor p = new Proveedor();
             p.setIdProvedor(result.getInt("idproveedor"));
             p.setNombre(result.getString("nombre"));
             p.setEmail(result.getString("email"));

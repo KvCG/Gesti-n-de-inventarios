@@ -10,7 +10,7 @@ import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
 
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
@@ -66,7 +66,7 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
@@ -90,7 +90,7 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
@@ -115,7 +115,7 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
@@ -134,7 +134,7 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
@@ -159,7 +159,7 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
@@ -185,7 +185,7 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
