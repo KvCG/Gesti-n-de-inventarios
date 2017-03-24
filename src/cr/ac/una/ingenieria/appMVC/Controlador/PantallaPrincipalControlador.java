@@ -6,12 +6,14 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
-import cr.ac.una.ingenieria.appMVC.Vista.MantUsuario;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteArticulos;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteProveedores;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Usuario;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Proveedores;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Persona;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -45,19 +47,22 @@ public class PantallaPrincipalControlador implements ActionListener{
     private UsuarioBL usuarioBLModelo;
     private ProveedorBL proveedorBlModelo;
     private ArticuloBL articuloBlModelo;
+    private PersonaBL personaBlModelo;
 
-    public PantallaPrincipalControlador(PantallaPrincipal pantPrinView, UsuarioBL usuarioBLModelo, ProveedorBL proveedorBlModelo,ArticuloBL articuloBlModelo) {
+    public PantallaPrincipalControlador(PantallaPrincipal pantPrinView, UsuarioBL usuarioBLModelo, ProveedorBL proveedorBlModelo,ArticuloBL articuloBlModelo,PersonaBL personaBlModelo) {
         this.pantPrinView = pantPrinView;
         this.usuarioBLModelo = usuarioBLModelo;
         this.proveedorBlModelo = proveedorBlModelo;
         this.articuloBlModelo = articuloBlModelo;
+        this.personaBlModelo = personaBlModelo;
         this.pantPrinView.jMenuArticulo.addActionListener(this);
         this.pantPrinView.jMenuProveedores.addActionListener(this);
 //        this.pantPrinView.jMenuUsuario.addActionListener(this);
         this.pantPrinView.ReporteProveedores.addActionListener(this);
 //        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         this.pantPrinView.ReporteArticulos.addActionListener(this);
-        this.pantPrinView.Articulos5.addActionListener(this);
+        this.pantPrinView.jmiArticulosMinimo.addActionListener(this);
+        
         inicializarPantalla();
     }
 
@@ -98,9 +103,14 @@ public class PantallaPrincipalControlador implements ActionListener{
         this.articuloBlModelo = articuloBlModelo;
     }
 
-   
+    public PersonaBL getPersonaBlModelo() {
+        return personaBlModelo;
+    }
 
-    
+    public void setPersonaBlModelo(PersonaBL personaBlModelo) {
+        this.personaBlModelo = personaBlModelo;
+    }
+
 
     
     private void inicializarPantalla() {
@@ -110,15 +120,16 @@ public class PantallaPrincipalControlador implements ActionListener{
         
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() == this.pantPrinView.jMenuUsuario) {
-//            MantUsuario mantClienteView = new MantUsuario();
-//            UsuarioControlador usuControlador;
-//            usuControlador = new UsuarioControlador(mantClienteView, usuarioBLModelo);
-//            usuControlador.getMantUsuarioview().setVisible(true);
+//        if (e.getSource() == this.pantPrinView.jmiPersona) {
+//            Modulo_Registo_Persona mantPersonaView = new Modulo_Registo_Persona();
+//            mantPersonaView.setVisible(true);
+//            PersonaControlador perControlador;
+//            perControlador = new PersonaControlador(mantPersonaView, personaBlModelo);
+//            perControlador.getMod_Reg_PersonaView().setVisible(true);
 //        }
         
         if (e.getSource() == this.pantPrinView.jMenuProveedores) {
-            ManteProveedores mantProveedoresView = new ManteProveedores();
+            Modulo_Proveedores mantProveedoresView = new Modulo_Proveedores();
             mantProveedoresView.setVisible(true);
             ProveedorControlador provControlador;
             provControlador = new ProveedorControlador(mantProveedoresView, proveedorBlModelo);
@@ -126,11 +137,11 @@ public class PantallaPrincipalControlador implements ActionListener{
         }
         
         if (e.getSource() == this.pantPrinView.jMenuArticulo) {
-            ManteArticulos mantArticuloView = new ManteArticulos();
-            ManteProveedores mantProveedoresView = new ManteProveedores();
+            Modulo_Inventario mantArticuloView = new Modulo_Inventario();
+            Modulo_Proveedores mantProveedoresView = new Modulo_Proveedores();
             mantArticuloView.setVisible(true);
             ArticuloControlador artControlador;
-            artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo, proveedorBlModelo, mantProveedoresView);
+            artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo);
             artControlador.getMantArticuloView().setVisible(true);
         }
 //        if (e.getSource() == this.pantPrinView.ReporteUsuarios) {

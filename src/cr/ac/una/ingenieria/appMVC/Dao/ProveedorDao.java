@@ -57,7 +57,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
     public void modificar(Proveedores obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("update proveedores set nombre= ?,"
+        CallableStatement cs = con.prepareCall("update proveedor set nombre= ?,"
                                             + "email=?, telefono=?,"
                                             + "direccion=?,"
                                             + "where PK_IDProvedor=? ");
@@ -79,7 +79,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
     public void eliminar(Proveedores obj) throws SQLException {
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from proveedores where idproveedor = ?");
+        CallableStatement cs = con.prepareCall("delete from proveedor where idproveedor = ?");
         cs.setInt(1, obj.getIdProvedor());
         
         cs.executeUpdate();
@@ -97,7 +97,7 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         Proveedores p = null;
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("select * from proveedores where idproveedor = ? " );
+        CallableStatement cs = con.prepareCall("select * from proveedor where idproveedor = ? " );
         cs.setInt(1, obj.getIdProvedor());
         
         ResultSet result = cs.executeQuery();
@@ -112,6 +112,12 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         con.close();
         return p;
     }
+    
+    
+    
+    @Override
+    public Proveedores obtenerPorId2(Proveedores obj) throws SQLException {return null;
+}
 
     /**
      *

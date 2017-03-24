@@ -5,10 +5,11 @@
  */
 package cr.ac.una.ingenieria.appMVC.Dao;
 
+import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
 
-
-import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import java.sql.SQLException;
@@ -34,16 +35,22 @@ public class GenericDao {
      * @throws SQLException
      */
     public void insertar(Object obj) throws SQLException {
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-         if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
-         }
-          if (obj instanceof Articulos) {
+        }
+        if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
-        
+        if (obj instanceof Movimiento) {
+            iBaseDato = new PersonaDao();
+        }
+
         iBaseDato.insertar(obj);
     }
 
@@ -53,15 +60,20 @@ public class GenericDao {
      * @throws SQLException
      */
     public void modificar(Object obj) throws SQLException {
-        
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-         if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
-         }
-          if (obj instanceof Articulos) {
+        }
+        if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
+        }
+        if (obj instanceof Movimiento) {
+            iBaseDato = new PersonaDao();
         }
         iBaseDato.modificar(obj);
     }
@@ -72,14 +84,20 @@ public class GenericDao {
      * @throws SQLException
      */
     public void eliminar(Object obj) throws SQLException {
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-         if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
-         }
-          if (obj instanceof Articulos) {
+        }
+        if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
+        }
+        if (obj instanceof Movimiento) {
+            iBaseDato = new PersonaDao();
         }
         iBaseDato.eliminar(obj);
     }
@@ -91,16 +109,41 @@ public class GenericDao {
      * @throws SQLException
      */
     public Object obtenerPorId(Object obj) throws SQLException {
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-         if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
-         }
-          if (obj instanceof Articulos) {
+        }
+        if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
+        if (obj instanceof Movimiento) {
+            iBaseDato = new PersonaDao();
+        }
         return iBaseDato.obtenerPorId(obj);
+    }
+
+    public Object obtenerPorId2(Object obj) throws SQLException {
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
+        if (obj instanceof Usuario) {
+            iBaseDato = new UsuarioDao();
+        }
+        if (obj instanceof Proveedores) {
+            iBaseDato = new ProveedorDao();
+        }
+        if (obj instanceof Articulo) {
+            iBaseDato = new ArticuloDao();
+        }
+        if (obj instanceof Movimiento) {
+            iBaseDato = new PersonaDao();
+        }
+        return iBaseDato.obtenerPorId2(obj);
     }
 
     /**
@@ -110,14 +153,20 @@ public class GenericDao {
      * @throws SQLException
      */
     public ArrayList obtenerTodos(Object obj) throws SQLException {
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-         if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
-         }
-          if (obj instanceof Articulos) {
+        }
+        if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
+        }
+        if (obj instanceof Movimiento) {
+            iBaseDato = new PersonaDao();
         }
         return iBaseDato.obtenerTodos();
     }
@@ -130,15 +179,20 @@ public class GenericDao {
      * @throws SQLException
      */
     public ArrayList obtenerConWhere(Object obj, String where) throws SQLException {
-        
+        if (obj instanceof Persona) {
+            iBaseDato = new PersonaDao();
+        }
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-         if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedores) {
             iBaseDato = new ProveedorDao();
-         }
-          if (obj instanceof Articulos) {
+        }
+        if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
+        }
+        if (obj instanceof Movimiento) {
+            iBaseDato = new PersonaDao();
         }
         return iBaseDato.obtenerConWhere(where);
     }

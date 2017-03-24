@@ -6,6 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
@@ -101,7 +102,8 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
                 ArticuloBL articuloBlModelo = new ArticuloBL();
                 ProveedorBL proveedorBlModelo = new ProveedorBL();
                 UsuarioBL usuarioBLModelo = new UsuarioBL();
-                PantallaPrincipalControlador controlador = new PantallaPrincipalControlador(ManteAdmiView,usuarioBLModelo, proveedorBlModelo,articuloBlModelo);
+                PersonaBL personaBLModelo = new PersonaBL();
+                PantallaPrincipalControlador controlador = new PantallaPrincipalControlador(ManteAdmiView,usuarioBLModelo, proveedorBlModelo,articuloBlModelo,personaBLModelo);
                 controlador.getPantPrinView().setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Acceso Denegado"
@@ -146,14 +148,9 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
             if(rs.next()){
                 resultado=1;
             }
+            connect.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex, "Error de Conexion ", JOptionPane.ERROR_MESSAGE);
-        }finally{
-            try {
-                connect.close();
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, ex, "Error de Desconexion ", JOptionPane.ERROR_MESSAGE);
-            }
         }
         return resultado;
     }

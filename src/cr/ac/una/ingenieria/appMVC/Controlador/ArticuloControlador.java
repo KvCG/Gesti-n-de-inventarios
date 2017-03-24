@@ -6,12 +6,9 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
-import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
-import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
-import cr.ac.una.ingenieria.appMVC.Vista.MantProovedorBuscar;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteArticulos;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteProveedores;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -26,48 +23,30 @@ import javax.swing.event.DocumentListener;
  * @author Gustavo
  */
 public class ArticuloControlador implements ActionListener, DocumentListener {
-    private ManteArticulos mantArticuloView;
+
+    private Modulo_Inventario mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
-    private ProveedorBL ProveedorBLModelo;
-    private ManteProveedores mantProveedoresView;
 
-    /**
-     *
-     * @return
-     */
-    public ProveedorBL getProveedorBLModelo() {
-        return ProveedorBLModelo;
-    }
-
-    /**
-     *
-     * @param ProveedorBLModelo
-     */
-    public void setProveedorBLModelo(ProveedorBL ProveedorBLModelo) {
-        this.ProveedorBLModelo = ProveedorBLModelo;
+    public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
+        this.mantArticuloView = mantArticuloView;
+        this.ArticuloBLModelo = ArticuloBLModelo;
+        this.mantArticuloView.txtCodigoBuscar.getDocument().addDocumentListener(this);
+        this.mantArticuloView.btInsertar.addActionListener(this);
+        this.mantArticuloView.btBuscar.addActionListener(this);
+        this.mantArticuloView.btCancelar.addActionListener(this);
+        this.mantArticuloView.btEliminar.addActionListener(this);
+        this.mantArticuloView.btModificar.addActionListener(this);
+        this.mantArticuloView.btModificar.setEnabled(false);
+        this.mantArticuloView.btEliminar.setEnabled(false);
+        this.mantArticuloView.txtCodigoBuscar.setVisible(false);
+        inicializarPantalla();
     }
 
     /**
      *
      * @return
      */
-    public ManteProveedores getMantProveedoresView() {
-        return mantProveedoresView;
-    }
-
-    /**
-     *
-     * @param mantProveedoresView
-     */
-    public void setMantProveedoresView(ManteProveedores mantProveedoresView) {
-        this.mantProveedoresView = mantProveedoresView;
-    }
-    
-    /**
-     *
-     * @return
-     */
-    public ManteArticulos getMantArticuloView() {
+    public Modulo_Inventario getMantArticuloView() {
         return mantArticuloView;
     }
 
@@ -75,7 +54,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
      *
      * @param mantArticuloView
      */
-    public void setMantArticuloView(ManteArticulos mantArticuloView) {
+    public void setMantArticuloView(Modulo_Inventario mantArticuloView) {
         this.mantArticuloView = mantArticuloView;
     }
 
@@ -95,228 +74,147 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.ArticuloBLModelo = ArticuloBLModelo;
     }
 
-    /**
-     *
-     * @param mantArticuloView
-     * @param ArticuloBLModelo
-     * @param ProveedorBLModelo
-     * @param mantProveedoresView
-     */
-    public ArticuloControlador(ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, ProveedorBL ProveedorBLModelo, ManteProveedores mantProveedoresView) {
-        this.mantArticuloView = mantArticuloView;
-        this.ArticuloBLModelo = ArticuloBLModelo;
-        this.ProveedorBLModelo = ProveedorBLModelo;
-        this.mantProveedoresView = mantProveedoresView;
-        this.mantArticuloView.btInsertar.addActionListener(this);
-        this.mantArticuloView.btBuscar.addActionListener(this);
-        this.mantArticuloView.btCancelar.addActionListener(this);
-        this.mantArticuloView.btCargar.addActionListener(this);
-        this.mantArticuloView.btEliminar.addActionListener(this);
-        this.mantArticuloView.btModificar.addActionListener(this);
-        this.mantArticuloView.txtIdArticulo.getDocument().addDocumentListener(this);
-        this.mantArticuloView.btAgregarProveedor.addActionListener(this);
-        this.mantArticuloView.btModificar.setEnabled(false);
-        this.mantArticuloView.btEliminar.setEnabled(false);
-        this.mantArticuloView.txtIdProveedor.setEnabled(false);
-        this.mantArticuloView.txtIdProveedor.setText("Seleccione un proveedor");
-        inicializarPantalla();
-    }
-
-    
-
-   
-
-    
     private void inicializarPantalla() {
-       this.mantArticuloView.txtIdArticulo.setEnabled(false);
-       this.mantArticuloView.txtIdProveedor.setEnabled(false);
+
     }
-    
+
+    private boolean isEmpty() {
+        if (this.mantArticuloView.txtNombre.getText().equals("")
+                || this.mantArticuloView.txtDescripcion.getText().equals("")
+                || this.mantArticuloView.TxtPrecio.getText().equals("")
+                || this.mantArticuloView.TxtCantidad.getText().equals("")
+                || this.mantArticuloView.txtPuntoPedido.getText().equals("")
+                || this.mantArticuloView.txtCodigo.getText().equals("")) {
+            return true;
+        }
+        return false;
+    }
+
+    private void clean() {
+        this.mantArticuloView.TxtCantidad.setText(null);
+        this.mantArticuloView.TxtPrecio.setText(null);
+        this.mantArticuloView.txtNombre.setText(null);
+        this.mantArticuloView.txtDescripcion.setText(null);
+        this.mantArticuloView.txtCodigo.setText(null);
+        this.mantArticuloView.txtPuntoPedido.setText(null);
+
+    }
+
     /**
      *
-     * @param tablaArticulos
      */
-
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.mantArticuloView.btInsertar) {
-            
-            if(this.mantArticuloView.txtNombre.getText().equals("")||this.mantArticuloView.txtDescripcion.getText().equals("")||this.mantArticuloView.TxtPrecio.getText().equals("")||this.mantArticuloView.TxtCantidad.getText().equals("")||this.mantArticuloView.txtIdProveedor.getText().equals(""))
-            {
+            if (this.isEmpty()) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error faltan espacios por rellenar:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-            Articulos a = new Articulos();
-            //a.setIdarticulo(this.mantArticuloView.txt); //Falta hacerlo en la vista
-            a.setNombre(this.mantArticuloView.txtNombre.getText());
-            a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
-            a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
-            a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
-            
-            try {
-               
-                this.ArticuloBLModelo.insertar(a);
-                //llenarTabla(this.mantArticuloView.jTableArticulos);
-                JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
-                this.mantArticuloView.TxtCantidad.setText(null);
-                this.mantArticuloView.TxtPrecio.setText(null);
-                this.mantArticuloView.txtDescripcion.setText(null);
-                this.mantArticuloView.txtIdArticulo.setText(null);
-                this.mantArticuloView.txtIdProveedor.setText(null);
-                this.mantArticuloView.txtNombre.setText(null);
-                this.mantArticuloView.btModificar.setEnabled(true);
-            } catch (SQLException ex) {
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al agregar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-          }
-        }
-        if (e.getSource() == this.mantArticuloView.btEliminar){
-           if(this.mantArticuloView.jTableArticulos.getRowCount()!=0&&this.mantArticuloView.jTableArticulos.getRowCount()!=-1){
-            Articulos a = new Articulos();
-            int fila = this.mantArticuloView.jTableArticulos.getSelectedRow();
-            int idArticulo = Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText());
-            a.setIdarticulo(idArticulo);
-               System.out.println("ojo "+a.getIdarticulo());
-            try {
-                int resp;
-                resp=JOptionPane.showConfirmDialog(mantArticuloView, "Esta seguro que desea eliminar el Articulo");
-                if(resp==0){
-                ArticuloBLModelo.eliminar(a);
-                //llenarTabla(this.mantArticuloView.jTableArticulos);
-                JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                this.mantArticuloView.TxtCantidad.setText(null);
-                this.mantArticuloView.TxtPrecio.setText(null);
-                this.mantArticuloView.txtDescripcion.setText(null);
-                this.mantArticuloView.txtIdArticulo.setText(null);
-                this.mantArticuloView.txtIdProveedor.setText(null);
-                this.mantArticuloView.txtNombre.setText(null);
-                this.mantArticuloView.btEliminar.setEnabled(false);
-                }
-                if(resp==1){
-                    JOptionPane.showMessageDialog(mantArticuloView, "El Articulo no sera eliminado ",
-                        "Articulo Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            }else{
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            
-       }
-        if (e.getSource() == this.mantArticuloView.btCargar) {               
-            if(this.mantArticuloView.jTableArticulos.getRowCount()!=0&&this.mantArticuloView.jTableArticulos.getRowCount()!=-1){
-                Articulos a = new Articulos();
-                int fila = this.mantArticuloView.jTableArticulos.getSelectedRow();
-                a.setIdarticulo(Integer.parseInt(this.mantArticuloView.jTableArticulos.getValueAt(fila, 1).toString()));
-                
-                try {                    
-                    a = ArticuloBLModelo.obtenerPorId(a);
-                    this.mantArticuloView.txtIdArticulo.setText(String.valueOf(a.getIdarticulo().toString()));
-                    //this.mantArticuloView.txtCodigo.setText();
-                    this.mantArticuloView.txtNombre.setText(a.getNombre());
-                    this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
-                    this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
-                    this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
-                    this.mantArticuloView.btEliminar.setEnabled(true);
-                                
+            } else {
+                Articulo a = new Articulo();
+                a.setCodigo(this.mantArticuloView.txtCodigo.getText());
+                a.setNombre(this.mantArticuloView.txtNombre.getText());
+                a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
+                a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
+                a.setTipo(this.mantArticuloView.cbTipo.getSelectedIndex());
+                a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
+                a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
+                a.setBodega(this.mantArticuloView.cbBodega.getSelectedIndex());
+
+                try {
+                    this.ArticuloBLModelo.insertar(a);
+                    JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
+                    this.clean();
+                    this.mantArticuloView.btEliminar.setEnabled(false);
+                    this.mantArticuloView.btModificar.setEnabled(false);
                 } catch (SQLException ex) {
                     Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantArticuloView, "Error al agregar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantArticuloView, "Error al agregar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }else{
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
             }
-              
-              
-       }
-        if(e.getSource()==this.mantArticuloView.btModificar){
-              if(this.mantArticuloView.txtNombre.getText().equals("")||this.mantArticuloView.txtDescripcion.getText().equals("")||this.mantArticuloView.TxtPrecio.getText().equals("")||this.mantArticuloView.TxtCantidad.getText().equals("")||this.mantArticuloView.txtIdProveedor.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(mantArticuloView, "Error primero debe seleccionar un Articulo:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-             if(this.mantArticuloView.jTableArticulos.getRowCount()!=0&&this.mantArticuloView.jTableArticulos.getRowCount()!=-1){
-             Articulos a = new Articulos();
-            
-            
-             a.setIdarticulo(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
-                
+        }
+        if (e.getSource() == this.mantArticuloView.btEliminar) {
+            Articulo a = new Articulo();
+            String codigo = this.mantArticuloView.txtCodigo.getText();
+            a.setCodigo(codigo);
             try {
-                a = ArticuloBLModelo.obtenerPorId(a);
+                int resp;
+                resp = JOptionPane.showConfirmDialog(mantArticuloView, "Esta seguro que desea eliminar el Articulo");
+                if (resp == 0) {
+                    ArticuloBLModelo.eliminar(a);
+                    JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido eliminado correctamente", "Articulo Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    this.clean();
+                    this.mantArticuloView.btEliminar.setEnabled(false);
+                    this.mantArticuloView.btModificar.setEnabled(false);
+                }
+                if (resp == 1) {
+                    JOptionPane.showMessageDialog(mantArticuloView, "El Articulo no sera eliminado ",
+                            "Articulo Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    a.setNombre(this.mantArticuloView.txtNombre.getText());
-                    a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
-                    a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
-                    a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
-                    
-                   try {
-                
-                        this.ArticuloBLModelo.modificar(a);
-                        //llenarTabla(this.mantArticuloView.jTableArticulos);
-                        JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido modificado correctamente", 
-                                "Articulo maodificado Modificado", JOptionPane.INFORMATION_MESSAGE);
-                        this.mantArticuloView.TxtCantidad.setText(null);
-                        this.mantArticuloView.TxtPrecio.setText(null);
-                        this.mantArticuloView.txtDescripcion.setText(null);
-                        this.mantArticuloView.txtIdArticulo.setText(null);
-                        this.mantArticuloView.txtIdProveedor.setText(null);
-                        this.mantArticuloView.txtNombre.setText(null);
-                        this.mantArticuloView.btEliminar.setEnabled(false);
-            } catch (SQLException ex) {
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al modificar  al Articulo:" + ex.getMessage(), 
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar al articulo:" + ex.getMessage(), 
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-              }else{
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-              }
-              
         }
-        if (e.getSource() == this.mantArticuloView.btCancelar)
-        {
-            this.mantArticuloView.txtNombre.setText(null);
-            this.mantArticuloView.TxtCantidad.setText(null);
-            this.mantArticuloView.TxtPrecio.setText(null);
-            this.mantArticuloView.txtIdArticulo.setText(null);
-            this.mantArticuloView.txtDescripcion.setText(null);
-            this.mantArticuloView.txtIdProveedor.setText(null);
+
+        if (e.getSource() == this.mantArticuloView.btModificar) {
+            if (this.isEmpty()) {
+                JOptionPane.showMessageDialog(mantArticuloView, "Error primero debe seleccionar un Articulo:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
+            } else {
+                Articulo a = new Articulo();
+                a.setCodigo(this.mantArticuloView.txtCodigo.getText());
+
+                try {
+                    a = ArticuloBLModelo.obtenerPorId(a);
+                    a.setNombre(this.mantArticuloView.txtNombre.getText());
+                    a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
+                    a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
+                    a.setTipo(this.mantArticuloView.cbTipo.getSelectedIndex());
+                    a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
+                    a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
+                    a.setBodega(this.mantArticuloView.cbBodega.getSelectedIndex());
+                    this.ArticuloBLModelo.modificar(a);
+                    this.clean();
+                    this.mantArticuloView.btEliminar.setEnabled(false);
+                    this.mantArticuloView.txtCodigo.setEnabled(true);
+                    JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido modificado correctamente",
+                            "Articulo maodificado Modificado", JOptionPane.INFORMATION_MESSAGE);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantArticuloView, "Error al modificar  al Articulo:" + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (Exception ex) {
+                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar al articulo:" + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        }
+        if (e.getSource() == this.mantArticuloView.btCancelar) {
+            this.clean();
             this.mantArticuloView.btEliminar.setEnabled(false);
+            this.mantArticuloView.btModificar.setEnabled(false);
+            this.mantArticuloView.txtCodigo.setEnabled(true);
         }
-            if (e.getSource() == this.mantArticuloView.btBuscar) { 
-            MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
-            ArticuloBuscarControlador articuloBControlador ;
-            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, 
-                    ArticuloBLModelo, 
-                    this.mantArticuloView.txtIdArticulo);
-            articuloBControlador.getArticuloBuscarView().setVisible(true);
-            this.mantArticuloView.btEliminar.setEnabled(true);
-             
-        }
-            if(e.getSource() == this.mantArticuloView.btAgregarProveedor){
-               MantProovedorBuscar mantBuscarView = new MantProovedorBuscar();
-               ProveedorBuscarControlador pBControlador ;
-               pBControlador = new ProveedorBuscarControlador(mantBuscarView, ProveedorBLModelo, 
-                    this.mantArticuloView.txtIdProveedor);
-            pBControlador.getProovedorBuscarView().setVisible(true);
-            
+
+        if (e.getSource() == this.mantArticuloView.btBuscar) {
+            if (!mantArticuloView.txtCodigo.getText().isEmpty()) {
+                MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
+                ArticuloBuscarControlador articuloBControlador;
+                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigoBuscar);
+                articuloBControlador.getArticuloBuscarView().setVisible(true);
+                this.mantArticuloView.btEliminar.setEnabled(true);
+            }else{
+                JOptionPane.showMessageDialog(mantArticuloView, "Debes digitar un codigo primero", "Error", JOptionPane.ERROR_MESSAGE);
             }
-  }
+        }
+
+    }
 
     @Override
     public void insertUpdate(DocumentEvent de) {
@@ -335,16 +233,22 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         cargarArticulo();
 
     }
+
     private void cargarArticulo() {
-        Articulos a = new Articulos();
-        if (!this.mantArticuloView.txtIdArticulo.getText().isEmpty()) {
-            a.setIdarticulo(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
+        Articulo a = new Articulo();
+        if (!this.mantArticuloView.txtCodigoBuscar.getText().isEmpty()) {
+            a.setCodigo(this.mantArticuloView.txtCodigoBuscar.getText());
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
                 this.mantArticuloView.txtNombre.setText(a.getNombre());
                 this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
                 this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
-                this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));                                
+                this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
+                this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
+                this.mantArticuloView.cbBodega.setSelectedIndex(a.getBodega());
+                this.mantArticuloView.cbTipo.setSelectedIndex(a.getTipo());
+                this.mantArticuloView.btModificar.setEnabled(true);
+                this.mantArticuloView.txtCodigo.setEnabled(false);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);

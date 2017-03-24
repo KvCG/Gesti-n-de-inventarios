@@ -6,7 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.BL;
 
 import cr.ac.una.ingenieria.appMVC.Dao.GenericDao;
-import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Gustavo
  */
-public class ArticuloBL implements IBaseBL<Articulos> {
+public class ArticuloBL implements IBaseBL<Articulo> {
     
     private GenericDao aDao;
     
@@ -32,7 +32,7 @@ public class ArticuloBL implements IBaseBL<Articulos> {
      * @throws SQLException
      */
     @Override
-    public void insertar(Articulos obj) throws SQLException {
+    public void insertar(Articulo obj) throws SQLException {
         this.aDao.insertar(obj);
     }
 
@@ -42,7 +42,7 @@ public class ArticuloBL implements IBaseBL<Articulos> {
      * @throws SQLException
      */
     @Override
-    public void modificar(Articulos obj) throws SQLException {
+    public void modificar(Articulo obj) throws SQLException {
         this.aDao.modificar(obj);
     }
 
@@ -52,7 +52,7 @@ public class ArticuloBL implements IBaseBL<Articulos> {
      * @throws SQLException
      */
     @Override
-    public void eliminar(Articulos obj) throws SQLException {
+    public void eliminar(Articulo obj) throws SQLException {
         this.aDao.eliminar(obj);
     }
 
@@ -63,8 +63,8 @@ public class ArticuloBL implements IBaseBL<Articulos> {
      * @throws SQLException
      */
     @Override
-    public Articulos obtenerPorId(Articulos obj) throws SQLException {
-        return (Articulos)this.aDao.obtenerPorId(obj);
+    public Articulo obtenerPorId(Articulo obj) throws SQLException {
+        return (Articulo)this.aDao.obtenerPorId(obj);
     }
 
     /**
@@ -73,8 +73,8 @@ public class ArticuloBL implements IBaseBL<Articulos> {
      * @throws SQLException
      */
     @Override
-    public ArrayList<Articulos> obtenerTodos() throws SQLException {
-        return this.aDao.obtenerTodos(new Articulos());
+    public ArrayList<Articulo> obtenerTodos() throws SQLException {
+        return this.aDao.obtenerTodos(new Articulo());
     }
 
     /**
@@ -84,7 +84,7 @@ public class ArticuloBL implements IBaseBL<Articulos> {
      * @return
      * @throws SQLException
      */
-    public ArrayList<Proveedores> obtenerConWhere(Articulos obj, String where ) throws SQLException {
+    public ArrayList<Proveedores> obtenerConWhere(Articulo obj, String where ) throws SQLException {
         return this.aDao.obtenerConWhere(obj, where);
     } 
 
@@ -93,6 +93,11 @@ public class ArticuloBL implements IBaseBL<Articulos> {
      * @param idArticulo
      */
     public void obtenerPorId(int idArticulo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Articulo obtenerPorId2(Articulo obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

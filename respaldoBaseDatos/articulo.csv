@@ -1,0 +1,36 @@
+"idarticulo";"codigo";"nombre";"descripcion";"cod_tipo_articulo";"precio_venta";"cantidad";"bodega";"punto_de_pedido";"estado"
+5;"Sal123";"Salchichon";"Sanchichon para freir";1;1200.0;1500;0;20;1
+6;"coabc";"coca cola ";"coca cola de un litro";5;980.0;120;0;940;1
+7;"EM1";"Jamon";"Joya";1;2350.0;0;0;0;1
+8;"EM2";"Jamon ";"joya Medio";1;2550.0;0;0;0;1
+9;"EM3";"Jamon";"Joya Pieza";1;2350.0;0;0;0;1
+10;"EM4";"jamon";"Joiya economico";1;2050.0;0;0;0;1
+11;"EM5";"Jamon";"Don Luis";1;1750.0;0;0;0;1
+12;"EM6";"Jamon";"Stefan Primium";1;2350.0;0;0;0;1
+13;"EM7";"Jamon";"Stefan kilo economico";1;2050.0;0;0;0;1
+14;"EM8";"Jamon";"Stefan 5 k";1;1800.0;0;0;0;1
+15;"EM9";"jamon";"La ideal";1;2350.0;0;0;0;1
+16;"EM10";"Jamon";"La idela ecomnomico K";1;1700.0;0;0;0;1
+17;"EM11";"Mortadela jamonada";"Pieza Don Luis";1;2200.0;0;0;0;1
+18;"EM12";"Pate";"Pieza don Luis";1;1800.0;0;0;0;1
+20;"EM13";"Tocineta";"Laska Formada";1;3400.0;0;0;0;1
+21;"EM14";"Tocineta";"Don Luis Formada";1;3350.0;0;0;0;1
+22;"EM15";"Tocineta";"Joya Formada";1;3400.0;0;0;0;1
+23;"EM16";"Tocineta";"Joya Original";1;5600.0;0;0;0;1
+24;"EM17";"Peperonni";"Joya 1/2";1;3700.0;0;0;0;1
+25;"EM!8";"Peperonni";"Stefan 1/2";1;3600.0;0;0;0;1
+26;"EM19";"salame";"joya";1;3500.0;0;0;0;1
+27;"EM20";"Salame";"La Familia";1;3400.0;0;0;0;1
+28;"EM21";"Salame";"Stefan 1/2";1;3400.0;0;0;0;1
+29;"EM22";"Mano de Piedra ";"Laska";1;5800.0;0;0;0;1
+30;"EM23";"Mano de Piedra ";"Joya";1;5800.0;0;0;0;1
+31;"CAR1";"Carne ";"para mechar ";5;4400.0;0;0;0;1
+32;"CAR2";"Molida";"kilo";5;3500.0;0;0;0;1
+33;"QUE1";"Mozzarella ";"del prado";5;4300.0;0;0;0;1
+34;"QUE2";"Queso";"Molido kilo";5;3100.0;0;0;0;1
+35;"QUE!";"Mozzarella ";"del prado";4;4300.0;0;0;0;1
+36;"QUE3";"Queso Blanco";"Americano 40 Rebanadas";4;2600.0;0;0;0;1
+37;"CAJ1";"CAJA 18";"50 Unidades";2;18928.0;0;1;0;1
+38;"CAJ2";"Caja 16";"50 unidades";2;12995.0;0;1;0;1
+39;"CAJ3";"CAJA 14";"50 Unidades";2;11300.0;0;1;0;1
+40;"EM";"Jamon";"Joya";1;50000.0;10;0;0;1

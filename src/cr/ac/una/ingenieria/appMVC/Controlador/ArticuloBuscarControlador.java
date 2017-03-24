@@ -6,7 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
-import cr.ac.una.ingenieria.appMVC.Domain.Articulos;
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,17 +14,20 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Gustavo
  */
-public class ArticuloBuscarControlador implements  ActionListener {
+public class ArticuloBuscarControlador implements ActionListener {
+
     private MantArticuloBuscar articuloBuscarView;
     private ArticuloBL ArticuloBLModelo;
     private JTextField txtRespuesta;
-    
+
     /**
      *
      * @param articuloBuscarView
@@ -35,7 +38,13 @@ public class ArticuloBuscarControlador implements  ActionListener {
         this.articuloBuscarView = articuloBuscarView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.txtRespuesta = txtRespuesta;
-        this.articuloBuscarView.btBuscar.addActionListener(this);
+        this.articuloBuscarView.txtBuscar.addCaretListener(new CaretListener() {
+
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                llenarTabla(articuloBuscarView.jTBuscarArticulo);
+            }
+        });
         this.articuloBuscarView.btSeleccionar.addActionListener(this);
         llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
     }
@@ -87,26 +96,23 @@ public class ArticuloBuscarControlador implements  ActionListener {
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       if(e.getSource() == this.articuloBuscarView.btBuscar){
-           llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
+        if (e.getSource() == this.articuloBuscarView.btBuscar) {
+            llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
         }
-        
-        if(e.getSource() == this.articuloBuscarView.btSeleccionar){
+
+        if (e.getSource() == this.articuloBuscarView.btSeleccionar) {
             int fila = this.articuloBuscarView.jTBuscarArticulo.getSelectedRow();
             if (fila != -1) {
-            Integer idArticulo = Integer.parseInt(this.articuloBuscarView.jTBuscarArticulo.getValueAt(fila, 0).toString());
-            txtRespuesta.setText(String.valueOf(idArticulo));
-            
-            this.articuloBuscarView.setVisible(false);
-            }else{
+                String codigo = this.articuloBuscarView.jTBuscarArticulo.getValueAt(fila, 0).toString();
+                txtRespuesta.setText(codigo);
+                this.articuloBuscarView.setVisible(false);
+            } else {
                 JOptionPane.showMessageDialog(articuloBuscarView, "Error debe seleccionar un Articulo:", "Error", JOptionPane.ERROR_MESSAGE);
             }
-                
+
         }
     }
 
@@ -118,30 +124,27 @@ public class ArticuloBuscarControlador implements  ActionListener {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulo.setModel(modeloTabla);
 
-        modeloTabla.addColumn("Id Articulo");
+        modeloTabla.addColumn("Codigo");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Descripcion");
-        
-        
 
         Object fila[] = new Object[3];
-        
-        String Sql = "where Nombre like '%"+ this.articuloBuscarView.txtBuscar.getText() +"%'";
+
+        String Sql = "where nombre like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'"
+                + " or codigo like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'";
 
         try {
-            for (Object oAux : ArticuloBLModelo.obtenerConWhere(new Articulos(), Sql)) {
-                Articulos a = (Articulos) oAux;
-                fila[0] = a.getIdarticulo();
+            for (Object oAux : ArticuloBLModelo.obtenerConWhere(new Articulo(), Sql)) {
+                Articulo a = (Articulo) oAux;
+                fila[0] = a.getCodigo();
                 fila[1] = a.getNombre();
                 fila[2] = a.getDescripcion();
-                
+
                 modeloTabla.addRow(fila);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
-    
+
 }

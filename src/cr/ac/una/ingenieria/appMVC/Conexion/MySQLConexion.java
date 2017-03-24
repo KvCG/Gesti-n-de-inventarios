@@ -39,8 +39,8 @@ public class MySQLConexion {
      */
     public MySQLConexion(){
         this.usuario = "root";
-//        this.password = "root";
-        this.password = "";
+        this.password = "root";
+        //this.password = "";
         this.server = "127.0.0.1";
         this.baseDatos = "caemdejeh";
         this.puerto = "3306";
@@ -52,8 +52,7 @@ public class MySQLConexion {
      * @throws SQLException
      */
     public Connection getConexion() throws SQLException{
-        try {
-            
+        try {            
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             String stringConexion = "jdbc:MySql://"+server+":"+puerto+"/"+baseDatos;
             con = DriverManager.getConnection(stringConexion, usuario, password);
@@ -171,7 +170,7 @@ public class MySQLConexion {
 
     /**
      *
-     * @param select_MAXPK_idFacturacion_from_Facturaci
+     * @param 
      * @return
      */
     public CallableStatement prepareCall(String select_MAXPK_idFacturacion_from_Facturaci) {

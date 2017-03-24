@@ -8,7 +8,7 @@ package cr.ac.una.ingenieria.appMVC.Controlador;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
 import cr.ac.una.ingenieria.appMVC.Vista.MantProovedorBuscar;
-import cr.ac.una.ingenieria.appMVC.Vista.ManteProveedores;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Proveedores;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
@@ -27,7 +27,7 @@ import javax.swing.event.DocumentListener;
  */
 public class ProveedorControlador implements ActionListener, DocumentListener{
 
-    private ManteProveedores mantProveedorView;
+    private Modulo_Proveedores mantProveedorView;
     private ProveedorBL ProveedorBLModelo;
 
     public ProveedorControlador(){
@@ -37,7 +37,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
      *
      * @return
      */
-    public ManteProveedores getMantProveedorView() {
+    public Modulo_Proveedores getMantProveedorView() {
         return mantProveedorView;
     }
 
@@ -45,7 +45,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
      *
      * @param mantProveedorView
      */
-    public void setMantProveedorView(ManteProveedores mantProveedorView) {
+    public void setMantProveedorView(Modulo_Proveedores mantProveedorView) {
         this.mantProveedorView = mantProveedorView;
     }
 
@@ -70,7 +70,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
      * @param mantProveedorView
      * @param ProveedorBLModelo
      */
-    public ProveedorControlador(ManteProveedores mantProveedorView, ProveedorBL ProveedorBLModelo) {
+    public ProveedorControlador(Modulo_Proveedores mantProveedorView, ProveedorBL ProveedorBLModelo) {
         this.mantProveedorView = mantProveedorView;
         this.ProveedorBLModelo = ProveedorBLModelo;
         
@@ -78,7 +78,6 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
         this.mantProveedorView.btEliminar.addActionListener(this);
         this.mantProveedorView.btModificar.addActionListener(this);
         this.mantProveedorView.btCancelar.addActionListener(this);
-        this.mantProveedorView.btCargar.addActionListener(this);
         this.mantProveedorView.btBuscar.addActionListener(this);
         this.mantProveedorView.txtIdProveedor.getDocument().addDocumentListener(this);
         this.mantProveedorView.btModificar.setEnabled(false);
@@ -100,14 +99,14 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
     @Override
     public void actionPerformed(ActionEvent e) {
        if (e.getSource() == this.mantProveedorView.btInsertar) { 
-            if(this.mantProveedorView.txtNombre.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtDireccion.getText().equals(""))
+            if(this.mantProveedorView.txtTelefono.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtDireccion.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(mantProveedorView, "Error faltan espacios por rellenar:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
             }
             else{
             Proveedores p = new Proveedores();
             p.setIdProvedor(1); //como es auto generado no es relavante tomar el campo de texto id.
-            p.setNombre(this.mantProveedorView.txtNombre.getText());
+            p.setNombre(this.mantProveedorView.txtTelefono.getText());
             p.setTelefono(this.mantProveedorView.txtTelefono.getText());
             p.setEmail(this.mantProveedorView.txtCorreo.getText());
             p.setDireccion(this.mantProveedorView.txtDireccion.getText());
@@ -116,7 +115,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
                 this.ProveedorBLModelo.insertar(p);
                 //llenarTabla(this.mantProveedorView.jTableProveedor);
                 JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido ingresado correctamente", "Proveedor Agreagado", JOptionPane.INFORMATION_MESSAGE);
-                this.mantProveedorView.txtNombre.setText(null);
+                this.mantProveedorView.txtTelefono.setText(null);
                 this.mantProveedorView.txtIdProveedor.setText(null);
                 this.mantProveedorView.txtTelefono.setText(null);
                 this.mantProveedorView.txtCorreo.setText(null);
@@ -137,118 +136,95 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
           }
         }
        if (e.getSource() == this.mantProveedorView.btEliminar){
-           if(this.mantProveedorView.jTableProveedor.getRowCount()!=0&&this.mantProveedorView.jTableProveedor.getRowCount()!=-1){
-            Proveedores p = new Proveedores();
-            
-            int fila = this.mantProveedorView.jTableProveedor.getSelectedRow();
-            
-            int idProveedor = Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText());
-            p.setIdProvedor(idProveedor);
-                try {
-                    int resp;
-                    resp=JOptionPane.showConfirmDialog(mantProveedorView, "Esta seguro que desea eliminar el Proveedor");
-                    if(resp==0){
-                    ProveedorBLModelo.eliminar(p);
-                    //llenarTabla(this.mantProveedorView.jTableProveedor);
-                    JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                    this.mantProveedorView.txtNombre.setText(null);
-                    this.mantProveedorView.txtIdProveedor.setText(null);
-                    this.mantProveedorView.txtTelefono.setText(null);
-                    this.mantProveedorView.txtCorreo.setText(null);
-                    this.mantProveedorView.txtDireccion.setText(null);
-                    this.mantProveedorView.btModificar.setEnabled(true);
-                    this.mantProveedorView.btEliminar.setEnabled(false);
-                    }
-                    if(resp==1){
-                        JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor no sera eliminado ",
-                        "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(mantProveedorView, "Error al eliminar el Proveedor:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                } catch (Exception ex) {
-                    Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(mantProveedorView, "Error al eliminar el Proveedor:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                }
-           else{
-                    JOptionPane.showMessageDialog(mantProveedorView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+//           if(this.mantProveedorView.jTableProveedor.getRowCount()!=0&&this.mantProveedorView.jTableProveedor.getRowCount()!=-1){
+//            Proveedores p = new Proveedores();
+//            
+//            int fila = this.mantProveedorView.jTableProveedor.getSelectedRow();
+//            
+//            int idProveedor = Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText());
+//            p.setIdProvedor(idProveedor);
+//                try {
+//                    int resp;
+//                    resp=JOptionPane.showConfirmDialog(mantProveedorView, "Esta seguro que desea eliminar el Proveedor");
+//                    if(resp==0){
+//                    ProveedorBLModelo.eliminar(p);
+//                    //llenarTabla(this.mantProveedorView.jTableProveedor);
+//                    JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
+//                    this.mantProveedorView.txtTelefono.setText(null);
+//                    this.mantProveedorView.txtIdProveedor.setText(null);
+//                    this.mantProveedorView.txtTelefono.setText(null);
+//                    this.mantProveedorView.txtCorreo.setText(null);
+//                    this.mantProveedorView.txtDireccion.setText(null);
+//                    this.mantProveedorView.btModificar.setEnabled(true);
+//                    this.mantProveedorView.btEliminar.setEnabled(false);
+//                    }
+//                    if(resp==1){
+//                        JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor no sera eliminado ",
+//                        "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
+//                    }
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
+//                    JOptionPane.showMessageDialog(mantProveedorView, "Error al eliminar el Proveedor:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//                } catch (Exception ex) {
+//                    Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
+//                    JOptionPane.showMessageDialog(mantProveedorView, "Error al eliminar el Proveedor:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//                }
+//           else{
+//                    JOptionPane.showMessageDialog(mantProveedorView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
            
        }
-       if (e.getSource() == this.mantProveedorView.btCargar) {
-            if(this.mantProveedorView.jTableProveedor.getRowCount()!=0&&this.mantProveedorView.jTableProveedor.getRowCount()!=-1){
-                Proveedores p = new Proveedores();
-                
-                int fila = this.mantProveedorView.jTableProveedor.getSelectedRow();
-                
-                p.setIdProvedor(Integer.parseInt(this.mantProveedorView.jTableProveedor.getValueAt(fila, 0).toString()));
-                try {
-                    p = ProveedorBLModelo.obtenerPorId(p);
-                    this.mantProveedorView.txtIdProveedor.setText(p.getIdProvedor().toString());
-                    this.mantProveedorView.txtNombre.setText(p.getNombre().toString());
-                    this.mantProveedorView.txtTelefono.setText(p.getTelefono().toString());
-                    this.mantProveedorView.txtCorreo.setText(p.getEmail().toString());
-                    this.mantProveedorView.txtDireccion.setText(p.getDireccion().toString());
-                    this.mantProveedorView.btModificar.setEnabled(true);
-                    this.mantProveedorView.btEliminar.setEnabled(true);
-                                
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }else{
-                JOptionPane.showMessageDialog(mantProveedorView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-       }
+      
        if(e.getSource()==this.mantProveedorView.btModificar){
-           if(this.mantProveedorView.txtIdProveedor.getText().equals("") || this.mantProveedorView.txtNombre.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtDireccion.getText().equals("")){
-               JOptionPane.showMessageDialog(mantProveedorView, "Error al Modificar debe seleccionar antes un proveedor:", "Error", JOptionPane.ERROR_MESSAGE);
-           }else{
-             if(this.mantProveedorView.jTableProveedor.getRowCount()!=0&&this.mantProveedorView.jTableProveedor.getRowCount()!=-1){
-             Proveedores p = new Proveedores();
-            
-            
-             p.setIdProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
-                
-            try {
-                p = ProveedorBLModelo.obtenerPorId(p);
-            } catch (SQLException ex) {
-                Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-                    p.setNombre(this.mantProveedorView.txtNombre.getText());
-                    p.setEmail(this.mantProveedorView.txtCorreo.getText());
-                    p.setTelefono(String.valueOf(this.mantProveedorView.txtTelefono.getText()));
-                    p.setDireccion(this.mantProveedorView.txtDireccion.getText());
-                   
-                    
-                   try {
-                
-                        this.ProveedorBLModelo.modificar(p);
-                        //llenarTabla(this.mantProveedorView.jTableProveedor);
-                        JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido modificado correctamente", 
-                                "Proveedor Modificado", JOptionPane.INFORMATION_MESSAGE);
-                        this.mantProveedorView.txtNombre.setText(null);
-                        this.mantProveedorView.txtIdProveedor.setText(null);
-                        this.mantProveedorView.txtTelefono.setText(null);
-                        this.mantProveedorView.txtCorreo.setText(null);
-                        this.mantProveedorView.txtDireccion.setText(null);
-                        this.mantProveedorView.btEliminar.setEnabled(false);
-            } catch (SQLException ex) {
-                Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantProveedorView, "Error al modificar  al proveedor:" + ex.getMessage(), 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantProveedorView, "Error al eliminar al proveedor:" + ex.getMessage(), 
-                        "Error", JOptionPane.ERROR_MESSAGE);
-            }
-              }else{
-                JOptionPane.showMessageDialog(mantProveedorView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
-            }          
-           }  
+//           if(this.mantProveedorView.txtIdProveedor.getText().equals("") || this.mantProveedorView.txtTelefono.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtCorreo.getText().equals("")||this.mantProveedorView.txtDireccion.getText().equals("")){
+//               JOptionPane.showMessageDialog(mantProveedorView, "Error al Modificar debe seleccionar antes un proveedor:", "Error", JOptionPane.ERROR_MESSAGE);
+//           }else{
+//             if(this.mantProveedorView.jTableProveedor.getRowCount()!=0&&this.mantProveedorView.jTableProveedor.getRowCount()!=-1){
+//             Proveedores p = new Proveedores();
+//            
+//            
+//             p.setIdProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
+//                
+//            try {
+//                p = ProveedorBLModelo.obtenerPorId(p);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//                    p.setNombre(this.mantProveedorView.txtTelefono.getText());
+//                    p.setEmail(this.mantProveedorView.txtCorreo.getText());
+//                    p.setTelefono(String.valueOf(this.mantProveedorView.txtTelefono.getText()));
+//                    p.setDireccion(this.mantProveedorView.txtDireccion.getText());
+//                   
+//                    
+//                   try {
+//                
+//                        this.ProveedorBLModelo.modificar(p);
+//                        //llenarTabla(this.mantProveedorView.jTableProveedor);
+//                        JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido modificado correctamente", 
+//                                "Proveedor Modificado", JOptionPane.INFORMATION_MESSAGE);
+//                        this.mantProveedorView.txtTelefono.setText(null);
+//                        this.mantProveedorView.txtIdProveedor.setText(null);
+//                        this.mantProveedorView.txtTelefono.setText(null);
+//                        this.mantProveedorView.txtCorreo.setText(null);
+//                        this.mantProveedorView.txtDireccion.setText(null);
+//                        this.mantProveedorView.btEliminar.setEnabled(false);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
+//                JOptionPane.showMessageDialog(mantProveedorView, "Error al modificar  al proveedor:" + ex.getMessage(), 
+//                        "Error", JOptionPane.ERROR_MESSAGE);
+//            } catch (Exception ex) {
+//                Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
+//                JOptionPane.showMessageDialog(mantProveedorView, "Error al eliminar al proveedor:" + ex.getMessage(), 
+//                        "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//              }else{
+//                JOptionPane.showMessageDialog(mantProveedorView, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
+//            }          
+//           }  
         }
        if (e.getSource() == this.mantProveedorView.btCancelar){
-            this.mantProveedorView.txtNombre.setText(null);
+            this.mantProveedorView.txtTelefono.setText(null);
             this.mantProveedorView.txtCorreo.setText(null);
             this.mantProveedorView.txtDireccion.setText(null);
             this.mantProveedorView.txtTelefono.setText(null);
@@ -307,13 +283,10 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
             p.setIdProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
             try {
                 p = ProveedorBLModelo.obtenerPorId(p);
-                this.mantProveedorView.txtNombre.setText(p.getNombre());
+                this.mantProveedorView.txtTelefono.setText(p.getNombre());
                 this.mantProveedorView.txtDireccion.setText(p.getDireccion());
                 this.mantProveedorView.txtTelefono.setText(p.getTelefono());
                 this.mantProveedorView.txtCorreo.setText(p.getEmail());
-                
-                
-
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantProveedorView, "Error no se pudo consultar el Proveedor (" + ex.getMessage() + ")",
                         "Error al cargar el Proveedor", JOptionPane.ERROR_MESSAGE);
