@@ -17,6 +17,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     boolean Mod_Reg_Per = false;
     boolean Mod_Reg_Usu = false;
     boolean Mod_Pro = false;
+    boolean Mod_Mov = false;
     
     //pantallas
     Modulo_Inventario Mante_ArticulosView;
@@ -24,6 +25,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     Modulo_Registo_Usuario Mod_Reg_UsuView;
     Modulo_Proveedores Mod_ProveView;
     MantPersonaBuscar mantPersonaBView;
+    
            
     //constructor       
     public PantallaPrincipal() {        
