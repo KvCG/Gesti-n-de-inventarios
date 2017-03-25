@@ -11,6 +11,7 @@ package cr.ac.una.ingenieria.appMVC.Domain;
  */
 public class Movimiento {
     private Integer idMovimiento;
+    private String codigo;
     private Integer idPersona;
     private Integer idProveedor;
     private Integer idArticulo;
@@ -18,14 +19,23 @@ public class Movimiento {
     private Integer tipo;
     private String fecha;
 
-    public Movimiento(Integer idMovimiento, Integer idPersona, Integer idProveedor, Integer idArticulo, Integer cantidad, Integer tipo, String fecha) {
+    public Movimiento(Integer idMovimiento, String codigo, Integer idPersona, Integer idProveedor, Integer idArticulo, Integer cantidad, Integer tipo, String fecha) {
         this.idMovimiento = idMovimiento;
+        this.codigo = codigo;
         this.idPersona = idPersona;
         this.idProveedor = idProveedor;
         this.idArticulo = idArticulo;
         this.cantidad = cantidad;
         this.tipo = tipo;
         this.fecha = fecha;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public Movimiento() {
