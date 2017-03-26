@@ -63,7 +63,7 @@ public class PersonaDao implements IBaseDao<Persona> {
     public void eliminar(Persona obj) throws SQLException {
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from persona where cedula = ?");
+        CallableStatement cs = con.prepareCall("update persona set estado = false where cedula = ?");
         cs.setString(1, obj.getCedula());
         
         cs.executeUpdate();
@@ -85,6 +85,7 @@ public class PersonaDao implements IBaseDao<Persona> {
         p.setNombre(result.getString("nombre"));
         p.setApellidos(result.getString("apellidos"));
         p.setCorreo(result.getString("correo"));
+        p.setEstado(result.getBoolean("estado"));
         }
         con.close();
         return p;
@@ -104,6 +105,7 @@ public class PersonaDao implements IBaseDao<Persona> {
         p.setNombre(result.getString("nombre"));
         p.setApellidos(result.getString("apellidos"));
         p.setCorreo(result.getString("correo"));
+        p.setEstado(result.getBoolean("estado"));
         }
         con.close();
         return p;
@@ -122,6 +124,7 @@ public class PersonaDao implements IBaseDao<Persona> {
         p.setNombre(result.getString("nombre"));
         p.setApellidos(result.getString("apellidos"));
         p.setCorreo(result.getString("correo"));
+        p.setEstado(result.getBoolean("estado"));
         l.add(p);
         }
         con.close();
@@ -141,6 +144,7 @@ public class PersonaDao implements IBaseDao<Persona> {
         p.setNombre(result.getString("nombre"));
         p.setApellidos(result.getString("apellidos"));
         p.setCorreo(result.getString("correo"));
+        p.setEstado(result.getBoolean("estado"));
         l.add(p);
         }
         con.close();

@@ -16,6 +16,7 @@ public class Usuario {
     private String alias;
     private String password;
     private Integer rol;
+    private boolean estado;
 
     /**
      *
@@ -23,14 +24,24 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario, Integer idPersona, String alias, String password, Integer rol) {
-        
+    public Usuario(Integer idUsuario, Integer idPersona, String alias, String password, Integer rol, boolean estado) {
         this.idUsuario = idUsuario;
         this.idPersona = idPersona;
         this.alias = alias;
         this.password = password;
         this.rol = rol;
+        this.estado = estado;
     }
+
+     public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+   
 
     public Integer getIdUsuario() {
         return idUsuario;

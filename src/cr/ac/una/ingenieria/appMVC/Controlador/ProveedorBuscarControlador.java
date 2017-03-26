@@ -136,9 +136,10 @@ public class ProveedorBuscarControlador implements  ActionListener {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Telefono");
         modeloTabla.addColumn("Correo Elec.");
+        modeloTabla.addColumn("Estado");
         
 
-        Object fila[] = new Object[4];
+        Object fila[] = new Object[5];
         
         String Sql = "where nombre like '%"+ this.proovedorBuscarView.txtBuscar.getText() +"%'";
 
@@ -149,6 +150,7 @@ public class ProveedorBuscarControlador implements  ActionListener {
                 fila[1] = p.getNombre();
                 fila[2] = p.getTelefono();
                 fila[3] = p.getEmail();
+                fila[4] = p.getEstado();
                 modeloTabla.addRow(fila);
             }
         } catch (SQLException ex) {

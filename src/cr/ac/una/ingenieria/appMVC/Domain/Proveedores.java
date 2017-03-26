@@ -16,19 +16,29 @@ public class Proveedores {
     private String direccion;
     private String email;
     private String Telefono;
+    private boolean estado;
 
     public Proveedores() {
     }
 
-    public Proveedores(Integer IdProvedor, String Nombre, String direccion, String email, String Telefono) {
-        
+    public Proveedores(Integer IdProvedor, String Nombre, String direccion, String email, String Telefono, boolean estado) {
         this.IdProvedor = IdProvedor;
         this.Nombre = Nombre;
         this.direccion = direccion;
         this.email = email;
         this.Telefono = Telefono;
+        this.estado = estado;
     }
 
+     public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
     public Integer getIdProvedor() {
         return IdProvedor;
     }

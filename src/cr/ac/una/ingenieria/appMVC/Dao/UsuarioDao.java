@@ -70,7 +70,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
     public void eliminar(Usuario obj) throws SQLException {
         Connection con = conexion.getConexion();
 
-        CallableStatement cs = con.prepareCall("delete from usuario where alias = ?");
+        CallableStatement cs = con.prepareCall("update usuario set estado = false where alias = ?");
         cs.setString(1, obj.getAlias());
 
         cs.executeUpdate();
@@ -92,6 +92,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
             u.setAlias(result.getString("alias"));
             u.setPassword(result.getString("password"));
             u.setRol(result.getInt("rol"));
+            u.setEstado(result.getBoolean("estado"));
         }
         con.close();
         return u;
@@ -116,6 +117,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
             u.setAlias(result.getString("alias"));
             u.setPassword(result.getString("password"));
             u.setRol(result.getInt("rol"));
+            u.setEstado(result.getBoolean("estado"));
             l.add(u);
         }
         con.close();
@@ -138,6 +140,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
             u.setAlias(result.getString("alias"));
             u.setPassword(result.getString("password"));
             u.setRol(result.getInt("rol"));
+            u.setEstado(result.getBoolean("estado"));
             l.add(u);
         }
         con.close();

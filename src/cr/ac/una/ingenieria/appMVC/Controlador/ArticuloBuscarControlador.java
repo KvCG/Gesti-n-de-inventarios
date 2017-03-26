@@ -127,8 +127,9 @@ public class ArticuloBuscarControlador implements ActionListener {
         modeloTabla.addColumn("Codigo");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Descripcion");
+        modeloTabla.addColumn("Estado");
 
-        Object fila[] = new Object[3];
+        Object fila[] = new Object[4];
 
         String Sql = "where nombre like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'"
                 + " or codigo like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'";
@@ -139,6 +140,7 @@ public class ArticuloBuscarControlador implements ActionListener {
                 fila[0] = a.getCodigo();
                 fila[1] = a.getNombre();
                 fila[2] = a.getDescripcion();
+                fila[3] = a.getEstado();
 
                 modeloTabla.addRow(fila);
             }
