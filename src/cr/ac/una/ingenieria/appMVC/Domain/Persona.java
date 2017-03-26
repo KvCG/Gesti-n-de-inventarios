@@ -16,14 +16,26 @@ public class Persona {
     private String nombre;
     private String apellidos;
     private String correo;
+    private boolean estado;
 
-    public Persona(Integer idpersona, String cedula, String nombre, String apellidos, String correo) {
+    public Persona(Integer idpersona, String cedula, String nombre, String apellidos, String correo, boolean estado) {
         this.idpersona = idpersona;
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
+        this.estado = estado;
     }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+   
 
     public Persona() {
     }

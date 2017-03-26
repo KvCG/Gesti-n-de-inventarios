@@ -59,12 +59,12 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
         
         CallableStatement cs = con.prepareCall("update proveedor set nombre= ?,"
                                             + "email=?, telefono=?,"
-                                            + "direccion=?,"
-                                            + "where PK_IDProvedor=? ");
+                                            + "direccion=?"
+                                            + "where idproveedor=? ");
         cs.setString(1, obj.getNombre());
         cs.setString(2, obj.getEmail());
         cs.setString(3, obj.getTelefono());
-        cs.setString(4, obj.getDireccion());;
+        cs.setString(4, obj.getDireccion());
         cs.setInt(5, obj.getIdProvedor());
         cs.executeUpdate();
         con.close();
@@ -79,7 +79,7 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
     public void eliminar(Proveedor obj) throws SQLException {
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from proveedor where idproveedor = ?");
+        CallableStatement cs = con.prepareCall("update proveedor set estado = false where idproveedor = ?");
         cs.setInt(1, obj.getIdProvedor());
         
         cs.executeUpdate();
@@ -139,6 +139,7 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
             p.setEmail(result.getString("email"));
             p.setTelefono(result.getString("telefono"));
             p.setDireccion(result.getString("direccion"));
+            p.setEstado(result.getBoolean("estado"));
             l.add(p);
         }
         con.close();
@@ -166,6 +167,7 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
             p.setEmail(result.getString("email"));
             p.setTelefono(result.getString("telefono"));
             p.setDireccion(result.getString("direccion"));
+            p.setEstado(result.getBoolean("estado"));
             l.add(p);
         }
         con.close();
