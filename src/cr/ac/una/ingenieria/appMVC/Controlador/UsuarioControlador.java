@@ -242,8 +242,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         }
 
         if (e.getSource() == this.mantUsuarioView.btBuscarPersona) {
-            MantPersonaBuscar mantPersonaBView;
-            mantPersonaBView = new MantPersonaBuscar();
+            MantPersonaBuscar mantPersonaBView = new MantPersonaBuscar();
             PersonaBuscarControlador personaBcontrolador;
             personaBcontrolador = new PersonaBuscarControlador(mantPersonaBView, personaBLModelo, mantUsuarioView.txtPersonaId);
             personaBcontrolador.getPersonaBuscarView().setVisible(true);

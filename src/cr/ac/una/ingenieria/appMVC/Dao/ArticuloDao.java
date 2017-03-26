@@ -130,8 +130,30 @@ public class ArticuloDao implements IBaseDao<Articulo> {
     
     
     @Override
-    public Articulo obtenerPorId2(Articulo obj) throws SQLException {return null;
-}
+    public Articulo obtenerPorId2(Articulo obj) throws SQLException {
+        Articulo a = null;
+        Connection con = conexion.getConexion();
+
+        CallableStatement cs = con.prepareCall("select * from articulo where idarticulo = ? ");
+        cs.setInt(1, obj.getIdarticulo());
+
+        ResultSet result = cs.executeQuery();
+        while (result.next()) {
+            a = new Articulo();
+            a.setIdarticulo(result.getInt("idarticulo"));
+            a.setCodigo(result.getString("codigo"));
+            a.setNombre(result.getString("nombre"));
+            a.setDescripcion(result.getString("descripcion"));
+            a.setTipo(result.getInt("cod_tipo_articulo"));
+            a.setPrecioVenta(result.getDouble("precio_venta"));
+            a.setCantidad(result.getInt("cantidad"));
+            a.setBodega(result.getInt("bodega"));
+            a.setPuntoPedido(result.getInt("punto_de_pedido"));
+            a.setEstado(result.getBoolean("estado"));
+        }
+        con.close();
+        return a;
+    }
 
     /**
      *

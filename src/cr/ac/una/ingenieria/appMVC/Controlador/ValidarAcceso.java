@@ -6,10 +6,15 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
+import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.MantPersonaBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Moviento;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
 import cr.ac.una.ingenieria.appMVC.Vista.SolicitudUsuarioPassword;
 import java.awt.event.ActionEvent;
@@ -27,7 +32,8 @@ import javax.swing.event.DocumentListener;
  * @author Gustavo
  */
 public class ValidarAcceso implements ActionListener, DocumentListener {
-    MySQLConexion metodos= new MySQLConexion();
+
+    MySQLConexion metodos = new MySQLConexion();
     private PantallaPrincipal ManteAdmiView;
     private SolicitudUsuarioPassword solUsePa;
 
@@ -39,16 +45,6 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
         this.ManteAdmiView = ManteAdmiView;
     }
 
-    /**
-     *
-     * @return
-     */
-   
-
-    /**
-     *
-     * @return
-     */
     public MySQLConexion getMetodos() {
         return metodos;
     }
@@ -88,16 +84,11 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
         this.solUsePa.BtIngresar.addActionListener(this);
     }
 
-    
-   
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.solUsePa.BtIngresar) {
-            if(validadIngreso()==1){
+            if (validadIngreso() == 1) {
                 this.solUsePa.dispose();
-                JOptionPane.showMessageDialog(null, "Bienvenido has ingresado"
-                                                +"Satisfactoriamente SIGACI","Mensaje de Bienvenida", 
-                                                JOptionPane.INFORMATION_MESSAGE);
                 PantallaPrincipal ManteAdmiView = new PantallaPrincipal();
                 ArticuloBL articuloBlModelo = new ArticuloBL();
                 ProveedorBL proveedorBlModelo = new ProveedorBL();
@@ -105,18 +96,18 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
                 PersonaBL personaBLModelo = new PersonaBL();
                 PantallaPrincipalControlador controlador = new PantallaPrincipalControlador(ManteAdmiView,usuarioBLModelo, proveedorBlModelo,articuloBlModelo,personaBLModelo);
                 controlador.getPantPrinView().setVisible(true);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Acceso Denegado"
-                                                +"por favor ingrese su usuario y contrasena correctos ","Acceso Denegado", 
-                                                JOptionPane.ERROR_MESSAGE);
-            
+                        + "por favor ingrese su usuario y contrasena correctos ", "Acceso Denegado",
+                        JOptionPane.ERROR_MESSAGE);
+
             }
         }
     }
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-       validadIngreso();
+        validadIngreso();
     }
 
     @Override
@@ -133,20 +124,20 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
      *
      * @return
      */
-    public int validadIngreso(){
-        
-        String usuario= solUsePa.txtUsuario.getText();
-        String password= String.valueOf(solUsePa.TxtPassword.getPassword());
-        
-        int resultado= 0;
-        String SSQL="SELECT * FROM usuario WHERE alias='"+ usuario+"'AND password=('"+password+"')";
-        Connection connect= null;
+    public int validadIngreso() {
+
+        String usuario = solUsePa.txtUsuario.getText();
+        String password = String.valueOf(solUsePa.TxtPassword.getPassword());
+
+        int resultado = 0;
+        String SSQL = "SELECT * FROM usuario WHERE alias='" + usuario + "'AND password=('" + password + "')";
+        Connection connect = null;
         try {
-            connect= metodos.getConexion();
+            connect = metodos.getConexion();
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery(SSQL);
-            if(rs.next()){
-                resultado=1;
+            if (rs.next()) {
+                resultado = 1;
             }
             connect.close();
         } catch (SQLException ex) {
@@ -154,7 +145,5 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
         }
         return resultado;
     }
-     
-       
 
 }

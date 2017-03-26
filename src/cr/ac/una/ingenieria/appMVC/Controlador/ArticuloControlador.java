@@ -42,34 +42,19 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         inicializarPantalla();
     }
 
-    /**
-     *
-     * @return
-     */
+  
     public Modulo_Inventario getMantArticuloView() {
         return mantArticuloView;
     }
 
-    /**
-     *
-     * @param mantArticuloView
-     */
     public void setMantArticuloView(Modulo_Inventario mantArticuloView) {
         this.mantArticuloView = mantArticuloView;
     }
 
-    /**
-     *
-     * @return
-     */
     public ArticuloBL getArticuloBLModelo() {
         return ArticuloBLModelo;
     }
 
-    /**
-     *
-     * @param ArticuloBLModelo
-     */
     public void setArticuloBLModelo(ArticuloBL ArticuloBLModelo) {
         this.ArticuloBLModelo = ArticuloBLModelo;
     }

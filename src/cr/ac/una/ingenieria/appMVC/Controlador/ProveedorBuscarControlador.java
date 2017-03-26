@@ -6,8 +6,8 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
-import cr.ac.una.ingenieria.appMVC.Vista.MantProovedorBuscar;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
+import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ProveedorBuscarControlador implements  ActionListener {
     
-    private MantProovedorBuscar proovedorBuscarView;
+    private MantProveedorBuscar proovedorBuscarView;
     private ProveedorBL proveedorBLModelo;
     private JTextField txtRespuesta;
 
@@ -40,7 +40,7 @@ public class ProveedorBuscarControlador implements  ActionListener {
      * @param proveedorBLModelo
      * @param txtRespuesta
      */
-    public ProveedorBuscarControlador(MantProovedorBuscar proovedorBuscarView, ProveedorBL proveedorBLModelo, JTextField txtRespuesta) {
+    public ProveedorBuscarControlador(MantProveedorBuscar proovedorBuscarView, ProveedorBL proveedorBLModelo, JTextField txtRespuesta) {
         this.proovedorBuscarView = proovedorBuscarView;
         this.proveedorBLModelo = proveedorBLModelo;
         this.txtRespuesta = txtRespuesta;
@@ -61,7 +61,7 @@ public class ProveedorBuscarControlador implements  ActionListener {
      *
      * @return
      */
-    public MantProovedorBuscar getProovedorBuscarView() {
+    public MantProveedorBuscar getProovedorBuscarView() {
         return proovedorBuscarView;
     }
 
@@ -69,7 +69,7 @@ public class ProveedorBuscarControlador implements  ActionListener {
      *
      * @param proovedorBuscarView
      */
-    public void setProovedorBuscarView(MantProovedorBuscar proovedorBuscarView) {
+    public void setProovedorBuscarView(MantProveedorBuscar proovedorBuscarView) {
         this.proovedorBuscarView = proovedorBuscarView;
     }
 
@@ -144,8 +144,8 @@ public class ProveedorBuscarControlador implements  ActionListener {
         String Sql = "where nombre like '%"+ this.proovedorBuscarView.txtBuscar.getText() +"%'";
 
         try {
-            for (Object oAux : proveedorBLModelo.obtenerConWhere(new Proveedores(), Sql)) {
-                Proveedores p = (Proveedores) oAux;
+            for (Object oAux : proveedorBLModelo.obtenerConWhere(new Proveedor(), Sql)) {
+                Proveedor p = (Proveedor) oAux;
                 fila[0] = p.getIdProvedor();
                 fila[1] = p.getNombre();
                 fila[2] = p.getTelefono();
