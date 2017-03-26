@@ -56,7 +56,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         CallableStatement cs = con.prepareCall("update usuario "
                 + "set alias = ?, password = ?,"
                 + "rol = ?,"
-                + "where where alias = ?");
+                + "where alias = ?");
         cs.setString(1, obj.getAlias());
         cs.setString(2, obj.getPassword());
         cs.setInt(3, obj.getRol());
