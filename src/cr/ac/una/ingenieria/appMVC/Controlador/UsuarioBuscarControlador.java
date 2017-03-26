@@ -103,7 +103,7 @@ public class UsuarioBuscarControlador implements ActionListener {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaUsuarios.setModel(modeloTabla);
         modeloTabla.addColumn("Usuario");
-
+        modeloTabla.addColumn("Estado");
         Object fila[] = new Object[2];
 
         String Sql = "where alias like '%" + this.usuarioBuscarView.txtBuscar.getText() + "%'";
@@ -112,6 +112,7 @@ public class UsuarioBuscarControlador implements ActionListener {
             for (Object oAux : UsuarioBLModelo.obtenerConWhere(new Usuario(), Sql)) {
                 Usuario u = (Usuario) oAux;
                 fila[0] = u.getAlias();
+                fila[1] = u.getEstado();
 
                 modeloTabla.addRow(fila);
             }

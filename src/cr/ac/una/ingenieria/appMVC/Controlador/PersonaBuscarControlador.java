@@ -96,8 +96,9 @@ public class PersonaBuscarControlador implements ActionListener {
         modeloTabla.addColumn("Cedula");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Apellido");
+        modeloTabla.addColumn("Estado");
 
-        Object fila[] = new Object[3];
+        Object fila[] = new Object[4];
 
         String Sql = "where nombre like '%" + this.personaBuscarView.txtBuscar.getText() + "%'"
                 + " or cedula like '%" + this.personaBuscarView.txtBuscar.getText() + "%'";
@@ -108,6 +109,7 @@ public class PersonaBuscarControlador implements ActionListener {
                 fila[0] = p.getCedula();
                 fila[1] = p.getNombre();
                 fila[2] = p.getApellidos();
+                fila[3] = p.getEstado();
 
                 modeloTabla.addRow(fila);
             }

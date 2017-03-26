@@ -37,6 +37,11 @@ public class MantProovedorBuscar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Proveedores");
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         LbNombre.setText("Nombre:");
 
@@ -129,6 +134,13 @@ public class MantProovedorBuscar extends javax.swing.JFrame {
     private void btSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSeleccionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btSeleccionarActionPerformed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        if(evt.getClickCount()==2){
+            this.btSeleccionar.doClick(500);
+        }
+    }//GEN-LAST:event_formMouseClicked
 
     /**
      * @param args the command line arguments
