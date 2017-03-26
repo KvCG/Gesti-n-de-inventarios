@@ -9,7 +9,7 @@ package cr.ac.una.ingenieria.appMVC.Domain;
  *
  * @author Gustavo
  */
-public class Proveedores {
+public class Proveedor {
     
     private Integer IdProvedor;
     private String Nombre;
@@ -18,10 +18,10 @@ public class Proveedores {
     private String Telefono;
     private boolean estado;
 
-    public Proveedores() {
+    public Proveedor() {
     }
 
-    public Proveedores(Integer IdProvedor, String Nombre, String direccion, String email, String Telefono, boolean estado) {
+    public Proveedor(Integer IdProvedor, String Nombre, String direccion, String email, String Telefono, boolean estado) {
         this.IdProvedor = IdProvedor;
         this.Nombre = Nombre;
         this.direccion = direccion;
