@@ -112,7 +112,12 @@ public class UsuarioBuscarControlador implements ActionListener {
             for (Object oAux : UsuarioBLModelo.obtenerConWhere(new Usuario(), Sql)) {
                 Usuario u = (Usuario) oAux;
                 fila[0] = u.getAlias();
-                fila[1] = u.getEstado();
+                if(u.getEstado()==true){
+                    fila[1] = "activo";
+                }else{
+                    fila[1] = "inactivo";
+                }
+                
 
                 modeloTabla.addRow(fila);
             }

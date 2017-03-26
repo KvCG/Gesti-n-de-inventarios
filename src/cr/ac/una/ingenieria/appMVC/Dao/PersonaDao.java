@@ -80,7 +80,7 @@ public class PersonaDao implements IBaseDao<Persona> {
             p.setNombre(result.getString("nombre"));
             p.setApellidos(result.getString("apellidos"));
             p.setCorreo(result.getString("correo"));
-            //p.setEstado(result.getBoolean("estado"));
+            p.setEstado(result.getBoolean("estado"));
         }
         con.close();
         return p;
@@ -100,7 +100,7 @@ public class PersonaDao implements IBaseDao<Persona> {
             p.setNombre(result.getString("nombre"));
             p.setApellidos(result.getString("apellidos"));
             p.setCorreo(result.getString("correo"));
-            //p.setEstado(result.getBoolean("estado"));
+            p.setEstado(result.getBoolean("estado"));
         }
         con.close();
         return p;
@@ -119,7 +119,7 @@ public class PersonaDao implements IBaseDao<Persona> {
             p.setNombre(result.getString("nombre"));
             p.setApellidos(result.getString("apellidos"));
             p.setCorreo(result.getString("correo"));
-            //p.setEstado(result.getBoolean("estado"));
+            p.setEstado(result.getBoolean("estado"));
             l.add(p);
         }
         con.close();
@@ -139,7 +139,7 @@ public class PersonaDao implements IBaseDao<Persona> {
             p.setNombre(result.getString("nombre"));
             p.setApellidos(result.getString("apellidos"));
             p.setCorreo(result.getString("correo"));
-            //p.setEstado(result.getBoolean("estado"));
+            p.setEstado(result.getBoolean("estado"));
             l.add(p);
         }
         con.close();

@@ -150,7 +150,11 @@ public class ProveedorBuscarControlador implements  ActionListener {
                 fila[1] = p.getNombre();
                 fila[2] = p.getTelefono();
                 fila[3] = p.getEmail();
-                fila[4] = p.getEstado();
+                if(p.getEstado()==true){
+                    fila[4] = "activo";
+                }else{
+                    fila[4] = "inactivo";
+                }
                 modeloTabla.addRow(fila);
             }
         } catch (SQLException ex) {

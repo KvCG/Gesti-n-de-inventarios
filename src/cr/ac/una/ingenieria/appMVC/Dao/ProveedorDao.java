@@ -108,6 +108,7 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
             p.setEmail(result.getString("email"));
             p.setTelefono(result.getString("telefono"));
             p.setDireccion(result.getString("direccion"));
+            p.setEstado(result.getBoolean("estado"));
         }
         con.close();
         return p;
@@ -139,7 +140,7 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
             p.setEmail(result.getString("email"));
             p.setTelefono(result.getString("telefono"));
             p.setDireccion(result.getString("direccion"));
-            //p.setEstado(result.getBoolean("estado"));
+            p.setEstado(result.getBoolean("estado"));
             l.add(p);
         }
         con.close();
@@ -167,7 +168,7 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
             p.setEmail(result.getString("email"));
             p.setTelefono(result.getString("telefono"));
             p.setDireccion(result.getString("direccion"));
-            //p.setEstado(result.getBoolean("estado"));
+            p.setEstado(result.getBoolean("estado"));
             l.add(p);
         }
         con.close();

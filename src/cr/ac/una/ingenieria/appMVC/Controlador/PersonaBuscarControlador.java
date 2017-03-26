@@ -109,7 +109,12 @@ public class PersonaBuscarControlador implements ActionListener {
                 fila[0] = p.getCedula();
                 fila[1] = p.getNombre();
                 fila[2] = p.getApellidos();
-                fila[3] = p.getEstado();
+                if(p.getEstado()==true){
+                    fila[3] = "activo";
+                }else{
+                    fila[3] = "inactivo";
+                }
+                
 
                 modeloTabla.addRow(fila);
             }

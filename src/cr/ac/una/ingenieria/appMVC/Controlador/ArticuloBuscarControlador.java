@@ -139,7 +139,12 @@ public class ArticuloBuscarControlador implements ActionListener {
                 fila[0] = a.getCodigo();
                 fila[1] = a.getNombre();
                 fila[2] = a.getDescripcion();
-                fila[3] = a.getEstado();
+                if(a.getEstado()==true){
+                    fila[3] = "activo";
+                }else{
+                    fila[3] = "inactivo";
+                }
+                
 
                 modeloTabla.addRow(fila);
             }
