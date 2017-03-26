@@ -28,7 +28,7 @@ public class MovimientoDao implements IBaseDao<Movimiento> {
     public void insertar(Movimiento obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into movimiento(persona,proveedor,articulo,tipo,cantidad,"
-                + "fecha) values (?,?,?,?,curdate())");
+                + "fecha) values (?,?,?,?,?,curdate())");
 
         cs.setInt(1, obj.getIdPersona());
         cs.setInt(2, obj.getIdProveedor());
