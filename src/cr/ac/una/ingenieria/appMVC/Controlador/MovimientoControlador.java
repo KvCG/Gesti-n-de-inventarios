@@ -87,7 +87,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             }
         });
 
-        this.modMovView.txtCodigoProveedor.getDocument().addDocumentListener(this);
+        //this.modMovView.txtCodigoProveedor.getDocument().addDocumentListener(this);
         this.modMovView.txtCodigoArticulo.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -95,12 +95,12 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             }
         });
 
-//        this.modMovView.txtCodigoProveedor.addCaretListener(new CaretListener() {
-//            @Override
-//            public void caretUpdate(CaretEvent e) {
-//                cargaProveedor();
-//            }
-//        });
+        this.modMovView.txtCodigoProveedor.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                cargaProveedor();
+            }
+        });
     }
 
     public MovimientoBL getMovimientoBLModelo() {
@@ -168,10 +168,23 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
     }
 
     //-----------------------------------------------------Utils
+    public void clear() {
+        this.modMovView.txtArticulo.setText(null);
+        this.modMovView.txtCantidad.setText(null);
+        this.modMovView.txtCodigoMov.setText(null);
+        this.modMovView.txtPersona.setText(null);
+        this.modMovView.txtProveedor.setText(null);
+        this.modMovView.rdDevolucion.setSelected(false);
+        this.modMovView.rdIngreso.setSelected(false);
+        this.modMovView.rdEgreso.setSelected(false);
+        this.Movimientos.clear();
+        this.llenarTabla(modMovView.tbMovimiento);
+    }
+
     public void llenarTabla(JTable tablaArticulo) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulo.setModel(modeloTabla);
-
+        modeloTabla.addColumn("No.");
         modeloTabla.addColumn("Codigo");
         modeloTabla.addColumn("Codigo Articulo");
         modeloTabla.addColumn("Nombre");
@@ -179,25 +192,25 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         Persona per = new Persona();
         Proveedor pro = new Proveedor();
         Articulo ar = new Articulo();
-
-        Object fila[] = new Object[4];
+        
+        Object fila[] = new Object[5];
         for (Object oAux : this.Movimientos) {
             Movimiento s = (Movimiento) oAux;
             try {
                 pro.setIdProvedor(s.getIdProveedor());
                 pro = proveedorBLModelo.obtenerPorId(pro);
                 ar.setIdarticulo(s.getIdArticulo());
-                ar = articuloBLModelo.obtenerPorId(ar);
+                ar = articuloBLModelo.obtenerPorId2(ar);
                 per.setIdpersona(s.getIdPersona());
-                per = personaBLModelo.obtenerPorId(per);
+                per = personaBLModelo.obtenerPorId2(per);
             } catch (SQLException ex) {
                 Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            fila[0] = s.getCodigo();
-            fila[1] = ar.getCodigo();
-            fila[2] = ar.getNombre();
-            fila[3] = s.getCantidad().toString();
+            fila[0] = this.Movimientos.size();
+            fila[1] = s.getCodigo();
+            fila[2] = ar.getCodigo();
+            fila[3] = ar.getNombre();
+            fila[4] = s.getCantidad().toString();
 
             modeloTabla.addRow(fila);
         }
@@ -219,11 +232,9 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         if (this.modMovView.rdIngreso.isSelected() && this.modMovView.txtProveedor.getText().isEmpty()) {
             return 5;
         }
-
         if (this.modMovView.rdEgreso.isSelected() && this.modMovView.txtPersona.getText().isEmpty()) {
             return 6;
         }
-
         if (this.modMovView.rdDevolucion.isSelected() && this.modMovView.txtPersona.getText().isEmpty()) {
             return 7;
         }
@@ -266,8 +277,8 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
 
     public void cargaProveedor() {
         Proveedor u = new Proveedor();
-        String id = this.modMovView.txtCodigoProveedor.getText();
-        u.setIdProvedor(Integer.parseInt(id));
+        //String id = this.modMovView.txtCodigoProveedor.getText();
+        u.setIdProvedor(1);
         try {
             u = proveedorBLModelo.obtenerPorId(u);
             modMovView.txtProveedor.setText(u.getNombre());
@@ -326,35 +337,59 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                     }
                     if (this.isEmpty() != 6 && this.isEmpty() != 7) {
                         per.setIdpersona(Integer.parseInt(this.modMovView.txtCodigoPersona.getText()));
-                        per = personaBLModelo.obtenerPorId(per);
+                        per = personaBLModelo.obtenerPorId2(per);
                         mov.setIdPersona(per.getIdpersona());
                     }
 
                     this.Movimientos.add(mov);
                     this.llenarTabla(this.modMovView.tbMovimiento);
                 } catch (SQLException ex) {
-                    Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 JOptionPane.showMessageDialog(modMovView, "Faltan campos por rellenar", "Error al agregar", JOptionPane.ERROR_MESSAGE);
             }
         }
 
+        if (e.getSource() == this.modMovView.btRealizar) {
+            try {
+                for (Object oAux : this.Movimientos) {
+                    Movimiento mov = (Movimiento) oAux;
+                    movimientoBLModelo.insertar(mov);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.clear();
+        }
+
+        if (e.getSource() == this.modMovView.btCancelar) {
+            this.clear();
+        }
+        
+        if (e.getSource() == this.modMovView.btQuitar) {
+            int fila = this.modMovView.tbMovimiento.getSelectedRow();
+            if (fila != -1) {
+                Integer NumRem = Integer.parseInt(this.modMovView.tbMovimiento.getValueAt(fila, 0).toString());
+                this.Movimientos.remove(NumRem-1);
+                this.llenarTabla(modMovView.tbMovimiento);
+            } else {
+                JOptionPane.showMessageDialog(modMovView, "No se ha seleccionado un movimeinto.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        this.cargaProveedor();
+
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        this.cargaProveedor();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        this.cargaProveedor();
     }
 
 }

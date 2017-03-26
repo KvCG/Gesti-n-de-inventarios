@@ -77,28 +77,16 @@ public class ArticuloBL implements IBaseBL<Articulo> {
         return this.aDao.obtenerTodos(new Articulo());
     }
 
-    /**
-     *
-     * @param obj
-     * @param where
-     * @return
-     * @throws SQLException
-     */
+    
     public ArrayList<Proveedor> obtenerConWhere(Articulo obj, String where ) throws SQLException {
         return this.aDao.obtenerConWhere(obj, where);
     } 
 
-    /**
-     *
-     * @param idArticulo
-     */
-    public void obtenerPorId(int idArticulo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
 
     @Override
     public Articulo obtenerPorId2(Articulo obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Articulo)this.aDao.obtenerPorId2(obj);
     }
 
     

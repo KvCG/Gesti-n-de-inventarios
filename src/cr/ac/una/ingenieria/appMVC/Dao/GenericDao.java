@@ -48,7 +48,7 @@ public class GenericDao {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
 
         iBaseDato.insertar(obj);
@@ -73,7 +73,7 @@ public class GenericDao {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         iBaseDato.modificar(obj);
     }
@@ -97,7 +97,7 @@ public class GenericDao {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         iBaseDato.eliminar(obj);
     }
@@ -122,7 +122,7 @@ public class GenericDao {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerPorId(obj);
     }
@@ -141,7 +141,7 @@ public class GenericDao {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerPorId2(obj);
     }
@@ -166,7 +166,7 @@ public class GenericDao {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerTodos();
     }
@@ -192,7 +192,7 @@ public class GenericDao {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerConWhere(where);
     }
