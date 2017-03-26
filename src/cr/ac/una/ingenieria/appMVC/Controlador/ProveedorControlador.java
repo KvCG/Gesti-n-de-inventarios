@@ -6,8 +6,8 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
-import cr.ac.una.ingenieria.appMVC.Vista.MantProovedorBuscar;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
+import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Proveedores;
 import java.awt.event.ActionEvent;
 
@@ -104,7 +104,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
             if (this.mantProveedorView.txtIdProveedor.equals("") || this.mantProveedorView.txtTelefono.getText().equals("") || this.mantProveedorView.txtCorreo.getText().equals("") || this.mantProveedorView.txtNombre.getText().equals("") || this.mantProveedorView.txtDireccion.getText().equals("")) {
                 JOptionPane.showMessageDialog(mantProveedorView, "Error faltan espacios por rellenar:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
             } else {
-                Proveedores p = new Proveedores();
+                Proveedor p = new Proveedor();
                 p.setIdProvedor(1); //como es auto generado no es relavante tomar el campo de texto id.
                 p.setNombre(this.mantProveedorView.txtNombre.getText());
                 p.setTelefono(this.mantProveedorView.txtTelefono.getText());
@@ -137,7 +137,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
             }
         }
         if (e.getSource() == this.mantProveedorView.btEliminar) {
-            Proveedores p = new Proveedores();
+            Proveedor p = new Proveedor();
             int idProveedor = Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText());
             p.setIdProvedor(idProveedor);
             try {
@@ -171,7 +171,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
             if (this.mantProveedorView.txtTelefono.getText().equals("") || this.mantProveedorView.txtCorreo.getText().equals("") || this.mantProveedorView.txtNombre.getText().equals("") || this.mantProveedorView.txtDireccion.getText().equals("")) {
                 JOptionPane.showMessageDialog(mantProveedorView, "Error al Modificar debe seleccionar antes un proveedor:", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Proveedores p = new Proveedores();
+                Proveedor p = new Proveedor();
                 p.setIdProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
                 try {
                     if (this.isEmail(this.mantProveedorView.txtCorreo.getText())) {
@@ -223,7 +223,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
             this.mantProveedorView.btEliminar.setEnabled(false);
         }
         if (e.getSource() == this.mantProveedorView.btBuscar) {
-            MantProovedorBuscar mantBuscarView = new MantProovedorBuscar();
+            MantProveedorBuscar mantBuscarView = new MantProveedorBuscar();
             ProveedorBuscarControlador pBControlador;
             pBControlador = new ProveedorBuscarControlador(mantBuscarView, ProveedorBLModelo, this.mantProveedorView.txtIdProveedor);
             pBControlador.getProovedorBuscarView().setVisible(true);
@@ -267,7 +267,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
     }
 
     private void cargarProveedor() {
-        Proveedores p = new Proveedores();
+        Proveedor p = new Proveedor();
         if (!this.mantProveedorView.txtIdProveedor.getText().isEmpty()) {
             p.setIdProvedor(Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText()));
             try {

@@ -17,9 +17,11 @@ import java.util.ArrayList;
 public class MovimientoBL implements IBaseBL<Movimiento> {
 
     private GenericDao aDao;
+    
+  
 
-    public MovimientoBL(GenericDao aDao) {
-        this.aDao = aDao;
+    public MovimientoBL( ) {
+        this.aDao = new GenericDao();
     }
 
     @Override

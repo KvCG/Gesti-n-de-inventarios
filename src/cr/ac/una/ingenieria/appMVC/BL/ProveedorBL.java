@@ -6,7 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.BL;
 
 import cr.ac.una.ingenieria.appMVC.Dao.GenericDao;
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Gustavo
  */
-public class ProveedorBL implements IBaseBL<Proveedores> {
+public class ProveedorBL implements IBaseBL<Proveedor> {
     
     private GenericDao pDao;
     
@@ -31,7 +31,7 @@ public class ProveedorBL implements IBaseBL<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public void insertar(Proveedores obj) throws SQLException {
+    public void insertar(Proveedor obj) throws SQLException {
         pDao.insertar(obj);
     }
 
@@ -41,7 +41,7 @@ public class ProveedorBL implements IBaseBL<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public void modificar(Proveedores obj) throws SQLException {
+    public void modificar(Proveedor obj) throws SQLException {
         pDao.modificar(obj);
     }
 
@@ -51,7 +51,7 @@ public class ProveedorBL implements IBaseBL<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public void eliminar(Proveedores obj) throws SQLException {
+    public void eliminar(Proveedor obj) throws SQLException {
         pDao.eliminar(obj);
     }
 
@@ -62,8 +62,8 @@ public class ProveedorBL implements IBaseBL<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public Proveedores obtenerPorId(Proveedores obj) throws SQLException {
-       return (Proveedores)this.pDao.obtenerPorId(obj);
+    public Proveedor obtenerPorId(Proveedor obj) throws SQLException {
+       return (Proveedor)this.pDao.obtenerPorId(obj);
     }
 
     /**
@@ -72,8 +72,8 @@ public class ProveedorBL implements IBaseBL<Proveedores> {
      * @throws SQLException
      */
     @Override
-    public ArrayList<Proveedores> obtenerTodos() throws SQLException {
-       return this.pDao.obtenerTodos(new Proveedores());
+    public ArrayList<Proveedor> obtenerTodos() throws SQLException {
+       return this.pDao.obtenerTodos(new Proveedor());
     }
 
     /**
@@ -83,12 +83,12 @@ public class ProveedorBL implements IBaseBL<Proveedores> {
      * @return
      * @throws SQLException
      */
-    public ArrayList<Proveedores> obtenerConWhere(Proveedores obj, String where ) throws SQLException {
+    public ArrayList<Proveedor> obtenerConWhere(Proveedor obj, String where ) throws SQLException {
         return this.pDao.obtenerConWhere(obj, where);
     } 
 
     @Override
-    public Proveedores obtenerPorId2(Proveedores obj) throws SQLException {
+    public Proveedor obtenerPorId2(Proveedor obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

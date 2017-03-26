@@ -9,12 +9,12 @@ package cr.ac.una.ingenieria.appMVC.Vista;
  *
  * @author Gustavo
  */
-public class MantProovedorBuscar extends javax.swing.JFrame {
+public class MantProveedorBuscar extends javax.swing.JFrame {
 
     /**
      * Creates new form MantProovedorBuscar
      */
-    public MantProovedorBuscar() {
+    public MantProveedorBuscar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -159,20 +159,21 @@ public class MantProovedorBuscar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantProovedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantProovedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantProovedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantProovedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MantProovedorBuscar().setVisible(true);
+                new MantProveedorBuscar().setVisible(true);
             }
         });
     }

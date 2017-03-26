@@ -10,7 +10,7 @@ import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
 
-import cr.ac.una.ingenieria.appMVC.Domain.Proveedores;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -41,14 +41,14 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
 
         iBaseDato.insertar(obj);
@@ -66,14 +66,14 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         iBaseDato.modificar(obj);
     }
@@ -90,14 +90,14 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         iBaseDato.eliminar(obj);
     }
@@ -115,14 +115,14 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerPorId(obj);
     }
@@ -134,14 +134,14 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerPorId2(obj);
     }
@@ -159,14 +159,14 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerTodos();
     }
@@ -185,14 +185,14 @@ public class GenericDao {
         if (obj instanceof Usuario) {
             iBaseDato = new UsuarioDao();
         }
-        if (obj instanceof Proveedores) {
+        if (obj instanceof Proveedor) {
             iBaseDato = new ProveedorDao();
         }
         if (obj instanceof Articulo) {
             iBaseDato = new ArticuloDao();
         }
         if (obj instanceof Movimiento) {
-            iBaseDato = new PersonaDao();
+            iBaseDato = new MovimientoDao();
         }
         return iBaseDato.obtenerConWhere(where);
     }

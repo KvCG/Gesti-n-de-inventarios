@@ -1,36 +1,39 @@
-
 package cr.ac.una.ingenieria.appMVC.Vista;
+
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
+import cr.ac.una.ingenieria.appMVC.Controlador.MovimientoControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.ProveedorControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.UsuarioControlador;
 
-
-
 public class PantallaPrincipal extends javax.swing.JFrame {
+
     //control de pantalla
     boolean Mod_Inv = false;
     boolean Mod_Reg_Per = false;
     boolean Mod_Reg_Usu = false;
     boolean Mod_Pro = false;
-    
+    boolean Mod_Mov = false;
+
     //pantallas
+    Modulo_Moviento vista;
     Modulo_Inventario Mante_ArticulosView;
     Modulo_Registo_Persona Mod_Reg_PerView;
     Modulo_Registo_Usuario Mod_Reg_UsuView;
     Modulo_Proveedores Mod_ProveView;
     MantPersonaBuscar mantPersonaBView;
-           
+
     //constructor       
-    public PantallaPrincipal() {        
+    public PantallaPrincipal() {
         setTitle("SIGACI");
         this.setLocationRelativeTo(null);
         this.setExtendedState(PantallaPrincipal.MAXIMIZED_BOTH);
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -46,35 +49,45 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }        
+        }
         initComponents();
-        
+
         //para la venta modulo inventario
         this.Mante_ArticulosView = new Modulo_Inventario();
         ArticuloBL ArtBL = new ArticuloBL();
-        ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView,ArtBL);
+        ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView, ArtBL);
         ArtControl.getMantArticuloView();
-        
+
         //para la venta modulo Modulo_Registo_Persona
         this.Mod_Reg_PerView = new Modulo_Registo_Persona();
         PersonaBL perBL = new PersonaBL();
         PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
-        perControl.getMod_Reg_PersonaView(); 
-        
+        perControl.getMod_Reg_PersonaView();
+
         //para la venta modulo Modulo_Registo_Usuario
         this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
         UsuarioBL usuBL = new UsuarioBL();
-        //this.Mod_Reg_PerView = new Modulo_Registo_Persona();
         this.mantPersonaBView = new MantPersonaBuscar();
-//        PersonaBL perBL1 = new PersonaBL();
-        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView,usuBL,perBL,Mod_Reg_PerView,mantPersonaBView);
+        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView, usuBL, perBL, Mod_Reg_PerView, mantPersonaBView);
         UsuControl.getMantUsuarioview();
-        
+
         //para la venta modulo Modulo_Registo_Persona
         this.Mod_ProveView = new Modulo_Proveedores();
         ProveedorBL proveBL = new ProveedorBL();
         ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
         proveeControl.getMantProveedorView();
+        
+        
+        vista = new Modulo_Moviento();
+        MantArticuloBuscar mantArticuloBView = new MantArticuloBuscar();
+        MantPersonaBuscar mantPersonaBView = new MantPersonaBuscar();
+        MantProveedorBuscar mantProveedorBView = new MantProveedorBuscar();
+        MovimientoBL movimientoBLModelo = new MovimientoBL();
+        ArticuloBL articuloBLModelo = new ArticuloBL();
+        PersonaBL personaBLModelo = new PersonaBL();
+        ProveedorBL proveedorBLModelo = new ProveedorBL();
+        MovimientoControlador con = new MovimientoControlador(movimientoBLModelo, vista, articuloBLModelo, personaBLModelo, proveedorBLModelo, mantArticuloBView, mantPersonaBView, mantProveedorBView);
+        con.getModMovView();
     }
 
     @SuppressWarnings("unchecked")
@@ -92,6 +105,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmiPersona = new javax.swing.JMenuItem();
         jmiUsuario = new javax.swing.JMenuItem();
         jmMovimiento = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
         ReportesArticulos = new javax.swing.JMenu();
         ReporteArticulos = new javax.swing.JMenuItem();
@@ -171,6 +185,15 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Movimiento.png"))); // NOI18N
         jmMovimiento.setText("Movimientos");
         jmMovimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jmMovimiento.add(jMenuItem2);
+
         jMenuBar1.add(jmMovimiento);
 
         jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 02.png"))); // NOI18N
@@ -235,7 +258,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -244,95 +267,113 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuArticuloActionPerformed
         try {
-            if(this.Mod_Inv == false){
+            if (this.Mod_Inv == false) {
                 int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mante_ArticulosView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mante_ArticulosView.getHeight() / 2);
+                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mante_ArticulosView.getHeight() / 2);
                 this.Mante_ArticulosView.setLocation(x, y);
-                
+
                 this.jdpPrincipal.add(this.Mante_ArticulosView);
                 this.jdpPrincipal.updateUI();
                 this.jdpPrincipal.repaint();
                 this.Mante_ArticulosView.show();
                 this.Mod_Inv = true;
-            }
-            else{
+            } else {
                 this.Mante_ArticulosView.show();
                 this.Mante_ArticulosView.toFront();
                 this.Mod_Inv = false;
             }
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_jMenuArticuloActionPerformed
 
     private void jmiPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPersonaActionPerformed
         try {
-            if(this.Mod_Reg_Per == false){
+            if (this.Mod_Reg_Per == false) {
                 int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_PerView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_Reg_PerView.getHeight() / 2);
+                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_PerView.getHeight() / 2);
                 this.Mod_Reg_PerView.setLocation(x, y);
-                
+
                 this.jdpPrincipal.add(this.Mod_Reg_PerView);
                 this.jdpPrincipal.updateUI();
                 this.jdpPrincipal.repaint();
                 this.Mod_Reg_PerView.show();
                 this.Mod_Reg_Per = true;
-            }
-            else{
+            } else {
                 this.Mod_Reg_PerView.show();
                 this.Mod_Reg_PerView.toFront();
                 this.Mod_Reg_Per = false;
             }
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_jmiPersonaActionPerformed
 
     private void jmiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUsuarioActionPerformed
-       try {
-            if(this.Mod_Reg_Usu == false){
+        try {
+            if (this.Mod_Reg_Usu == false) {
                 int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_UsuView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_Reg_UsuView.getHeight() / 2);
+                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_UsuView.getHeight() / 2);
                 this.Mod_Reg_UsuView.setLocation(x, y);
-                
+
                 this.jdpPrincipal.add(this.Mod_Reg_UsuView);
                 this.jdpPrincipal.updateUI();
                 this.jdpPrincipal.repaint();
                 this.Mod_Reg_UsuView.show();
                 this.Mod_Reg_Usu = true;
-            }
-            else{
+            } else {
                 this.Mod_Reg_UsuView.show();
                 this.Mod_Reg_UsuView.toFront();
                 this.Mod_Reg_Usu = false;
             }
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_jmiUsuarioActionPerformed
 
     private void jMenuProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProveedoresActionPerformed
         try {
-            if(this.Mod_Pro == false){
+            if (this.Mod_Pro == false) {
                 int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_ProveView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_ProveView.getHeight() / 2);
+                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_ProveView.getHeight() / 2);
                 this.Mod_ProveView.setLocation(x, y);
-                
+
                 this.jdpPrincipal.add(this.Mod_ProveView);
                 this.jdpPrincipal.updateUI();
                 this.jdpPrincipal.repaint();
                 this.Mod_ProveView.show();
                 this.Mod_Pro = true;
-            }
-            else{
+            } else {
                 this.Mod_ProveView.show();
                 this.Mod_ProveView.toFront();
                 this.Mod_Pro = false;
             }
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_jMenuProveedoresActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        try {
+            if (this.Mod_Mov == false) {
+                int x = (this.jdpPrincipal.getWidth() / 2) - (this.vista.getWidth() / 2);
+                int y = (this.jdpPrincipal.getHeight() / 2) - (this.vista.getHeight() / 2);
+                this.vista.setLocation(x, y);
+
+                this.jdpPrincipal.add(this.vista);
+                this.jdpPrincipal.updateUI();
+                this.jdpPrincipal.repaint();
+                this.vista.show();
+                this.Mod_Mov = true;
+            } else {
+                this.vista.show();
+                this.vista.toFront();
+                this.Mod_Mov = false;
+            }
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,7 +406,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaPrincipal().setVisible(true);
+                //new PantallaPrincipal().setVisible(true);
             }
         });
     }
@@ -380,6 +421,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenu jMenuEstadisticas;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenu jMenuMantenimiento;
     public javax.swing.JMenuItem jMenuProveedores;
