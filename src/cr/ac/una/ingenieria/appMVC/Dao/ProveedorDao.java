@@ -57,11 +57,9 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
     public void modificar(Proveedores obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("update proveedor "
-                                            + "set nombre= ?,"
-                                            + "email= ?,"
-                                            + "telefono=?,"
-                                            + "direccion=?,"
+        CallableStatement cs = con.prepareCall("update proveedor set nombre= ?,"
+                                            + "email=?, telefono=?,"
+                                            + "direccion=?"
                                             + "where idproveedor=? ");
         cs.setString(1, obj.getNombre());
         cs.setString(2, obj.getEmail());

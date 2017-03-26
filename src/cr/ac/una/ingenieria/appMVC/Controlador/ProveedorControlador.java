@@ -198,8 +198,6 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
                     this.ProveedorBLModelo.modificar(p);
                     this.mantProveedorView.btEliminar.setEnabled(false);
                     this.mantProveedorView.txtIdProveedor.setEnabled(true);
-                    JOptionPane.showMessageDialog(mantProveedorView, "el Proveedor ha sido modificada correctamente",
-                                "Proveedor madificado", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (SQLException ex) {
                     Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -246,7 +244,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
            pBControlador.getProovedorBuscarView().setVisible(true);
            this.mantProveedorView.btEliminar.setEnabled(true);
            this.mantProveedorView.btModificar.setEnabled(true);
-           this.mantProveedorView.btInsertar.setEnabled(false);
+           
         }
        
     }
