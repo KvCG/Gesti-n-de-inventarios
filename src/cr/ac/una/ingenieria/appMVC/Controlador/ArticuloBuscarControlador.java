@@ -88,7 +88,6 @@ public class ArticuloBuscarControlador implements ActionListener {
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
-
     /**
      *
      * @param txtRespuesta

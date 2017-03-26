@@ -51,10 +51,10 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
         tbMovimiento = new javax.swing.JTable();
         btRealizar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        txtCodigoProveedor = new javax.swing.JTextField();
         txtCodigoPersona = new javax.swing.JTextField();
         txtCodigoArticulo = new javax.swing.JTextField();
         txtCodigoArticulo1 = new javax.swing.JTextField();
+        txtCodigoProveedor = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -155,12 +155,6 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
         btCancelar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btCancelar.setText("CANCELAR");
 
-        txtCodigoProveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCodigoProveedorActionPerformed(evt);
-            }
-        });
-
         txtCodigoPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoPersonaActionPerformed(evt);
@@ -196,14 +190,11 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
                                 .addGap(34, 34, 34)
                                 .addComponent(btCancelar))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
+                                .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtCodigoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel2))
+                                            .addComponent(jLabel2)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(29, 29, 29)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -218,7 +209,6 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btBuscaPersona)
                                             .addComponent(btBuscaProveedor)))
-                                    .addComponent(txtCodigoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
@@ -226,9 +216,11 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
                                         .addGap(16, 16, 16)
                                         .addComponent(rdEgreso)
                                         .addGap(18, 18, 18)
-                                        .addComponent(rdDevolucion))))
+                                        .addComponent(rdDevolucion))
+                                    .addComponent(txtCodigoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCodigoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
+                                .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtCodigoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCodigoArticulo1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,7 +240,7 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
                                         .addComponent(btAgregar)
                                         .addGap(18, 18, 18)
                                         .addComponent(btQuitar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 21, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(spMovimiento, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -311,10 +303,6 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
     private void txtPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPersonaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPersonaActionPerformed
-
-    private void txtCodigoProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoProveedorActionPerformed
 
     private void txtCodigoPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoPersonaActionPerformed
         // TODO add your handling code here:

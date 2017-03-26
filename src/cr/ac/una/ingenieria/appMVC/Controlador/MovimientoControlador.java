@@ -5,7 +5,6 @@
  */
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
-import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
@@ -18,7 +17,6 @@ import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantPersonaBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Moviento;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -26,7 +24,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.CaretEvent;
@@ -49,7 +46,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
     private MantArticuloBuscar mantArticuloBView;
     private MantPersonaBuscar mantPersonaBView;
     private MantProveedorBuscar mantProveedorBView;
-    private ArrayList<Movimiento> Movimientos;
+    private final ArrayList<Movimiento> Movimientos;
 
     public MovimientoControlador(MovimientoBL movimientoBLModelo, Modulo_Moviento modMovView, ArticuloBL articuloBLModelo, PersonaBL personaBLModelo, ProveedorBL proveedorBLModelo, MantArticuloBuscar mantArticuloBView, MantPersonaBuscar mantPersonaBView, MantProveedorBuscar mantProveedorBView) {
         this.movimientoBLModelo = movimientoBLModelo;
@@ -79,11 +76,10 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         buttonGroup.add(this.modMovView.rdIngreso);
         buttonGroup.add(this.modMovView.rdEgreso);
 
-        this.modMovView.txtCodigoPersona.setVisible(false);
-        this.modMovView.txtCodigoArticulo.setVisible(false);
-        this.modMovView.txtCodigoArticulo1.setVisible(false);
-        this.modMovView.txtCodigoProveedor.setVisible(false);
-
+//        this.modMovView.txtCodigoPersona.setVisible(false);
+//        this.modMovView.txtCodigoArticulo.setVisible(false);
+//        this.modMovView.txtCodigoArticulo1.setVisible(false);
+//        this.modMovView.txtCodigoProveedor.setVisible(false);
         this.modMovView.txtCodigoPersona.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -91,6 +87,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             }
         });
 
+        this.modMovView.txtCodigoProveedor.getDocument().addDocumentListener(this);
         this.modMovView.txtCodigoArticulo.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -98,12 +95,12 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             }
         });
 
-        this.modMovView.txtCodigoProveedor.addCaretListener(new CaretListener() {
-            @Override
-            public void caretUpdate(CaretEvent e) {
-                cargaProveedor();
-            }
-        });
+//        this.modMovView.txtCodigoProveedor.addCaretListener(new CaretListener() {
+//            @Override
+//            public void caretUpdate(CaretEvent e) {
+//                cargaProveedor();
+//            }
+//        });
     }
 
     public MovimientoBL getMovimientoBLModelo() {
@@ -187,7 +184,6 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         for (Object oAux : this.Movimientos) {
             Movimiento s = (Movimiento) oAux;
             try {
-
                 pro.setIdProvedor(s.getIdProveedor());
                 pro = proveedorBLModelo.obtenerPorId(pro);
                 ar.setIdarticulo(s.getIdArticulo());
@@ -259,7 +255,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
 
     public void cargaArticulo() {
         Articulo u = new Articulo();
-        u.setIdarticulo(Integer.parseInt(this.modMovView.txtCodigoArticulo.getText()));
+        u.setCodigo(this.modMovView.txtCodigoArticulo.getText());
         try {
             u = articuloBLModelo.obtenerPorId(u);
             modMovView.txtArticulo.setText(u.getCodigo() + " " + u.getNombre());
@@ -270,7 +266,8 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
 
     public void cargaProveedor() {
         Proveedor u = new Proveedor();
-        u.setIdProvedor(Integer.parseInt(this.modMovView.txtCodigoProveedor.getText()));
+        String id = this.modMovView.txtCodigoProveedor.getText();
+        u.setIdProvedor(Integer.parseInt(id));
         try {
             u = proveedorBLModelo.obtenerPorId(u);
             modMovView.txtProveedor.setText(u.getNombre());
@@ -303,59 +300,61 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         }
 
         if (e.getSource() == this.modMovView.btAgregar) {
+            if (isEmpty() == 0) {
+                Movimiento mov = new Movimiento();
+                Persona per = new Persona();
+                Proveedor pro = new Proveedor();
+                Articulo ar = new Articulo();
 
-            Movimiento mov = new Movimiento();
-            Persona per = new Persona();
-            Proveedor pro = new Proveedor();
-            Articulo ar = new Articulo();
+                mov.setIdArticulo(0);
+                mov.setIdPersona(0);
+                mov.setIdProveedor(0);
+                mov.setTipo(this.radioValor());
+                mov.setCantidad(Integer.parseInt(modMovView.txtCantidad.getText()));
+                mov.setCodigo(modMovView.txtCodigoMov.getText());
 
-            mov.setIdArticulo(0);
-            mov.setIdPersona(0);
-            mov.setIdProveedor(0);
-            mov.setTipo(this.radioValor());
-            mov.setCantidad(Integer.parseInt(modMovView.txtCantidad.getText()));
-            mov.setCodigo(modMovView.txtCodigoMov.getText());
+                try {
+                    if (this.isEmpty() != 5) {
+                        pro.setIdProvedor(Integer.parseInt(this.modMovView.txtCodigoProveedor.getText()));
+                        pro = proveedorBLModelo.obtenerPorId(pro);
+                        mov.setIdProveedor(pro.getIdProvedor());
+                    }
+                    if (this.isEmpty() != 2) {
+                        ar.setCodigo(this.modMovView.txtCodigoArticulo.getText());
+                        ar = articuloBLModelo.obtenerPorId(ar);
+                        mov.setIdArticulo(ar.getIdarticulo());
+                    }
+                    if (this.isEmpty() != 6 && this.isEmpty() != 7) {
+                        per.setIdpersona(Integer.parseInt(this.modMovView.txtCodigoPersona.getText()));
+                        per = personaBLModelo.obtenerPorId(per);
+                        mov.setIdPersona(per.getIdpersona());
+                    }
 
-            try {
-                if (this.isEmpty() != 5) {
-                    pro.setIdProvedor(Integer.parseInt(this.modMovView.txtCodigoProveedor.getText()));
-                    pro = proveedorBLModelo.obtenerPorId(pro);
-                    mov.setIdProveedor(pro.getIdProvedor());
+                    this.Movimientos.add(mov);
+                    this.llenarTabla(this.modMovView.tbMovimiento);
+                } catch (SQLException ex) {
+                    Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (this.isEmpty() != 2) {
-                    ar.setCodigo(this.modMovView.txtCodigoArticulo.getText());
-                    ar = articuloBLModelo.obtenerPorId(ar);
-                    mov.setIdArticulo(ar.getIdarticulo());
-                }
-                if (this.isEmpty() != 6 && this.isEmpty() != 7) {
-                    per.setIdpersona(Integer.parseInt(this.modMovView.txtCodigoPersona.getText()));
-                    per = personaBLModelo.obtenerPorId(per);
-                    mov.setIdPersona(per.getIdpersona());
-                }
-
-                this.Movimientos.add(mov);
-                this.llenarTabla(this.modMovView.tbMovimiento);
-            } catch (SQLException ex) {
-                Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } else {
+                JOptionPane.showMessageDialog(modMovView, "Faltan campos por rellenar", "Error al agregar", JOptionPane.ERROR_MESSAGE);
             }
-
         }
 
     }
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.cargaProveedor();
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.cargaProveedor();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.cargaProveedor();
     }
 
 }
