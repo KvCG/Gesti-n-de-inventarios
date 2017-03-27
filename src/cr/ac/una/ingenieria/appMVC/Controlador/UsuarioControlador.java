@@ -152,41 +152,36 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
 
         }
         if (e.getSource() == this.mantUsuarioView.btEliminar) {
-//            if(this.mantUsuarioview.jTableusuarios.getRowCount()!=0&&this.mantUsuarioview.jTableusuarios.getRowCount()!=-1){
-//            Usuario u = new Usuario();
-//            int fila = this.mantUsuarioview.jTableusuarios.getSelectedRow();
-//            int idUsuario = Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText());
-//            u.setIdUsuario(idUsuario);
-//            try {
-//                int resp;
-//                resp=JOptionPane.showConfirmDialog(mantUsuarioview, "Esta seguro que desea eliminar el Usuario");
-//                if(resp==0){
-//                usuarioBlModelo.eliminar(u);
-//                //llenarTabla(this.mantUsuarioview.jTableusuarios);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido eliminado correctamente",
-//                        "Usuario Eliminado", JOptionPane.INFORMATION_MESSAGE);
-//                this.mantUsuarioview.txtContraseña.setText(null);
-//                this.mantUsuarioview.txtNombre.setText(null);
-//                this.mantUsuarioview.txtUsuario.setText(null);
-//                this.mantUsuarioview.txtidUsuario.setText(null);
-//                this.mantUsuarioview.btEliminar.setEnabled(false);
-//                }
-//                if(resp==1){
-//                    JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario no sera eliminado ",
-//                        "Usuario Eliminado", JOptionPane.INFORMATION_MESSAGE);
-//                }
-//            } catch (SQLException ex) {
-//                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al eliminar el Usuario:" + ex.getMessage(), 
-//                        "Error", JOptionPane.ERROR_MESSAGE);
-//            } catch (Exception ex) {
-//                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al eliminar el Usuario:" + ex.getMessage(), 
-//                        "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//            }else{
-//                JOptionPane.showMessageDialog(mantUsuarioview, "Error al cargar la tabla esta vacia:", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
+            Usuario u = new Usuario();
+            String alias = this.mantUsuarioView.txtUsuario.getText();
+            u.setAlias(alias);
+            try {
+                int resp;
+                resp = JOptionPane.showConfirmDialog(mantUsuarioView, "Esta seguro que desea eliminar el Usuario");
+                if (resp == 0) {
+                    usuarioBlModelo.eliminar(u);
+                    JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido eliminado correctamente",
+                            "Usuario Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    this.mantUsuarioView.txtContraseña.setText(null);
+                    this.mantUsuarioView.txtCedula.setText(null);
+                    this.mantUsuarioView.txtPersonaId.setText(null);
+                    this.mantUsuarioView.txtUsuario.setText(null);
+                    this.mantUsuarioView.btEliminar.setEnabled(false);
+                }
+                if (resp == 1) {
+                    JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario no sera eliminado ",
+                            "Usuario Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(mantUsuarioView, "Error al eliminar el Usuario:" + ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(mantUsuarioView, "Error al eliminar el Usuario:" + ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
 
         if (e.getSource() == this.mantUsuarioView.btModificar) {
@@ -267,13 +262,20 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
 
     private void cargaPersona() {
         Persona u = new Persona();
-        u.setCedula(this.mantUsuarioView.txtPersonaId.getText());
-        try {
-            u = personaBLModelo.obtenerPorId(u);
-            mantUsuarioView.txtCedula.setText(u.getCedula() + " - " + u.getNombre() + " " + u.getApellidos());
-        } catch (SQLException ex) {
+        if (!this.mantUsuarioView.txtPersonaId.getText().isEmpty()) {
+            u.setCedula(this.mantUsuarioView.txtPersonaId.getText());
+            try {
+                u = personaBLModelo.obtenerPorId(u);
+                mantUsuarioView.txtCedula.setText(u.getCedula() + " - " + u.getNombre() + " " + u.getApellidos());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(mantUsuarioView, "Error no se pudo consultar el Usuario (" + ex.getMessage() + ")",
+                        "Error al cargar el Usuario", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
+
+    
 
     private void cargarusuario() {
         Usuario u = new Usuario();
