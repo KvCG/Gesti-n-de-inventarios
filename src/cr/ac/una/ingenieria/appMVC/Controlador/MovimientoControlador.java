@@ -206,6 +206,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             } catch (SQLException ex) {
                 Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
+           
             fila[0] = this.Movimientos.size();
             fila[1] = s.getCodigo();
             fila[2] = ar.getCodigo();
@@ -358,7 +359,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                     movimientoBLModelo.insertar(mov);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
             }
             this.clear();
         }
