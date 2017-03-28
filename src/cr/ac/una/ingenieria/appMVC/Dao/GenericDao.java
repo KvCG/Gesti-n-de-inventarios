@@ -8,7 +8,7 @@ package cr.ac.una.ingenieria.appMVC.Dao;
 import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
-import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
+//import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
 
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
@@ -51,9 +51,9 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof ArticuloProveedor){
-            iBaseDato = new ArticuloProveedorDao();
-        }
+//        if(obj instanceof ArticuloProveedor){
+//           iBaseDato = new ArticuloProveedorDao();
+//        }
 
         iBaseDato.insertar(obj);
     }
@@ -79,9 +79,9 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof ArticuloProveedor){
-            iBaseDato = new ArticuloProveedorDao();
-        }
+//        if(obj instanceof ArticuloProveedor){
+//            iBaseDato = new ArticuloProveedorDao();
+//        }
         iBaseDato.modificar(obj);
     }
 
@@ -106,9 +106,9 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof ArticuloProveedor){
-            iBaseDato = new ArticuloProveedorDao();
-        }
+//        if(obj instanceof ArticuloProveedor){
+//           // iBaseDato = new ArticuloProveedorDao();
+//        }
         iBaseDato.eliminar(obj);
     }
 
@@ -134,9 +134,9 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof ArticuloProveedor){
-            iBaseDato = new ArticuloProveedorDao();
-        }
+//        if(obj instanceof ArticuloProveedor){
+//            //iBaseDato = new ArticuloProveedorDao();
+//        }
         return iBaseDato.obtenerPorId(obj);
     }
 
@@ -156,9 +156,9 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof ArticuloProveedor){
-            iBaseDato = new ArticuloProveedorDao();
-        }
+//        if(obj instanceof ArticuloProveedor){
+//            //iBaseDato = new ArticuloProveedorDao();
+//        }
         return iBaseDato.obtenerPorId2(obj);
     }
 
@@ -184,9 +184,9 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof ArticuloProveedor){
-            iBaseDato = new ArticuloProveedorDao();
-        }
+//        if(obj instanceof ArticuloProveedor){
+//           // iBaseDato = new ArticuloProveedorDao();
+//        }
         return iBaseDato.obtenerTodos();
     }
 
@@ -213,9 +213,9 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof ArticuloProveedor){
-            iBaseDato = new ArticuloProveedorDao();
-        }
+//        if(obj instanceof ArticuloProveedor){
+//          //  iBaseDato = new ArticuloProveedorDao();
+//        }
         return iBaseDato.obtenerConWhere(where);
     }
 }

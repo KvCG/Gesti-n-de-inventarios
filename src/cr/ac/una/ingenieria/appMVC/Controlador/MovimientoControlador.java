@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
@@ -76,29 +77,35 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         buttonGroup.add(this.modMovView.rdIngreso);
         buttonGroup.add(this.modMovView.rdEgreso);
 
-//        this.modMovView.txtCodigoPersona.setVisible(false);
-//        this.modMovView.txtCodigoArticulo.setVisible(false);
-//        this.modMovView.txtCodigoArticulo1.setVisible(false);
-//        this.modMovView.txtCodigoProveedor.setVisible(false);
+        this.modMovView.txtCodigoPersona.setVisible(false);
+        this.modMovView.txtCodigoArticulo.setVisible(false);
+        this.modMovView.txtCodigoArticulo1.setVisible(false);
+        this.modMovView.txtCodigoProveedor.setVisible(false);
         this.modMovView.txtCodigoPersona.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
-                cargaPersona();
+                if (!modMovView.txtCodigoPersona.getText().isEmpty()) {
+                    cargaPersona();
+                }
+
             }
         });
 
-        //this.modMovView.txtCodigoProveedor.getDocument().addDocumentListener(this);
         this.modMovView.txtCodigoArticulo.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
-                cargaArticulo();
+                if (!modMovView.txtCodigoArticulo.getText().isEmpty()) {
+                    cargaArticulo();
+                }
             }
         });
 
         this.modMovView.txtCodigoProveedor.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
-                cargaProveedor();
+                if (!modMovView.txtCodigoProveedor.getText().isEmpty()) {
+                    cargaProveedor();
+                }
             }
         });
     }
@@ -192,7 +199,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         Persona per = new Persona();
         Proveedor pro = new Proveedor();
         Articulo ar = new Articulo();
-        
+        Integer num = 1;
         Object fila[] = new Object[5];
         for (Object oAux : this.Movimientos) {
             Movimiento s = (Movimiento) oAux;
@@ -206,8 +213,8 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             } catch (SQLException ex) {
                 Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
-           
-            fila[0] = this.Movimientos.size();
+
+            fila[0] = num++;
             fila[1] = s.getCodigo();
             fila[2] = ar.getCodigo();
             fila[3] = ar.getNombre();
@@ -218,7 +225,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
     }
 
     private Integer isEmpty() {
-        if (!this.modMovView.rdIngreso.isSelected() && !this.modMovView.rdIngreso.isSelected() && !this.modMovView.rdDevolucion.isSelected()) {
+        if (!this.modMovView.rdIngreso.isSelected() && !this.modMovView.rdEgreso.isSelected() && !this.modMovView.rdDevolucion.isSelected()) {
             return 1;
         }
         if (this.modMovView.txtArticulo.getText().isEmpty()) {
@@ -244,15 +251,43 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
 
     public Integer radioValor() {
         if (this.modMovView.rdIngreso.isSelected()) {
-            return 1;
+            return 1; //Ingreso 
         }
         if (this.modMovView.rdEgreso.isSelected()) {
-            return 2;
+            return 2;//Egreso
         }
         if (this.modMovView.rdDevolucion.isSelected()) {
-            return 3;
+            return 3;//Devolucion
         }
         return null;
+    }
+
+    public void alarma(int opc) {
+        switch (opc) {
+            case 1:
+                JOptionPane.showMessageDialog(modMovView, "Debe seleccionar el tipo de movimiento", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(modMovView, "Debe seleccionar un articulo", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(modMovView, "Debe indicar la cantidad", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(modMovView, "Debe digitar un codigo para el movimiento", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 5:
+                JOptionPane.showMessageDialog(modMovView, "Debe seleccionar un proveedor", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 6:
+                JOptionPane.showMessageDialog(modMovView, "Debe indicar un responsable", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 7:
+                JOptionPane.showMessageDialog(modMovView, "Debe indicar un responsable", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                break;
+            default:
+                break;
+        }
     }
 
     public void cargaPersona() {
@@ -278,13 +313,24 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
 
     public void cargaProveedor() {
         Proveedor u = new Proveedor();
-        //String id = this.modMovView.txtCodigoProveedor.getText();
-        u.setIdProvedor(1);
+        Integer id = Integer.parseInt(this.modMovView.txtCodigoProveedor.getText());
+        u.setIdProvedor(id);
         try {
             u = proveedorBLModelo.obtenerPorId(u);
             modMovView.txtProveedor.setText(u.getNombre());
         } catch (SQLException ex) {
         }
+    }
+
+    public Integer contains(ArrayList<Movimiento> list, Movimiento mov) {
+        Integer index = 0;
+        for (Movimiento s : list) {
+            if (Objects.equals(s.getIdArticulo(), mov.getIdArticulo())) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 
     //-----------------------------------------------------
@@ -313,6 +359,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
 
         if (e.getSource() == this.modMovView.btAgregar) {
             if (isEmpty() == 0) {
+                Integer index;
                 Movimiento mov = new Movimiento();
                 Persona per = new Persona();
                 Proveedor pro = new Proveedor();
@@ -326,29 +373,36 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                 mov.setCodigo(modMovView.txtCodigoMov.getText());
 
                 try {
-                    if (this.isEmpty() != 5) {
+                    if (!this.modMovView.txtCodigoProveedor.getText().isEmpty()) {
                         pro.setIdProvedor(Integer.parseInt(this.modMovView.txtCodigoProveedor.getText()));
                         pro = proveedorBLModelo.obtenerPorId(pro);
                         mov.setIdProveedor(pro.getIdProvedor());
                     }
-                    if (this.isEmpty() != 2) {
+                    if (!this.modMovView.txtCodigoArticulo.getText().isEmpty()) {
                         ar.setCodigo(this.modMovView.txtCodigoArticulo.getText());
                         ar = articuloBLModelo.obtenerPorId(ar);
                         mov.setIdArticulo(ar.getIdarticulo());
                     }
-                    if (this.isEmpty() != 6 && this.isEmpty() != 7) {
-                        per.setIdpersona(Integer.parseInt(this.modMovView.txtCodigoPersona.getText()));
-                        per = personaBLModelo.obtenerPorId2(per);
+                    if (!this.modMovView.txtCodigoPersona.getText().isEmpty()) {
+                        per.setCedula(this.modMovView.txtCodigoPersona.getText());
+                        per = personaBLModelo.obtenerPorId(per);
                         mov.setIdPersona(per.getIdpersona());
                     }
+                    index = this.contains(Movimientos, mov);
 
-                    this.Movimientos.add(mov);
+                    if (index != -1) {
+                        Movimiento aux = this.Movimientos.get(index);
+                        aux.setCantidad(mov.getCantidad() + aux.getCantidad());
+                        this.Movimientos.set(index, aux);
+                    } else {
+                        this.Movimientos.add(mov);
+                    }
                     this.llenarTabla(this.modMovView.tbMovimiento);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(modMovView, "Faltan campos por rellenar", "Error al agregar", JOptionPane.ERROR_MESSAGE);
+                this.alarma(this.isEmpty());
             }
         }
 
@@ -359,7 +413,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                     movimientoBLModelo.insertar(mov);
                 }
             } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
             }
             this.clear();
         }
@@ -367,12 +421,12 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         if (e.getSource() == this.modMovView.btCancelar) {
             this.clear();
         }
-        
+
         if (e.getSource() == this.modMovView.btQuitar) {
             int fila = this.modMovView.tbMovimiento.getSelectedRow();
             if (fila != -1) {
                 Integer NumRem = Integer.parseInt(this.modMovView.tbMovimiento.getValueAt(fila, 0).toString());
-                this.Movimientos.remove(NumRem-1);
+                this.Movimientos.remove(NumRem - 1);
                 this.llenarTabla(modMovView.tbMovimiento);
             } else {
                 JOptionPane.showMessageDialog(modMovView, "No se ha seleccionado un movimeinto.", "Error", JOptionPane.ERROR_MESSAGE);

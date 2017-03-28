@@ -131,21 +131,30 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
         tbMovimiento.setAutoCreateRowSorter(true);
         tbMovimiento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "COD. ART", "ARTICULO", "CANTIDAD", "CODIGO MOVIMIENTO"
+                "No.", "Codigo", "Codigo Articulo", "Nombre", "Cantidad"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbMovimiento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbMovimiento.getTableHeader().setReorderingAllowed(false);
         spMovimiento.setViewportView(tbMovimiento);
 
