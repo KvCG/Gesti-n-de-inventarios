@@ -27,35 +27,24 @@ public class MovimientoDao implements IBaseDao<Movimiento> {
     @Override
     public void insertar(Movimiento obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into movimiento(persona,proveedor,articulo,tipo,cantidad,"
-                + "fecha) values (?,?,?,?,?,curdate())");
-
-        cs.setInt(1, obj.getIdPersona());
-        cs.setInt(2, obj.getIdProveedor());
-        cs.setInt(3, obj.getIdArticulo());
-        cs.setInt(4, obj.getTipo());
-        cs.setInt(5, obj.getCantidad());
+        CallableStatement cs = con.prepareCall("insert into movimiento(codigo,persona,proveedor,articulo,tipo,cantidad,"
+                + "fecha) values (?,?,?,?,?,?,curdate())");
+        cs.setString(1, obj.getCodigo());
+        cs.setInt(2, obj.getIdPersona());
+        cs.setInt(3, obj.getIdProveedor());
+        cs.setInt(4, obj.getIdArticulo());
+        cs.setInt(5, obj.getTipo());
+        cs.setInt(6, obj.getCantidad());
         cs.executeUpdate();
         con.close();
     }
 
     @Override
-    public void modificar(Movimiento obj) throws SQLException {// Se muede modificar un movimiento?
-//        Connection con = conexion.getConexion();
-//        CallableStatement cs = con.prepareCall("update movimiento set persona = ?, proveedor = ?,"
-//                + "articulo=?, tipo = ? where idMovimiento = ?");
-//        
-//        cs.setInt(1, obj.getIdPersona());
-//        cs.setInt(2, obj.getIdProveedor());
-//        cs.setInt(3, obj.getIdArticulo());
-//        cs.setInt(4, obj.getTipo());
-//        cs.executeUpdate();
-//        con.close();
+    public void modificar(Movimiento obj) throws SQLException {
     }
 
     @Override
-    public void eliminar(Movimiento obj) throws SQLException { //Se debe eliminar?
-
+    public void eliminar(Movimiento obj) throws SQLException { 
     }
 
     @Override
