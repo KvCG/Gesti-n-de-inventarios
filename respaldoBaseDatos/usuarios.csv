@@ -1,7 +1,5 @@
-"idusuario";"persona";"alias";"password";"rol"
-1;1;"guroja";"12345";1
-2;4;"carlos";"12345";1
-3;1;"guroja";"12345";1
-4;1;"guroja1";"123";1
-5;1;"guroja1";"123456";1
-6;9;"rita";"1";1
+"idproveedor";"nombre";"email";"telefono";"direccion";"estado"
+2;"Coca Cola";"cocacola@gmail.com";"22222288";"la uruca ";1
+3;"Laska";"info@embutadoslaska.com";"24387691";"coyol de alajuela";1
+4;"La Joya";"ventas@carnicoslajoya.com";"24433000";"villa bonita de Alajuela";1
+5;"Ideal";"info@embutidosideal.com";"24403446";"canoas de alajuela";1

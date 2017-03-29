@@ -108,6 +108,8 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                 }
             }
         });
+
+        this.readOnly(false);
     }
 
     public MovimientoBL getMovimientoBLModelo() {
@@ -290,6 +292,13 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         }
     }
 
+    public void readOnly(boolean value) { //Al agregar un movimiemto deshabilita los campos de proveedor, codigo, perosna
+        this.modMovView.txtProveedor.setEditable(value);
+        this.modMovView.txtPersona.setEditable(value);
+        this.modMovView.txtArticulo.setEditable(value);
+        //this.modMovView.txtCodigoMov.setEditable(value);
+    }
+
     public void cargaPersona() {
         Persona u = new Persona();
         u.setCedula(this.modMovView.txtCodigoPersona.getText());
@@ -397,7 +406,11 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                     } else {
                         this.Movimientos.add(mov);
                     }
+                    this.modMovView.txtCodigoMov.setEditable(false);
+                    this.modMovView.txtCantidad.setText(null);
+                    this.modMovView.txtArticulo.setText(null);
                     this.llenarTabla(this.modMovView.tbMovimiento);
+                    this.readOnly(false);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
                 }
@@ -407,19 +420,30 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         }
 
         if (e.getSource() == this.modMovView.btRealizar) {
-            try {
-                for (Object oAux : this.Movimientos) {
-                    Movimiento mov = (Movimiento) oAux;
-                    movimientoBLModelo.insertar(mov);
+            if (!this.Movimientos.isEmpty()) {
+                if (JOptionPane.showConfirmDialog(modMovView, "Esta seguro que desea realizar el movimiento") == 0) {
+                    try {
+                        for (Object oAux : this.Movimientos) {
+                            Movimiento mov = (Movimiento) oAux;
+                            movimientoBLModelo.insertar(mov);
+                            this.modMovView.txtCodigoMov.setEditable(true);
+                            this.clear();
+                        }
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(modMovView, "No se han ingresado los movimientos", "Error al realizar operación", JOptionPane.ERROR_MESSAGE);
             }
-            this.clear();
+
         }
 
         if (e.getSource() == this.modMovView.btCancelar) {
-            this.clear();
+            if (JOptionPane.showConfirmDialog(modMovView, "Si cancela perdera la información digitada") == 0) {
+                this.modMovView.txtCodigoMov.setEditable(true);
+                this.clear();
+            }
         }
 
         if (e.getSource() == this.modMovView.btQuitar) {

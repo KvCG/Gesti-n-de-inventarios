@@ -186,7 +186,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmMovimiento.setText("Movimientos");
         jmMovimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Movimientos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -355,6 +355,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         try {
+            
             if (this.Mod_Mov == false) {
                 int x = (this.jdpPrincipal.getWidth() / 2) - (this.vista.getWidth() / 2);
                 int y = (this.jdpPrincipal.getHeight() / 2) - (this.vista.getHeight() / 2);

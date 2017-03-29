@@ -110,6 +110,16 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
         jLabel6.setText("CANTIDAD:");
 
         txtCantidad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadActionPerformed(evt);
+            }
+        });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
 
         txtArticulo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
@@ -333,6 +343,16 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
     private void txtCodigoArticulo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoArticulo1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoArticulo1ActionPerformed
+
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        char c = evt.getKeyChar();
+
+        if(c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
