@@ -1,6 +1,3 @@
 "idarticulo";"codigo";"nombre";"descripcion";"cod_tipo_articulo";"precio_venta";"cantidad";"bodega";"punto_de_pedido";"estado"
-1;"SALC";"Salchichon";"Embutido";1;1000.0;0;1;5;1
-2;"QUE";"Queso";"Queso";1;1000.0;0;1;5;1
-3;"CARN";"Carne";"Roja";1;1000.0;0;1;5;1
-4;"CAJ";"Cajas";"Nuemro 23";1;1000.0;0;1;5;1
-8;"1";"cajas";"caja 9";1;15.0;10;1;5000;1
+5;"EMB01";"Jamon";"Joyas Spam";1;2350.0;100;0;25;1
+6;"s";"Jamon";"Joyas Spam";1;2350.0;100;0;25;1

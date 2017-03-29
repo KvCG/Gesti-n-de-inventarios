@@ -1,5 +1,4 @@
-"idproveedor";"nombre";"email";"telefono";"direccion"
-2;"22222288";"cocacola@gmail.com";"22222288";"la uruca "
-3;"24387691";"info@embutadoslaska.com";"24387691";"coyol de alajuela"
-4;"24433000";"ventas@carnicoslajoya.com";"24433000";"villa bonita de Alajuela"
-5;"24403446";"info@embutidosideal.com";"24403446";"canoas de alajuela"
+"idproveedor";"nombre";"email";"telefono";"direccion";"estado"
+1;"Embutidos la Joya";"ventas@lajoya.com";"24435421";"Barrio San Jose de Alajuela";1
+11;"Embutidos los patitos";"embutidoslospatitos@gmail.com";"22222222";"kevin el de san ra";0
+12;"Embutidos los patitos";"embutidoslospatitos@gmail.com";"22222222";"San Jose De alajuela";1
