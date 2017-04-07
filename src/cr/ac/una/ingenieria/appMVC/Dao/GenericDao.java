@@ -8,6 +8,7 @@ package cr.ac.una.ingenieria.appMVC.Dao;
 import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
 //import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
 
@@ -58,6 +59,9 @@ public class GenericDao {
         if(obj instanceof TipoArticulo){
             iBaseDato = new TipoArticuloDao();
         }
+        if(obj instanceof Bodega){
+            iBaseDato = new BodegaDao();
+        }
 
         iBaseDato.insertar(obj);
     }
@@ -89,6 +93,9 @@ public class GenericDao {
         if(obj instanceof TipoArticulo){
             iBaseDato = new TipoArticuloDao();
         }
+        if(obj instanceof Bodega){
+            iBaseDato = new BodegaDao();
+        }
         iBaseDato.modificar(obj);
     }
 
@@ -115,6 +122,9 @@ public class GenericDao {
         }
         if(obj instanceof TipoArticulo){
             iBaseDato = new TipoArticuloDao();
+        }
+        if(obj instanceof Bodega){
+            iBaseDato = new BodegaDao();
         }
 //        if(obj instanceof ArticuloProveedor){
 //           // iBaseDato = new ArticuloProveedorDao();
@@ -147,6 +157,9 @@ public class GenericDao {
         if(obj instanceof TipoArticulo){
             iBaseDato = new TipoArticuloDao();
         }
+        if(obj instanceof Bodega){
+            iBaseDato = new BodegaDao();
+        }
 //        if(obj instanceof ArticuloProveedor){
 //            //iBaseDato = new ArticuloProveedorDao();
 //        }
@@ -171,6 +184,9 @@ public class GenericDao {
         }
         if(obj instanceof TipoArticulo){
             iBaseDato = new TipoArticuloDao();
+        }
+        if(obj instanceof Bodega){
+            iBaseDato = new BodegaDao();
         }
 //        if(obj instanceof ArticuloProveedor){
 //            //iBaseDato = new ArticuloProveedorDao();
@@ -203,6 +219,9 @@ public class GenericDao {
         if(obj instanceof TipoArticulo){
             iBaseDato = new TipoArticuloDao();
         }
+        if(obj instanceof Bodega){
+            iBaseDato = new BodegaDao();
+        }
 //        if(obj instanceof ArticuloProveedor){
 //           // iBaseDato = new ArticuloProveedorDao();
 //        }
@@ -234,6 +253,9 @@ public class GenericDao {
         }
         if(obj instanceof TipoArticulo){
             iBaseDato = new TipoArticuloDao();
+        }
+        if(obj instanceof Bodega){
+            iBaseDato = new BodegaDao();
         }
 //        if(obj instanceof ArticuloProveedor){
 //          //  iBaseDato = new ArticuloProveedorDao();

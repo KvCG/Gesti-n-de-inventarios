@@ -1,12 +1,14 @@
 package cr.ac.una.ingenieria.appMVC.Vista;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.BodegaBL;
 import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
+import cr.ac.una.ingenieria.appMVC.Controlador.BodegaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.MovimientoControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.ProveedorControlador;
@@ -31,7 +33,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     Modulo_Registo_Usuario Mod_Reg_UsuView;
     Modulo_Proveedores Mod_ProveView;
     MantPersonaBuscar mantPersonaBView;
-//    Modulo_Bodega Mod_BodegaView;
+    Modulo_Bodega Mod_BodegaView;
     Modulo_TipoArticulo Mod_TipoArticuloView;
 
     //constructor       
@@ -83,6 +85,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
         proveeControl.getMantProveedorView();
         
+        //para la ventana de bodega
+        this.Mod_BodegaView = new Modulo_Bodega();
+        BodegaBL BodBL = new BodegaBL();
+        BodegaControlador bodegaControl = new BodegaControlador(Mod_BodegaView, BodBL);
+        bodegaControl.getModBodegaView();
+        
         //para la ventana de tipo articulo
         this.Mod_TipoArticuloView = new Modulo_TipoArticulo();
         TipoArticuloBL tipoArtBL = new TipoArticuloBL();
@@ -118,7 +126,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmMovimiento = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuHerramientas = new javax.swing.JMenu();
-        jMenuItem_Bodiga = new javax.swing.JMenuItem();
+        jMenuItem_Bodega = new javax.swing.JMenuItem();
         jMenuItem_TipoArticulo = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
         ReportesArticulos = new javax.swing.JMenu();
@@ -217,16 +225,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuHerramientas.setText("Herramientas");
         jMenuHerramientas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        jMenuItem_Bodiga.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        jMenuItem_Bodiga.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuItem_Bodiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Bodega01.png"))); // NOI18N
-        jMenuItem_Bodiga.setText("Agregar Bodega");
-        jMenuItem_Bodiga.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Bodega.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItem_Bodega.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Bodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Bodega01.png"))); // NOI18N
+        jMenuItem_Bodega.setText("Agregar Bodega");
+        jMenuItem_Bodega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem_BodigaActionPerformed(evt);
+                jMenuItem_BodegaActionPerformed(evt);
             }
         });
-        jMenuHerramientas.add(jMenuItem_Bodiga);
+        jMenuHerramientas.add(jMenuItem_Bodega);
 
         jMenuItem_TipoArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem_TipoArticulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -421,9 +429,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem_BodigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BodigaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem_BodigaActionPerformed
+    private void jMenuItem_BodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BodegaActionPerformed
+            try {
+            if(this.Mod_Bod == false){
+                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_BodegaView.getWidth() / 2);
+                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_BodegaView.getHeight() / 2);                
+                this.Mod_BodegaView.setLocation(x, y);
+                this.jdpPrincipal.add(this.Mod_BodegaView);
+                this.jdpPrincipal.updateUI();
+                this.jdpPrincipal.repaint();
+                this.Mod_BodegaView.show();
+                this.Mod_Bod = true;
+            }
+            else{
+                this.Mod_BodegaView.show();
+                this.Mod_BodegaView.toFront();
+                this.Mod_Bod = false;               
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jMenuItem_BodegaActionPerformed
 
     private void jMenuItem_TipoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TipoArticuloActionPerformed
         try {
@@ -495,7 +520,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem_Bodiga;
+    private javax.swing.JMenuItem jMenuItem_Bodega;
     private javax.swing.JMenuItem jMenuItem_TipoArticulo;
     private javax.swing.JMenu jMenuMantenimiento;
     public javax.swing.JMenuItem jMenuProveedores;

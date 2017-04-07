@@ -44,17 +44,17 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
         jtabla_BuscarBodega.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jtabla_BuscarBodega.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "ID", "TIPO", "ESTADO"
+                "ID", "TIPO", "NOMBRE", "ESTADO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -62,7 +62,6 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
             }
         });
         jtabla_BuscarBodega.setFocusable(false);
-        jtabla_BuscarBodega.getTableHeader().setReorderingAllowed(false);
         jtabla_BuscarBodega.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtabla_BuscarBodegaMouseClicked(evt);
