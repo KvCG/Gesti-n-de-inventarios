@@ -47,7 +47,6 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
         });
 
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/buscar.png"))); // NOI18N
-        btBuscar.setText("Buscar");
 
         jTBuscarArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,7 +88,7 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btBuscar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)

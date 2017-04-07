@@ -33,41 +33,38 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                               <Component id="lbCodigo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="txtCodigo" min="-2" pref="110" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lbCantidad" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="TxtCantidad" min="-2" pref="109" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lbBodega" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lbTipo" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                                  </Group>
+                              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lbBodega" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbTipo" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="cbBodega" max="32767" attributes="0"/>
                                   <Component id="cbTipo" min="-2" pref="109" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="lbCantidad" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="TxtCantidad" min="-2" pref="109" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbPrecio" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbPuntoPedido" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNombre" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbPrecio" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbPuntoPedido" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -79,15 +76,15 @@
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="btInsertar" max="32767" attributes="0"/>
+                      <Component id="btInsertar" pref="147" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="btModificar" max="32767" attributes="0"/>
+                      <Component id="btModificar" pref="131" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="btBuscar" max="32767" attributes="0"/>
+                      <Component id="btBuscar" pref="77" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="btCancelar" max="32767" attributes="0"/>
+                      <Component id="btCancelar" pref="155" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                      <Component id="btEliminar" max="32767" attributes="0"/>
+                      <Component id="btEliminar" pref="149" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -138,7 +135,7 @@
                   <Component id="btCancelar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                   <Component id="btEliminar" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,7 +146,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="NOMBRE"/>
+        <Property name="text" type="java.lang.String" value="NOMBRE:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TxtPrecio">
@@ -183,7 +180,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="MINIMO"/>
+        <Property name="text" type="java.lang.String" value="MINIMO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDescripcion">
@@ -217,7 +214,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="DESRIPCION"/>
+        <Property name="text" type="java.lang.String" value="DESRIPCION:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbTipo">
@@ -225,7 +222,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="TIPO"/>
+        <Property name="text" type="java.lang.String" value="TIPO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbBodega">
@@ -233,7 +230,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="BODEGA"/>
+        <Property name="text" type="java.lang.String" value="BODEGA:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbTipo">
@@ -268,7 +265,6 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="BUSCAR"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
@@ -302,7 +298,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="CODIGO"/>
+        <Property name="text" type="java.lang.String" value="CODIGO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbCantidad">
@@ -310,7 +306,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="CANTIDAD"/>
+        <Property name="text" type="java.lang.String" value="CANTIDAD:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TxtCantidad">
@@ -344,7 +340,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="PRECIO"/>
+        <Property name="text" type="java.lang.String" value="PRECIO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btInsertar">

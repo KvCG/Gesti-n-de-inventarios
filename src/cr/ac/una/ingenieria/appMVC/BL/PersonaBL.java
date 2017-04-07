@@ -56,4 +56,9 @@ public class PersonaBL implements IBaseBL<Persona>{
     public ArrayList<Persona> obtenerConWhere(Persona obj, String where ) throws SQLException {
         return this.peDao.obtenerConWhere(obj, where);
     } 
+
+    @Override
+    public Integer obtenerConsecutivo() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -77,6 +77,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         buttonGroup.add(this.modMovView.rdIngreso);
         buttonGroup.add(this.modMovView.rdEgreso);
 
+        this.modMovView.txtCodigoMov.setEditable(false);
         this.modMovView.txtCodigoPersona.setVisible(false);
         this.modMovView.txtCodigoArticulo.setVisible(false);
         this.modMovView.txtCodigoArticulo1.setVisible(false);
@@ -86,6 +87,11 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             public void caretUpdate(CaretEvent e) {
                 if (!modMovView.txtCodigoPersona.getText().isEmpty()) {
                     cargaPersona();
+                    try {
+                        modMovView.txtCodigoMov.setText("MOV" + movimientoBLModelo.obtenerConsecutivo().toString());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
 
             }
@@ -96,6 +102,11 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             public void caretUpdate(CaretEvent e) {
                 if (!modMovView.txtCodigoArticulo.getText().isEmpty()) {
                     cargaArticulo();
+                    try {
+                        modMovView.txtCodigoMov.setText("MOV" + movimientoBLModelo.obtenerConsecutivo().toString());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
@@ -105,6 +116,11 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             public void caretUpdate(CaretEvent e) {
                 if (!modMovView.txtCodigoProveedor.getText().isEmpty()) {
                     cargaProveedor();
+                    try {
+                        modMovView.txtCodigoMov.setText("MOV" + movimientoBLModelo.obtenerConsecutivo().toString());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MovimientoControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
@@ -183,6 +199,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         this.modMovView.txtCodigoMov.setText(null);
         this.modMovView.txtPersona.setText(null);
         this.modMovView.txtProveedor.setText(null);
+        this.modMovView.txtStock.setText(null);
         this.modMovView.rdDevolucion.setSelected(false);
         this.modMovView.rdIngreso.setSelected(false);
         this.modMovView.rdEgreso.setSelected(false);
@@ -296,6 +313,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         this.modMovView.txtProveedor.setEditable(value);
         this.modMovView.txtPersona.setEditable(value);
         this.modMovView.txtArticulo.setEditable(value);
+        this.modMovView.txtStock.setEditable(value);
         //this.modMovView.txtCodigoMov.setEditable(value);
     }
 
@@ -316,6 +334,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             u = articuloBLModelo.obtenerPorId(u);
             modMovView.txtArticulo.setText(u.getCodigo() + " " + u.getNombre());
             modMovView.txtCodigoArticulo1.setText(u.getIdarticulo().toString());
+            modMovView.txtStock.setText(u.getCantidad().toString());
         } catch (SQLException ex) {
         }
     }
@@ -398,19 +417,25 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                         mov.setIdPersona(per.getIdpersona());
                     }
                     index = this.contains(Movimientos, mov);
-
-                    if (index != -1) {
-                        Movimiento aux = this.Movimientos.get(index);
-                        aux.setCantidad(mov.getCantidad() + aux.getCantidad());
-                        this.Movimientos.set(index, aux);
+                    if (modMovView.rdEgreso.isSelected()
+                            && (Integer.parseInt(modMovView.txtCantidad.getText()) > Integer.parseInt(modMovView.txtStock.getText()))) {
+                        JOptionPane.showMessageDialog(null, "Movimiento Invalido: " + "La cantidad de salida sobrepasa la cantidad en existencias", null, JOptionPane.ERROR_MESSAGE);
+                        this.modMovView.txtCantidad.setText(null);
                     } else {
-                        this.Movimientos.add(mov);
+                        if (index != -1) {
+                            Movimiento aux = this.Movimientos.get(index);
+                            aux.setCantidad(mov.getCantidad() + aux.getCantidad());
+                            this.Movimientos.set(index, aux);
+                        } else {
+                            this.Movimientos.add(mov);
+                        }
+                        this.modMovView.txtCodigoMov.setEditable(false);
+                        this.modMovView.txtCantidad.setText(null);
+                        this.modMovView.txtArticulo.setText(null);
+                        this.modMovView.txtStock.setText(null);
+                        this.llenarTabla(this.modMovView.tbMovimiento);
+                        this.readOnly(false);
                     }
-                    this.modMovView.txtCodigoMov.setEditable(false);
-                    this.modMovView.txtCantidad.setText(null);
-                    this.modMovView.txtArticulo.setText(null);
-                    this.llenarTabla(this.modMovView.tbMovimiento);
-                    this.readOnly(false);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
                 }
@@ -426,9 +451,8 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                         for (Object oAux : this.Movimientos) {
                             Movimiento mov = (Movimiento) oAux;
                             movimientoBLModelo.insertar(mov);
-                            this.modMovView.txtCodigoMov.setEditable(true);
-                            this.clear();
                         }
+                        this.clear();
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
                     }
@@ -441,7 +465,6 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
 
         if (e.getSource() == this.modMovView.btCancelar) {
             if (JOptionPane.showConfirmDialog(modMovView, "Si cancela perdera la información digitada") == 0) {
-                this.modMovView.txtCodigoMov.setEditable(true);
                 this.clear();
             }
         }

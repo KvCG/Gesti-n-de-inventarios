@@ -216,4 +216,9 @@ public class ArticuloDao implements IBaseDao<Articulo> {
         con.close();
         return l;
     }
+
+    @Override
+    public Integer obtenerConsecutivo() throws SQLException {
+        return 0; //To change body of generated methods, choose Tools | Templates.
+    }
 }

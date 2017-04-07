@@ -227,7 +227,6 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="BUSCAR"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

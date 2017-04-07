@@ -174,6 +174,11 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
         con.close();
         return l;
     }
+
+    @Override
+    public Integer obtenerConsecutivo() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
 

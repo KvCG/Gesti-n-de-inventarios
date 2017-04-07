@@ -101,7 +101,6 @@ public class Modulo_Proveedores extends javax.swing.JInternalFrame {
 
         btBuscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"))); // NOI18N
-        btBuscar.setText("BUSCAR");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarActionPerformed(evt);

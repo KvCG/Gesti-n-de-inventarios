@@ -61,4 +61,6 @@ public interface IBaseDao<T> {
      * @throws SQLException
      */
     public ArrayList<T> obtenerConWhere(String where) throws SQLException;
+    
+    public Integer obtenerConsecutivo() throws SQLException;
 }

@@ -77,7 +77,6 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
 
         btBuscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"))); // NOI18N
-        btBuscar.setText("BUSCAR");
 
         btCancelar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cancelar.png"))); // NOI18N

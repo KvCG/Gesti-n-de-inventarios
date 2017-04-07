@@ -60,7 +60,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(750, 290));
 
         lbNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbNombre.setText("NOMBRE");
+        lbNombre.setText("NOMBRE:");
 
         TxtPrecio.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         TxtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -77,7 +77,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         });
 
         lbPuntoPedido.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbPuntoPedido.setText("MINIMO");
+        lbPuntoPedido.setText("MINIMO:");
 
         txtDescripcion.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -94,13 +94,13 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel3.setText("DESRIPCION");
+        jLabel3.setText("DESRIPCION:");
 
         lbTipo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbTipo.setText("TIPO");
+        lbTipo.setText("TIPO:");
 
         lbBodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbBodega.setText("BODEGA");
+        lbBodega.setText("BODEGA:");
 
         cbTipo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         cbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enlatados", "Embutidos", "Cartones", "Congelados", "Quesos", "Otros" }));
@@ -112,7 +112,6 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
 
         btBuscar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"))); // NOI18N
-        btBuscar.setText("BUSCAR");
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarActionPerformed(evt);
@@ -128,10 +127,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         });
 
         lbCodigo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbCodigo.setText("CODIGO");
+        lbCodigo.setText("CODIGO:");
 
         lbCantidad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbCantidad.setText("CANTIDAD");
+        lbCantidad.setText("CANTIDAD:");
 
         TxtCantidad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         TxtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -148,7 +147,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         });
 
         lbPrecio.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbPrecio.setText("PRECIO");
+        lbPrecio.setText("PRECIO:");
 
         btInsertar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Guardar 00.png"))); // NOI18N
@@ -181,33 +180,32 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
                                 .addComponent(lbCodigo)
-                                .addGap(32, 32, 32)
-                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbCantidad)
                                 .addGap(18, 18, 18)
-                                .addComponent(TxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lbBodega)
-                                        .addGap(33, 33, 33))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lbTipo)
-                                        .addGap(58, 58, 58)))
+                                .addGap(80, 80, 80)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbBodega)
+                                    .addComponent(lbTipo))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cbBodega, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(lbCantidad)
+                                .addGap(18, 18, 18)
+                                .addComponent(TxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(lbNombre)
-                            .addComponent(lbPrecio)
-                            .addComponent(lbPuntoPedido))
+                            .addComponent(lbNombre, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbPrecio, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbPuntoPedido, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPuntoPedido)
@@ -216,15 +214,15 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                             .addComponent(txtNombre))
                         .addGap(78, 78, 78))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,7 +263,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                     .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

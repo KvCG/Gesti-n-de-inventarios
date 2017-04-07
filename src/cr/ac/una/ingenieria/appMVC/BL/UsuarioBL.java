@@ -92,5 +92,10 @@ public class UsuarioBL implements IBaseBL<Usuario> {
     public Usuario obtenerPorId2(Usuario obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Integer obtenerConsecutivo() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

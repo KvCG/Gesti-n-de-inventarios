@@ -218,4 +218,27 @@ public class GenericDao {
 //        }
         return iBaseDato.obtenerConWhere(where);
     }
+    
+    public Integer obtenerConsecutivo(Object obj) throws SQLException {
+//        if (obj instanceof Persona) {
+//            iBaseDato = new PersonaDao();
+//        }
+//        if (obj instanceof Usuario) {
+//            iBaseDato = new UsuarioDao();
+//        }
+//        if (obj instanceof Proveedor) {
+//            iBaseDato = new ProveedorDao();
+//        }
+//        if (obj instanceof Articulo) {
+//            iBaseDato = new ArticuloDao();
+//        }
+//        if (obj instanceof Movimiento) {
+            iBaseDato = new MovimientoDao();
+        //}
+//        if(obj instanceof ArticuloProveedor){
+//          //  iBaseDato = new ArticuloProveedorDao();
+//        }
+        return iBaseDato.obtenerConsecutivo();
+    }
+    
 }

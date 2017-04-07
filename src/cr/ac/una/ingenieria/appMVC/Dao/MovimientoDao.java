@@ -9,6 +9,7 @@ import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class MovimientoDao implements IBaseDao<Movimiento> {
     }
 
     @Override
-    public void eliminar(Movimiento obj) throws SQLException { 
+    public void eliminar(Movimiento obj) throws SQLException {
     }
 
     @Override
@@ -64,7 +65,21 @@ public class MovimientoDao implements IBaseDao<Movimiento> {
 
     @Override
     public ArrayList<Movimiento> obtenerConWhere(String where) throws SQLException {
-        return null; 
+        return null;
+    }
+
+    @Override
+    public Integer obtenerConsecutivo() throws SQLException {
+        Connection con = conexion.getConexion();
+        CallableStatement cs = con.prepareCall("select GroupAmount, count(*) GroupAmountTimes from "
+                + "(select count(codigo) as GroupAmount from"
+                + " movimiento group by codigo) as SubQuery;");
+        ResultSet result = cs.executeQuery();
+        if (result.next()) {
+            return result.getInt("GroupAmountTimes");
+        }
+        con.close();
+        return -1;
     }
 
 }

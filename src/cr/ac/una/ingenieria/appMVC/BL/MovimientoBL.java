@@ -17,10 +17,8 @@ import java.util.ArrayList;
 public class MovimientoBL implements IBaseBL<Movimiento> {
 
     private GenericDao aDao;
-    
-  
 
-    public MovimientoBL( ) {
+    public MovimientoBL() {
         this.aDao = new GenericDao();
     }
 
@@ -41,17 +39,22 @@ public class MovimientoBL implements IBaseBL<Movimiento> {
 
     @Override
     public Movimiento obtenerPorId(Movimiento obj) throws SQLException {
-        return (Movimiento)this.aDao.obtenerPorId(obj);
+        return (Movimiento) this.aDao.obtenerPorId(obj);
     }
 
     @Override
     public Movimiento obtenerPorId2(Movimiento obj) throws SQLException {
-        return (Movimiento)this.aDao.obtenerPorId2(obj);
+        return (Movimiento) this.aDao.obtenerPorId2(obj);
     }
 
     @Override
     public ArrayList<Movimiento> obtenerTodos() throws SQLException {
         return this.aDao.obtenerTodos(new Movimiento());
+    }
+
+    @Override
+    public Integer obtenerConsecutivo() throws SQLException {
+        return this.aDao.obtenerConsecutivo(this);
     }
 
 }

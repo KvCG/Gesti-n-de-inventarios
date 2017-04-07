@@ -146,4 +146,9 @@ public class PersonaDao implements IBaseDao<Persona> {
         return l;
     }
 
+    @Override
+    public Integer obtenerConsecutivo() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
