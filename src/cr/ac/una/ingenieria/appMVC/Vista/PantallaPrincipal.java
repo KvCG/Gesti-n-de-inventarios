@@ -4,11 +4,13 @@ import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
+import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.MovimientoControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.ProveedorControlador;
+import cr.ac.una.ingenieria.appMVC.Controlador.TipoArticuloControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.UsuarioControlador;
 
 public class PantallaPrincipal extends javax.swing.JFrame {
@@ -19,6 +21,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     boolean Mod_Reg_Usu = false;
     boolean Mod_Pro = false;
     boolean Mod_Mov = false;
+    boolean Mod_Bod = false;
+    boolean Mod_Tip_Art = false;
 
     //pantallas
     Modulo_Moviento vista;
@@ -27,6 +31,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     Modulo_Registo_Usuario Mod_Reg_UsuView;
     Modulo_Proveedores Mod_ProveView;
     MantPersonaBuscar mantPersonaBView;
+//    Modulo_Bodega Mod_BodegaView;
+    Modulo_TipoArticulo Mod_TipoArticuloView;
 
     //constructor       
     public PantallaPrincipal() {
@@ -77,6 +83,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
         proveeControl.getMantProveedorView();
         
+        //para la ventana de tipo articulo
+        this.Mod_TipoArticuloView = new Modulo_TipoArticulo();
+        TipoArticuloBL tipoArtBL = new TipoArticuloBL();
+        TipoArticuloControlador tipoArticuloControl = new TipoArticuloControlador(Mod_TipoArticuloView, tipoArtBL);
+        tipoArticuloControl.getMod_TipoArtView();
         
         vista = new Modulo_Moviento();
         MantArticuloBuscar mantArticuloBView = new MantArticuloBuscar();
@@ -106,6 +117,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmiUsuario = new javax.swing.JMenuItem();
         jmMovimiento = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuHerramientas = new javax.swing.JMenu();
+        jMenuItem_Bodiga = new javax.swing.JMenuItem();
+        jMenuItem_TipoArticulo = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
         ReportesArticulos = new javax.swing.JMenu();
         ReporteArticulos = new javax.swing.JMenuItem();
@@ -186,6 +200,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmMovimiento.setText("Movimientos");
         jmMovimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Movimiento.png"))); // NOI18N
         jMenuItem2.setText("Movimientos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,6 +212,34 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jmMovimiento.add(jMenuItem2);
 
         jMenuBar1.add(jmMovimiento);
+
+        jMenuHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Herramientas.png"))); // NOI18N
+        jMenuHerramientas.setText("Herramientas");
+        jMenuHerramientas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+
+        jMenuItem_Bodiga.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItem_Bodiga.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Bodiga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Bodega01.png"))); // NOI18N
+        jMenuItem_Bodiga.setText("Agregar Bodega");
+        jMenuItem_Bodiga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_BodigaActionPerformed(evt);
+            }
+        });
+        jMenuHerramientas.add(jMenuItem_Bodiga);
+
+        jMenuItem_TipoArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        jMenuItem_TipoArticulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_TipoArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Lista01.png"))); // NOI18N
+        jMenuItem_TipoArticulo.setText("Agregar Tipo Articulo");
+        jMenuItem_TipoArticulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_TipoArticuloActionPerformed(evt);
+            }
+        });
+        jMenuHerramientas.add(jMenuItem_TipoArticulo);
+
+        jMenuBar1.add(jMenuHerramientas);
 
         jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 02.png"))); // NOI18N
         jMenuEstadisticas.setText("Reportes");
@@ -258,7 +303,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -376,6 +421,31 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem_BodigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BodigaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem_BodigaActionPerformed
+
+    private void jMenuItem_TipoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TipoArticuloActionPerformed
+        try {
+            if(this.Mod_Tip_Art == false){
+                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_TipoArticuloView.getWidth() / 2);
+                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_TipoArticuloView.getHeight() / 2);                
+                this.Mod_TipoArticuloView.setLocation(x, y);
+                this.jdpPrincipal.add(this.Mod_TipoArticuloView);
+                this.jdpPrincipal.updateUI();
+                this.jdpPrincipal.repaint();
+                this.Mod_TipoArticuloView.show();
+                this.Mod_Tip_Art = true;
+            }else{
+                this.Mod_TipoArticuloView.show();
+                this.Mod_TipoArticuloView.toFront();
+                Mod_Tip_Art = true;
+            }            
+        } catch (Exception e) {
+            System.out.println("no muestar");
+        }
+    }//GEN-LAST:event_jMenuItem_TipoArticuloActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -421,9 +491,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuArticulo;
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenu jMenuEstadisticas;
+    private javax.swing.JMenu jMenuHerramientas;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     public javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem_Bodiga;
+    private javax.swing.JMenuItem jMenuItem_TipoArticulo;
     private javax.swing.JMenu jMenuMantenimiento;
     public javax.swing.JMenuItem jMenuProveedores;
     private javax.swing.JDesktopPane jdpPrincipal;
