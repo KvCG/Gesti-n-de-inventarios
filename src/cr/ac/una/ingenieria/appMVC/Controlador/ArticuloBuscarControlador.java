@@ -130,7 +130,7 @@ public class ArticuloBuscarControlador implements ActionListener {
 
         Object fila[] = new Object[4];
 
-        String Sql = "where nombre like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'"
+        String Sql = "where nombredf like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'"
                 + " or codigo like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'";
 
         try {
