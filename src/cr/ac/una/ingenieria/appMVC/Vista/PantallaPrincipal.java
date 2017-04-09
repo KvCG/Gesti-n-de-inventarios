@@ -222,13 +222,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jmMovimiento);
 
         jMenuHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Herramientas.png"))); // NOI18N
-        jMenuHerramientas.setText("Herramientas");
+        jMenuHerramientas.setText("Mantenimiento");
         jMenuHerramientas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         jMenuItem_Bodega.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         jMenuItem_Bodega.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuItem_Bodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Bodega01.png"))); // NOI18N
-        jMenuItem_Bodega.setText("Agregar Bodega");
+        jMenuItem_Bodega.setText("Bodega");
         jMenuItem_Bodega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem_BodegaActionPerformed(evt);
@@ -239,7 +239,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuItem_TipoArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem_TipoArticulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jMenuItem_TipoArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Lista01.png"))); // NOI18N
-        jMenuItem_TipoArticulo.setText("Agregar Tipo Articulo");
+        jMenuItem_TipoArticulo.setText("Tipo Articulo");
         jMenuItem_TipoArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem_TipoArticuloActionPerformed(evt);

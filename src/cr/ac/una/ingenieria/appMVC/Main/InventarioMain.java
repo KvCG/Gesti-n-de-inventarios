@@ -6,6 +6,7 @@
 package cr.ac.una.ingenieria.appMVC.Main;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.BodegaBL;
 import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
@@ -13,6 +14,7 @@ import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Controlador.MovimientoControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.ValidarAcceso;
+import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
 
 
 import cr.ac.una.ingenieria.appMVC.Domain.Persona;
@@ -32,6 +34,16 @@ import cr.ac.una.ingenieria.appMVC.Vista.SolicitudUsuarioPassword;
  */
 public class InventarioMain {
     public static void main(String[] args) {
+//        
+//        BodegaBL Bbl = new BodegaBL();
+//        try {
+//            for(Bodega b : Bbl.obtenerTodos()){
+//                System.out.println(b.getNombre());
+//            }
+//        } catch (Exception e) {
+//        }
+       
+        
         SolicitudUsuarioPassword solUsuarioPassword =new SolicitudUsuarioPassword();
         PantallaPrincipal pantPrinView = new PantallaPrincipal();
         SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();

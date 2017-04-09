@@ -1,19 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.BodegaBL;
+import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
+import cr.ac.una.ingenieria.appMVC.Domain.TipoArticulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -26,6 +28,11 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
 
     private Modulo_Inventario mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
+    private BodegaBL bodegaBL;
+    private TipoArticuloBL tipArtBL;
+
+    public ArticuloControlador() {
+    }
 
     public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
         this.mantArticuloView = mantArticuloView;
@@ -36,13 +43,15 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btCancelar.addActionListener(this);
         this.mantArticuloView.btEliminar.addActionListener(this);
         this.mantArticuloView.btModificar.addActionListener(this);
+        this.mantArticuloView.jcb_Bodega.addActionListener(this);
         this.mantArticuloView.btModificar.setEnabled(false);
         this.mantArticuloView.btEliminar.setEnabled(false);
         this.mantArticuloView.txtCodigoBuscar.setVisible(false);
         inicializarPantalla();
+        Cargar_jcbBodega(this.mantArticuloView.jcb_Bodega);
+        Cargar_jcbTipoArticulo(this.mantArticuloView.jcb_Tipo);
     }
 
-  
     public Modulo_Inventario getMantArticuloView() {
         return mantArticuloView;
     }
@@ -99,10 +108,28 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 a.setNombre(this.mantArticuloView.txtNombre.getText());
                 a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
                 a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
-                a.setTipo(this.mantArticuloView.cbTipo.getSelectedIndex());
                 a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
                 a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
-                a.setBodega(this.mantArticuloView.cbBodega.getSelectedIndex());
+
+                String bodega = this.mantArticuloView.jcb_Bodega.getSelectedItem().toString();
+                try {
+                    for (Bodega b : this.bodegaBL.obtenerTodos()) {
+                        if (b.getTipo().equals(bodega)) {
+                            a.setBodega(b.getIdBodega());
+                        }
+                    }
+                } catch (Exception eq) {
+                }
+
+                String tipArt = this.mantArticuloView.jcb_Tipo.getSelectedItem().toString();
+                try {
+                    for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
+                        if (t.getDescripcion().equals(tipArt)) {
+                            a.setTipo(t.getCodigo());
+                        }
+                    }
+                } catch (Exception eq) {
+                }
 
                 try {
                     this.ArticuloBLModelo.insertar(a);
@@ -158,10 +185,28 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     a.setNombre(this.mantArticuloView.txtNombre.getText());
                     a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
                     a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
-                    a.setTipo(this.mantArticuloView.cbTipo.getSelectedIndex());
                     a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
                     a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
-                    a.setBodega(this.mantArticuloView.cbBodega.getSelectedIndex());
+
+                    String bodega = this.mantArticuloView.jcb_Bodega.getSelectedItem().toString();
+                    try {
+                        for (Bodega b : this.bodegaBL.obtenerTodos()) {
+                            if (b.getTipo().equals(bodega)) {
+                                a.setBodega(b.getIdBodega());
+                            }
+                        }
+                    } catch (Exception eq) {
+                    }
+
+                    String tipArt = this.mantArticuloView.jcb_Tipo.getSelectedItem().toString();
+                    try {
+                        for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
+                            if (t.getDescripcion().equals(tipArt)) {
+                                a.setTipo(t.getCodigo());
+                            }
+                        }
+                    } catch (Exception eq) {
+                    }
                     this.ArticuloBLModelo.modificar(a);
                     this.clean();
                     this.mantArticuloView.btEliminar.setEnabled(false);
@@ -189,16 +234,17 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
 
         if (e.getSource() == this.mantArticuloView.btBuscar) {
             if (!mantArticuloView.txtCodigo.getText().isEmpty()) {
+                
                 MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
                 ArticuloBuscarControlador articuloBControlador;
-                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigoBuscar);
+                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, 
+                        ArticuloBLModelo, this.mantArticuloView.txtCodigoBuscar);
                 articuloBControlador.getArticuloBuscarView().setVisible(true);
                 this.mantArticuloView.btEliminar.setEnabled(true);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(mantArticuloView, "Debes digitar un codigo primero", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-
     }
 
     @Override
@@ -230,8 +276,23 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
                 this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
                 this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
-                this.mantArticuloView.cbBodega.setSelectedIndex(a.getBodega());
-                this.mantArticuloView.cbTipo.setSelectedIndex(a.getTipo());
+                
+                int bo = a.getBodega();
+                int ti = a.getTipo();
+                
+                for(Bodega b:this.bodegaBL.obtenerTodos()){
+                    if(b.getIdBodega() == bo){
+                        this.mantArticuloView.jcb_Bodega.setSelectedItem(b.getNombre().toString());
+                    }
+                }
+                
+                for(TipoArticulo t:this.tipArtBL.obtenerTodos()){
+                    if(t.getCodigo() == ti){
+                        this.mantArticuloView.jcb_Tipo.setSelectedItem(t.getDescripcion().toString());                        
+                    }
+                }
+                  
+                
                 this.mantArticuloView.btModificar.setEnabled(true);
                 this.mantArticuloView.txtCodigo.setEnabled(false);
             } catch (SQLException ex) {
@@ -239,6 +300,33 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+
+    public void Cargar_jcbBodega(JComboBox jcbBod) {
+        this.mantArticuloView.jcb_Bodega.removeAllItems();
+        DefaultComboBoxModel ModeloJcb = new DefaultComboBoxModel();
+        jcbBod.setModel(ModeloJcb);
+        this.bodegaBL = new BodegaBL();
+        try {
+            for (Bodega b : this.bodegaBL.obtenerTodos()) {
+                ModeloJcb.addElement(b.getTipo().toString());
+            }
+        } catch (Exception e) {
+        }
+
+    }//fin del cargar bodega
+
+    public void Cargar_jcbTipoArticulo(JComboBox jcbTipArt) {
+        this.mantArticuloView.jcb_Tipo.removeAllItems();
+        DefaultComboBoxModel Modelojcb = new DefaultComboBoxModel();
+        jcbTipArt.setModel(Modelojcb);
+        this.tipArtBL = new TipoArticuloBL();
+        try {
+            for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
+                Modelojcb.addElement(t.getDescripcion().toString());
+            }
+        } catch (Exception e) {
         }
     }
 }

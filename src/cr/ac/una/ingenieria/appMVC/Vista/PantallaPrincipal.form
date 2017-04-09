@@ -165,7 +165,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Herramientas.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Herramientas"/>
+            <Property name="text" type="java.lang.String" value="Mantenimiento"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="18" style="1"/>
             </Property>
@@ -182,7 +182,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Bodega01.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Agregar Bodega"/>
+                <Property name="text" type="java.lang.String" value="Bodega"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_BodegaActionPerformed"/>
@@ -199,7 +199,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Lista01.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Agregar Tipo Articulo"/>
+                <Property name="text" type="java.lang.String" value="Tipo Articulo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_TipoArticuloActionPerformed"/>
