@@ -45,9 +45,9 @@ public class InventarioMain {
        
         
         SolicitudUsuarioPassword solUsuarioPassword =new SolicitudUsuarioPassword();
-        PantallaPrincipal pantPrinView = new PantallaPrincipal();
+   
         SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
-        ValidarAcceso validar = new ValidarAcceso(pantPrinView, solUsePa);
+        ValidarAcceso validar = new ValidarAcceso(solUsePa);
         validar.getSolUsePa().setVisible(true);
 
 //        Modulo_Moviento vista = new Modulo_Moviento();

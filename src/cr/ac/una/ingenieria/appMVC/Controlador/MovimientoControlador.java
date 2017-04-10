@@ -124,6 +124,8 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                 }
             }
         });
+        
+       this.modMovView.txtCodigoPersona.setText(ValidarAcceso.getPerCurrent().getCedula());
 
         this.readOnly(false);
     }
