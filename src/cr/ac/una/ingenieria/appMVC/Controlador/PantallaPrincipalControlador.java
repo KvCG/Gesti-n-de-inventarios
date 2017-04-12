@@ -1,76 +1,83 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.BodegaBL;
+import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
+import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
-import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
-import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Usuario;
+import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.MantPersonaBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Bodega;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Moviento;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Proveedores;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Persona;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Registo_Usuario;
+import cr.ac.una.ingenieria.appMVC.Vista.Modulo_TipoArticulo;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
-import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-
 
 /**
  *
  * @author Kev
  */
-public class PantallaPrincipalControlador implements ActionListener{
+public class PantallaPrincipalControlador implements ActionListener {
+
     private PantallaPrincipal pantPrinView;
     private UsuarioBL usuarioBLModelo;
     private ProveedorBL proveedorBlModelo;
     private ArticuloBL articuloBlModelo;
     private PersonaBL personaBlModelo;
 
-    public PantallaPrincipalControlador(PantallaPrincipal pantPrinView, UsuarioBL usuarioBLModelo, ProveedorBL proveedorBlModelo,ArticuloBL articuloBlModelo,PersonaBL personaBlModelo) {
+    //control de pantalla
+    boolean Mod_Inv = false;
+    boolean Mod_Pro = false;    
+    boolean Mod_Reg_Per = false;    
+    boolean Mod_Reg_Usu = false;    
+    boolean Mod_Mov = false;   
+    boolean Mod_Bod = false;
+    boolean Mod_Tip_Art = false;
+
+    //pantallas
+    Modulo_Inventario Mante_ArticulosView;
+    Modulo_Proveedores Mod_ProveView;    
+    Modulo_Registo_Persona Mod_Reg_PerView;
+    Modulo_Registo_Usuario Mod_Reg_UsuView;
+    Modulo_Moviento vista;
+    Modulo_Bodega Mod_BodegaView;
+    Modulo_TipoArticulo Mod_TipoArticuloView;
+    MantPersonaBuscar mantPersonaBView;
+
+    public PantallaPrincipalControlador(PantallaPrincipal pantPrinView, UsuarioBL usuarioBLModelo, ProveedorBL proveedorBlModelo, ArticuloBL articuloBlModelo, PersonaBL personaBlModelo) {
         this.pantPrinView = pantPrinView;
         this.usuarioBLModelo = usuarioBLModelo;
         this.proveedorBlModelo = proveedorBlModelo;
         this.articuloBlModelo = articuloBlModelo;
         this.personaBlModelo = personaBlModelo;
-        this.pantPrinView.jMenuArticulo.addActionListener(this);
-        this.pantPrinView.jMenuProveedores.addActionListener(this);
-//        this.pantPrinView.jMenuUsuario.addActionListener(this);
-        this.pantPrinView.ReporteProveedores.addActionListener(this);
+
+        this.pantPrinView.jMenuItem_Articulo.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_Proveedores.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_Registro_Persona.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_Registro_Usuario.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_Movimientos.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_Bodega.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_TipoArticulo.addActionListener(this);//listo
+
+        this.pantPrinView.jMenuItem_ReporteArticulos_General.addActionListener(this);
+        this.pantPrinView.jMenuItem_ReporteArticulos_Minimo.addActionListener(this);
+        this.pantPrinView.jMenuItem_ReporteArticulos_Gravado.addActionListener(this);
+        this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);
+        this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);
+        this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);
+
 //        this.pantPrinView.ReporteUsuarios.addActionListener(this);
-        this.pantPrinView.ReporteArticulos.addActionListener(this);
-        this.pantPrinView.jmiArticulosMinimo.addActionListener(this);
-        
         inicializarPantalla();
     }
 
-    
-
-    
-    
-    
     public PantallaPrincipal getPantPrinView() {
         return pantPrinView;
     }
@@ -111,39 +118,189 @@ public class PantallaPrincipalControlador implements ActionListener{
         this.personaBlModelo = personaBlModelo;
     }
 
-
-    
     private void inicializarPantalla() {
         this.pantPrinView.setEnabled(true);
-    }
-    
+
+        //para la venta modulo inventario
+        this.Mante_ArticulosView = new Modulo_Inventario();
+        ArticuloBL ArtBL = new ArticuloBL();
+        ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView, ArtBL);
+        ArtControl.getMantArticuloView();
         
+        //para la venta modulo Modulo_proveedor
+        this.Mod_ProveView = new Modulo_Proveedores();
+        ProveedorBL proveBL = new ProveedorBL();
+        ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
+        proveeControl.getMantProveedorView();
+        
+        //para la venta modulo Modulo_Registo_Persona
+        this.Mod_Reg_PerView = new Modulo_Registo_Persona();
+        PersonaBL perBL = new PersonaBL();
+        PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
+        perControl.getMod_Reg_PersonaView();
+        
+        //para la venta modulo Modulo_Registo_Usuario
+        this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
+        UsuarioBL usuBL = new UsuarioBL();
+        this.mantPersonaBView = new MantPersonaBuscar();
+        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView, usuBL, perBL, Mod_Reg_PerView, mantPersonaBView);
+        UsuControl.getMantUsuarioview();
+        
+        //para la ventana de Movimiento
+        vista = new Modulo_Moviento();
+        MantArticuloBuscar mantArticuloBView = new MantArticuloBuscar();
+        MantPersonaBuscar mantPersonaBView = new MantPersonaBuscar();
+        MantProveedorBuscar mantProveedorBView = new MantProveedorBuscar();
+        MovimientoBL movimientoBLModelo = new MovimientoBL();
+//        ArticuloBL articuloBLModelo = new ArticuloBL();
+//        PersonaBL personaBLModelo = new PersonaBL();
+//        ProveedorBL proveedorBLModelo = new ProveedorBL();
+        MovimientoControlador con = new MovimientoControlador(movimientoBLModelo, vista, ArtBL,perBL, proveBL, mantArticuloBView, mantPersonaBView, mantProveedorBView);
+        con.getModMovView();
+
+        //para la ventana de bodega
+        this.Mod_BodegaView = new Modulo_Bodega();
+        BodegaBL BodBL = new BodegaBL();
+        BodegaControlador bodegaControl = new BodegaControlador(Mod_BodegaView, BodBL);
+        bodegaControl.getModBodegaView();
+        
+        //para la ventana de tipo articulo
+        this.Mod_TipoArticuloView = new Modulo_TipoArticulo();
+        TipoArticuloBL tipoArtBL = new TipoArticuloBL();
+        TipoArticuloControlador tipoArticuloControl = new TipoArticuloControlador(Mod_TipoArticuloView, tipoArtBL);
+        tipoArticuloControl.getMod_TipoArtView();
+        
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-//        if (e.getSource() == this.pantPrinView.jmiPersona) {
-//            Modulo_Registo_Persona mantPersonaView = new Modulo_Registo_Persona();
-//            mantPersonaView.setVisible(true);
-//            PersonaControlador perControlador;
-//            perControlador = new PersonaControlador(mantPersonaView, personaBlModelo);
-//            perControlador.getMod_Reg_PersonaView().setVisible(true);
-//        }
-        
-        if (e.getSource() == this.pantPrinView.jMenuProveedores) {
-            Modulo_Proveedores mantProveedoresView = new Modulo_Proveedores();
-            mantProveedoresView.setVisible(true);
-            ProveedorControlador provControlador;
-            provControlador = new ProveedorControlador(mantProveedoresView, proveedorBlModelo);
-            provControlador.getMantProveedorView().setVisible(true);
+        if (e.getSource() == this.pantPrinView.jMenuItem_Articulo) {
+            if (this.Mod_Inv == false) {
+                int x = (this.pantPrinView.jdpPrincipal.getWidth() / 2) - (this.Mante_ArticulosView.getWidth() / 2);
+                int y = (this.pantPrinView.jdpPrincipal.getHeight() / 2) - (this.Mante_ArticulosView.getHeight() / 2);
+                this.Mante_ArticulosView.setLocation(x, y);
+
+                this.pantPrinView.jdpPrincipal.add(this.Mante_ArticulosView);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.Mante_ArticulosView.show();
+                this.Mod_Inv = true;
+            } else {
+                this.Mante_ArticulosView.show();
+                this.Mante_ArticulosView.toFront();
+                this.Mod_Inv = false;
+            }
         }
         
-        if (e.getSource() == this.pantPrinView.jMenuArticulo) {
-            Modulo_Inventario mantArticuloView = new Modulo_Inventario();
-            Modulo_Proveedores mantProveedoresView = new Modulo_Proveedores();
-            mantArticuloView.setVisible(true);
-            ArticuloControlador artControlador;
-            artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo);
-            artControlador.getMantArticuloView().setVisible(true);
+        if(e.getSource() == this.pantPrinView.jMenuItem_Proveedores){
+            if (this.Mod_Pro == false) {
+                int x = (this.pantPrinView.jdpPrincipal.getWidth() / 2) - (this.Mod_ProveView.getWidth() / 2);
+                int y = (this.pantPrinView.jdpPrincipal.getHeight() / 2) - (this.Mod_ProveView.getHeight() / 2);
+                this.Mod_ProveView.setLocation(x, y);
+
+                this.pantPrinView.jdpPrincipal.add(this.Mod_ProveView);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.Mod_ProveView.show();
+                this.Mod_Pro = true;
+            } else {
+                this.Mod_ProveView.show();
+                this.Mod_ProveView.toFront();
+                this.Mod_Pro = false;
+            }
         }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_Registro_Persona){
+            if (this.Mod_Reg_Per == false) {
+                int x = (this.pantPrinView.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_PerView.getWidth() / 2);
+                int y = (this.pantPrinView.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_PerView.getHeight() / 2);
+                this.Mod_Reg_PerView.setLocation(x, y);
+
+                this.pantPrinView.jdpPrincipal.add(this.Mod_Reg_PerView);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.Mod_Reg_PerView.show();
+                this.Mod_Reg_Per = true;
+            } else {
+                this.Mod_Reg_PerView.show();
+                this.Mod_Reg_PerView.toFront();
+                this.Mod_Reg_Per = false;
+            }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_Registro_Usuario){
+            if (this.Mod_Reg_Usu == false) {
+                int x = (this.pantPrinView.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_UsuView.getWidth() / 2);
+                int y = (this.pantPrinView.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_UsuView.getHeight() / 2);
+                this.Mod_Reg_UsuView.setLocation(x, y);
+
+                this.pantPrinView.jdpPrincipal.add(this.Mod_Reg_UsuView);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.Mod_Reg_UsuView.show();
+                this.Mod_Reg_Usu = true;
+            } else {
+                this.Mod_Reg_UsuView.show();
+                this.Mod_Reg_UsuView.toFront();
+                this.Mod_Reg_Usu = false;
+            }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_Movimientos){
+            if (this.Mod_Mov == false) {
+                int x = (this.pantPrinView.jdpPrincipal.getWidth() / 2) - (this.vista.getWidth() / 2);
+                int y = (this.pantPrinView.jdpPrincipal.getHeight() / 2) - (this.vista.getHeight() / 2);
+                this.vista.setLocation(x, y);
+
+                this.pantPrinView.jdpPrincipal.add(this.vista);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.vista.show();
+                this.Mod_Mov = true;
+            } else {
+                this.vista.show();
+                this.vista.toFront();
+                this.Mod_Mov = false;
+            }
+        }
+        
+        if (e.getSource() == this.pantPrinView.jMenuItem_Bodega) {
+            if (this.Mod_Bod == false) {
+                int x = (this.pantPrinView.jdpPrincipal.getWidth() / 2) - (this.Mod_BodegaView.getWidth() / 2);
+                int y = (this.pantPrinView.jdpPrincipal.getHeight() / 2) - (this.Mod_BodegaView.getHeight() / 2);
+                this.Mod_BodegaView.setLocation(x, y);
+                this.pantPrinView.jdpPrincipal.add(this.Mod_BodegaView);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.Mod_BodegaView.show();
+                this.Mod_Bod = true;
+            } else {
+                this.Mod_BodegaView.show();
+                this.Mod_BodegaView.toFront();
+                this.Mod_Bod = false;
+            }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_TipoArticulo){
+            if(this.Mod_Tip_Art == false){
+                int x = (this.pantPrinView.jdpPrincipal.getWidth() / 2) - (this.Mod_TipoArticuloView.getWidth() / 2);
+                int y = (this.pantPrinView.jdpPrincipal.getHeight()/ 2) - (this.Mod_TipoArticuloView.getHeight() / 2);                
+                this.Mod_TipoArticuloView.setLocation(x, y);
+                this.pantPrinView.jdpPrincipal.add(this.Mod_TipoArticuloView);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.Mod_TipoArticuloView.show();
+                this.Mod_Tip_Art = true;
+            }else{
+                this.pantPrinView.jdpPrincipal.add(this.Mod_TipoArticuloView);
+                this.pantPrinView.jdpPrincipal.updateUI();
+                this.pantPrinView.jdpPrincipal.repaint();
+                this.Mod_TipoArticuloView.show();
+                this.Mod_TipoArticuloView.toFront();
+                Mod_Tip_Art = true;
+            }             
+        }
+        
 //        if (e.getSource() == this.pantPrinView.ReporteUsuarios) {
 //            InputStream inputStream = null;
 //            //JasperReport jr = null; 
@@ -179,8 +336,5 @@ public class PantallaPrincipalControlador implements ActionListener{
 //            }
 //
 //        }
-        
     }
 }
-    
-

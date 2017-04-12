@@ -310,7 +310,9 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.bodegaBL = new BodegaBL();
         try {
             for (Bodega b : this.bodegaBL.obtenerTodos()) {
-                ModeloJcb.addElement(b.getTipo().toString());
+                if(b.getEstado() == true){
+                    ModeloJcb.addElement(b.getTipo().toString());
+                }
             }
         } catch (Exception e) {
         }
@@ -324,7 +326,9 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.tipArtBL = new TipoArticuloBL();
         try {
             for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
-                Modelojcb.addElement(t.getDescripcion().toString());
+                if(t.getEstado() == true){
+                    Modelojcb.addElement(t.getDescripcion().toString());
+                }
             }
         } catch (Exception e) {
         }

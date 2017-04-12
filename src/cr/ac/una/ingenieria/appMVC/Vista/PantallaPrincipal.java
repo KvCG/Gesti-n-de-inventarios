@@ -1,40 +1,25 @@
 package cr.ac.una.ingenieria.appMVC.Vista;
 
-import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
-import cr.ac.una.ingenieria.appMVC.BL.BodegaBL;
-import cr.ac.una.ingenieria.appMVC.BL.MovimientoBL;
-import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
-import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
-import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
-import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
-import cr.ac.una.ingenieria.appMVC.Controlador.ArticuloControlador;
-import cr.ac.una.ingenieria.appMVC.Controlador.BodegaControlador;
-import cr.ac.una.ingenieria.appMVC.Controlador.MovimientoControlador;
-import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
-import cr.ac.una.ingenieria.appMVC.Controlador.ProveedorControlador;
-import cr.ac.una.ingenieria.appMVC.Controlador.TipoArticuloControlador;
-import cr.ac.una.ingenieria.appMVC.Controlador.UsuarioControlador;
-
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     //control de pantalla
-    boolean Mod_Inv = false;
-    boolean Mod_Reg_Per = false;
-    boolean Mod_Reg_Usu = false;
-    boolean Mod_Pro = false;
-    boolean Mod_Mov = false;
-    boolean Mod_Bod = false;
-    boolean Mod_Tip_Art = false;
+//    boolean Mod_Inv = false;
+//    boolean Mod_Reg_Per = false;
+//    boolean Mod_Reg_Usu = false;
+//    boolean Mod_Pro = false;
+//    boolean Mod_Mov = false;
+//    boolean Mod_Bod = false;
+//    boolean Mod_Tip_Art = false;
 
     //pantallas
-    Modulo_Moviento vista;
-    Modulo_Inventario Mante_ArticulosView;
-    Modulo_Registo_Persona Mod_Reg_PerView;
-    Modulo_Registo_Usuario Mod_Reg_UsuView;
-    Modulo_Proveedores Mod_ProveView;
-    MantPersonaBuscar mantPersonaBView;
-    Modulo_Bodega Mod_BodegaView;
-    Modulo_TipoArticulo Mod_TipoArticuloView;
+//    Modulo_Moviento vista;
+//    Modulo_Inventario Mante_ArticulosView;
+//    Modulo_Registo_Persona Mod_Reg_PerView;
+//    Modulo_Registo_Usuario Mod_Reg_UsuView;
+//    Modulo_Proveedores Mod_ProveView;
+//    MantPersonaBuscar mantPersonaBView;
+//    Modulo_Bodega Mod_BodegaView;
+//    Modulo_TipoArticulo Mod_TipoArticuloView;
 
     //constructor       
     public PantallaPrincipal() {
@@ -61,52 +46,53 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         initComponents();
 
         //para la venta modulo inventario
-        this.Mante_ArticulosView = new Modulo_Inventario();
-        ArticuloBL ArtBL = new ArticuloBL();
-        ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView, ArtBL);
-        ArtControl.getMantArticuloView();
+//        this.Mante_ArticulosView = new Modulo_Inventario();
+//        ArticuloBL ArtBL = new ArticuloBL();
+//        ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView, ArtBL);
+//        ArtControl.getMantArticuloView();
 
         //para la venta modulo Modulo_Registo_Persona
-        this.Mod_Reg_PerView = new Modulo_Registo_Persona();
-        PersonaBL perBL = new PersonaBL();
-        PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
-        perControl.getMod_Reg_PersonaView();
+//        this.Mod_Reg_PerView = new Modulo_Registo_Persona();
+//        PersonaBL perBL = new PersonaBL();
+//        PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
+//        perControl.getMod_Reg_PersonaView();
 
-        //para la venta modulo Modulo_Registo_Usuario
-        this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
-        UsuarioBL usuBL = new UsuarioBL();
-        this.mantPersonaBView = new MantPersonaBuscar();
-        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView, usuBL, perBL, Mod_Reg_PerView, mantPersonaBView);
-        UsuControl.getMantUsuarioview();
+//        //para la venta modulo Modulo_Registo_Usuario
+//        this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
+//        UsuarioBL usuBL = new UsuarioBL();
+//        this.mantPersonaBView = new MantPersonaBuscar();
+//        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView, usuBL, perBL, Mod_Reg_PerView, mantPersonaBView);
+//        UsuControl.getMantUsuarioview();
 
-        //para la venta modulo Modulo_Registo_Persona
-        this.Mod_ProveView = new Modulo_Proveedores();
-        ProveedorBL proveBL = new ProveedorBL();
-        ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
-        proveeControl.getMantProveedorView();
+//        //para la venta modulo Modulo_proveedor
+//        this.Mod_ProveView = new Modulo_Proveedores();
+//        ProveedorBL proveBL = new ProveedorBL();
+//        ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
+//        proveeControl.getMantProveedorView();
         
         //para la ventana de bodega
-        this.Mod_BodegaView = new Modulo_Bodega();
-        BodegaBL BodBL = new BodegaBL();
-        BodegaControlador bodegaControl = new BodegaControlador(Mod_BodegaView, BodBL);
-        bodegaControl.getModBodegaView();
+//        this.Mod_BodegaView = new Modulo_Bodega();
+//        BodegaBL BodBL = new BodegaBL();
+//        BodegaControlador bodegaControl = new BodegaControlador(Mod_BodegaView, BodBL);
+//        bodegaControl.getModBodegaView();
         
         //para la ventana de tipo articulo
-        this.Mod_TipoArticuloView = new Modulo_TipoArticulo();
-        TipoArticuloBL tipoArtBL = new TipoArticuloBL();
-        TipoArticuloControlador tipoArticuloControl = new TipoArticuloControlador(Mod_TipoArticuloView, tipoArtBL);
-        tipoArticuloControl.getMod_TipoArtView();
+//        this.Mod_TipoArticuloView = new Modulo_TipoArticulo();
+//        TipoArticuloBL tipoArtBL = new TipoArticuloBL();
+//        TipoArticuloControlador tipoArticuloControl = new TipoArticuloControlador(Mod_TipoArticuloView, tipoArtBL);
+//        tipoArticuloControl.getMod_TipoArtView();
         
-        vista = new Modulo_Moviento();
-        MantArticuloBuscar mantArticuloBView = new MantArticuloBuscar();
-        MantPersonaBuscar mantPersonaBView = new MantPersonaBuscar();
-        MantProveedorBuscar mantProveedorBView = new MantProveedorBuscar();
-        MovimientoBL movimientoBLModelo = new MovimientoBL();
-        ArticuloBL articuloBLModelo = new ArticuloBL();
-        PersonaBL personaBLModelo = new PersonaBL();
-        ProveedorBL proveedorBLModelo = new ProveedorBL();
-        MovimientoControlador con = new MovimientoControlador(movimientoBLModelo, vista, articuloBLModelo, personaBLModelo, proveedorBLModelo, mantArticuloBView, mantPersonaBView, mantProveedorBView);
-        con.getModMovView();
+        //para la ventana de Movimiento
+//        vista = new Modulo_Moviento();
+//        MantArticuloBuscar mantArticuloBView = new MantArticuloBuscar();
+//        MantPersonaBuscar mantPersonaBView = new MantPersonaBuscar();
+//        MantProveedorBuscar mantProveedorBView = new MantProveedorBuscar();
+//        MovimientoBL movimientoBLModelo = new MovimientoBL();
+//        ArticuloBL articuloBLModelo = new ArticuloBL();
+//        PersonaBL personaBLModelo = new PersonaBL();
+//        ProveedorBL proveedorBLModelo = new ProveedorBL();
+//        MovimientoControlador con = new MovimientoControlador(movimientoBLModelo, vista, articuloBLModelo, personaBLModelo, proveedorBLModelo, mantArticuloBView, mantPersonaBView, mantProveedorBView);
+//        con.getModMovView();
     }
 
     @SuppressWarnings("unchecked")
@@ -117,26 +103,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jdpPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenuMantenimiento = new javax.swing.JMenu();
-        jMenuArticulo = new javax.swing.JMenuItem();
-        jMenuProveedores = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jmiPersona = new javax.swing.JMenuItem();
-        jmiUsuario = new javax.swing.JMenuItem();
-        jmMovimiento = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuHerramientas = new javax.swing.JMenu();
+        jMenu_Mantenimiento = new javax.swing.JMenu();
+        jMenuItem_Articulo = new javax.swing.JMenuItem();
+        jMenuItem_Proveedores = new javax.swing.JMenuItem();
+        jMenu_Registro = new javax.swing.JMenu();
+        jMenuItem_Registro_Persona = new javax.swing.JMenuItem();
+        jMenuItem_Registro_Usuario = new javax.swing.JMenuItem();
+        jMenu_Movimiento = new javax.swing.JMenu();
+        jMenuItem_Movimientos = new javax.swing.JMenuItem();
+        jMenu_Herramientas = new javax.swing.JMenu();
         jMenuItem_Bodega = new javax.swing.JMenuItem();
         jMenuItem_TipoArticulo = new javax.swing.JMenuItem();
-        jMenuEstadisticas = new javax.swing.JMenu();
-        ReportesArticulos = new javax.swing.JMenu();
-        ReporteArticulos = new javax.swing.JMenuItem();
-        jmiArticulosMinimo = new javax.swing.JMenuItem();
-        jmiArticuloGravado = new javax.swing.JMenuItem();
-        jmiArticuloExento = new javax.swing.JMenuItem();
-        ReporteProveedores = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jmInformacion = new javax.swing.JMenu();
+        jMenu_Reportes = new javax.swing.JMenu();
+        jMenu_ReportesArticulos = new javax.swing.JMenu();
+        jMenuItem_ReporteArticulos_General = new javax.swing.JMenuItem();
+        jMenuItem_ReporteArticulos_Minimo = new javax.swing.JMenuItem();
+        jMenuItem_ReporteArticulos_Gravado = new javax.swing.JMenuItem();
+        jMenuItem_ReporteArticulos_Exentos = new javax.swing.JMenuItem();
+        jMenuItem_Reporte_Proveedores = new javax.swing.JMenuItem();
+        jMenuItem_Reporte_ListaPrecio = new javax.swing.JMenuItem();
+        jMenu_Informacion = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -148,82 +134,82 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFocusable(false);
 
-        jMenuMantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Modulo.png"))); // NOI18N
-        jMenuMantenimiento.setText("Modulos");
-        jMenuMantenimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenu_Mantenimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Modulo.png"))); // NOI18N
+        jMenu_Mantenimiento.setText("Modulos");
+        jMenu_Mantenimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        jMenuArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-        jMenuArticulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Inventario 00.png"))); // NOI18N
-        jMenuArticulo.setText("Inventario");
-        jMenuArticulo.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Articulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem_Articulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Articulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Inventario 00.png"))); // NOI18N
+        jMenuItem_Articulo.setText("Inventario");
+        jMenuItem_Articulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuArticuloActionPerformed(evt);
+                jMenuItem_ArticuloActionPerformed(evt);
             }
         });
-        jMenuMantenimiento.add(jMenuArticulo);
+        jMenu_Mantenimiento.add(jMenuItem_Articulo);
 
-        jMenuProveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        jMenuProveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
-        jMenuProveedores.setText("Proveedores");
-        jMenuProveedores.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Proveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
+        jMenuItem_Proveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Proveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
+        jMenuItem_Proveedores.setText("Proveedores");
+        jMenuItem_Proveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuProveedoresActionPerformed(evt);
+                jMenuItem_ProveedoresActionPerformed(evt);
             }
         });
-        jMenuMantenimiento.add(jMenuProveedores);
+        jMenu_Mantenimiento.add(jMenuItem_Proveedores);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Registro.png"))); // NOI18N
-        jMenu2.setText("Registro");
-        jMenu2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenu_Registro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Registro.png"))); // NOI18N
+        jMenu_Registro.setText("Registro");
+        jMenu_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        jmiPersona.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jmiPersona.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jmiPersona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cliente01.png"))); // NOI18N
-        jmiPersona.setText("Persona");
-        jmiPersona.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Registro_Persona.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItem_Registro_Persona.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Registro_Persona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cliente01.png"))); // NOI18N
+        jMenuItem_Registro_Persona.setText("Persona");
+        jMenuItem_Registro_Persona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiPersonaActionPerformed(evt);
+                jMenuItem_Registro_PersonaActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiPersona);
+        jMenu_Registro.add(jMenuItem_Registro_Persona);
 
-        jmiUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        jmiUsuario.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jmiUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Usuario01.png"))); // NOI18N
-        jmiUsuario.setText("Usuario");
-        jmiUsuario.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Registro_Usuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem_Registro_Usuario.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Registro_Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Usuario01.png"))); // NOI18N
+        jMenuItem_Registro_Usuario.setText("Usuario");
+        jMenuItem_Registro_Usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiUsuarioActionPerformed(evt);
+                jMenuItem_Registro_UsuarioActionPerformed(evt);
             }
         });
-        jMenu2.add(jmiUsuario);
+        jMenu_Registro.add(jMenuItem_Registro_Usuario);
 
-        jMenuMantenimiento.add(jMenu2);
+        jMenu_Mantenimiento.add(jMenu_Registro);
 
-        jMenuBar1.add(jMenuMantenimiento);
+        jMenuBar1.add(jMenu_Mantenimiento);
 
-        jmMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Movimiento.png"))); // NOI18N
-        jmMovimiento.setText("Movimientos");
-        jmMovimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenu_Movimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Movimiento.png"))); // NOI18N
+        jMenu_Movimiento.setText("Movimientos");
+        jMenu_Movimiento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jMenuItem2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Movimiento.png"))); // NOI18N
-        jMenuItem2.setText("Movimientos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Movimientos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem_Movimientos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Movimientos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Movimiento.png"))); // NOI18N
+        jMenuItem_Movimientos.setText("Movimientos");
+        jMenuItem_Movimientos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jMenuItem_MovimientosActionPerformed(evt);
             }
         });
-        jmMovimiento.add(jMenuItem2);
+        jMenu_Movimiento.add(jMenuItem_Movimientos);
 
-        jMenuBar1.add(jmMovimiento);
+        jMenuBar1.add(jMenu_Movimiento);
 
-        jMenuHerramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Herramientas.png"))); // NOI18N
-        jMenuHerramientas.setText("Mantenimiento");
-        jMenuHerramientas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenu_Herramientas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Herramientas.png"))); // NOI18N
+        jMenu_Herramientas.setText("Mantenimiento");
+        jMenu_Herramientas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         jMenuItem_Bodega.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         jMenuItem_Bodega.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -234,7 +220,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 jMenuItem_BodegaActionPerformed(evt);
             }
         });
-        jMenuHerramientas.add(jMenuItem_Bodega);
+        jMenu_Herramientas.add(jMenuItem_Bodega);
 
         jMenuItem_TipoArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         jMenuItem_TipoArticulo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -245,56 +231,56 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 jMenuItem_TipoArticuloActionPerformed(evt);
             }
         });
-        jMenuHerramientas.add(jMenuItem_TipoArticulo);
+        jMenu_Herramientas.add(jMenuItem_TipoArticulo);
 
-        jMenuBar1.add(jMenuHerramientas);
+        jMenuBar1.add(jMenu_Herramientas);
 
-        jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 02.png"))); // NOI18N
-        jMenuEstadisticas.setText("Reportes");
-        jMenuEstadisticas.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenu_Reportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 02.png"))); // NOI18N
+        jMenu_Reportes.setText("Reportes");
+        jMenu_Reportes.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        ReportesArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Articulo.png"))); // NOI18N
-        ReportesArticulos.setText("Articulos");
-        ReportesArticulos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenu_ReportesArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Articulo.png"))); // NOI18N
+        jMenu_ReportesArticulos.setText("Articulos");
+        jMenu_ReportesArticulos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
-        ReporteArticulos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        ReporteArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
-        ReporteArticulos.setText("General");
-        ReportesArticulos.add(ReporteArticulos);
+        jMenuItem_ReporteArticulos_General.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_ReporteArticulos_General.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        jMenuItem_ReporteArticulos_General.setText("General");
+        jMenu_ReportesArticulos.add(jMenuItem_ReporteArticulos_General);
 
-        jmiArticulosMinimo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jmiArticulosMinimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
-        jmiArticulosMinimo.setText("Minimos");
-        ReportesArticulos.add(jmiArticulosMinimo);
+        jMenuItem_ReporteArticulos_Minimo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_ReporteArticulos_Minimo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        jMenuItem_ReporteArticulos_Minimo.setText("Minimos");
+        jMenu_ReportesArticulos.add(jMenuItem_ReporteArticulos_Minimo);
 
-        jmiArticuloGravado.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jmiArticuloGravado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
-        jmiArticuloGravado.setText("Gravado");
-        ReportesArticulos.add(jmiArticuloGravado);
+        jMenuItem_ReporteArticulos_Gravado.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_ReporteArticulos_Gravado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        jMenuItem_ReporteArticulos_Gravado.setText("Gravado");
+        jMenu_ReportesArticulos.add(jMenuItem_ReporteArticulos_Gravado);
 
-        jmiArticuloExento.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jmiArticuloExento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
-        jmiArticuloExento.setText("Exento");
-        ReportesArticulos.add(jmiArticuloExento);
+        jMenuItem_ReporteArticulos_Exentos.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_ReporteArticulos_Exentos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Reporte 01.png"))); // NOI18N
+        jMenuItem_ReporteArticulos_Exentos.setText("Exento");
+        jMenu_ReportesArticulos.add(jMenuItem_ReporteArticulos_Exentos);
 
-        jMenuEstadisticas.add(ReportesArticulos);
+        jMenu_Reportes.add(jMenu_ReportesArticulos);
 
-        ReporteProveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        ReporteProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
-        ReporteProveedores.setText("Proveedores");
-        jMenuEstadisticas.add(ReporteProveedores);
+        jMenuItem_Reporte_Proveedores.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Reporte_Proveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Proveedor.png"))); // NOI18N
+        jMenuItem_Reporte_Proveedores.setText("Proveedores");
+        jMenu_Reportes.add(jMenuItem_Reporte_Proveedores);
 
-        jMenuItem6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Lista01.png"))); // NOI18N
-        jMenuItem6.setText("Lista Precios");
-        jMenuEstadisticas.add(jMenuItem6);
+        jMenuItem_Reporte_ListaPrecio.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuItem_Reporte_ListaPrecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Lista01.png"))); // NOI18N
+        jMenuItem_Reporte_ListaPrecio.setText("Lista Precios");
+        jMenu_Reportes.add(jMenuItem_Reporte_ListaPrecio);
 
-        jMenuBar1.add(jMenuEstadisticas);
+        jMenuBar1.add(jMenu_Reportes);
 
-        jmInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Info.png"))); // NOI18N
-        jmInformacion.setText("Informacion");
-        jmInformacion.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jMenuBar1.add(jmInformacion);
+        jMenu_Informacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Info.png"))); // NOI18N
+        jMenu_Informacion.setText("Informacion");
+        jMenu_Informacion.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jMenuBar1.add(jMenu_Informacion);
 
         setJMenuBar(jMenuBar1);
 
@@ -318,157 +304,154 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuArticuloActionPerformed
-        try {
-            if (this.Mod_Inv == false) {
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mante_ArticulosView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mante_ArticulosView.getHeight() / 2);
-                this.Mante_ArticulosView.setLocation(x, y);
+    private void jMenuItem_ArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ArticuloActionPerformed
+//        try {
+//            if (this.Mod_Inv == false) {
+//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mante_ArticulosView.getWidth() / 2);
+//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mante_ArticulosView.getHeight() / 2);
+//                this.Mante_ArticulosView.setLocation(x, y);
+//
+//                this.jdpPrincipal.add(this.Mante_ArticulosView);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.Mante_ArticulosView.show();
+//                this.Mod_Inv = true;
+//            } else {
+//                this.Mante_ArticulosView.show();
+//                this.Mante_ArticulosView.toFront();
+//                this.Mod_Inv = false;
+//            }
+//        } catch (Exception e) {}
+    }//GEN-LAST:event_jMenuItem_ArticuloActionPerformed
 
-                this.jdpPrincipal.add(this.Mante_ArticulosView);
-                this.jdpPrincipal.updateUI();
-                this.jdpPrincipal.repaint();
-                this.Mante_ArticulosView.show();
-                this.Mod_Inv = true;
-            } else {
-                this.Mante_ArticulosView.show();
-                this.Mante_ArticulosView.toFront();
-                this.Mod_Inv = false;
-            }
-        } catch (Exception e) {
+    private void jMenuItem_Registro_PersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_Registro_PersonaActionPerformed
+//        try {
+//            if (this.Mod_Reg_Per == false) {
+//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_PerView.getWidth() / 2);
+//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_PerView.getHeight() / 2);
+//                this.Mod_Reg_PerView.setLocation(x, y);
+//
+//                this.jdpPrincipal.add(this.Mod_Reg_PerView);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.Mod_Reg_PerView.show();
+//                this.Mod_Reg_Per = true;
+//            } else {
+//                this.Mod_Reg_PerView.show();
+//                this.Mod_Reg_PerView.toFront();
+//                this.Mod_Reg_Per = false;
+//            }
+//        } catch (Exception e) {
+//
+//        }
+    }//GEN-LAST:event_jMenuItem_Registro_PersonaActionPerformed
 
-        }
-    }//GEN-LAST:event_jMenuArticuloActionPerformed
+    private void jMenuItem_Registro_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_Registro_UsuarioActionPerformed
+//        try {
+//            if (this.Mod_Reg_Usu == false) {
+//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_UsuView.getWidth() / 2);
+//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_UsuView.getHeight() / 2);
+//                this.Mod_Reg_UsuView.setLocation(x, y);
+//
+//                this.jdpPrincipal.add(this.Mod_Reg_UsuView);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.Mod_Reg_UsuView.show();
+//                this.Mod_Reg_Usu = true;
+//            } else {
+//                this.Mod_Reg_UsuView.show();
+//                this.Mod_Reg_UsuView.toFront();
+//                this.Mod_Reg_Usu = false;
+//            }
+//        } catch (Exception e) {
+//
+//        }
+    }//GEN-LAST:event_jMenuItem_Registro_UsuarioActionPerformed
 
-    private void jmiPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiPersonaActionPerformed
-        try {
-            if (this.Mod_Reg_Per == false) {
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_PerView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_PerView.getHeight() / 2);
-                this.Mod_Reg_PerView.setLocation(x, y);
+    private void jMenuItem_ProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ProveedoresActionPerformed
+//        try {
+//            if (this.Mod_Pro == false) {
+//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_ProveView.getWidth() / 2);
+//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_ProveView.getHeight() / 2);
+//                this.Mod_ProveView.setLocation(x, y);
+//
+//                this.jdpPrincipal.add(this.Mod_ProveView);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.Mod_ProveView.show();
+//                this.Mod_Pro = true;
+//            } else {
+//                this.Mod_ProveView.show();
+//                this.Mod_ProveView.toFront();
+//                this.Mod_Pro = false;
+//            }
+//        } catch (Exception e) {
+//        }
+    }//GEN-LAST:event_jMenuItem_ProveedoresActionPerformed
 
-                this.jdpPrincipal.add(this.Mod_Reg_PerView);
-                this.jdpPrincipal.updateUI();
-                this.jdpPrincipal.repaint();
-                this.Mod_Reg_PerView.show();
-                this.Mod_Reg_Per = true;
-            } else {
-                this.Mod_Reg_PerView.show();
-                this.Mod_Reg_PerView.toFront();
-                this.Mod_Reg_Per = false;
-            }
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_jmiPersonaActionPerformed
-
-    private void jmiUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUsuarioActionPerformed
-        try {
-            if (this.Mod_Reg_Usu == false) {
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_UsuView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_UsuView.getHeight() / 2);
-                this.Mod_Reg_UsuView.setLocation(x, y);
-
-                this.jdpPrincipal.add(this.Mod_Reg_UsuView);
-                this.jdpPrincipal.updateUI();
-                this.jdpPrincipal.repaint();
-                this.Mod_Reg_UsuView.show();
-                this.Mod_Reg_Usu = true;
-            } else {
-                this.Mod_Reg_UsuView.show();
-                this.Mod_Reg_UsuView.toFront();
-                this.Mod_Reg_Usu = false;
-            }
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_jmiUsuarioActionPerformed
-
-    private void jMenuProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuProveedoresActionPerformed
-        try {
-            if (this.Mod_Pro == false) {
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_ProveView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_ProveView.getHeight() / 2);
-                this.Mod_ProveView.setLocation(x, y);
-
-                this.jdpPrincipal.add(this.Mod_ProveView);
-                this.jdpPrincipal.updateUI();
-                this.jdpPrincipal.repaint();
-                this.Mod_ProveView.show();
-                this.Mod_Pro = true;
-            } else {
-                this.Mod_ProveView.show();
-                this.Mod_ProveView.toFront();
-                this.Mod_Pro = false;
-            }
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_jMenuProveedoresActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        try {
-            
-            if (this.Mod_Mov == false) {
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.vista.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight() / 2) - (this.vista.getHeight() / 2);
-                this.vista.setLocation(x, y);
-
-                this.jdpPrincipal.add(this.vista);
-                this.jdpPrincipal.updateUI();
-                this.jdpPrincipal.repaint();
-                this.vista.show();
-                this.Mod_Mov = true;
-            } else {
-                this.vista.show();
-                this.vista.toFront();
-                this.Mod_Mov = false;
-            }
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jMenuItem_MovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_MovimientosActionPerformed
+//        try {            
+//            if (this.Mod_Mov == false) {
+//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.vista.getWidth() / 2);
+//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.vista.getHeight() / 2);
+//                this.vista.setLocation(x, y);
+//
+//                this.jdpPrincipal.add(this.vista);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.vista.show();
+//                this.Mod_Mov = true;
+//            } else {
+//                this.vista.show();
+//                this.vista.toFront();
+//                this.Mod_Mov = false;
+//            }
+//        } catch (Exception e) { }
+    }//GEN-LAST:event_jMenuItem_MovimientosActionPerformed
 
     private void jMenuItem_BodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BodegaActionPerformed
-            try {
-            if(this.Mod_Bod == false){
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_BodegaView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_BodegaView.getHeight() / 2);                
-                this.Mod_BodegaView.setLocation(x, y);
-                this.jdpPrincipal.add(this.Mod_BodegaView);
-                this.jdpPrincipal.updateUI();
-                this.jdpPrincipal.repaint();
-                this.Mod_BodegaView.show();
-                this.Mod_Bod = true;
-            }
-            else{
-                this.Mod_BodegaView.show();
-                this.Mod_BodegaView.toFront();
-                this.Mod_Bod = false;               
-            }
-        } catch (Exception e) {
-        }
+//            try {
+//            if(this.Mod_Bod == false){
+//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_BodegaView.getWidth() / 2);
+//                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_BodegaView.getHeight() / 2);                
+//                this.Mod_BodegaView.setLocation(x, y);
+//                this.jdpPrincipal.add(this.Mod_BodegaView);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.Mod_BodegaView.show();
+//                this.Mod_Bod = true;
+//            }
+//            else{
+//                this.Mod_BodegaView.show();
+//                this.Mod_BodegaView.toFront();
+//                this.Mod_Bod = false;               
+//            }
+//        } catch (Exception e) {
+//        }
     }//GEN-LAST:event_jMenuItem_BodegaActionPerformed
 
     private void jMenuItem_TipoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TipoArticuloActionPerformed
-        try {
-            if(this.Mod_Tip_Art == false){
-                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_TipoArticuloView.getWidth() / 2);
-                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_TipoArticuloView.getHeight() / 2);                
-                this.Mod_TipoArticuloView.setLocation(x, y);
-                this.jdpPrincipal.add(this.Mod_TipoArticuloView);
-                this.jdpPrincipal.updateUI();
-                this.jdpPrincipal.repaint();
-                this.Mod_TipoArticuloView.show();
-                this.Mod_Tip_Art = true;
-            }else{
-                this.Mod_TipoArticuloView.show();
-                this.Mod_TipoArticuloView.toFront();
-                Mod_Tip_Art = true;
-            }            
-        } catch (Exception e) {
-            System.out.println("no muestar");
-        }
+//        try {
+//            if(this.Mod_Tip_Art == false){
+//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_TipoArticuloView.getWidth() / 2);
+//                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_TipoArticuloView.getHeight() / 2);                
+//                this.Mod_TipoArticuloView.setLocation(x, y);
+//                this.jdpPrincipal.add(this.Mod_TipoArticuloView);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.Mod_TipoArticuloView.show();
+//                this.Mod_Tip_Art = true;
+//            }else{
+//                this.jdpPrincipal.add(this.Mod_TipoArticuloView);
+//                this.jdpPrincipal.updateUI();
+//                this.jdpPrincipal.repaint();
+//                this.Mod_TipoArticuloView.show();
+//                this.Mod_TipoArticuloView.toFront();
+//                Mod_Tip_Art = true;
+//            }            
+//        } catch (Exception e) {
+//            System.out.println("no muestar");
+//        }
     }//GEN-LAST:event_jMenuItem_TipoArticuloActionPerformed
 
     /**
@@ -508,29 +491,29 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JMenuItem ReporteArticulos;
-    public javax.swing.JMenuItem ReporteProveedores;
-    private javax.swing.JMenu ReportesArticulos;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    public javax.swing.JMenuItem jMenuArticulo;
     private javax.swing.JMenuBar jMenuBar1;
-    public javax.swing.JMenu jMenuEstadisticas;
-    private javax.swing.JMenu jMenuHerramientas;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    public javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem_Bodega;
-    private javax.swing.JMenuItem jMenuItem_TipoArticulo;
-    private javax.swing.JMenu jMenuMantenimiento;
-    public javax.swing.JMenuItem jMenuProveedores;
-    private javax.swing.JDesktopPane jdpPrincipal;
-    public javax.swing.JMenu jmInformacion;
-    private javax.swing.JMenu jmMovimiento;
-    public javax.swing.JMenuItem jmiArticuloExento;
-    public javax.swing.JMenuItem jmiArticuloGravado;
-    public javax.swing.JMenuItem jmiArticulosMinimo;
-    public javax.swing.JMenuItem jmiPersona;
-    private javax.swing.JMenuItem jmiUsuario;
+    public javax.swing.JMenuItem jMenuItem_Articulo;
+    public javax.swing.JMenuItem jMenuItem_Bodega;
+    public javax.swing.JMenuItem jMenuItem_Movimientos;
+    public javax.swing.JMenuItem jMenuItem_Proveedores;
+    public javax.swing.JMenuItem jMenuItem_Registro_Persona;
+    public javax.swing.JMenuItem jMenuItem_Registro_Usuario;
+    public javax.swing.JMenuItem jMenuItem_ReporteArticulos_Exentos;
+    public javax.swing.JMenuItem jMenuItem_ReporteArticulos_General;
+    public javax.swing.JMenuItem jMenuItem_ReporteArticulos_Gravado;
+    public javax.swing.JMenuItem jMenuItem_ReporteArticulos_Minimo;
+    public javax.swing.JMenuItem jMenuItem_Reporte_ListaPrecio;
+    public javax.swing.JMenuItem jMenuItem_Reporte_Proveedores;
+    public javax.swing.JMenuItem jMenuItem_TipoArticulo;
+    public javax.swing.JMenu jMenu_Herramientas;
+    public javax.swing.JMenu jMenu_Informacion;
+    public javax.swing.JMenu jMenu_Mantenimiento;
+    public javax.swing.JMenu jMenu_Movimiento;
+    public javax.swing.JMenu jMenu_Registro;
+    public javax.swing.JMenu jMenu_Reportes;
+    private javax.swing.JMenu jMenu_ReportesArticulos;
+    public javax.swing.JDesktopPane jdpPrincipal;
     // End of variables declaration//GEN-END:variables
 }
