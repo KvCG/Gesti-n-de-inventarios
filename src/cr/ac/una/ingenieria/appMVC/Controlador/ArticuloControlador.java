@@ -4,6 +4,7 @@ import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.BodegaBL;
 import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
 import cr.ac.una.ingenieria.appMVC.Domain.TipoArticulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
@@ -11,7 +12,6 @@ import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -30,11 +30,15 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private ArticuloBL ArticuloBLModelo;
     private BodegaBL bodegaBL;
     private TipoArticuloBL tipArtBL;
+    private ArticuloProveedor artPro;
 
     public ArticuloControlador() {
     }
 
     public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
+        this.mantArticuloView = mantArticuloView;
+        this.ArticuloBLModelo = ArticuloBLModelo;
+        this.artPro = new ArticuloProveedor();
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.mantArticuloView.txtCodigoBuscar.getDocument().addDocumentListener(this);
@@ -52,6 +56,14 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         cargarTipoArtCombo(this.mantArticuloView.jcb_Tipo);
     }
 
+    public ArticuloProveedor getArtPro() {
+        return artPro;
+    }
+
+    public void setArtPro(ArticuloProveedor artPro) {
+        this.artPro = artPro;
+    }
+    
     public Modulo_Inventario getMantArticuloView() {
         return mantArticuloView;
     }

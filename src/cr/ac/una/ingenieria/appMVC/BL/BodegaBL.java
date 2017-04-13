@@ -55,4 +55,9 @@ public class BodegaBL implements IBaseBL<Bodega>{
     public Integer obtenerConsecutivo() throws SQLException {
         return null;
     }
+
+    @Override
+    public ArrayList<Bodega> obtenerConWhere() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -57,4 +57,9 @@ public class MovimientoBL implements IBaseBL<Movimiento> {
         return this.aDao.obtenerConsecutivo(this);
     }
 
+    @Override
+    public ArrayList<Movimiento> obtenerConWhere() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
