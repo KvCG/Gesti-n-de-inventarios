@@ -229,7 +229,6 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
             pBControlador.getProovedorBuscarView().setVisible(true);
             this.mantProveedorView.btEliminar.setEnabled(true);
             this.mantProveedorView.btModificar.setEnabled(true);
-
         }
 
     }
