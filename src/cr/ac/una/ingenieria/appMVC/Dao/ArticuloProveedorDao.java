@@ -9,21 +9,14 @@ import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-<<<<<<< HEAD
-=======
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
->>>>>>> origin/master
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
  *
-<<<<<<< HEAD
- * @author Gustavo
-=======
  * @author Kev
->>>>>>> origin/master
  */
 public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
 
@@ -32,28 +25,6 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
     public ArticuloProveedorDao() {
         conexion = new MySQLConexion();
     }
-<<<<<<< HEAD
-    
-    
-    @Override
-    public void insertar(ArticuloProveedor obj) throws SQLException {
-        Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into articulo_proveedor(articulo,proveedor,porcentaje_descuento"
-                + "precio_estandar,fecha_primera_compra,fecha_ultima_compra,cantidad_pedido,total_pedido) values "
-                + "(?,?,?,?,?,?,?,?)");
-        
-        cs.setInt(1, obj.getArticulo());
-        cs.setInt(2, obj.getProveedor());
-        cs.setDouble(3, obj.getPorcentaje_descuento());
-        cs.setDouble(4, obj.getPrecio_estandar());
-        cs.setString(5, obj.getFecha_primera_compra());
-        cs.setString(6, obj.getFecha_ultima_compra());
-        cs.setInt(7, obj.getCantidad_pedido());
-        cs.setInt(8, obj.getTotal_pedido());
-        cs.executeUpdate();
-        con.close();
-        
-=======
 
     @Override
     public void insertar(ArticuloProveedor obj) throws SQLException {
@@ -67,17 +38,11 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
 
         cs.executeUpdate();
         con.close();
->>>>>>> origin/master
     }
 
     @Override
     public void modificar(ArticuloProveedor obj) throws SQLException {
         Connection con = conexion.getConexion();
-<<<<<<< HEAD
-        CallableStatement cs = con.prepareCall("update articulo_proveedor set articulo = ?,proveedor = ? , porcentaje_descuento = ?"
-                + "precio_estandar = ?,fecha_primera_compra = ?,fecha_ultima_compra = ?,cantidad_pedido = ?,total_pedido = ?"
-                + "where codigo = ?");
-=======
         CallableStatement cs = con.prepareCall("articulo_proveedor set articulo = ?, proveedor = ?,"
                 + "costo =? where articulo = ? and proveedor = ?");
         cs.setInt(1, obj.getArticulo());
@@ -87,7 +52,6 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
         cs.setInt(5, obj.getProveedor());
         cs.executeUpdate();
         con.close();
->>>>>>> origin/master
     }
 
     @Override
@@ -97,9 +61,6 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
 
     @Override
     public ArticuloProveedor obtenerPorId(ArticuloProveedor obj) throws SQLException {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-=======
         ArticuloProveedor a = null;
         Connection con = conexion.getConexion();
 
@@ -116,7 +77,6 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
         }
         con.close();
         return a;
->>>>>>> origin/master
     }
 
     @Override
@@ -126,10 +86,6 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
 
     @Override
     public ArrayList<ArticuloProveedor> obtenerTodos() throws SQLException {
-<<<<<<< HEAD
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-=======
         Connection con = conexion.getConexion();
         ArrayList<ArticuloProveedor> l = new ArrayList();
 
@@ -145,7 +101,6 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
         }
         con.close();
         return l;    }
->>>>>>> origin/master
 
     @Override
     public ArrayList<ArticuloProveedor> obtenerConWhere(String where) throws SQLException {
@@ -156,9 +111,5 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
     public Integer obtenerConsecutivo() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> origin/master
 }

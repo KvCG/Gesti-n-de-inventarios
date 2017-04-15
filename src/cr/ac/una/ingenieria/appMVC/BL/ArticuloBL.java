@@ -78,7 +78,7 @@ public class ArticuloBL implements IBaseBL<Articulo> {
     }
 
     
-    public ArrayList<Proveedor> obtenerConWhere(Articulo obj, String where ) throws SQLException {
+    public ArrayList<Articulo> obtenerConWhere(Articulo obj, String where ) throws SQLException {
         return this.aDao.obtenerConWhere(obj, where);
     } 
 
