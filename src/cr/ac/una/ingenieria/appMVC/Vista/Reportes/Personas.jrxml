@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1c654aaf-fd9d-4375-9b68-97dd54ccda6a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     persona.`idpersona` AS persona_idpersona,
+     persona.`cedula` AS persona_cedula,
+     persona.`nombre` AS persona_nombre,
+     persona.`apellidos` AS persona_apellidos,
+     persona.`correo` AS persona_correo,
+     persona.`estado` AS persona_estado
+FROM
+     `persona` persona
+]]>
+	</queryString>
+	<field name="persona_idpersona" class="java.lang.Integer"/>
+	<field name="persona_cedula" class="java.lang.String"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_apellidos" class="java.lang.String"/>
+	<field name="persona_correo" class="java.lang.String"/>
+	<field name="persona_estado" class="java.lang.Boolean"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="383" height="79" uuid="c8c1df9e-40de-46fd-8d3e-436ae38ed94b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="0" width="353" height="79" uuid="a38666e6-b097-455b-9c28-66a45327aefa"/>
+				<textElement>
+					<font fontName="Arial" size="36"/>
+				</textElement>
+				<text><![CDATA[Reporte de Personas]]></text>
+			</staticText>
+			<image>
+				<reportElement x="416" y="0" width="156" height="79" uuid="a9b11d4d-08fe-41c5-a2d6-57da0d9ad529"/>
+				<imageExpression><![CDATA["C:\\Users\\Gustavo\\Desktop\\proyecto de Ingieneria\\Gesti-n-de-inventarios\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Imagen\\Logo01.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="189" height="20" uuid="ffb0d86a-6273-4692-beb6-5cf1abdbafef"/>
+				<textElement>
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a">
+				<reportElement x="439" y="0" width="133" height="20" uuid="bd05e801-4053-4808-839e-55a16cfdd1db"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="102" height="20" uuid="d3c45bd8-b3e0-47b6-8785-df030e470e35"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cedula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="3" width="100" height="20" uuid="63706887-b23a-4a06-a02e-fb4e57237d3c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="3" width="100" height="20" uuid="1ec84366-56a7-4452-9829-161a80f5a442"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="3" width="124" height="20" uuid="754bbb18-0a04-4993-bab3-f89b63bb2182"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo electronico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="0" width="62" height="20" uuid="f88360a7-3374-4a97-b847-858cfb0bbf5e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="0" width="100" height="20" uuid="b2883df4-47c6-4e5f-8fe4-10b3e30a4839"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{persona_cedula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="116" y="0" width="100" height="20" uuid="f0c47210-51e3-4d06-ba42-80d91993dcc8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="231" y="0" width="100" height="20" uuid="eb4f767c-c044-4ac6-98a6-5c1ff593b20d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{persona_apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="355" y="3" width="124" height="20" uuid="a0ee30ec-ba2f-4efc-9940-675490e8712a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{persona_correo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="3" width="62" height="20" uuid="bd9b80d3-82fb-43f5-b41a-bf2078843112"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{persona_estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="452" y="0" width="80" height="20" uuid="de49d3f0-5af4-4ef2-b03a-614c51a9b198"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="0" width="40" height="20" uuid="2b557275-60f2-4d32-8319-9b57aaa39d9b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="17" width="542" height="20" uuid="38c185fb-2e3e-4f26-b2ed-0a18e72aa1cd"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ -------------------------------------------------------------------------------ultima Linea------------------------------------------------------]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

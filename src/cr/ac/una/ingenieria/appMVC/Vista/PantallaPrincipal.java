@@ -102,6 +102,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jdpPrincipal = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTArticulo = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_Mantenimiento = new javax.swing.JMenu();
         jMenuItem_Articulo = new javax.swing.JMenuItem();
@@ -130,6 +132,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIGACI");
+
+        jTArticulo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Nombre", "Cantidad", "Minimo"
+            }
+        ));
+        jTArticulo.setFocusable(false);
+        jScrollPane1.setViewportView(jTArticulo);
+
+        jdpPrincipal.add(jScrollPane1);
+        jScrollPane1.setBounds(0, 0, 453, 100);
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFocusable(false);
@@ -514,6 +533,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenu jMenu_Registro;
     public javax.swing.JMenu jMenu_Reportes;
     private javax.swing.JMenu jMenu_ReportesArticulos;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable jTArticulo;
     public javax.swing.JDesktopPane jdpPrincipal;
     // End of variables declaration//GEN-END:variables
 }

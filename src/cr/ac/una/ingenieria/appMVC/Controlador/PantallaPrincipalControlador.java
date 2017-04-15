@@ -7,6 +7,7 @@ import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
+import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantPersonaBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
@@ -20,6 +21,11 @@ import cr.ac.una.ingenieria.appMVC.Vista.Modulo_TipoArticulo;
 import cr.ac.una.ingenieria.appMVC.Vista.PantallaPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.event.CaretEvent;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -73,9 +79,16 @@ public class PantallaPrincipalControlador implements ActionListener {
         this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);
         this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);
         this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);
+        
+       
 
 //        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         inicializarPantalla();
+        
+       
+          
+        
+        llenarTabla(this.pantPrinView.jTArticulo);
     }
 
     public PantallaPrincipal getPantPrinView() {
@@ -336,5 +349,32 @@ public class PantallaPrincipalControlador implements ActionListener {
 //            }
 //
 //        }
+    }
+    
+      public void llenarTabla(JTable tablaArticulo) {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        tablaArticulo.setModel(modeloTabla);
+
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Cantidad");
+        modeloTabla.addColumn("Minimo");
+        
+
+        Object fila[] = new Object[2];
+
+        String Sql = "where cantidad < punto_de_pedido + 10 ";
+
+        try {
+            for (Object oAux : articuloBlModelo.obtenerConWhere(new Articulo(), Sql)) {
+                Articulo a = (Articulo) oAux;
+                fila[0] = a.getNombre();
+                fila[1] = a.getCantidad();
+                fila[2] = a.getPuntoPedido();
+       
+                modeloTabla.addRow(fila);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
