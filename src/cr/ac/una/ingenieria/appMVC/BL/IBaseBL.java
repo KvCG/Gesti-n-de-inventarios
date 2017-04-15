@@ -54,7 +54,9 @@ public interface IBaseBL<T> {
      * @throws SQLException
      */
     public ArrayList<T> obtenerTodos() throws SQLException;
-    //public ArrayList<T> obtenerConWhere() throws SQLException;
+    
+    public ArrayList<T> obtenerConWhere() throws SQLException;
+    
     
     public Integer obtenerConsecutivo() throws SQLException;
 }

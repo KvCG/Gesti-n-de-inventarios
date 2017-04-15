@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 import javax.swing.JOptionPane;
 
 /**
@@ -81,6 +82,7 @@ public class TipoArticuloControlador implements ActionListener {
                     this.Mod_TipoArtView.jcb_Estado.setSelectedIndex(0);
                 } catch (Exception e) {
                     Logger.getLogger(TipoArticuloControlador.class.getName()).log(Level.SEVERE, null, e);
+                    System.out.println(e.getMessage());
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "POR FAVOR DIGITE EL TIPO DE ARTICULO"

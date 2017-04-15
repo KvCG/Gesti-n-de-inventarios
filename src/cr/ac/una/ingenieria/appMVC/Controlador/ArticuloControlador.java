@@ -1,22 +1,28 @@
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
+import cr.ac.una.ingenieria.appMVC.BL.ArticuloProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.BodegaBL;
+import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
 import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
+import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
+import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.TipoArticulo;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
+import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -30,11 +36,19 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private ArticuloBL ArticuloBLModelo;
     private BodegaBL bodegaBL;
     private TipoArticuloBL tipArtBL;
+    private ArticuloProveedor artPro;
+    private ProveedorBL proBl;
+    private ArticuloProveedorBL artProvBl;
 
     public ArticuloControlador() {
     }
 
     public ArticuloControlador(Modulo_Inventario mantArticuloView, ArticuloBL ArticuloBLModelo) {
+        this.mantArticuloView = mantArticuloView;
+        this.ArticuloBLModelo = ArticuloBLModelo;
+        this.artPro = new ArticuloProveedor();
+        this.proBl = new ProveedorBL();
+        this.artProvBl = new ArticuloProveedorBL();
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.mantArticuloView.txtCodigoBuscar.getDocument().addDocumentListener(this);
@@ -44,12 +58,31 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btEliminar.addActionListener(this);
         this.mantArticuloView.btModificar.addActionListener(this);
         this.mantArticuloView.jcb_Bodega.addActionListener(this);
+        this.mantArticuloView.btBuscaProveedor.addActionListener(this);
+        this.mantArticuloView.txtCodigoProv.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                if (!mantArticuloView.txtCodigoProv.getText().isEmpty()) {
+                    cargaProveedor();
+                }
+
+            }
+        });
         this.mantArticuloView.btModificar.setEnabled(false);
         this.mantArticuloView.btEliminar.setEnabled(false);
         this.mantArticuloView.txtCodigoBuscar.setVisible(false);
+        this.mantArticuloView.txtCodigoProv.setVisible(false);
         inicializarPantalla();
-        Cargar_jcbBodega(this.mantArticuloView.jcb_Bodega);
-        Cargar_jcbTipoArticulo(this.mantArticuloView.jcb_Tipo);
+        cargarBodegaCombo(this.mantArticuloView.jcb_Bodega);
+        cargarTipoArtCombo(this.mantArticuloView.jcb_Tipo);
+    }
+
+    public ArticuloProveedor getArtPro() {
+        return artPro;
+    }
+
+    public void setArtPro(ArticuloProveedor artPro) {
+        this.artPro = artPro;
     }
 
     public Modulo_Inventario getMantArticuloView() {
@@ -73,12 +106,13 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     }
 
     private boolean isEmpty() {
-        if (this.mantArticuloView.txtNombre.getText().equals("")
-                || this.mantArticuloView.txtDescripcion.getText().equals("")
-                || this.mantArticuloView.TxtPrecio.getText().equals("")
-                || this.mantArticuloView.TxtCantidad.getText().equals("")
-                || this.mantArticuloView.txtPuntoPedido.getText().equals("")
-                || this.mantArticuloView.txtCodigo.getText().equals("")) {
+        if (this.mantArticuloView.txtNombre.getText().isEmpty()
+                || this.mantArticuloView.txtDescripcion.getText().isEmpty()
+                || this.mantArticuloView.TxtPrecio.getText().isEmpty()
+                || this.mantArticuloView.TxtCantidad.getText().isEmpty()
+                || this.mantArticuloView.txtPuntoPedido.getText().isEmpty()
+                || this.mantArticuloView.txtCodigo.getText().isEmpty()
+                || this.mantArticuloView.txtNombreProv.getText().isEmpty()) {
             return true;
         }
         return false;
@@ -91,6 +125,9 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.txtDescripcion.setText(null);
         this.mantArticuloView.txtCodigo.setText(null);
         this.mantArticuloView.txtPuntoPedido.setText(null);
+        this.mantArticuloView.txtNombreProv.setText(null);
+        this.mantArticuloView.txtCorreoProv.setText(null);
+        this.mantArticuloView.txtTelefonoProv.setText(null);
 
     }
 
@@ -118,11 +155,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                             a.setBodega(b.getIdBodega());
                         }
                     }
-                } catch (Exception eq) {
-                }
-
-                String tipArt = this.mantArticuloView.jcb_Tipo.getSelectedItem().toString();
-                try {
+                    String tipArt = this.mantArticuloView.jcb_Tipo.getSelectedItem().toString();
                     for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
                         if (t.getDescripcion().equals(tipArt)) {
                             a.setTipo(t.getCodigo());
@@ -132,7 +165,13 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 }
 
                 try {
+                    
                     this.ArticuloBLModelo.insertar(a);
+                    a = ArticuloBLModelo.obtenerPorId(a);
+                    artPro.setProveedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
+                    artPro.setArticulo(a.getIdarticulo());
+                    artPro.setCosto(Float.parseFloat(this.mantArticuloView.TxtCosto.getText()));
+                    this.artProvBl.insertar(artPro);
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
                     this.clean();
                     this.mantArticuloView.btEliminar.setEnabled(false);
@@ -234,16 +273,22 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
 
         if (e.getSource() == this.mantArticuloView.btBuscar) {
             if (!mantArticuloView.txtCodigo.getText().isEmpty()) {
-                
+
                 MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
                 ArticuloBuscarControlador articuloBControlador;
-                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, 
+                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView,
                         ArticuloBLModelo, this.mantArticuloView.txtCodigoBuscar);
                 articuloBControlador.getArticuloBuscarView().setVisible(true);
                 this.mantArticuloView.btEliminar.setEnabled(true);
             } else {
                 JOptionPane.showMessageDialog(mantArticuloView, "Debes digitar un codigo primero", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+        if (e.getSource() == this.mantArticuloView.btBuscaProveedor) {
+            MantProveedorBuscar mantBuscarView = new MantProveedorBuscar();
+            ProveedorBuscarControlador pBControlador;
+            pBControlador = new ProveedorBuscarControlador(mantBuscarView, this.proBl, this.mantArticuloView.txtCodigoProv);
+            pBControlador.getProovedorBuscarView().setVisible(true);
         }
     }
 
@@ -276,23 +321,22 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
                 this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
                 this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
-                
+
                 int bo = a.getBodega();
                 int ti = a.getTipo();
-                
-                for(Bodega b:this.bodegaBL.obtenerTodos()){
-                    if(b.getIdBodega() == bo){
+
+                for (Bodega b : this.bodegaBL.obtenerTodos()) {
+                    if (b.getIdBodega() == bo) {
                         this.mantArticuloView.jcb_Bodega.setSelectedItem(b.getNombre().toString());
                     }
                 }
-                
-                for(TipoArticulo t:this.tipArtBL.obtenerTodos()){
-                    if(t.getCodigo() == ti){
-                        this.mantArticuloView.jcb_Tipo.setSelectedItem(t.getDescripcion().toString());                        
+
+                for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
+                    if (t.getCodigo() == ti) {
+                        this.mantArticuloView.jcb_Tipo.setSelectedItem(t.getDescripcion().toString());
                     }
                 }
-                  
-                
+
                 this.mantArticuloView.btModificar.setEnabled(true);
                 this.mantArticuloView.txtCodigo.setEnabled(false);
             } catch (SQLException ex) {
@@ -303,14 +347,27 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         }
     }
 
-    public void Cargar_jcbBodega(JComboBox jcbBod) {
+    private void cargaProveedor() {
+        Proveedor prov = new Proveedor();
+        if(!this.mantArticuloView.txtCodigoProv.getText().isEmpty()){
+            prov.setIdProvedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
+            try{
+                prov = proBl.obtenerPorId(prov);
+                this.mantArticuloView.txtNombreProv.setText(prov.getNombre());
+                this.mantArticuloView.txtTelefonoProv.setText(prov.getTelefono());
+                this.mantArticuloView.txtCorreoProv.setText(prov.getEmail());
+            }catch(SQLException ex){}
+        }
+    }
+
+    public void cargarBodegaCombo(JComboBox jcbBod) {
         this.mantArticuloView.jcb_Bodega.removeAllItems();
         DefaultComboBoxModel ModeloJcb = new DefaultComboBoxModel();
         jcbBod.setModel(ModeloJcb);
         this.bodegaBL = new BodegaBL();
         try {
             for (Bodega b : this.bodegaBL.obtenerTodos()) {
-                if(b.getEstado() == true){
+                if (b.getEstado() == true) {
                     ModeloJcb.addElement(b.getTipo().toString());
                 }
             }
@@ -319,14 +376,14 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
 
     }//fin del cargar bodega
 
-    public void Cargar_jcbTipoArticulo(JComboBox jcbTipArt) {
+    public void cargarTipoArtCombo(JComboBox jcbTipArt) {
         this.mantArticuloView.jcb_Tipo.removeAllItems();
         DefaultComboBoxModel Modelojcb = new DefaultComboBoxModel();
         jcbTipArt.setModel(Modelojcb);
         this.tipArtBL = new TipoArticuloBL();
         try {
             for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
-                if(t.getEstado() == true){
+                if (t.getEstado() == true) {
                     Modelojcb.addElement(t.getDescripcion().toString());
                 }
             }

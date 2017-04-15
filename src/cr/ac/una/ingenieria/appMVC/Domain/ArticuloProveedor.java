@@ -7,11 +7,16 @@ package cr.ac.una.ingenieria.appMVC.Domain;
 
 /**
  *
+<<<<<<< HEAD
  * @author Gustavo
+=======
+ * @author Kev
+>>>>>>> origin/master
  */
 public class ArticuloProveedor {
     private Integer articulo;
     private Integer proveedor;
+<<<<<<< HEAD
     private double porcentaje_descuento;
     private double precio_estandar;
     private String fecha_primera_compra;
@@ -32,6 +37,17 @@ public class ArticuloProveedor {
         this.fecha_ultima_compra = fecha_ultima_compra;
         this.cantidad_pedido = cantidad_pedido;
         this.total_pedido = total_pedido;
+=======
+    private Float costo;
+
+    public ArticuloProveedor(Integer articulo, Integer proveedor, Float costo) {
+        this.articulo = articulo;
+        this.proveedor = proveedor;
+        this.costo = costo;
+    }
+
+    public ArticuloProveedor() {
+>>>>>>> origin/master
     }
 
     public Integer getArticulo() {
@@ -50,6 +66,7 @@ public class ArticuloProveedor {
         this.proveedor = proveedor;
     }
 
+<<<<<<< HEAD
     public double getPorcentaje_descuento() {
         return porcentaje_descuento;
     }
@@ -100,4 +117,13 @@ public class ArticuloProveedor {
     
     
     
+=======
+    public Float getCosto() {
+        return costo;
+    }
+
+    public void setCosto(Float costo) {
+        this.costo = costo;
+    }
+>>>>>>> origin/master
 }

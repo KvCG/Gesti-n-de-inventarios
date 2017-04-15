@@ -60,8 +60,8 @@ public class BodegaControlador implements ActionListener{
     public void actionPerformed(ActionEvent ae) {
         
         if(ae.getSource() == this.ModBodegaView.btn_Guardar){
-            if(!"".equals(this.ModBodegaView.jtf_TipoBodega.getText()) &&
-               !"".equals(this.ModBodegaView.jtf_Nombre.getText())){
+            if(!this.ModBodegaView.jtf_TipoBodega.getText().isEmpty() &&
+               !this.ModBodegaView.jtf_Nombre.getText().isEmpty()){
                 try {
                     Bodega bo = new Bodega();
                     bo.setTipo(this.ModBodegaView.jtf_TipoBodega.getText());

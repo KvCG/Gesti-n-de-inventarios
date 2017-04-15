@@ -27,10 +27,10 @@ public class TipoArticuloDao implements IBaseDao<TipoArticulo>{
         Connection con = conexion.getConexion();
         
         CallableStatement cs = con.prepareCall("insert into tipo_articulo"
-                + "(codigo,descripcion,estado) values(?,?,?)");
-        cs.setInt(1,obj.getCodigo());
-        cs.setString(2,obj.getDescripcion());
-        cs.setBoolean(3, obj.getEstado());
+                + "(descripcion,estado) values(?,?)");
+        
+        cs.setString(1,obj.getDescripcion());
+        cs.setBoolean(2, obj.getEstado());
         
         
         cs.executeUpdate();

@@ -324,153 +324,30 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem_ArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ArticuloActionPerformed
-//        try {
-//            if (this.Mod_Inv == false) {
-//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mante_ArticulosView.getWidth() / 2);
-//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mante_ArticulosView.getHeight() / 2);
-//                this.Mante_ArticulosView.setLocation(x, y);
-//
-//                this.jdpPrincipal.add(this.Mante_ArticulosView);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.Mante_ArticulosView.show();
-//                this.Mod_Inv = true;
-//            } else {
-//                this.Mante_ArticulosView.show();
-//                this.Mante_ArticulosView.toFront();
-//                this.Mod_Inv = false;
-//            }
-//        } catch (Exception e) {}
     }//GEN-LAST:event_jMenuItem_ArticuloActionPerformed
 
     private void jMenuItem_Registro_PersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_Registro_PersonaActionPerformed
-//        try {
-//            if (this.Mod_Reg_Per == false) {
-//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_PerView.getWidth() / 2);
-//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_PerView.getHeight() / 2);
-//                this.Mod_Reg_PerView.setLocation(x, y);
-//
-//                this.jdpPrincipal.add(this.Mod_Reg_PerView);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.Mod_Reg_PerView.show();
-//                this.Mod_Reg_Per = true;
-//            } else {
-//                this.Mod_Reg_PerView.show();
-//                this.Mod_Reg_PerView.toFront();
-//                this.Mod_Reg_Per = false;
-//            }
-//        } catch (Exception e) {
-//
-//        }
+
     }//GEN-LAST:event_jMenuItem_Registro_PersonaActionPerformed
 
     private void jMenuItem_Registro_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_Registro_UsuarioActionPerformed
-//        try {
-//            if (this.Mod_Reg_Usu == false) {
-//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_Reg_UsuView.getWidth() / 2);
-//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_Reg_UsuView.getHeight() / 2);
-//                this.Mod_Reg_UsuView.setLocation(x, y);
-//
-//                this.jdpPrincipal.add(this.Mod_Reg_UsuView);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.Mod_Reg_UsuView.show();
-//                this.Mod_Reg_Usu = true;
-//            } else {
-//                this.Mod_Reg_UsuView.show();
-//                this.Mod_Reg_UsuView.toFront();
-//                this.Mod_Reg_Usu = false;
-//            }
-//        } catch (Exception e) {
-//
-//        }
+//      
     }//GEN-LAST:event_jMenuItem_Registro_UsuarioActionPerformed
 
     private void jMenuItem_ProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ProveedoresActionPerformed
-//        try {
-//            if (this.Mod_Pro == false) {
-//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_ProveView.getWidth() / 2);
-//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.Mod_ProveView.getHeight() / 2);
-//                this.Mod_ProveView.setLocation(x, y);
-//
-//                this.jdpPrincipal.add(this.Mod_ProveView);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.Mod_ProveView.show();
-//                this.Mod_Pro = true;
-//            } else {
-//                this.Mod_ProveView.show();
-//                this.Mod_ProveView.toFront();
-//                this.Mod_Pro = false;
-//            }
-//        } catch (Exception e) {
-//        }
+
     }//GEN-LAST:event_jMenuItem_ProveedoresActionPerformed
 
     private void jMenuItem_MovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_MovimientosActionPerformed
-//        try {            
-//            if (this.Mod_Mov == false) {
-//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.vista.getWidth() / 2);
-//                int y = (this.jdpPrincipal.getHeight() / 2) - (this.vista.getHeight() / 2);
-//                this.vista.setLocation(x, y);
-//
-//                this.jdpPrincipal.add(this.vista);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.vista.show();
-//                this.Mod_Mov = true;
-//            } else {
-//                this.vista.show();
-//                this.vista.toFront();
-//                this.Mod_Mov = false;
-//            }
-//        } catch (Exception e) { }
+
     }//GEN-LAST:event_jMenuItem_MovimientosActionPerformed
 
     private void jMenuItem_BodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_BodegaActionPerformed
-//            try {
-//            if(this.Mod_Bod == false){
-//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_BodegaView.getWidth() / 2);
-//                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_BodegaView.getHeight() / 2);                
-//                this.Mod_BodegaView.setLocation(x, y);
-//                this.jdpPrincipal.add(this.Mod_BodegaView);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.Mod_BodegaView.show();
-//                this.Mod_Bod = true;
-//            }
-//            else{
-//                this.Mod_BodegaView.show();
-//                this.Mod_BodegaView.toFront();
-//                this.Mod_Bod = false;               
-//            }
-//        } catch (Exception e) {
-//        }
+
     }//GEN-LAST:event_jMenuItem_BodegaActionPerformed
 
     private void jMenuItem_TipoArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_TipoArticuloActionPerformed
-//        try {
-//            if(this.Mod_Tip_Art == false){
-//                int x = (this.jdpPrincipal.getWidth() / 2) - (this.Mod_TipoArticuloView.getWidth() / 2);
-//                int y = (this.jdpPrincipal.getHeight()/ 2) - (this.Mod_TipoArticuloView.getHeight() / 2);                
-//                this.Mod_TipoArticuloView.setLocation(x, y);
-//                this.jdpPrincipal.add(this.Mod_TipoArticuloView);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.Mod_TipoArticuloView.show();
-//                this.Mod_Tip_Art = true;
-//            }else{
-//                this.jdpPrincipal.add(this.Mod_TipoArticuloView);
-//                this.jdpPrincipal.updateUI();
-//                this.jdpPrincipal.repaint();
-//                this.Mod_TipoArticuloView.show();
-//                this.Mod_TipoArticuloView.toFront();
-//                Mod_Tip_Art = true;
-//            }            
-//        } catch (Exception e) {
-//            System.out.println("no muestar");
-//        }
+
     }//GEN-LAST:event_jMenuItem_TipoArticuloActionPerformed
 
     /**
@@ -504,7 +381,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new PantallaPrincipal().setVisible(true);
+               
             }
         });
     }

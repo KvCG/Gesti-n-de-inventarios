@@ -40,7 +40,11 @@ public class MySQLConexion {
     public MySQLConexion(){
         this.usuario = "root";
         this.password = "root";
+<<<<<<< HEAD
         //this.password = "";
+=======
+//        this.password = "";
+>>>>>>> origin/master
         this.server = "127.0.0.1";
         this.baseDatos = "caemdejeh";
         this.puerto = "3306";
