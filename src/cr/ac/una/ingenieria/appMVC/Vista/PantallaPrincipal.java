@@ -148,7 +148,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTArticulo);
 
         jdpPrincipal.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 0, 453, 100);
+        jScrollPane1.setBounds(0, 0, 452, 100);
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFocusable(false);
