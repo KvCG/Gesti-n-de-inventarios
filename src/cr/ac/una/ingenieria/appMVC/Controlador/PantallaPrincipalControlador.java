@@ -372,6 +372,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             ArrayList<Articulo> listaminimos = articuloBlModelo.obtenerConWhere(new Articulo(), Sql);
             if(listaminimos.isEmpty()){
                 this.pantPrinView.jTArticulo.setVisible(false);
+                this.pantPrinView.LbTituloCuadro.setVisible(false);
             }else{
             for (Object oAux : articuloBlModelo.obtenerConWhere(new Articulo(), Sql)) {
                 
