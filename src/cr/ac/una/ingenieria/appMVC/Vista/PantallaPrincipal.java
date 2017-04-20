@@ -104,6 +104,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jdpPrincipal = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTArticulo = new javax.swing.JTable();
+        LbTituloCuadro = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_Mantenimiento = new javax.swing.JMenu();
         jMenuItem_Articulo = new javax.swing.JMenuItem();
@@ -148,7 +149,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTArticulo);
 
         jdpPrincipal.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 0, 453, 100);
+        jScrollPane1.setBounds(0, 40, 453, 100);
+
+        LbTituloCuadro.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        LbTituloCuadro.setText(" Punto de Pedido");
+        jdpPrincipal.add(LbTituloCuadro);
+        LbTituloCuadro.setBounds(130, 10, 220, 20);
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFocusable(false);
@@ -387,6 +393,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JLabel LbTituloCuadro;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
