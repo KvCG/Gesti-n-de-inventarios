@@ -161,11 +161,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                             a.setTipo(t.getCodigo());
                         }
                     }
-                } catch (Exception eq) {
-                }
-
-                try {
-                    
                     this.ArticuloBLModelo.insertar(a);
                     a = ArticuloBLModelo.obtenerPorId(a);
                     artPro.setProveedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
@@ -349,14 +344,15 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
 
     private void cargaProveedor() {
         Proveedor prov = new Proveedor();
-        if(!this.mantArticuloView.txtCodigoProv.getText().isEmpty()){
+        if (!this.mantArticuloView.txtCodigoProv.getText().isEmpty()) {
             prov.setIdProvedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
-            try{
+            try {
                 prov = proBl.obtenerPorId(prov);
                 this.mantArticuloView.txtNombreProv.setText(prov.getNombre());
                 this.mantArticuloView.txtTelefonoProv.setText(prov.getTelefono());
                 this.mantArticuloView.txtCorreoProv.setText(prov.getEmail());
-            }catch(SQLException ex){}
+            } catch (SQLException ex) {
+            }
         }
     }
 

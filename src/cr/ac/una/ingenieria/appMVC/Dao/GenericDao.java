@@ -9,9 +9,8 @@ import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
 import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
-//import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
+import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
-
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.TipoArticulo;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
