@@ -5,14 +5,7 @@
  */
 package cr.ac.una.ingenieria.appMVC.Domain;
 
-/**
- *
-<<<<<<< HEAD
- * @author Gustavo
-=======
- * @author Kev
->>>>>>> origin/master
- */
+
 public class ArticuloProveedor {
     private Integer articulo;
     private Integer proveedor;
