@@ -175,28 +175,6 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Desktop desktop = Desktop.getDesktop();
                 desktop.open(file);
             }
-//        InputStream inputStream = null;
-//        try {
-//            String directorio = System.getProperty("user.dir");
-//           String separador = System.getProperty("file.separator");
-//
-//            inputStream = new FileInputStream(directorio + separador + "\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
-//            Map parameters = new HashMap();
-//            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//            MySQLConexion con = new MySQLConexion();
-//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, con.getConexion());
-//            JasperViewer visor = new JasperViewer(jasperPrint, false);
-//            visor.setVisible(true);
-////                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Michael\\Desktop\\Gesti-n-de-inventarios\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\General.pdf");
-////                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Michael\\Desktop\\reportes\\General1.pdf");
-//            File file = new File("C:\\Users\\Michael\\Desktop\\Gesti-n-de-inventarios\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\General1.pdf");
-//            if (file.toString().endsWith(".pdf")) {
-//                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-//            } else {
-//                Desktop desktop = Desktop.getDesktop();
-//                desktop.open(file);
-//            }
         } catch (FileNotFoundException ex) {
             System.err.println(ex.getMessage());
         } catch (JRException | SQLException | IOException ex) {
@@ -386,7 +364,6 @@ public class PantallaPrincipalControlador implements ActionListener {
         /////////////////////////Reportes/////////////////////////////////////////////
 
         if (e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_General) {
-
             try {
                 this.creaReporte("General1.jrxml");
             } catch (IOException ex) {
