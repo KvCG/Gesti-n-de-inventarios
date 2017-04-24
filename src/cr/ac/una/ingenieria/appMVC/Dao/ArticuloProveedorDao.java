@@ -43,7 +43,7 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
     @Override
     public void modificar(ArticuloProveedor obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("articulo_proveedor set articulo = ?, proveedor = ?,"
+        CallableStatement cs = con.prepareCall("update articulo_proveedor set articulo = ?, proveedor = ?,"
                 + "costo =? where articulo = ? and proveedor = ?");
         cs.setInt(1, obj.getArticulo());
         cs.setInt(2, obj.getProveedor());
@@ -100,11 +100,27 @@ public class ArticuloProveedorDao implements IBaseDao<ArticuloProveedor> {
             l.add(a);
         }
         con.close();
-        return l;    }
+        return l;
+    }
 
     @Override
     public ArrayList<ArticuloProveedor> obtenerConWhere(String where) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = conexion.getConexion();
+        ArrayList<ArticuloProveedor> l = new ArrayList();
+
+        PreparedStatement ps = con.prepareStatement("select * from articulo_proveedor " + where);
+
+        ResultSet result = ps.executeQuery();
+        while (result.next()) {
+            ArticuloProveedor a = new ArticuloProveedor();
+            a.setArticulo(result.getInt("articulo"));
+            a.setProveedor(result.getInt("proveedor"));
+            a.setCosto(result.getFloat("costo"));
+
+            l.add(a);
+        }
+        con.close();
+        return l;
     }
 
     @Override

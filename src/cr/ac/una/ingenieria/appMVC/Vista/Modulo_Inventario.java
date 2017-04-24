@@ -54,7 +54,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         btModificar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        txtCodigoBuscar = new javax.swing.JTextField();
+        txtCodigoArt = new javax.swing.JTextField();
         txtNombreProv = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         lbCodigo1 = new javax.swing.JLabel();
@@ -70,6 +70,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         txtCosto = new javax.swing.JTextField();
         lbImpuestos = new javax.swing.JLabel();
         chbImpuestos = new javax.swing.JCheckBox();
+        txtIdArticulo = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -176,10 +177,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Cancelar.png"))); // NOI18N
         btCancelar.setText("CANCELAR");
 
-        txtCodigoBuscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        txtCodigoBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodigoArt.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCodigoArt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoBuscarKeyTyped(evt);
+                txtCodigoArtKeyTyped(evt);
             }
         });
 
@@ -260,6 +261,13 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
             }
         });
 
+        txtIdArticulo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtIdArticulo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdArticuloKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,7 +322,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                                     .addComponent(lbBodega)
                                     .addComponent(lbTipo)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap()
+                                .addComponent(txtIdArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCodigoArt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lbCodigo)))
                         .addComponent(lbCantidad, javax.swing.GroupLayout.Alignment.TRAILING)))
@@ -387,17 +398,18 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCorreoProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbCorreoProv))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(lbCodigo1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(lbCodigo1, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbCodigo)
                     .addComponent(lbNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigoArt, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -486,9 +498,9 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         } 
     }//GEN-LAST:event_txtPuntoPedidoKeyTyped
 
-    private void txtCodigoBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBuscarKeyTyped
+    private void txtCodigoArtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoArtKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCodigoBuscarKeyTyped
+    }//GEN-LAST:event_txtCodigoArtKeyTyped
 
     private void txtNombreProvKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProvKeyTyped
         // TODO add your handling code here:
@@ -522,6 +534,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chbImpuestosActionPerformed
 
+    private void txtIdArticuloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdArticuloKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdArticuloKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btBuscaProveedor;
@@ -551,11 +567,12 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbTipo;
     public javax.swing.JTextField txtCantidad;
     public javax.swing.JTextField txtCodigo;
-    public javax.swing.JTextField txtCodigoBuscar;
+    public javax.swing.JTextField txtCodigoArt;
     public javax.swing.JTextField txtCodigoProv;
     public javax.swing.JTextField txtCorreoProv;
     public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtDescripcion;
+    public javax.swing.JTextField txtIdArticulo;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtNombreProv;
     public javax.swing.JTextField txtPrecio;

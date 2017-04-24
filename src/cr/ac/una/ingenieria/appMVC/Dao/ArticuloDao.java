@@ -66,7 +66,7 @@ public class ArticuloDao implements IBaseDao<Articulo> {
         CallableStatement cs = con.prepareCall("update articulo set codigo = ?, nombre = ?,"
                 + "descripcion=?,cod_tipo_articulo = ?,"
                 + "precio_venta = ?, cantidad = ?,"
-                + "bodega=?, punto_de_pedido = ? "
+                + "bodega=?, punto_de_pedido = ?, "
                 + "impuesto=? "
                 + "where codigo = ?");
         cs.setString(1, obj.getCodigo());

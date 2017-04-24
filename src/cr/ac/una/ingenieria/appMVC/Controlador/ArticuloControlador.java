@@ -10,6 +10,7 @@ import cr.ac.una.ingenieria.appMVC.Domain.ArticuloProveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
 import cr.ac.una.ingenieria.appMVC.Domain.Proveedor;
 import cr.ac.una.ingenieria.appMVC.Domain.TipoArticulo;
+import cr.ac.una.ingenieria.appMVC.Vista.MantArtProvBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.Modulo_Inventario;
@@ -30,7 +31,7 @@ import javax.swing.event.DocumentListener;
  *
  * @author Gustavo
  */
-public class ArticuloControlador implements ActionListener, DocumentListener {
+public class ArticuloControlador implements ActionListener {
 
     private Modulo_Inventario mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
@@ -51,7 +52,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.artProvBl = new ArticuloProveedorBL();
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
-        this.mantArticuloView.txtCodigoBuscar.getDocument().addDocumentListener(this);
         this.mantArticuloView.btInsertar.addActionListener(this);
         this.mantArticuloView.btBuscar.addActionListener(this);
         this.mantArticuloView.btCancelar.addActionListener(this);
@@ -59,6 +59,25 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btModificar.addActionListener(this);
         this.mantArticuloView.jcbBodega.addActionListener(this);
         this.mantArticuloView.btBuscaProveedor.addActionListener(this);
+        this.mantArticuloView.txtCodigoArt.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                if (!mantArticuloView.txtCodigoArt.getText().isEmpty()) {
+                    cargarArticulo();
+                }
+
+            }
+        });
+        this.mantArticuloView.txtIdArticulo.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                if (!mantArticuloView.txtCodigoProv.getText().isEmpty()) {
+                    cargarCosto();
+                }
+
+            }
+        });
+
         this.mantArticuloView.txtCodigoProv.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -70,9 +89,12 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         });
         this.mantArticuloView.btModificar.setEnabled(false);
         this.mantArticuloView.btEliminar.setEnabled(false);
-        this.mantArticuloView.txtCodigoBuscar.setVisible(false);
+        this.mantArticuloView.txtCodigoArt.setVisible(false);
         this.mantArticuloView.txtCodigoProv.setVisible(false);
-        
+        this.mantArticuloView.txtIdArticulo.setVisible(false);
+        this.mantArticuloView.txtNombreProv.setEditable(false);
+        this.mantArticuloView.txtCorreoProv.setEditable(false);
+        this.mantArticuloView.txtTelefonoProv.setEditable(false);
         inicializarPantalla();
         cargarBodegaCombo(this.mantArticuloView.jcbBodega);
         cargarTipoArtCombo(this.mantArticuloView.jcbTipo);
@@ -130,29 +152,25 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.chbImpuestos.setSelected(false);
     }
 
-    /**
-     *
-     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.mantArticuloView.btInsertar) {
-            
-           
+
             if (this.isEmpty()) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error faltan espacios por rellenar:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
             } else {
                 Articulo a = new Articulo();
-                
+
                 a.setCodigo(this.mantArticuloView.txtCodigo.getText());
                 a.setNombre(this.mantArticuloView.txtNombre.getText());
                 a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
                 a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.txtPrecio.getText()));
                 a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
                 a.setCantidad(Integer.parseInt(this.mantArticuloView.txtCantidad.getText()));
-                if(this.mantArticuloView.chbImpuestos.isSelected()){
+                if (this.mantArticuloView.chbImpuestos.isSelected()) {
                     a.setImpuesto("Gravado");
-                }else{
-                     a.setImpuesto("Exento");
+                } else {
+                    a.setImpuesto("Exento");
                 }
 
                 String bodega = this.mantArticuloView.jcbBodega.getSelectedItem().toString();
@@ -168,7 +186,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                             a.setTipo(t.getCodigo());
                         }
                     }
-                    
+
                     this.ArticuloBLModelo.insertar(a);
                     a = ArticuloBLModelo.obtenerPorId(a);
                     artPro.setProveedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
@@ -249,7 +267,12 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                         }
                     } catch (Exception eq) {
                     }
+
                     this.ArticuloBLModelo.modificar(a);
+                    artPro.setProveedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
+                    artPro.setArticulo(a.getIdarticulo());
+                    artPro.setCosto(Float.parseFloat(this.mantArticuloView.txtCosto.getText()));
+                    this.artProvBl.modificar(artPro);
                     this.clean();
                     this.mantArticuloView.btEliminar.setEnabled(false);
                     this.mantArticuloView.txtCodigo.setEnabled(true);
@@ -269,67 +292,77 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         }
         if (e.getSource() == this.mantArticuloView.btCancelar) {
             this.clean();
+            this.mantArticuloView.txtNombreProv.setText(null);
+            this.mantArticuloView.txtCorreoProv.setText(null);
+            this.mantArticuloView.txtTelefonoProv.setText(null);
             this.mantArticuloView.btEliminar.setEnabled(false);
             this.mantArticuloView.btModificar.setEnabled(false);
             this.mantArticuloView.txtCodigo.setEnabled(true);
         }
 
         if (e.getSource() == this.mantArticuloView.btBuscar) {
-            if (!mantArticuloView.txtCodigo.getText().isEmpty()) {
-
+            if (this.mantArticuloView.txtNombreProv.getText().isEmpty()) {
                 MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
                 ArticuloBuscarControlador articuloBControlador;
-                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView,
-                        ArticuloBLModelo, this.mantArticuloView.txtCodigoBuscar);
+                articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, ArticuloBLModelo, this.mantArticuloView.txtCodigoArt);
                 articuloBControlador.getArticuloBuscarView().setVisible(true);
                 this.mantArticuloView.btEliminar.setEnabled(true);
             } else {
-                JOptionPane.showMessageDialog(mantArticuloView, "Debes digitar un codigo primero", "Error", JOptionPane.ERROR_MESSAGE);
+                MantArtProvBuscar mapb = new MantArtProvBuscar();
+                ArtProvBuscarControlador apc = new ArtProvBuscarControlador(mapb, artProvBl, this.mantArticuloView.txtCodigoArt, this.mantArticuloView.txtCodigoProv, "Articulo");
+                apc.getArtProvBuscarView().setVisible(true);
             }
         }
         if (e.getSource() == this.mantArticuloView.btBuscaProveedor) {
-            MantProveedorBuscar mantBuscarView = new MantProveedorBuscar();
-            ProveedorBuscarControlador pBControlador;
-            pBControlador = new ProveedorBuscarControlador(mantBuscarView, this.proBl, this.mantArticuloView.txtCodigoProv);
-            pBControlador.getProovedorBuscarView().setVisible(true);
+            if (this.mantArticuloView.txtCodigo.getText().isEmpty()) {
+                MantProveedorBuscar mantBuscarView = new MantProveedorBuscar();
+                ProveedorBuscarControlador pBControlador;
+                pBControlador = new ProveedorBuscarControlador(mantBuscarView, this.proBl, this.mantArticuloView.txtCodigoProv);
+                pBControlador.getProovedorBuscarView().setVisible(true);
+            } else {
+                MantArtProvBuscar mapb = new MantArtProvBuscar();
+                ArtProvBuscarControlador apc = new ArtProvBuscarControlador(mapb, artProvBl, this.mantArticuloView.txtCodigoArt, this.mantArticuloView.txtCodigoProv, "Proveedor");
+                apc.getArtProvBuscarView().setVisible(true);
+            }
         }
     }
 
-    @Override
-    public void insertUpdate(DocumentEvent de) {
-        cargarArticulo();
+    private void cargarCosto() {
+        ArticuloProveedor ap = new ArticuloProveedor();
+        if (!this.mantArticuloView.txtIdArticulo.getText().isEmpty() && !this.mantArticuloView.txtCodigoProv.getText().isEmpty()) {
+            ap.setArticulo(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
+            ap.setProveedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
 
-    }
-
-    @Override
-    public void removeUpdate(DocumentEvent de) {
-        cargarArticulo();
-
-    }
-
-    @Override
-    public void changedUpdate(DocumentEvent de) {
-        cargarArticulo();
-
+            try {
+                ap = artProvBl.obtenerPorId(ap);
+                if (ap != null) {
+                    this.mantArticuloView.txtCosto.setText(ap.getCosto().toString());
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     private void cargarArticulo() {
         Articulo a = new Articulo();
-        if (!this.mantArticuloView.txtCodigoBuscar.getText().isEmpty()) {
-            a.setCodigo(this.mantArticuloView.txtCodigoBuscar.getText());
+        if (!this.mantArticuloView.txtCodigoArt.getText().isEmpty()) {
+            a.setCodigo(this.mantArticuloView.txtCodigoArt.getText());
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
+                this.mantArticuloView.txtIdArticulo.setText(a.getIdarticulo().toString());
+                this.mantArticuloView.txtCodigo.setText(a.getCodigo());
                 this.mantArticuloView.txtNombre.setText(a.getNombre());
                 this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
                 this.mantArticuloView.txtCantidad.setText(String.valueOf(a.getCantidad().toString()));
                 this.mantArticuloView.txtPrecio.setText(String.valueOf(a.getPrecioVenta()));
                 this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
-                if(a.getImpuesto().equals("Gravado")){
+                if (a.getImpuesto().equals("Gravado")) {
                     this.mantArticuloView.chbImpuestos.setSelected(true);
-                }else{
-                     this.mantArticuloView.chbImpuestos.setSelected(false);
+                } else {
+                    this.mantArticuloView.chbImpuestos.setSelected(false);
                 }
-                
+
                 int bo = a.getBodega();
                 int ti = a.getTipo();
 

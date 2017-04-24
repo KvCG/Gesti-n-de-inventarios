@@ -16,7 +16,6 @@ import cr.ac.una.ingenieria.appMVC.Controlador.PersonaControlador;
 import cr.ac.una.ingenieria.appMVC.Controlador.ValidarAcceso;
 import cr.ac.una.ingenieria.appMVC.Domain.Bodega;
 
-
 import cr.ac.una.ingenieria.appMVC.Domain.Persona;
 import cr.ac.una.ingenieria.appMVC.Domain.Usuario;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
@@ -33,6 +32,7 @@ import cr.ac.una.ingenieria.appMVC.Vista.SolicitudUsuarioPassword;
  * @author Kev
  */
 public class InventarioMain {
+
     public static void main(String[] args) {
 //        
 //        BodegaBL Bbl = new BodegaBL();
@@ -42,14 +42,15 @@ public class InventarioMain {
 //            }
 //        } catch (Exception e) {
 //        }
-       
-        
-        SolicitudUsuarioPassword solUsuarioPassword =new SolicitudUsuarioPassword();
-   
-        SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
-        ValidarAcceso validar = new ValidarAcceso(solUsePa);
-        validar.getSolUsePa().setVisible(true);
 
+        try {
+            SolicitudUsuarioPassword solUsuarioPassword = new SolicitudUsuarioPassword();
+
+            SolicitudUsuarioPassword solUsePa = new SolicitudUsuarioPassword();
+            ValidarAcceso validar = new ValidarAcceso(solUsePa);
+            validar.getSolUsePa().setVisible(true);
+        } catch (NullPointerException e) {
+        }
 //        Modulo_Moviento vista = new Modulo_Moviento();
 //        MantArticuloBuscar mantArticuloBView = new MantArticuloBuscar();
 //        MantPersonaBuscar mantPersonaBView = new MantPersonaBuscar();
@@ -61,6 +62,6 @@ public class InventarioMain {
 //        MovimientoControlador con = new MovimientoControlador(movimientoBLModelo, vista, articuloBLModelo, personaBLModelo, proveedorBLModelo, mantArticuloBView, mantPersonaBView, mantProveedorBView);
 //        con.getModMovView().show();
 //        con.getModMovView().toFront();
- 
+
     }
 }

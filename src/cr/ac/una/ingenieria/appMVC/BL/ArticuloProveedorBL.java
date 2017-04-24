@@ -57,9 +57,13 @@ public class ArticuloProveedorBL implements IBaseBL<ArticuloProveedor> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+  
+    public ArrayList<ArticuloProveedor> obtenerConWhere(ArticuloProveedor ap, String where) throws SQLException {
+        return apDao.obtenerConWhere(ap, where);
+    }    
+
     @Override
     public ArrayList<ArticuloProveedor> obtenerConWhere() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 }

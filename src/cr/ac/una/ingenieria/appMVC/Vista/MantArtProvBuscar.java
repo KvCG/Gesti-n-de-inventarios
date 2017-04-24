@@ -9,12 +9,12 @@ package cr.ac.una.ingenieria.appMVC.Vista;
  *
  * @author Gustavo
  */
-public class MantProveedorBuscar extends javax.swing.JFrame {
+public class MantArtProvBuscar extends javax.swing.JFrame {
 
     /**
      * Creates new form MantProovedorBuscar
      */
-    public MantProveedorBuscar() {
+    public MantArtProvBuscar() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -32,7 +32,7 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbProveedor = new javax.swing.JTable();
+        tbArtProv = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -52,12 +52,13 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
         });
 
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/buscar.png"))); // NOI18N
+        btBuscar.setText("Buscar");
 
-        tbProveedor = new javax.swing.JTable(){
+        tbArtProv = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;}
         };
-        tbProveedor.setModel(new javax.swing.table.DefaultTableModel(
+        tbArtProv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -76,8 +77,8 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tbProveedor.setFocusable(false);
-        jScrollPane1.setViewportView(tbProveedor);
+        tbArtProv.setFocusable(false);
+        jScrollPane1.setViewportView(tbArtProv);
 
         btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/aprobado.png"))); // NOI18N
         btSeleccionar.setText("Seleccionar");
@@ -97,7 +98,7 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btBuscar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
@@ -158,21 +159,23 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantArtProvBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantArtProvBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantArtProvBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MantProveedorBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MantArtProvBuscar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MantProveedorBuscar().setVisible(true);
+                new MantArtProvBuscar().setVisible(true);
             }
         });
     }
@@ -182,7 +185,7 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable tbProveedor;
+    public javax.swing.JTable tbArtProv;
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }

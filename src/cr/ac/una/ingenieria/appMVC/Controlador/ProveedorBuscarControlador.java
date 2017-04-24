@@ -22,8 +22,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Gustavo
  */
-public class ProveedorBuscarControlador implements  ActionListener {
-    
+public class ProveedorBuscarControlador implements ActionListener {
+
     private MantProveedorBuscar proovedorBuscarView;
     private ProveedorBL proveedorBLModelo;
     private JTextField txtRespuesta;
@@ -46,15 +46,15 @@ public class ProveedorBuscarControlador implements  ActionListener {
         this.txtRespuesta = txtRespuesta;
         this.proovedorBuscarView.btBuscar.addActionListener(this);
         this.proovedorBuscarView.btSeleccionar.addActionListener(this);
-       this.proovedorBuscarView.txtBuscar.addCaretListener(new CaretListener(){
-           @Override
+        this.proovedorBuscarView.txtBuscar.addCaretListener(new CaretListener() {
+            @Override
             public void caretUpdate(CaretEvent e) {
-                llenarTabla(proovedorBuscarView.jTableProovedor);
+                llenarTabla(proovedorBuscarView.tbProveedor);
             }
         });
-       
+
         this.proovedorBuscarView.btSeleccionar.addActionListener(this);
-        llenarTabla(this.proovedorBuscarView.jTableProovedor);
+        llenarTabla(this.proovedorBuscarView.tbProveedor);
     }
 
     /**
@@ -105,20 +105,19 @@ public class ProveedorBuscarControlador implements  ActionListener {
         this.txtRespuesta = txtRespuesta;
     }
 
-    
     @Override
     public void actionPerformed(ActionEvent e) {
-         if(e.getSource() == this.proovedorBuscarView.btBuscar){
-            llenarTabla(this.proovedorBuscarView.jTableProovedor);
+        if (e.getSource() == this.proovedorBuscarView.btBuscar) {
+            llenarTabla(this.proovedorBuscarView.tbProveedor);
         }
-        
-        if(e.getSource() == this.proovedorBuscarView.btSeleccionar){
-            int fila = this.proovedorBuscarView.jTableProovedor.getSelectedRow();
+
+        if (e.getSource() == this.proovedorBuscarView.btSeleccionar) {
+            int fila = this.proovedorBuscarView.tbProveedor.getSelectedRow();
             if (fila != -1) {
-            Integer idProveedor = Integer.parseInt(this.proovedorBuscarView.jTableProovedor.getValueAt(fila, 0).toString());
-            txtRespuesta.setText(String.valueOf(idProveedor));
-            this.proovedorBuscarView.setVisible(false);
-            }else{
+                Integer idProveedor = Integer.parseInt(this.proovedorBuscarView.tbProveedor.getValueAt(fila, 0).toString());
+                txtRespuesta.setText(String.valueOf(idProveedor));
+                this.proovedorBuscarView.setVisible(false);
+            } else {
                 JOptionPane.showMessageDialog(proovedorBuscarView, "Error debe seleccionar un proveedor:", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -137,11 +136,10 @@ public class ProveedorBuscarControlador implements  ActionListener {
         modeloTabla.addColumn("Telefono");
         modeloTabla.addColumn("Correo Elec.");
         modeloTabla.addColumn("Estado");
-        
 
         Object fila[] = new Object[5];
-        
-        String Sql = "where nombre like '%"+ this.proovedorBuscarView.txtBuscar.getText() +"%'";
+
+        String Sql = "where nombre like '%" + this.proovedorBuscarView.txtBuscar.getText() + "%'";
 
         try {
             for (Object oAux : proveedorBLModelo.obtenerConWhere(new Proveedor(), Sql)) {
@@ -150,9 +148,9 @@ public class ProveedorBuscarControlador implements  ActionListener {
                 fila[1] = p.getNombre();
                 fila[2] = p.getTelefono();
                 fila[3] = p.getEmail();
-                if(p.getEstado()==true){
+                if (p.getEstado() == true) {
                     fila[4] = "activo";
-                }else{
+                } else {
                     fila[4] = "inactivo";
                 }
                 modeloTabla.addRow(fila);
@@ -162,4 +160,3 @@ public class ProveedorBuscarControlador implements  ActionListener {
         }
     }
 }
-
