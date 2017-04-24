@@ -38,8 +38,8 @@ public class ArticuloDao implements IBaseDao<Articulo> {
     public void insertar(Articulo obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into articulo(codigo,nombre,descripcion,cod_tipo_articulo,"
-                + "precio_venta,cantidad,bodega,punto_de_pedido) values "
-                + "(?,?,?,?,?,?,?,?)");
+                + "precio_venta,cantidad,bodega,punto_de_pedido,impuesto) values "
+                + "(?,?,?,?,?,?,?,?,?)");
 
         cs.setString(1, obj.getCodigo());
         cs.setString(2, obj.getNombre());
@@ -49,6 +49,8 @@ public class ArticuloDao implements IBaseDao<Articulo> {
         cs.setInt(6, obj.getCantidad());
         cs.setInt(7, obj.getBodega());
         cs.setInt(8, obj.getPuntoPedido());
+        cs.setString(9, obj.getImpuesto());
+        
         cs.executeUpdate();
         con.close();
     }
@@ -65,6 +67,7 @@ public class ArticuloDao implements IBaseDao<Articulo> {
                 + "descripcion=?,cod_tipo_articulo = ?,"
                 + "precio_venta = ?, cantidad = ?,"
                 + "bodega=?, punto_de_pedido = ? "
+                + "impuesto=? "
                 + "where codigo = ?");
         cs.setString(1, obj.getCodigo());
         cs.setString(2, obj.getNombre());
@@ -74,7 +77,8 @@ public class ArticuloDao implements IBaseDao<Articulo> {
         cs.setInt(6, obj.getCantidad());
         cs.setInt(7, obj.getBodega());
         cs.setInt(8, obj.getPuntoPedido());
-        cs.setString(9, obj.getCodigo());
+        cs.setString(9, obj.getImpuesto());
+        cs.setString(10, obj.getCodigo());
         cs.executeUpdate();
         con.close();
 
@@ -123,6 +127,7 @@ public class ArticuloDao implements IBaseDao<Articulo> {
             a.setBodega(result.getInt("bodega"));
             a.setPuntoPedido(result.getInt("punto_de_pedido"));
             a.setEstado(result.getBoolean("estado"));
+            a.setImpuesto(result.getString("impuesto"));
         }
         con.close();
         return a;
@@ -150,6 +155,7 @@ public class ArticuloDao implements IBaseDao<Articulo> {
             a.setBodega(result.getInt("bodega"));
             a.setPuntoPedido(result.getInt("punto_de_pedido"));
             a.setEstado(result.getBoolean("estado"));
+            a.setImpuesto(result.getString("impuesto"));
         }
         con.close();
         return a;
@@ -179,6 +185,7 @@ public class ArticuloDao implements IBaseDao<Articulo> {
             a.setBodega(result.getInt("bodega"));
             a.setPuntoPedido(result.getInt("punto_de_pedido"));
             a.setEstado(result.getBoolean("estado"));
+            a.setImpuesto(result.getString("impuesto"));
             l.add(a);
         }
         con.close();
@@ -211,6 +218,7 @@ public class ArticuloDao implements IBaseDao<Articulo> {
             a.setBodega(result.getInt("bodega"));
             a.setPuntoPedido(result.getInt("punto_de_pedido"));
             a.setEstado(result.getBoolean("estado"));
+            a.setImpuesto(result.getString("impuesto"));
             l.add(a);
         }
         con.close();

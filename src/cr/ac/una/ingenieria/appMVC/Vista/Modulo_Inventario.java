@@ -34,7 +34,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lbNombre = new javax.swing.JLabel();
-        TxtPrecio = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
         lbPuntoPedido = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
@@ -42,12 +42,12 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         lbTipo = new javax.swing.JLabel();
         lbBodega = new javax.swing.JLabel();
-        jcb_Tipo = new javax.swing.JComboBox<>();
+        jcbTipo = new javax.swing.JComboBox<>();
         btBuscar = new javax.swing.JButton();
-        jcb_Bodega = new javax.swing.JComboBox<>();
+        jcbBodega = new javax.swing.JComboBox<>();
         lbCodigo = new javax.swing.JLabel();
         lbCantidad = new javax.swing.JLabel();
-        TxtCantidad = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         lbPrecio = new javax.swing.JLabel();
         btInsertar = new javax.swing.JButton();
@@ -67,7 +67,9 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         lbCodigo2 = new javax.swing.JLabel();
         txtCodigoProv = new javax.swing.JTextField();
         lbCosto = new javax.swing.JLabel();
-        TxtCosto = new javax.swing.JTextField();
+        txtCosto = new javax.swing.JTextField();
+        lbImpuestos = new javax.swing.JLabel();
+        chbImpuestos = new javax.swing.JCheckBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -79,10 +81,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         lbNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbNombre.setText("NOMBRE:");
 
-        TxtPrecio.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        TxtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPrecio.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                TxtPrecioKeyTyped(evt);
+                txtPrecioKeyTyped(evt);
             }
         });
 
@@ -95,7 +97,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
 
         lbPuntoPedido.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbPuntoPedido.setForeground(new java.awt.Color(255, 51, 51));
-        lbPuntoPedido.setText("MINIMO:");
+        lbPuntoPedido.setText("Punto de pedido:");
 
         txtDescripcion.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtDescripcion.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -120,8 +122,8 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         lbBodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbBodega.setText("BODEGA:");
 
-        jcb_Tipo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jcb_Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enlatados", "Embutidos", "Cartones", "Congelados", "Quesos", "Otros" }));
+        jcbTipo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jcbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enlatados", "Embutidos", "Cartones", "Congelados", "Quesos", "Otros" }));
 
         btBuscar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"))); // NOI18N
@@ -131,8 +133,8 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
             }
         });
 
-        jcb_Bodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jcb_Bodega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fria", "Seca" }));
+        jcbBodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jcbBodega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fria", "Seca" }));
 
         lbCodigo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbCodigo.setText("CODIGO:");
@@ -141,10 +143,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         lbCantidad.setForeground(new java.awt.Color(0, 204, 0));
         lbCantidad.setText("En Stock:");
 
-        TxtCantidad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        TxtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCantidad.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                TxtCantidadKeyTyped(evt);
+                txtCantidadKeyTyped(evt);
             }
         });
 
@@ -156,7 +158,7 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         });
 
         lbPrecio.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lbPrecio.setText("Precio de Venta");
+        lbPrecio.setText("Precio de Venta:");
 
         btInsertar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Guardar 00.png"))); // NOI18N
@@ -242,10 +244,19 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         lbCosto.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lbCosto.setText("Costo:");
 
-        TxtCosto.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        TxtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCosto.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                TxtCostoKeyTyped(evt);
+                txtCostoKeyTyped(evt);
+            }
+        });
+
+        lbImpuestos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lbImpuestos.setText("Impuestos:");
+
+        chbImpuestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbImpuestosActionPerformed(evt);
             }
         });
 
@@ -253,64 +264,6 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lbBodega)
-                                        .addComponent(lbTipo)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lbCodigo)))
-                            .addComponent(lbCantidad, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jcb_Bodega, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jcb_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(TxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(lbNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbPrecio, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbPuntoPedido, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(lbCosto))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescripcion)
-                            .addComponent(txtNombre)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TxtPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                                    .addComponent(txtPuntoPedido))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(78, 78, 78))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(TxtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btInsertar)
-                .addGap(18, 18, 18)
-                .addComponent(btModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btBuscar)
-                .addGap(18, 18, 18)
-                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jSeparator1)
@@ -338,6 +291,74 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                 .addGap(245, 245, 245)
                 .addComponent(lbCodigo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(245, 245, 245))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btInsertar)
+                .addGap(18, 18, 18)
+                .addComponent(btModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btBuscar)
+                .addGap(18, 18, 18)
+                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lbPuntoPedido)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbBodega)
+                                    .addComponent(lbTipo)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbCodigo)))
+                        .addComponent(lbCantidad, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtPuntoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbPrecio))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jcbBodega, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbNombre)
+                                    .addComponent(jLabel3)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbCosto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbImpuestos, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDescripcion)
+                            .addComponent(txtNombre)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(78, 78, 78))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(chbImpuestos))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(232, 232, 232)
@@ -366,10 +387,10 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCorreoProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbCorreoProv))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(lbCodigo1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(lbCodigo1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -379,27 +400,30 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                     .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbCantidad)
                     .addComponent(jLabel3)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcb_Bodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbBodega)
-                    .addComponent(lbPrecio)
-                    .addComponent(TxtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcb_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTipo)
                     .addComponent(lbPuntoPedido)
-                    .addComponent(txtPuntoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPuntoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbPrecio)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbBodega)
                     .addComponent(lbCosto)
-                    .addComponent(TxtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chbImpuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jcbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbTipo)
+                        .addComponent(lbImpuestos)))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -412,27 +436,27 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(21, 21, 21)
                     .addComponent(lbCodigo2)
-                    .addContainerGap(436, Short.MAX_VALUE)))
+                    .addContainerGap(452, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TxtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtPrecioKeyTyped
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
         char c = evt.getKeyChar();
 
         if(c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_TxtPrecioKeyTyped
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
 
     }//GEN-LAST:event_btBuscarActionPerformed
 
-    private void TxtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCantidadKeyTyped
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
         char c = evt.getKeyChar();
 
         if(c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_TxtCantidadKeyTyped
+    }//GEN-LAST:event_txtCantidadKeyTyped
 
     private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
        char tecla =evt.getKeyChar();
@@ -486,29 +510,31 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoProvActionPerformed
 
-    private void TxtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCostoKeyTyped
+    private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_TxtCostoKeyTyped
+    }//GEN-LAST:event_txtCostoKeyTyped
 
     private void txtCorreoProvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoProvActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoProvActionPerformed
 
+    private void chbImpuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbImpuestosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chbImpuestosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField TxtCantidad;
-    public javax.swing.JTextField TxtCosto;
-    public javax.swing.JTextField TxtPrecio;
     public javax.swing.JButton btBuscaProveedor;
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btCancelar;
     public javax.swing.JButton btEliminar;
     public javax.swing.JButton btInsertar;
     public javax.swing.JButton btModificar;
+    public javax.swing.JCheckBox chbImpuestos;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JComboBox<String> jcb_Bodega;
-    public javax.swing.JComboBox<String> jcb_Tipo;
+    public javax.swing.JComboBox<String> jcbBodega;
+    public javax.swing.JComboBox<String> jcbTipo;
     private javax.swing.JLabel lbBodega;
     private javax.swing.JLabel lbCantidad;
     private javax.swing.JLabel lbCodigo;
@@ -516,19 +542,23 @@ public class Modulo_Inventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbCodigo2;
     private javax.swing.JLabel lbCorreoProv;
     private javax.swing.JLabel lbCosto;
+    public javax.swing.JLabel lbImpuestos;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbNombreProv;
     private javax.swing.JLabel lbPrecio;
     private javax.swing.JLabel lbPuntoPedido;
     private javax.swing.JLabel lbTelefonoProv;
     private javax.swing.JLabel lbTipo;
+    public javax.swing.JTextField txtCantidad;
     public javax.swing.JTextField txtCodigo;
     public javax.swing.JTextField txtCodigoBuscar;
     public javax.swing.JTextField txtCodigoProv;
     public javax.swing.JTextField txtCorreoProv;
+    public javax.swing.JTextField txtCosto;
     public javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtNombre;
     public javax.swing.JTextField txtNombreProv;
+    public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtPuntoPedido;
     public javax.swing.JTextField txtTelefonoProv;
     // End of variables declaration//GEN-END:variables
