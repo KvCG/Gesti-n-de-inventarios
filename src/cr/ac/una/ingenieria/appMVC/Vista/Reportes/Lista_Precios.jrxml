@@ -21,6 +21,9 @@ FROM
 	</background>
 	<title>
 		<band height="104" splitType="Stretch">
+			<rectangle>
+				<reportElement x="15" y="59" width="128" height="41" backcolor="#000000"/>
+			</rectangle>
 			<image>
 				<reportElement x="443" y="8" width="124" height="94"/>
 				<imageExpression><![CDATA["C:\\Imagen_Sigaci_Reporte\\Logo01.png"]]></imageExpression>
@@ -33,7 +36,7 @@ FROM
 				<text><![CDATA[Telf: 2430 - 7727]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="61" width="130" height="41"/>
+				<reportElement mode="Opaque" x="11" y="61" width="130" height="41"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>

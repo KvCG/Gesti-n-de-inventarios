@@ -23,6 +23,9 @@ FROM
 	</background>
 	<title>
 		<band height="115" splitType="Stretch">
+			<rectangle>
+				<reportElement x="7" y="66" width="128" height="40" backcolor="#000000"/>
+			</rectangle>
 			<rectangle radius="10">
 				<reportElement x="3" y="15" width="128" height="23"/>
 			</rectangle>
@@ -45,7 +48,7 @@ FROM
 				<textFieldExpression><![CDATA[new java.util.Date().toString()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="3" y="68" width="130" height="41"/>
+				<reportElement mode="Opaque" x="3" y="68" width="130" height="41"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
 					<pen lineWidth="0.25"/>
 					<topPen lineWidth="0.25"/>
@@ -75,43 +78,43 @@ FROM
 		</band>
 	</title>
 	<pageHeader>
-		<band height="21" splitType="Stretch"/>
+		<band height="13" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="45" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<staticText>
-				<reportElement x="10" y="12" width="88" height="20"/>
+				<reportElement x="10" y="7" width="88" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="112" y="12" width="144" height="20"/>
+				<reportElement x="112" y="7" width="144" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[E-MAIL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="276" y="12" width="100" height="20"/>
+				<reportElement x="276" y="7" width="100" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TELEFONO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="416" y="12" width="149" height="20"/>
+				<reportElement x="416" y="7" width="149" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DIRECCIÓN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="37" width="570" height="1"/>
+				<reportElement x="0" y="32" width="570" height="1"/>
 			</line>
 			<line>
-				<reportElement x="1" y="8" width="569" height="1"/>
+				<reportElement x="1" y="3" width="569" height="1"/>
 			</line>
 		</band>
 	</columnHeader>
@@ -130,8 +133,8 @@ FROM
 				<textFieldExpression><![CDATA[$F{proveedor_email}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="276" y="3" width="100" height="20"/>
-				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<reportElement x="276" y="3" width="100" height="32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{proveedor_telefono}.toString()]]></textFieldExpression>
 			</textField>
 			<textField>

@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="126"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT
      ROUND((articulo.`cantidad`*articulo_proveedor.`costo`),2)AS TOTAL,
@@ -41,6 +41,9 @@ FROM
 	</background>
 	<title>
 		<band height="116" splitType="Stretch">
+			<rectangle>
+				<reportElement x="18" y="55" width="138" height="55" backcolor="#000000"/>
+			</rectangle>
 			<staticText>
 				<reportElement x="260" y="43" width="231" height="40"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -73,13 +76,13 @@ FROM
 				<text><![CDATA[Telf: 2430 - 7727]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="15" y="57" width="139" height="57"/>
+				<reportElement mode="Opaque" x="15" y="57" width="139" height="57"/>
 				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
-					<pen lineWidth="0.25" lineStyle="Double"/>
-					<topPen lineWidth="0.25" lineStyle="Double"/>
-					<leftPen lineWidth="0.25" lineStyle="Double"/>
-					<bottomPen lineWidth="0.25" lineStyle="Double"/>
-					<rightPen lineWidth="0.25" lineStyle="Double"/>
+					<pen lineWidth="0.25" lineStyle="Solid"/>
+					<topPen lineWidth="0.25" lineStyle="Solid"/>
+					<leftPen lineWidth="0.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.25" lineStyle="Solid"/>
+					<rightPen lineWidth="0.25" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="20" isBold="true"/>
