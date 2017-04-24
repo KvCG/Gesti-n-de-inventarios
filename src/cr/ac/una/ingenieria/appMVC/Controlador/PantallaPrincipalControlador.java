@@ -96,11 +96,11 @@ public class PantallaPrincipalControlador implements ActionListener {
         this.pantPrinView.jMenuItem_Bodega.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_TipoArticulo.addActionListener(this);//listo
 
-        this.pantPrinView.jMenuItem_ReporteArticulos_General.addActionListener(this);
+        this.pantPrinView.jMenuItem_ReporteArticulos_General.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_ReporteArticulos_Minimo.addActionListener(this);
         this.pantPrinView.jMenuItem_ReporteArticulos_Gravado.addActionListener(this);
         this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);
-        this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);
+        this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);
 
 //        this.pantPrinView.ReporteUsuarios.addActionListener(this);
@@ -365,7 +365,19 @@ public class PantallaPrincipalControlador implements ActionListener {
 
         if (e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_General) {
             try {
-                this.creaReporte("General1.jrxml");
+                this.creaReporte("General.jrxml");
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_Reporte_Proveedores){
+            try {
+                this.creaReporte("Proveedores.jrxml");
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JRException ex) {

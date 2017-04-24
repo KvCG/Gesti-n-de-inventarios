@@ -144,14 +144,26 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             new String [] {
                 "Nombre", "Cantidad", "Minimo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTArticulo.setFocusable(false);
         jScrollPane1.setViewportView(jTArticulo);
+        if (jTArticulo.getColumnModel().getColumnCount() > 0) {
+            jTArticulo.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jdpPrincipal.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 40, 453, 100);
+        jScrollPane1.setBounds(0, 40, 452, 100);
 
         LbTituloCuadro.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        LbTituloCuadro.setForeground(new java.awt.Color(255, 255, 255));
         LbTituloCuadro.setText(" Punto de Pedido");
         jdpPrincipal.add(LbTituloCuadro);
         LbTituloCuadro.setBounds(130, 10, 220, 20);
