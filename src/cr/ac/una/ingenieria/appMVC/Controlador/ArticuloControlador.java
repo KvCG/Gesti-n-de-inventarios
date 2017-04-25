@@ -57,7 +57,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btCancelar.addActionListener(this);
         this.mantArticuloView.btEliminar.addActionListener(this);
         this.mantArticuloView.btModificar.addActionListener(this);
-        this.mantArticuloView.jcb_Bodega.addActionListener(this);
+        this.mantArticuloView.jcbBodega.addActionListener(this);
         this.mantArticuloView.btBuscaProveedor.addActionListener(this);
         this.mantArticuloView.txtCodigoProv.addCaretListener(new CaretListener() {
             @Override
@@ -73,8 +73,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.txtCodigoBuscar.setVisible(false);
         this.mantArticuloView.txtCodigoProv.setVisible(false);
         inicializarPantalla();
-        cargarBodegaCombo(this.mantArticuloView.jcb_Bodega);
-        cargarTipoArtCombo(this.mantArticuloView.jcb_Tipo);
+        cargarBodegaCombo(this.mantArticuloView.jcbBodega);
+        cargarTipoArtCombo(this.mantArticuloView.jcbTipo);
     }
 
     public ArticuloProveedor getArtPro() {
@@ -108,8 +108,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private boolean isEmpty() {
         if (this.mantArticuloView.txtNombre.getText().isEmpty()
                 || this.mantArticuloView.txtDescripcion.getText().isEmpty()
-                || this.mantArticuloView.TxtPrecio.getText().isEmpty()
-                || this.mantArticuloView.TxtCantidad.getText().isEmpty()
+                || this.mantArticuloView.txtPrecio.getText().isEmpty()
+                || this.mantArticuloView.txtCantidad.getText().isEmpty()
                 || this.mantArticuloView.txtPuntoPedido.getText().isEmpty()
                 || this.mantArticuloView.txtCodigo.getText().isEmpty()
                 || this.mantArticuloView.txtNombreProv.getText().isEmpty()) {
@@ -119,16 +119,14 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     }
 
     private void clean() {
-        this.mantArticuloView.TxtCantidad.setText(null);
-        this.mantArticuloView.TxtPrecio.setText(null);
+        this.mantArticuloView.txtCantidad.setText(null);
+        this.mantArticuloView.txtPrecio.setText(null);
         this.mantArticuloView.txtNombre.setText(null);
         this.mantArticuloView.txtDescripcion.setText(null);
         this.mantArticuloView.txtCodigo.setText(null);
         this.mantArticuloView.txtPuntoPedido.setText(null);
-        this.mantArticuloView.txtNombreProv.setText(null);
-        this.mantArticuloView.txtCorreoProv.setText(null);
-        this.mantArticuloView.txtTelefonoProv.setText(null);
-
+        this.mantArticuloView.txtCosto.setText(null);
+        this.mantArticuloView.chbImpuestos.setSelected(false);
     }
 
     /**
@@ -144,18 +142,23 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 a.setCodigo(this.mantArticuloView.txtCodigo.getText());
                 a.setNombre(this.mantArticuloView.txtNombre.getText());
                 a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
-                a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
+                a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.txtPrecio.getText()));
                 a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
-                a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
+                a.setCantidad(Integer.parseInt(this.mantArticuloView.txtCantidad.getText()));
+                if(this.mantArticuloView.chbImpuestos.isSelected()){
+                    a.setImpuesto("Gravado");
+                }else{
+                     a.setImpuesto("Exento");
+                }
 
-                String bodega = this.mantArticuloView.jcb_Bodega.getSelectedItem().toString();
+                String bodega = this.mantArticuloView.jcbBodega.getSelectedItem().toString();
                 try {
                     for (Bodega b : this.bodegaBL.obtenerTodos()) {
                         if (b.getTipo().equals(bodega)) {
                             a.setBodega(b.getIdBodega());
                         }
                     }
-                    String tipArt = this.mantArticuloView.jcb_Tipo.getSelectedItem().toString();
+                    String tipArt = this.mantArticuloView.jcbTipo.getSelectedItem().toString();
                     for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
                         if (t.getDescripcion().equals(tipArt)) {
                             a.setTipo(t.getCodigo());
@@ -165,7 +168,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     a = ArticuloBLModelo.obtenerPorId(a);
                     artPro.setProveedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));
                     artPro.setArticulo(a.getIdarticulo());
-                    artPro.setCosto(Float.parseFloat(this.mantArticuloView.TxtCosto.getText()));
+                    artPro.setCosto(Float.parseFloat(this.mantArticuloView.txtCosto.getText()));
                     this.artProvBl.insertar(artPro);
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
                     this.clean();
@@ -218,11 +221,11 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     a = ArticuloBLModelo.obtenerPorId(a);
                     a.setNombre(this.mantArticuloView.txtNombre.getText());
                     a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
-                    a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.TxtPrecio.getText()));
+                    a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.txtPrecio.getText()));
                     a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
-                    a.setCantidad(Integer.parseInt(this.mantArticuloView.TxtCantidad.getText()));
+                    a.setCantidad(Integer.parseInt(this.mantArticuloView.txtCantidad.getText()));
 
-                    String bodega = this.mantArticuloView.jcb_Bodega.getSelectedItem().toString();
+                    String bodega = this.mantArticuloView.jcbBodega.getSelectedItem().toString();
                     try {
                         for (Bodega b : this.bodegaBL.obtenerTodos()) {
                             if (b.getTipo().equals(bodega)) {
@@ -232,7 +235,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     } catch (Exception eq) {
                     }
 
-                    String tipArt = this.mantArticuloView.jcb_Tipo.getSelectedItem().toString();
+                    String tipArt = this.mantArticuloView.jcbTipo.getSelectedItem().toString();
                     try {
                         for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
                             if (t.getDescripcion().equals(tipArt)) {
@@ -313,22 +316,27 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 a = ArticuloBLModelo.obtenerPorId(a);
                 this.mantArticuloView.txtNombre.setText(a.getNombre());
                 this.mantArticuloView.txtDescripcion.setText(a.getDescripcion());
-                this.mantArticuloView.TxtCantidad.setText(String.valueOf(a.getCantidad().toString()));
-                this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioVenta()));
+                this.mantArticuloView.txtCantidad.setText(String.valueOf(a.getCantidad().toString()));
+                this.mantArticuloView.txtPrecio.setText(String.valueOf(a.getPrecioVenta()));
                 this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
-
+                if(a.getImpuesto().equals("Gravado")){
+                    this.mantArticuloView.chbImpuestos.setSelected(true);
+                }else{
+                     this.mantArticuloView.chbImpuestos.setSelected(false);
+                }
+                
                 int bo = a.getBodega();
                 int ti = a.getTipo();
 
                 for (Bodega b : this.bodegaBL.obtenerTodos()) {
                     if (b.getIdBodega() == bo) {
-                        this.mantArticuloView.jcb_Bodega.setSelectedItem(b.getNombre().toString());
+                        this.mantArticuloView.jcbBodega.setSelectedItem(b.getNombre().toString());
                     }
                 }
 
                 for (TipoArticulo t : this.tipArtBL.obtenerTodos()) {
                     if (t.getCodigo() == ti) {
-                        this.mantArticuloView.jcb_Tipo.setSelectedItem(t.getDescripcion().toString());
+                        this.mantArticuloView.jcbTipo.setSelectedItem(t.getDescripcion().toString());
                     }
                 }
 
@@ -357,7 +365,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     }
 
     public void cargarBodegaCombo(JComboBox jcbBod) {
-        this.mantArticuloView.jcb_Bodega.removeAllItems();
+        this.mantArticuloView.jcbBodega.removeAllItems();
         DefaultComboBoxModel ModeloJcb = new DefaultComboBoxModel();
         jcbBod.setModel(ModeloJcb);
         this.bodegaBL = new BodegaBL();
@@ -373,7 +381,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     }//fin del cargar bodega
 
     public void cargarTipoArtCombo(JComboBox jcbTipArt) {
-        this.mantArticuloView.jcb_Tipo.removeAllItems();
+        this.mantArticuloView.jcbTipo.removeAllItems();
         DefaultComboBoxModel Modelojcb = new DefaultComboBoxModel();
         jcbTipArt.setModel(Modelojcb);
         this.tipArtBL = new TipoArticuloBL();

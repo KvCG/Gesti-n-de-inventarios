@@ -96,12 +96,12 @@ public class PantallaPrincipalControlador implements ActionListener {
         this.pantPrinView.jMenuItem_Bodega.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_TipoArticulo.addActionListener(this);//listo
 
-        this.pantPrinView.jMenuItem_ReporteArticulos_General.addActionListener(this);
-        this.pantPrinView.jMenuItem_ReporteArticulos_Minimo.addActionListener(this);
+        this.pantPrinView.jMenuItem_ReporteArticulos_General.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_ReporteArticulos_Minimo.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_ReporteArticulos_Gravado.addActionListener(this);
         this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);
-        this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);
-        this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);
+        this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);//listo
 
 //        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         inicializarPantalla();
@@ -175,28 +175,43 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Desktop desktop = Desktop.getDesktop();
                 desktop.open(file);
             }
-//        InputStream inputStream = null;
-//        try {
-//            String directorio = System.getProperty("user.dir");
-//           String separador = System.getProperty("file.separator");
-//
-//            inputStream = new FileInputStream(directorio + separador + "\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
-//            Map parameters = new HashMap();
-//            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-//            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-//            MySQLConexion con = new MySQLConexion();
-//            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, con.getConexion());
-//            JasperViewer visor = new JasperViewer(jasperPrint, false);
-//            visor.setVisible(true);
-////                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Michael\\Desktop\\Gesti-n-de-inventarios\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\General.pdf");
-////                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Michael\\Desktop\\reportes\\General1.pdf");
-//            File file = new File("C:\\Users\\Michael\\Desktop\\Gesti-n-de-inventarios\\src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\General1.pdf");
-//            if (file.toString().endsWith(".pdf")) {
-//                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-//            } else {
-//                Desktop desktop = Desktop.getDesktop();
-//                desktop.open(file);
-//            }
+        } catch (FileNotFoundException ex) {
+            System.err.println(ex.getMessage());
+        } catch (JRException | SQLException | IOException ex) {
+            Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void creaReporte2(String reporte) throws IOException, JRException, SQLException {
+
+        InputStream inputStream = null;
+        String minimo = JOptionPane.showInputDialog(null,"DIGITE LA CANTIDAD",
+                "CANTIDAD MÍNIMA",JOptionPane.QUESTION_MESSAGE);
+        int mini = Integer.parseInt(minimo);
+        try {
+            String directorio = System.getProperty("user.dir");
+            System.out.println(directorio);
+            String separador = System.getProperty("file.separator");
+            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
+            Map parameters = new HashMap();
+            parameters.put("x", mini);
+            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            MySQLConexion Con = new MySQLConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+            JasperViewer visor = new JasperViewer(jasperPrint, false);
+            visor.setVisible(true);
+            //JasperExportManager.exportReportToPdfFile(jasperPrint, directorio + separador + "Reportes\\" + reporte + ".pdf");
+
+            File file = new File(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte + ".pdf"); // Este codigo sirve para abrir los archivos de cualquier tipo
+            System.out.println(file.getAbsolutePath());
+            if (file.toString().endsWith(".pdf")) {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+            } else {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+            }
         } catch (FileNotFoundException ex) {
             System.err.println(ex.getMessage());
         } catch (JRException | SQLException | IOException ex) {
@@ -386,9 +401,44 @@ public class PantallaPrincipalControlador implements ActionListener {
         /////////////////////////Reportes/////////////////////////////////////////////
 
         if (e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_General) {
-
             try {
-                this.creaReporte("General1.jrxml");
+                this.creaReporte("General.jrxml");
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_Reporte_Proveedores){
+            try {
+                this.creaReporte("Proveedores.jrxml");
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_Reporte_ListaPrecio){
+            try {
+                this.creaReporte("Lista_Precios.jrxml");
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }            
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Minimo){
+            try {
+                this.creaReporte2("CantidadesMinimas.jrxml");
             } catch (IOException ex) {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JRException ex) {

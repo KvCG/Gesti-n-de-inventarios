@@ -52,11 +52,18 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
+
         if (obj instanceof ArticuloProveedor) {
             iBaseDato = new ArticuloProveedorDao();
         }
 
         if (obj instanceof TipoArticulo) {
+
+        if(obj instanceof ArticuloProveedor){
+           iBaseDato = new ArticuloProveedorDao();
+        }
+        if(obj instanceof TipoArticulo){
+
             iBaseDato = new TipoArticuloDao();
         }
         if (obj instanceof Bodega) {
@@ -87,10 +94,17 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
+
       if(obj instanceof ArticuloProveedor){
             iBaseDato = new ArticuloProveedorDao();
         }
         if (obj instanceof TipoArticulo) {
+
+        if(obj instanceof ArticuloProveedor){
+            iBaseDato = new ArticuloProveedorDao();
+        }
+        if(obj instanceof TipoArticulo){
+
             iBaseDato = new TipoArticuloDao();
         }
         if (obj instanceof Bodega) {
@@ -127,7 +141,11 @@ public class GenericDao {
             iBaseDato = new BodegaDao();
         }
         if(obj instanceof ArticuloProveedor){
+
             iBaseDato = new ArticuloProveedorDao();
+
+           // iBaseDato = new ArticuloProveedorDao();
+
         }
         iBaseDato.eliminar(obj);
     }

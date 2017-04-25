@@ -21,8 +21,9 @@ public class Articulo {
     private Integer bodega;
     private Integer puntoPedido;
     private boolean estado;
+    private String impuesto;
 
-    public Articulo(Integer idarticulo, String codigo, String Nombre, String Descripcion, Integer cod_tipo_articulo, double PrecioVenta, Integer Cantidad, Integer Bodega, Integer Punto_de_Pedido, boolean estado) {
+    public Articulo(Integer idarticulo, String codigo, String Nombre, String Descripcion, Integer cod_tipo_articulo, double PrecioVenta, Integer Cantidad, Integer Bodega, Integer Punto_de_Pedido, boolean estado, String impuesto) {
         this.idarticulo = idarticulo;
         this.codigo = codigo;
         this.nombre = Nombre;
@@ -33,6 +34,18 @@ public class Articulo {
         this.bodega = Bodega;
         this.puntoPedido = Punto_de_Pedido;
         this.estado = estado;
+        this.impuesto = impuesto;
+    }
+    
+    public Articulo() {
+    }
+
+    public String getImpuesto() {
+        return impuesto;
+    }
+
+    public void setImpuesto(String impuesto) {
+        this.impuesto = impuesto;
     }
 
     public boolean getEstado() {
@@ -42,10 +55,7 @@ public class Articulo {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
-    public Articulo() {
-    }
-
+    
     public Integer getIdarticulo() {
         return idarticulo;
     }
