@@ -136,25 +136,33 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         jTArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nombre", "Cantidad", "Minimo"
+                "Nombre", "Cantidad", "Minimo", "Estado"
             }
         ));
         jTArticulo.setFocusable(false);
         jScrollPane1.setViewportView(jTArticulo);
 
         jdpPrincipal.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 40, 453, 100);
+        jScrollPane1.setBounds(0, 40, 600, 420);
 
         LbTituloCuadro.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         LbTituloCuadro.setText(" Punto de Pedido");
         jdpPrincipal.add(LbTituloCuadro);
-        LbTituloCuadro.setBounds(130, 10, 220, 20);
+        LbTituloCuadro.setBounds(190, 10, 220, 20);
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFocusable(false);

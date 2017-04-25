@@ -106,7 +106,7 @@ public class PantallaPrincipalControlador implements ActionListener {
 //        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         inicializarPantalla();
 
-        //llenarTabla(this.pantPrinView.jTArticulo);
+        llenarTabla(this.pantPrinView.jTArticulo);
     }
 
     public PantallaPrincipal getPantPrinView() {
@@ -407,8 +407,9 @@ public class PantallaPrincipalControlador implements ActionListener {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Cantidad");
         modeloTabla.addColumn("Minimo");
+        modeloTabla.addColumn("Estado");
 
-        Object fila[] = new Object[3];
+        Object fila[] = new Object[4];
 
         String Sql = "where cantidad < punto_de_pedido + 10 ";
 
@@ -424,6 +425,11 @@ public class PantallaPrincipalControlador implements ActionListener {
                 fila[0] = a.getNombre();
                 fila[1] = a.getCantidad();
                 fila[2] = a.getPuntoPedido();
+                if(a.getCantidad()<= a.getPuntoPedido()){
+                    fila[3] = "Comprar";
+                }else{
+                    fila[3] = "cercar del punto de Pedido";
+                }
        
                 modeloTabla.addRow(fila);
             }

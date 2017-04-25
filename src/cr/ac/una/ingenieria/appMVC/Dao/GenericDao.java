@@ -52,13 +52,14 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-//        if(obj instanceof ArticuloProveedor){
-//           iBaseDato = new ArticuloProveedorDao();
-//        }
-        if(obj instanceof TipoArticulo){
+        if (obj instanceof ArticuloProveedor) {
+            iBaseDato = new ArticuloProveedorDao();
+        }
+
+        if (obj instanceof TipoArticulo) {
             iBaseDato = new TipoArticuloDao();
         }
-        if(obj instanceof Bodega){
+        if (obj instanceof Bodega) {
             iBaseDato = new BodegaDao();
         }
 
@@ -86,13 +87,13 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-//        if(obj instanceof ArticuloProveedor){
-//            iBaseDato = new ArticuloProveedorDao();
-//        }
-        if(obj instanceof TipoArticulo){
+      if(obj instanceof ArticuloProveedor){
+            iBaseDato = new ArticuloProveedorDao();
+        }
+        if (obj instanceof TipoArticulo) {
             iBaseDato = new TipoArticuloDao();
         }
-        if(obj instanceof Bodega){
+        if (obj instanceof Bodega) {
             iBaseDato = new BodegaDao();
         }
         iBaseDato.modificar(obj);
@@ -119,15 +120,15 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof TipoArticulo){
+        if (obj instanceof TipoArticulo) {
             iBaseDato = new TipoArticuloDao();
         }
-        if(obj instanceof Bodega){
+        if (obj instanceof Bodega) {
             iBaseDato = new BodegaDao();
         }
-//        if(obj instanceof ArticuloProveedor){
-//           // iBaseDato = new ArticuloProveedorDao();
-//        }
+        if(obj instanceof ArticuloProveedor){
+            iBaseDato = new ArticuloProveedorDao();
+        }
         iBaseDato.eliminar(obj);
     }
 
@@ -153,15 +154,15 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof TipoArticulo){
+        if (obj instanceof TipoArticulo) {
             iBaseDato = new TipoArticuloDao();
         }
-        if(obj instanceof Bodega){
+        if (obj instanceof Bodega) {
             iBaseDato = new BodegaDao();
         }
-//        if(obj instanceof ArticuloProveedor){
-//            //iBaseDato = new ArticuloProveedorDao();
-//        }
+        if(obj instanceof ArticuloProveedor){
+            iBaseDato = new ArticuloProveedorDao();
+        }
         return iBaseDato.obtenerPorId(obj);
     }
 
@@ -181,15 +182,15 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof TipoArticulo){
+        if (obj instanceof TipoArticulo) {
             iBaseDato = new TipoArticuloDao();
         }
-        if(obj instanceof Bodega){
+        if (obj instanceof Bodega) {
             iBaseDato = new BodegaDao();
         }
-//        if(obj instanceof ArticuloProveedor){
-//            //iBaseDato = new ArticuloProveedorDao();
-//        }
+        if(obj instanceof ArticuloProveedor){
+            iBaseDato = new ArticuloProveedorDao();
+        }
         return iBaseDato.obtenerPorId2(obj);
     }
 
@@ -215,15 +216,15 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof TipoArticulo){
+        if (obj instanceof TipoArticulo) {
             iBaseDato = new TipoArticuloDao();
         }
-        if(obj instanceof Bodega){
+        if (obj instanceof Bodega) {
             iBaseDato = new BodegaDao();
         }
-//        if(obj instanceof ArticuloProveedor){
-//           // iBaseDato = new ArticuloProveedorDao();
-//        }
+        if(obj instanceof ArticuloProveedor){
+            iBaseDato = new ArticuloProveedorDao();
+        }
         return iBaseDato.obtenerTodos();
     }
 
@@ -250,18 +251,18 @@ public class GenericDao {
         if (obj instanceof Movimiento) {
             iBaseDato = new MovimientoDao();
         }
-        if(obj instanceof TipoArticulo){
+        if (obj instanceof TipoArticulo) {
             iBaseDato = new TipoArticuloDao();
         }
-        if(obj instanceof Bodega){
+        if (obj instanceof Bodega) {
             iBaseDato = new BodegaDao();
         }
-//        if(obj instanceof ArticuloProveedor){
-//          //  iBaseDato = new ArticuloProveedorDao();
-//        }
+        if(obj instanceof ArticuloProveedor){
+            iBaseDato = new ArticuloProveedorDao();
+        }
         return iBaseDato.obtenerConWhere(where);
     }
-    
+
     public Integer obtenerConsecutivo(Object obj) throws SQLException {
 //        if (obj instanceof Persona) {
 //            iBaseDato = new PersonaDao();
@@ -276,12 +277,12 @@ public class GenericDao {
 //            iBaseDato = new ArticuloDao();
 //        }
 //        if (obj instanceof Movimiento) {
-            iBaseDato = new MovimientoDao();
+        iBaseDato = new MovimientoDao();
         //}
 //        if(obj instanceof ArticuloProveedor){
 //          //  iBaseDato = new ArticuloProveedorDao();
 //        }
         return iBaseDato.obtenerConsecutivo();
     }
-    
+
 }
