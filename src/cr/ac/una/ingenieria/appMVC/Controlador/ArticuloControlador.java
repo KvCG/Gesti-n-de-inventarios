@@ -72,6 +72,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btEliminar.setEnabled(false);
         this.mantArticuloView.txtCodigoBuscar.setVisible(false);
         this.mantArticuloView.txtCodigoProv.setVisible(false);
+        
         inicializarPantalla();
         cargarBodegaCombo(this.mantArticuloView.jcbBodega);
         cargarTipoArtCombo(this.mantArticuloView.jcbTipo);
@@ -135,10 +136,13 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.mantArticuloView.btInsertar) {
+            
+           
             if (this.isEmpty()) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error faltan espacios por rellenar:", "Error en ingresar articulo", JOptionPane.ERROR_MESSAGE);
             } else {
                 Articulo a = new Articulo();
+                
                 a.setCodigo(this.mantArticuloView.txtCodigo.getText());
                 a.setNombre(this.mantArticuloView.txtNombre.getText());
                 a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
@@ -164,6 +168,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                             a.setTipo(t.getCodigo());
                         }
                     }
+                    
                     this.ArticuloBLModelo.insertar(a);
                     a = ArticuloBLModelo.obtenerPorId(a);
                     artPro.setProveedor(Integer.parseInt(this.mantArticuloView.txtCodigoProv.getText()));

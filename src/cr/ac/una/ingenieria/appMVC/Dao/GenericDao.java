@@ -57,7 +57,9 @@ public class GenericDao {
             iBaseDato = new ArticuloProveedorDao();
         }
 
-        if (obj instanceof TipoArticulo) {
+        if (obj instanceof TipoArticulo){  
+            iBaseDato = new TipoArticuloDao();
+        }
 
         if(obj instanceof ArticuloProveedor){
            iBaseDato = new ArticuloProveedorDao();
@@ -98,7 +100,9 @@ public class GenericDao {
       if(obj instanceof ArticuloProveedor){
             iBaseDato = new ArticuloProveedorDao();
         }
-        if (obj instanceof TipoArticulo) {
+        if (obj instanceof TipoArticulo){
+            iBaseDato = new TipoArticuloDao();
+        }
 
         if(obj instanceof ArticuloProveedor){
             iBaseDato = new ArticuloProveedorDao();
