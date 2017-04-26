@@ -49,6 +49,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import org.jdesktop.swingx.JXLabel;
 
 /**
  *
@@ -98,8 +99,8 @@ public class PantallaPrincipalControlador implements ActionListener {
 
         this.pantPrinView.jMenuItem_ReporteArticulos_General.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_ReporteArticulos_Minimo.addActionListener(this);//listo
-        this.pantPrinView.jMenuItem_ReporteArticulos_Gravado.addActionListener(this);
-        this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);
+        this.pantPrinView.jMenuItem_ReporteArticulos_Gravado.addActionListener(this);//listo
+        this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);//listo
 
@@ -183,7 +184,6 @@ public class PantallaPrincipalControlador implements ActionListener {
     }
     
     public void creaReporte2(String reporte) throws IOException, JRException, SQLException {
-
         InputStream inputStream = null;
         String minimo = JOptionPane.showInputDialog(null,"DIGITE LA CANTIDAD",
                 "CANTIDAD MÍNIMA",JOptionPane.QUESTION_MESSAGE);
@@ -204,6 +204,72 @@ public class PantallaPrincipalControlador implements ActionListener {
             visor.setVisible(true);
             //JasperExportManager.exportReportToPdfFile(jasperPrint, directorio + separador + "Reportes\\" + reporte + ".pdf");
 
+            File file = new File(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte + ".pdf"); // Este codigo sirve para abrir los archivos de cualquier tipo
+            System.out.println(file.getAbsolutePath());
+            if (file.toString().endsWith(".pdf")) {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+            } else {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println(ex.getMessage());
+        } catch (JRException | SQLException | IOException ex) {
+            Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void creaReporte3(String reporte) throws IOException, JRException, SQLException {
+        InputStream inputStream = null;
+        String gravado = "Gravado";
+        try {
+            String directorio = System.getProperty("user.dir");
+            System.out.println(directorio);
+            String separador = System.getProperty("file.separator");
+            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
+            Map parameters = new HashMap();
+            parameters.put("ex", gravado);
+            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            MySQLConexion Con = new MySQLConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+            JasperViewer visor = new JasperViewer(jasperPrint, false);
+            visor.setVisible(true);
+            //JasperExportManager.exportReportToPdfFile(jasperPrint, directorio + separador + "Reportes\\" + reporte + ".pdf");
+            File file = new File(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte + ".pdf"); // Este codigo sirve para abrir los archivos de cualquier tipo
+            System.out.println(file.getAbsolutePath());
+            if (file.toString().endsWith(".pdf")) {
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+            } else {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println(ex.getMessage());
+        } catch (JRException | SQLException | IOException ex) {
+            Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void creaReporte4(String reporte) throws IOException, JRException, SQLException {
+        InputStream inputStream = null;
+        String exento = "Exento";
+        try {
+            String directorio = System.getProperty("user.dir");
+            System.out.println(directorio);
+            String separador = System.getProperty("file.separator");
+            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
+            Map parameters = new HashMap();
+            parameters.put("ex", exento);
+            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+            MySQLConexion Con = new MySQLConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+            JasperViewer visor = new JasperViewer(jasperPrint, false);
+            visor.setVisible(true);
+            //JasperExportManager.exportReportToPdfFile(jasperPrint, directorio + separador + "Reportes\\" + reporte + ".pdf");
             File file = new File(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte + ".pdf"); // Este codigo sirve para abrir los archivos de cualquier tipo
             System.out.println(file.getAbsolutePath());
             if (file.toString().endsWith(".pdf")) {
@@ -446,6 +512,30 @@ public class PantallaPrincipalControlador implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Gravado){
+            try {
+                this.creaReporte3("Articulo_Gravados.jrxml");
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        if(e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Exentos){
+            try {
+                this.creaReporte4("Articulo_Exento.jrxml");
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }            
         }
     }
 
