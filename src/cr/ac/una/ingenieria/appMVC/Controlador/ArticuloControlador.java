@@ -95,6 +95,7 @@ public class ArticuloControlador implements ActionListener {
         this.mantArticuloView.txtNombreProv.setEditable(false);
         this.mantArticuloView.txtCorreoProv.setEditable(false);
         this.mantArticuloView.txtTelefonoProv.setEditable(false);
+        this.mantArticuloView.txtCantidad.setEditable(false);
         inicializarPantalla();
         cargarBodegaCombo(this.mantArticuloView.jcbBodega);
         cargarTipoArtCombo(this.mantArticuloView.jcbTipo);
@@ -132,10 +133,10 @@ public class ArticuloControlador implements ActionListener {
         if (this.mantArticuloView.txtNombre.getText().isEmpty()
                 || this.mantArticuloView.txtDescripcion.getText().isEmpty()
                 || this.mantArticuloView.txtPrecio.getText().isEmpty()
-                || this.mantArticuloView.txtCantidad.getText().isEmpty()
                 || this.mantArticuloView.txtPuntoPedido.getText().isEmpty()
                 || this.mantArticuloView.txtCodigo.getText().isEmpty()
-                || this.mantArticuloView.txtNombreProv.getText().isEmpty()) {
+                || this.mantArticuloView.txtNombreProv.getText().isEmpty()
+                || this.mantArticuloView.txtCosto.getText().isEmpty()) {
             return true;
         }
         return false;
@@ -166,7 +167,7 @@ public class ArticuloControlador implements ActionListener {
                 a.setDescripcion(this.mantArticuloView.txtDescripcion.getText());
                 a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.txtPrecio.getText()));
                 a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
-                a.setCantidad(Integer.parseInt(this.mantArticuloView.txtCantidad.getText()));
+                a.setCantidad(0);
                 if (this.mantArticuloView.chbImpuestos.isSelected()) {
                     a.setImpuesto("Gravado");
                 } else {
@@ -247,6 +248,11 @@ public class ArticuloControlador implements ActionListener {
                     a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.txtPrecio.getText()));
                     a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
                     a.setCantidad(Integer.parseInt(this.mantArticuloView.txtCantidad.getText()));
+                    if (this.mantArticuloView.chbImpuestos.isSelected()) {
+                        a.setImpuesto("Gravado");
+                    } else {
+                        a.setImpuesto("Exento");
+                    }
 
                     String bodega = this.mantArticuloView.jcbBodega.getSelectedItem().toString();
                     try {
@@ -314,7 +320,7 @@ public class ArticuloControlador implements ActionListener {
             }
         }
         if (e.getSource() == this.mantArticuloView.btBuscaProveedor) {
-            if (this.mantArticuloView.txtCodigo.getText().isEmpty()) {
+            if (this.isEmpty()) {
                 MantProveedorBuscar mantBuscarView = new MantProveedorBuscar();
                 ProveedorBuscarControlador pBControlador;
                 pBControlador = new ProveedorBuscarControlador(mantBuscarView, this.proBl, this.mantArticuloView.txtCodigoProv);

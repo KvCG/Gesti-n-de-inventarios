@@ -1,27 +1,6 @@
 package cr.ac.una.ingenieria.appMVC.Vista;
 
-public class PantallaPrincipal extends javax.swing.JFrame {
-
-    //control de pantalla
-//    boolean Mod_Inv = false;
-//    boolean Mod_Reg_Per = false;
-//    boolean Mod_Reg_Usu = false;
-//    boolean Mod_Pro = false;
-//    boolean Mod_Mov = false;
-//    boolean Mod_Bod = false;
-//    boolean Mod_Tip_Art = false;
-
-    //pantallas
-//    Modulo_Moviento vista;
-//    Modulo_Inventario Mante_ArticulosView;
-//    Modulo_Registo_Persona Mod_Reg_PerView;
-//    Modulo_Registo_Usuario Mod_Reg_UsuView;
-//    Modulo_Proveedores Mod_ProveView;
-//    MantPersonaBuscar mantPersonaBView;
-//    Modulo_Bodega Mod_BodegaView;
-//    Modulo_TipoArticulo Mod_TipoArticuloView;
-
-    //constructor       
+public class PantallaPrincipal extends javax.swing.JFrame {    
     public PantallaPrincipal() {
         setTitle("SIGACI");
         this.setLocationRelativeTo(null);
@@ -44,55 +23,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PantallaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         initComponents();
-
-        //para la venta modulo inventario
-//        this.Mante_ArticulosView = new Modulo_Inventario();
-//        ArticuloBL ArtBL = new ArticuloBL();
-//        ArticuloControlador ArtControl = new ArticuloControlador(Mante_ArticulosView, ArtBL);
-//        ArtControl.getMantArticuloView();
-
-        //para la venta modulo Modulo_Registo_Persona
-//        this.Mod_Reg_PerView = new Modulo_Registo_Persona();
-//        PersonaBL perBL = new PersonaBL();
-//        PersonaControlador perControl = new PersonaControlador(Mod_Reg_PerView, perBL);
-//        perControl.getMod_Reg_PersonaView();
-
-//        //para la venta modulo Modulo_Registo_Usuario
-//        this.Mod_Reg_UsuView = new Modulo_Registo_Usuario();
-//        UsuarioBL usuBL = new UsuarioBL();
-//        this.mantPersonaBView = new MantPersonaBuscar();
-//        UsuarioControlador UsuControl = new UsuarioControlador(Mod_Reg_UsuView, usuBL, perBL, Mod_Reg_PerView, mantPersonaBView);
-//        UsuControl.getMantUsuarioview();
-
-//        //para la venta modulo Modulo_proveedor
-//        this.Mod_ProveView = new Modulo_Proveedores();
-//        ProveedorBL proveBL = new ProveedorBL();
-//        ProveedorControlador proveeControl = new ProveedorControlador(Mod_ProveView, proveBL);
-//        proveeControl.getMantProveedorView();
-        
-        //para la ventana de bodega
-//        this.Mod_BodegaView = new Modulo_Bodega();
-//        BodegaBL BodBL = new BodegaBL();
-//        BodegaControlador bodegaControl = new BodegaControlador(Mod_BodegaView, BodBL);
-//        bodegaControl.getModBodegaView();
-        
-        //para la ventana de tipo articulo
-//        this.Mod_TipoArticuloView = new Modulo_TipoArticulo();
-//        TipoArticuloBL tipoArtBL = new TipoArticuloBL();
-//        TipoArticuloControlador tipoArticuloControl = new TipoArticuloControlador(Mod_TipoArticuloView, tipoArtBL);
-//        tipoArticuloControl.getMod_TipoArtView();
-        
-        //para la ventana de Movimiento
-//        vista = new Modulo_Moviento();
-//        MantArticuloBuscar mantArticuloBView = new MantArticuloBuscar();
-//        MantPersonaBuscar mantPersonaBView = new MantPersonaBuscar();
-//        MantProveedorBuscar mantProveedorBView = new MantProveedorBuscar();
-//        MovimientoBL movimientoBLModelo = new MovimientoBL();
-//        ArticuloBL articuloBLModelo = new ArticuloBL();
-//        PersonaBL personaBLModelo = new PersonaBL();
-//        ProveedorBL proveedorBLModelo = new ProveedorBL();
-//        MovimientoControlador con = new MovimientoControlador(movimientoBLModelo, vista, articuloBLModelo, personaBLModelo, proveedorBLModelo, mantArticuloBView, mantPersonaBView, mantProveedorBView);
-//        con.getModMovView();
     }
 
     @SuppressWarnings("unchecked")
@@ -411,7 +341,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
+
             }
         });
     }
