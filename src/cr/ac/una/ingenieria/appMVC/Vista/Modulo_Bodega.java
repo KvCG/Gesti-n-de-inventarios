@@ -43,7 +43,7 @@ public class Modulo_Bodega extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("MODULO BODEGA");
+        setTitle("MANTENIMIENTO BODEGA");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("ID BODEGA");

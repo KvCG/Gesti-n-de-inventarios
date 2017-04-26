@@ -41,7 +41,7 @@ public class Modulo_TipoArticulo extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("AGREGAR TIPO ARTICULO");
+        setTitle("MANTENIMIENTO TIPO ARTICULO");
 
         btn_Guardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Guardar 00.png"))); // NOI18N
