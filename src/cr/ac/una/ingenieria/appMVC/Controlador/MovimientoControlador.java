@@ -82,6 +82,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         this.modMovView.txtCodigoArticulo.setVisible(false);
         this.modMovView.txtCodigoArticulo1.setVisible(false);
         this.modMovView.txtCodigoProveedor.setVisible(false);
+        this.modMovView.txtCantidad.setEnabled(false);
         this.modMovView.txtCodigoPersona.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
