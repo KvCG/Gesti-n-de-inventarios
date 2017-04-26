@@ -1,1 +1,5 @@
-"codigo";"descripcion"
+"codigo";"descripcion";"estado"
+1;"Quesos";1
+2;"Carton";1
+3;"Carne";1
+4;"Embutido";1
