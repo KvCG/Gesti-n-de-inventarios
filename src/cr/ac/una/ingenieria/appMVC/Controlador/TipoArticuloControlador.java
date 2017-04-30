@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.Alert;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,6 +82,7 @@ public class TipoArticuloControlador implements ActionListener {
                     this.Mod_TipoArtView.jtf_IdTipoArticulo.setText("");
                     this.Mod_TipoArtView.jtf_Descripcion.setText("");
                     this.Mod_TipoArtView.jcb_Estado.setSelectedIndex(0);
+                    this.cargarTipoArtCombo(ArticuloControlador.mantArticuloView.jcbTipo);
                 } catch (Exception e) {
                     Logger.getLogger(TipoArticuloControlador.class.getName()).log(Level.SEVERE, null, e);
                     System.out.println(e.getMessage());
@@ -112,6 +115,7 @@ public class TipoArticuloControlador implements ActionListener {
                     this.Mod_TipoArtView.jcb_Estado.setSelectedIndex(0);
                     this.Mod_TipoArtView.btn_Editar.setEnabled(false);
                     this.Mod_TipoArtView.btn_Guardar.setEnabled(true);
+                    this.cargarTipoArtCombo(ArticuloControlador.mantArticuloView.jcbTipo);
                 } catch (Exception e) {
                     Logger.getLogger(TipoArticuloControlador.class.getName()).log(Level.SEVERE, null, e);
                 }
@@ -160,10 +164,27 @@ public class TipoArticuloControlador implements ActionListener {
                     this.Mod_TipoArtView.jcb_Estado.setSelectedIndex(0);
                     this.Mod_TipoArtView.btn_Guardar.setEnabled(true);
                     this.Mod_TipoArtView.btn_Editar.setEnabled(false);
+                    this.cargarTipoArtCombo(ArticuloControlador.mantArticuloView.jcbTipo);
                 } catch (Exception e) {
                     Logger.getLogger(TipoArticuloControlador.class.getName()).log(Level.SEVERE,null,e);
                 }
             }
         }//fin eliminar
+    }
+    
+    
+    public void cargarTipoArtCombo(JComboBox jcbTipArt) {
+        ArticuloControlador.mantArticuloView.jcbTipo.removeAllItems();
+        DefaultComboBoxModel Modelojcb = new DefaultComboBoxModel();
+        jcbTipArt.setModel(Modelojcb);
+        this.TipArtBL = new TipoArticuloBL();
+        try {
+            for (TipoArticulo t : this.TipArtBL.obtenerTodos()) {
+                if (t.getEstado() == true) {
+                    Modelojcb.addElement(t.getDescripcion().toString());
+                }
+            }
+        } catch (Exception e) {
+        }
     }
 }

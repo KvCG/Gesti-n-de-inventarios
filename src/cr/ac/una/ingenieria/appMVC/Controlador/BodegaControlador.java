@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -82,6 +84,7 @@ public class BodegaControlador implements ActionListener{
                     this.ModBodegaView.jtf_TipoBodega.setText("");
                     this.ModBodegaView.jtf_Nombre.setText("");
                     this.ModBodegaView.jcb_Estado.setSelectedIndex(0);
+                    this.cargarBodegaCombo(ArticuloControlador.mantArticuloView.jcbBodega);
                 } catch (Exception e) {
                     Logger.getLogger(BodegaControlador.class.getName()).log(Level.SEVERE,null,e);
                 }
@@ -117,6 +120,7 @@ public class BodegaControlador implements ActionListener{
                     this.ModBodegaView.jcb_Estado.setSelectedIndex(0);
                     this.ModBodegaView.btn_Editar.setEnabled(false);
                     this.ModBodegaView.btn_Guardar.setEnabled(true);
+                    this.cargarBodegaCombo(ArticuloControlador.mantArticuloView.jcbBodega);
                 } catch (Exception e) {
                     Logger.getLogger(BodegaControlador.class.getName()).log(Level.SEVERE,null,e);
                 }
@@ -172,6 +176,7 @@ public class BodegaControlador implements ActionListener{
                     this.ModBodegaView.jcb_Estado.setSelectedIndex(0);
                     this.ModBodegaView.btn_Editar.setEnabled(false);
                     this.ModBodegaView.btn_Guardar.setEnabled(true);
+                    this.cargarBodegaCombo(ArticuloControlador.mantArticuloView.jcbBodega);
                 } catch (Exception e) {
                     Logger.getLogger(BodegaControlador.class.getName()).log(Level.SEVERE,null,e);
                 }
@@ -180,5 +185,21 @@ public class BodegaControlador implements ActionListener{
                         "ELIMINANDO BODEGA",JOptionPane.WARNING_MESSAGE);
             }           
         }//Fin evento boton eliminar
+    }
+    
+    public void cargarBodegaCombo(JComboBox jcbBod) {
+        ArticuloControlador.mantArticuloView.jcbBodega.removeAllItems();
+        DefaultComboBoxModel ModeloJcb = new DefaultComboBoxModel();
+        jcbBod.setModel(ModeloJcb);
+        this.Bodbl = new BodegaBL();
+        try {
+            for (Bodega b : this.Bodbl.obtenerTodos()) {
+                if (b.getEstado() == true) {
+                    ModeloJcb.addElement(b.getTipo().toString());
+                }
+            }
+        } catch (Exception e) {
+        }
+
     }
 }

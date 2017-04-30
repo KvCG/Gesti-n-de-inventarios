@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -470,6 +471,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                             movimientoBLModelo.insertar(mov);
                         }
                         this.clear();
+                        PantallaPrincipalControlador.llenarTabla(ValidarAcceso.ManteAdmiView.jTArticulo);
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
                     }

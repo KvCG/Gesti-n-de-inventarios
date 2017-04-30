@@ -1,12 +1,3 @@
-"idproveedor";"nombre";"email";"telefono";"direccion";"estado"
-1;"Carnicos La joya";"info@carnicoslajoya.com";"2443-3300";"Villa Bonita, Lotes Murillo";1
-2;"Embutidos Ideal";"ventas@ideal.cr";"2441-4547";"De la Escuela Manuel Francisco Carrillo 150 metros sur";1
-3;"Embutidos Laska";"info@embutidoslaska.com";"2438-7691";"SAVI San Jose de Alajuela S.A. - Zona franca Bes";1
-4;"Industrias Salqui Don Luis";"ventas@salqui.cr";"2537-2885";"Contiguo a la estación de pesaje, Ochomogo, Autopista Florencio del Castillo Cartago, Costa Rica";1
-5;"Stefan's Embutidos";"info@stefans-embutidos.com";"8917 - 2424 / 8834 - 7510";"Zona Central, Costa Rica";1
-6;"Sigma Alimentos";"servicio_clientes @sigma-alimentos.com";"2430 9390";"El Roble de Alajuela, 4 kilómetros al oeste del aeropuerto Juan Santamaría, Carretera a la Garita";1
-7;"Global partners";"info@gpartners.com";"4000-5700";"Condominio Comercial Ofibodegas II, Oficina #6";1
-8;"Productos FAVINO SA";"ventas@favino.cr";"2265 0505";"Heredia, Mercedes Sur Fte A Urb El Milenio De La C, Heredia, Costa Rica";1
-9;"Alimentos Heinz Costa Rica";"info@heinz.cr";"2549 9800";"del Hospital Psiquiatrico 1km al Este y 200m Norte Pavas, San Jose Costa Rica";1
-10;"Corrugados el guarco";"ventas@guarcocr.com";"2573-7411";"Parque Industrial de Cartago.";1
-11;"Embutidos la Familia";"info@embutidoslafamilia.com";"2441-4877";"Villa Bonita, Alajuela, Costa Rica.";1
+"idbodega";"tipo";"nombre";"estado"
+1;"Fria";"B1f";1
+2;"Seca";"B2s";1

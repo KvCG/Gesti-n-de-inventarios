@@ -64,9 +64,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIGACI");
 
-        jScrollPane1.setAutoscrolls(true);
-        jScrollPane1.setEnabled(false);
-
         jTArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -87,7 +84,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -95,22 +92,23 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         });
         jTArticulo.setFocusable(false);
-        jTArticulo.setGridColor(new java.awt.Color(255, 51, 51));
-        jTArticulo.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTArticulo);
-        jTArticulo.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTArticulo.getColumnModel().getColumnCount() > 0) {
+            jTArticulo.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         jdpPrincipal.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 70, 450, 220);
+
+        jScrollPane1.setBounds(0, 40, 600, 420);
+
+        jScrollPane1.setBounds(0, 40, 452, 100);
+
 
         LbTituloCuadro.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         LbTituloCuadro.setForeground(new java.awt.Color(255, 255, 255));
         LbTituloCuadro.setText(" Punto de Pedido");
-        LbTituloCuadro.setAlignmentX(0.5F);
-        LbTituloCuadro.setAutoscrolls(true);
-        LbTituloCuadro.setEnabled(false);
         jdpPrincipal.add(LbTituloCuadro);
-        LbTituloCuadro.setBounds(130, 30, 220, 20);
+        LbTituloCuadro.setBounds(190, 10, 220, 20);
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFocusable(false);
@@ -269,13 +267,17 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();

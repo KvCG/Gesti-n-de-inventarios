@@ -25,11 +25,11 @@ public class MovimientoDao implements IBaseDao<Movimiento> {
         conexion = new MySQLConexion();
     }
 
-    @Override
+@Override
     public void insertar(Movimiento obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into movimiento(codigo,persona,proveedor,articulo,tipo,cantidad,"
-                + "fecha, monto) values (?,?,?,?,?,?,curdate()),?");
+                + "fecha, monto) values (?,?,?,?,?,?,curdate(),?)");
         cs.setString(1, obj.getCodigo());
         cs.setInt(2, obj.getIdPersona());
         cs.setInt(3, obj.getIdProveedor());
