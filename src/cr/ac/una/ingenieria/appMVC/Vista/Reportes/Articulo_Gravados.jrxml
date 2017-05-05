@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="202"/>
-	<property name="ireport.y" value="188"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="ex" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     (articulo_proveedor.`costo` * 0.13) AS mpuesto,
+     (articulo_proveedor.`costo` * 0.13) AS impuesto,
+     ((articulo_proveedor.`costo` * 0.13) * articulo.`cantidad`) AS TotalImpuesto,
      (articulo.`cantidad` * articulo_proveedor.`costo`)AS Total,
      articulo.`codigo` AS articulo_codigo,
      articulo.`nombre` AS articulo_nombre,
@@ -25,7 +26,10 @@ FROM
 
 WHERE articulo.`impuesto` = $P{ex}]]>
 	</queryString>
-	<field name="mpuesto" class="java.lang.Double"/>
+	<field name="impuesto" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TotalImpuesto" class="java.lang.Double"/>
 	<field name="Total" class="java.lang.Double"/>
 	<field name="articulo_codigo" class="java.lang.String"/>
 	<field name="articulo_nombre" class="java.lang.String"/>
@@ -39,8 +43,8 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 	<variable name="Total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{Total}]]></variableExpression>
 	</variable>
-	<variable name="mpuesto_1" class="java.lang.Double" resetType="Column" calculation="Sum">
-		<variableExpression><![CDATA[$F{mpuesto}]]></variableExpression>
+	<variable name="TotalImpuesto_1" class="java.lang.Double" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{TotalImpuesto}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -55,7 +59,7 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date().toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new java.text.SimpleDateFormat("EEEEE dd MMMMM yyyy hh:mm aaa",new Locale("es", "ES"))).format(new Date())]]></textFieldExpression>
 			</textField>
 			<rectangle>
 				<reportElement x="13" y="41" width="138" height="70" backcolor="#000000"/>
@@ -127,7 +131,7 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="530" y="5" width="75" height="45"/>
+				<reportElement x="522" y="5" width="75" height="45"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
@@ -138,7 +142,7 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[COSTO]]></text>
+				<text><![CDATA[COSTO UNITARIO/ KILO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="182" y="5" width="146" height="45"/>
@@ -194,18 +198,11 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textFieldExpression><![CDATA[$F{articulo_nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="537" y="5" width="57" height="20"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Arial" size="10"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{mpuesto}.toString()]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="605" y="5" width="62" height="20"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{articulo_proveedor_costo}.toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_proveedor_costo})]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="182" y="5" width="146" height="27"/>
@@ -226,7 +223,8 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{articulo_precio_venta}.toString()]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_precio_venta})]]></textFieldExpression>
+				<!--<textFieldExpression><![CDATA[$F{articulo_precio_venta}.toString()]]></textFieldExpression>-->
 			</textField>
 			<textField>
 				<reportElement x="334" y="5" width="98" height="27"/>
@@ -248,6 +246,14 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 					<pen lineWidth="0.25" lineStyle="Dotted"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="534" y="5" width="64" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{impuesto})]]></textFieldExpression>
+                                <!--<textFieldExpression><![CDATA[$F{impuesto}.toString()]]></textFieldExpression>-->
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -255,20 +261,6 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 			<rectangle radius="10">
 				<reportElement x="494" y="5" width="209" height="63"/>
 			</rectangle>
-			<textField>
-				<reportElement x="625" y="26" width="78" height="20" backcolor="#00CC66"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{Total_1}.toString()]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="641" y="46" width="62" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$V{mpuesto_1}.toString()]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="495" y="6" width="209" height="20"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -320,6 +312,22 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 					<pen lineWidth="0.5" lineStyle="Dashed"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="626" y="25" width="78" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+                                <textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Total_1})]]></textFieldExpression>
+				<!--<textFieldExpression><![CDATA[$V{Total_1}]]></textFieldExpression>-->
+			</textField>
+			<textField>
+				<reportElement x="637" y="48" width="67" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+                                <textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{TotalImpuesto_1})]]></textFieldExpression>
+				<!--<textFieldExpression><![CDATA[$V{TotalImpuesto_1}]]></textFieldExpression>-->
+			</textField>
 		</band>
 	</columnFooter>
 	<pageFooter>

@@ -70,7 +70,7 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date().toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new java.text.SimpleDateFormat("EEEEE dd MMMMM yyyy hh:mm aaa",new Locale("es", "ES"))).format(new Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="303" y="76" width="115" height="20"/>
@@ -210,14 +210,16 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{articulo_proveedor_costo}.toString()]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_proveedor_costo})]]></textFieldExpression>
+				<!--<textFieldExpression><![CDATA[$F{articulo_proveedor_costo}.toString()]]></textFieldExpression>-->
 			</textField>
 			<textField>
 				<reportElement x="646" y="2" width="58" height="20"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{articulo_precio_venta}.toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_precio_venta})]]></textFieldExpression>
+                                <!--<textFieldExpression><![CDATA[$F{articulo_precio_venta}.toString()]]></textFieldExpression>-->
 			</textField>
 			<line>
 				<reportElement x="4" y="33" width="733" height="1"/>
@@ -269,7 +271,8 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{Total_1}.toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Total_1})]]></textFieldExpression>
+                                <!--<textFieldExpression><![CDATA[$V{Total_1}.toString()]]></textFieldExpression>-->
 			</textField>
 			<line>
 				<reportElement x="511" y="25" width="208" height="1"/>
