@@ -210,7 +210,7 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-                                <textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_proveedor_costo})]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($F{articulo_proveedor_costo})]]></textFieldExpression>
 				<!--<textFieldExpression><![CDATA[$F{articulo_proveedor_costo}.toString()]]></textFieldExpression>-->
 			</textField>
 			<textField>
@@ -218,7 +218,7 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_precio_venta})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($F{articulo_precio_venta})]]></textFieldExpression>
                                 <!--<textFieldExpression><![CDATA[$F{articulo_precio_venta}.toString()]]></textFieldExpression>-->
 			</textField>
 			<line>
@@ -271,7 +271,7 @@ WHERE articulo.`impuesto` = $P{ex}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Total_1})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($V{Total_1})]]></textFieldExpression>
                                 <!--<textFieldExpression><![CDATA[$V{Total_1}.toString()]]></textFieldExpression>-->
 			</textField>
 			<line>

@@ -185,7 +185,7 @@ FROM
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-                                <textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_proveedor_costo})]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($F{articulo_proveedor_costo})]]></textFieldExpression>
 				<!--<textFieldExpression><![CDATA[$F{articulo_proveedor_costo}.toString()]]></textFieldExpression>-->
 			</textField>
 			<textField>
@@ -242,7 +242,7 @@ FROM
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
                                 <!--<textFieldExpression><![CDATA[$V{TOTAL_1}.toString()]]></textFieldExpression>-->
-				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{TOTAL_1})]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($V{TOTAL_1})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="442" y="5" width="169" height="20"/>

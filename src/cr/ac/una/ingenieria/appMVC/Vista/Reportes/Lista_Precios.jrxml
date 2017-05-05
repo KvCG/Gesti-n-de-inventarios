@@ -144,7 +144,7 @@ FROM
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial"/>
 				</textElement>
-                                <textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($F{articulo_precio_venta})]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($F{articulo_precio_venta})]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="10" y="29" width="538" height="1"/>
