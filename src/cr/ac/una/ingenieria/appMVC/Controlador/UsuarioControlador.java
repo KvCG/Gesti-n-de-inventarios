@@ -47,7 +47,9 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
 
             @Override
             public void caretUpdate(CaretEvent e) {
-                cargaPersona();
+                if(!mantUsuarioView.txtPersonaId.getText().isEmpty()){
+                    cargaPersona();
+                }
             }
         });
         this.mantUsuarioView.btModificar.setEnabled(false);
@@ -127,12 +129,12 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.mantUsuarioView.btInsertar) {
             if (this.isEmpty()) {
-                JOptionPane.showMessageDialog(mantUsuarioView, "Error faltan espacios por rellenar:", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mantUsuarioView, "Error faltan espacios por rellenar", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
             } else {
                 Usuario u = new Usuario();
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
                 u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
-                //u.getRol();
+                u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
                 Persona p = new Persona();
                 p.setCedula(this.mantUsuarioView.txtPersonaId.getText());
                 try {
@@ -196,7 +198,8 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                     Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
-                u.setPassword(this.mantUsuarioView.txtContraseña.getText());
+                u.setPassword(this.mantUsuarioView.txtContraseña.getPassword().toString());
+                u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
                 try {
                     this.usuarioBlModelo.modificar(u);
                     JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido modificado correctamente",
@@ -292,6 +295,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
 
                 this.mantUsuarioView.txtUsuario.setText(u.getAlias());
                 this.mantUsuarioView.txtContraseña.setText(u.getPassword());
+                this.mantUsuarioView.cbRol.setSelectedIndex(u.getRol());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantUsuarioView, "Error no se pudo consultar el Usuario (" + ex.getMessage() + ")",
                         "Error al cargar el Usuario", JOptionPane.ERROR_MESSAGE);

@@ -98,8 +98,8 @@ public class PantallaPrincipalControlador implements ActionListener {
         this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);//listo
+        sesion(ValidarAcceso.current.getRol());
 
-//        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         inicializarPantalla();
 
         llenarTabla(this.pantPrinView.jTArticulo);
@@ -568,6 +568,20 @@ public class PantallaPrincipalControlador implements ActionListener {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void sesion(int rol) {
+        switch (rol) {
+            case 1:
+                this.pantPrinView.jMenu_Registro.setVisible(false);
+                break;
+
+            case 2:
+                this.pantPrinView.jMenu_Movimiento.setVisible(false);
+                this.pantPrinView.jMenu_Mantenimiento.setVisible(false);
+                this.pantPrinView.jMenu_Herramientas.setVisible(false);
+                break;
         }
     }
 }
