@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -130,6 +132,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 JOptionPane.showMessageDialog(mantUsuarioView, "Error faltan espacios por rellenar:", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
             } else {
                 Usuario u = new Usuario();
+                //if (this.isEmail(this.mantProveedorView.txtCorreo.getText())) {
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
                 u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
                 //u.getRol();
@@ -138,9 +141,16 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 try {
                     p = personaBLModelo.obtenerPorId(p);
                     u.setIdPersona(p.getIdpersona());
-                    this.usuarioBlModelo.insertar(u);
-                    JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido ingresado correctamente", "Usuario Agreagado", JOptionPane.INFORMATION_MESSAGE);
-                    this.clean();
+                    if(this.isPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()))){
+                     this.usuarioBlModelo.insertar(u);
+                     JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido ingresado correctamente", "Usuario Agreagado", JOptionPane.INFORMATION_MESSAGE);
+                     this.clean();
+                    }else {
+                        JOptionPane.showMessageDialog(mantUsuarioView, "La contraseña debe poseer mayusculas, minusculas, numeros y poseer de 8 a 15 caracteres", 
+                                                                         " Error al ingresar la contraseña:", JOptionPane.ERROR_MESSAGE);
+                        this.mantUsuarioView.txtContraseña.setText(null);
+                    }
+                   
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(mantUsuarioView, "Error al agregar el Usuario:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -195,6 +205,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
                 u.setPassword(this.mantUsuarioView.txtContraseña.getText());
                 try {
@@ -242,6 +253,19 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
             personaBcontrolador = new PersonaBuscarControlador(mantPersonaBView, personaBLModelo, mantUsuarioView.txtPersonaId);
             personaBcontrolador.getPersonaBuscarView().setVisible(true);
             this.mantUsuarioView.btEliminar.setEnabled(true);
+        }
+    }
+    
+    
+    public boolean isPassword(String password) {
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$");
+        mat = pat.matcher(password);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
         }
     }
 
