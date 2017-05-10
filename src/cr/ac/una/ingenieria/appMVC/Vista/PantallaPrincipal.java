@@ -82,33 +82,39 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             new String [] {
                 "Nombre", "Cantidad", "Minimo", "Estado"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jTArticulo.setFocusable(false);
         jScrollPane1.setViewportView(jTArticulo);
         if (jTArticulo.getColumnModel().getColumnCount() > 0) {
             jTArticulo.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        jdpPrincipal.add(jScrollPane1);
-
-        jScrollPane1.setBounds(0, 40, 600, 420);
-
-        jScrollPane1.setBounds(0, 40, 452, 100);
-
-
         LbTituloCuadro.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         LbTituloCuadro.setForeground(new java.awt.Color(255, 255, 255));
         LbTituloCuadro.setText(" Punto de Pedido");
-        jdpPrincipal.add(LbTituloCuadro);
-        LbTituloCuadro.setBounds(190, 10, 220, 20);
+
+        jdpPrincipal.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(LbTituloCuadro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
+        jdpPrincipal.setLayout(jdpPrincipalLayout);
+        jdpPrincipalLayout.setHorizontalGroup(
+            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                .addGap(573, 573, 573)
+                .addComponent(LbTituloCuadro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                .addGap(393, 393, 393)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jdpPrincipalLayout.setVerticalGroup(
+            jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(LbTituloCuadro, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenuBar1.setFocusable(false);
@@ -269,14 +275,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 827, Short.MAX_VALUE)
+                .addComponent(jdpPrincipal)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jdpPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addComponent(jdpPrincipal)
                 .addContainerGap())
         );
 

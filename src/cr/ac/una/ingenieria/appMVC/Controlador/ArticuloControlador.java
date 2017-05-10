@@ -24,8 +24,6 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -33,7 +31,7 @@ import javax.swing.event.DocumentListener;
  */
 public class ArticuloControlador implements ActionListener {
 
-    private Modulo_Inventario mantArticuloView;
+    public static Modulo_Inventario mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
     private BodegaBL bodegaBL;
     private TipoArticuloBL tipArtBL;

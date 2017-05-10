@@ -66,7 +66,7 @@ FROM
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date().toString()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new java.text.SimpleDateFormat("EEEEE dd MMMMM yyyy hh:mm aaa",new Locale("es", "ES"))).format(new Date())]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="313" y="84" width="115" height="20"/>
@@ -185,7 +185,8 @@ FROM
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Arial" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{articulo_proveedor_costo}.toString()]]></textFieldExpression>
+                                <textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($F{articulo_proveedor_costo})]]></textFieldExpression>
+				<!--<textFieldExpression><![CDATA[$F{articulo_proveedor_costo}.toString()]]></textFieldExpression>-->
 			</textField>
 			<textField>
 				<reportElement x="328" y="2" width="81" height="26"/>
@@ -240,7 +241,8 @@ FROM
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{TOTAL_1}.toString()]]></textFieldExpression>
+                                <!--<textFieldExpression><![CDATA[$V{TOTAL_1}.toString()]]></textFieldExpression>-->
+				<textFieldExpression><![CDATA[new DecimalFormat("₡#,##0.00").format($V{TOTAL_1})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="442" y="5" width="169" height="20"/>

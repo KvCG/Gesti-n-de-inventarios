@@ -9,7 +9,6 @@ import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.ingenieria.appMVC.Domain.Articulo;
-import cr.ac.una.ingenieria.appMVC.Domain.Movimiento;
 import cr.ac.una.ingenieria.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantPersonaBuscar;
 import cr.ac.una.ingenieria.appMVC.Vista.MantProveedorBuscar;
@@ -32,24 +31,20 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.event.CaretEvent;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import org.jdesktop.swingx.JXLabel;
 
 /**
  *
@@ -103,8 +98,8 @@ public class PantallaPrincipalControlador implements ActionListener {
         this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);//listo
+        sesion(ValidarAcceso.current.getRol());
 
-//        this.pantPrinView.ReporteUsuarios.addActionListener(this);
         inicializarPantalla();
 
         llenarTabla(this.pantPrinView.jTArticulo);
@@ -157,7 +152,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             String directorio = System.getProperty("user.dir");
             System.out.println(directorio);
             String separador = System.getProperty("file.separator");
-            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
+            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte);
             Map parameters = new HashMap();
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
@@ -182,17 +177,17 @@ public class PantallaPrincipalControlador implements ActionListener {
             Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void creaReporte2(String reporte) throws IOException, JRException, SQLException {
         InputStream inputStream = null;
-        String minimo = JOptionPane.showInputDialog(null,"DIGITE LA CANTIDAD",
-                "CANTIDAD MÍNIMA",JOptionPane.QUESTION_MESSAGE);
+        String minimo = JOptionPane.showInputDialog(null, "DIGITE LA CANTIDAD",
+                "CANTIDAD MÍNIMA", JOptionPane.QUESTION_MESSAGE);
         int mini = Integer.parseInt(minimo);
         try {
             String directorio = System.getProperty("user.dir");
             System.out.println(directorio);
             String separador = System.getProperty("file.separator");
-            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
+            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte);
             Map parameters = new HashMap();
             parameters.put("x", mini);
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
@@ -218,7 +213,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void creaReporte3(String reporte) throws IOException, JRException, SQLException {
         InputStream inputStream = null;
         String gravado = "Gravado";
@@ -226,7 +221,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             String directorio = System.getProperty("user.dir");
             System.out.println(directorio);
             String separador = System.getProperty("file.separator");
-            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
+            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte);
             Map parameters = new HashMap();
             parameters.put("ex", gravado);
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
@@ -251,7 +246,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void creaReporte4(String reporte) throws IOException, JRException, SQLException {
         InputStream inputStream = null;
         String exento = "Exento";
@@ -259,7 +254,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             String directorio = System.getProperty("user.dir");
             System.out.println(directorio);
             String separador = System.getProperty("file.separator");
-            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\"+reporte);
+            inputStream = new FileInputStream(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte);
             Map parameters = new HashMap();
             parameters.put("ex", exento);
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
@@ -477,8 +472,8 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        if(e.getSource() == this.pantPrinView.jMenuItem_Reporte_Proveedores){
+
+        if (e.getSource() == this.pantPrinView.jMenuItem_Reporte_Proveedores) {
             try {
                 this.creaReporte("Proveedores.jrxml");
             } catch (IOException ex) {
@@ -489,8 +484,8 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        if(e.getSource() == this.pantPrinView.jMenuItem_Reporte_ListaPrecio){
+
+        if (e.getSource() == this.pantPrinView.jMenuItem_Reporte_ListaPrecio) {
             try {
                 this.creaReporte("Lista_Precios.jrxml");
             } catch (IOException ex) {
@@ -499,10 +494,10 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
-            }            
+            }
         }
-        
-        if(e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Minimo){
+
+        if (e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Minimo) {
             try {
                 this.creaReporte2("CantidadesMinimas.jrxml");
             } catch (IOException ex) {
@@ -513,8 +508,8 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        if(e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Gravado){
+
+        if (e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Gravado) {
             try {
                 this.creaReporte3("Articulo_Gravados.jrxml");
             } catch (IOException ex) {
@@ -525,8 +520,8 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        if(e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Exentos){
+
+        if (e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_Exentos) {
             try {
                 this.creaReporte4("Articulo_Exento.jrxml");
             } catch (IOException ex) {
@@ -535,12 +530,12 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
-            }            
+            }
         }
     }
 
-    public void llenarTabla(JTable tablaArticulo) {
-
+    static public void llenarTabla(JTable tablaArticulo) {
+        ArticuloBL articuloBlModelo1 = new ArticuloBL();
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulo.setModel(modeloTabla);
 
@@ -554,28 +549,39 @@ public class PantallaPrincipalControlador implements ActionListener {
         String Sql = "where cantidad < punto_de_pedido + 10 ";
 
         try {
-            ArrayList<Articulo> listaminimos = articuloBlModelo.obtenerConWhere(new Articulo(), Sql);
-            if (listaminimos.isEmpty()) {
-                this.pantPrinView.jTArticulo.setVisible(false);
-                this.pantPrinView.LbTituloCuadro.setVisible(false);
-            }else{
-            for (Object oAux : articuloBlModelo.obtenerConWhere(new Articulo(), Sql)) {
-                
+            ArrayList<Articulo> listaminimos = articuloBlModelo1.obtenerConWhere(new Articulo(), Sql);
+
+            for (Object oAux : articuloBlModelo1.obtenerConWhere(new Articulo(), Sql)) {
+
                 Articulo a = (Articulo) oAux;
                 fila[0] = a.getNombre();
                 fila[1] = a.getCantidad();
                 fila[2] = a.getPuntoPedido();
-                if(a.getCantidad()<= a.getPuntoPedido()){
+                if (a.getCantidad() <= a.getPuntoPedido()) {
                     fila[3] = "Comprar";
-                }else{
+                } else {
                     fila[3] = "cercar del punto de Pedido";
                 }
-       
+
                 modeloTabla.addRow(fila);
             }
-            } 
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void sesion(int rol) {
+        switch (rol) {
+            case 1:
+                this.pantPrinView.jMenu_Registro.setVisible(false);
+                break;
+
+            case 2:
+                this.pantPrinView.jMenu_Movimiento.setVisible(false);
+                this.pantPrinView.jMenu_Mantenimiento.setVisible(false);
+                this.pantPrinView.jMenu_Herramientas.setVisible(false);
+                break;
         }
     }
 }

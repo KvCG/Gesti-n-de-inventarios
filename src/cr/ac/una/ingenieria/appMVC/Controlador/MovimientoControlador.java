@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -82,7 +83,6 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         this.modMovView.txtCodigoArticulo.setVisible(false);
         this.modMovView.txtCodigoArticulo1.setVisible(false);
         this.modMovView.txtCodigoProveedor.setVisible(false);
-        
         this.modMovView.txtCodigoPersona.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -125,8 +125,8 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                 }
             }
         });
-        
-       this.modMovView.txtCodigoPersona.setText(ValidarAcceso.getPerCurrent().getCedula());
+
+        this.modMovView.txtCodigoPersona.setText(ValidarAcceso.getPerCurrent().getCedula());
 
         this.readOnly(false);
     }
@@ -208,6 +208,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         this.modMovView.rdEgreso.setSelected(false);
         this.Movimientos.clear();
         this.llenarTabla(modMovView.tbMovimiento);
+        this.calcTotal();
     }
 
     public void llenarTabla(JTable tablaArticulo) {
@@ -317,7 +318,6 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
         this.modMovView.txtPersona.setEditable(value);
         this.modMovView.txtArticulo.setEditable(value);
         this.modMovView.txtStock.setEditable(value);
-        //this.modMovView.txtCodigoMov.setEditable(value);
     }
 
     public void cargaPersona() {
@@ -362,6 +362,17 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
             index++;
         }
         return -1;
+    }
+
+    public void calcTotal() {
+        Double total = 0.0;
+        if (!this.Movimientos.isEmpty()) {
+            for (Object oAux : this.Movimientos) {
+                Movimiento s = (Movimiento) oAux;
+                total = total + s.getMonto();
+            }
+        }
+        this.modMovView.lbTotal.setText("₡"+total.toString());
     }
 
     //-----------------------------------------------------
@@ -420,6 +431,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                         mov.setIdPersona(per.getIdpersona());
                     }
                     index = this.contains(Movimientos, mov);
+                    mov.setMonto(ar.getPrecioVenta() * (Integer.parseInt(this.modMovView.txtCantidad.getText())));
                     if (modMovView.rdEgreso.isSelected()
                             && (Integer.parseInt(modMovView.txtCantidad.getText()) > Integer.parseInt(modMovView.txtStock.getText()))) {
                         JOptionPane.showMessageDialog(null, "Movimiento Invalido: " + "La cantidad de salida sobrepasa la cantidad en existencias", null, JOptionPane.ERROR_MESSAGE);
@@ -428,8 +440,10 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                         if (index != -1) {
                             Movimiento aux = this.Movimientos.get(index);
                             aux.setCantidad(mov.getCantidad() + aux.getCantidad());
+                            aux.setMonto(aux.getMonto() + (ar.getPrecioVenta() * Integer.parseInt(this.modMovView.txtCantidad.getText())));
                             this.Movimientos.set(index, aux);
                         } else {
+
                             this.Movimientos.add(mov);
                         }
                         this.modMovView.txtCodigoMov.setEditable(false);
@@ -438,6 +452,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                         this.modMovView.txtStock.setText(null);
                         this.llenarTabla(this.modMovView.tbMovimiento);
                         this.readOnly(false);
+                        this.calcTotal();
                     }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error:" + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
@@ -456,6 +471,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                             movimientoBLModelo.insertar(mov);
                         }
                         this.clear();
+                        PantallaPrincipalControlador.llenarTabla(ValidarAcceso.ManteAdmiView.jTArticulo);
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), null, JOptionPane.ERROR_MESSAGE);
                     }
@@ -478,6 +494,7 @@ public class MovimientoControlador implements ActionListener, DocumentListener {
                 Integer NumRem = Integer.parseInt(this.modMovView.tbMovimiento.getValueAt(fila, 0).toString());
                 this.Movimientos.remove(NumRem - 1);
                 this.llenarTabla(modMovView.tbMovimiento);
+                this.calcTotal();
             } else {
                 JOptionPane.showMessageDialog(modMovView, "No se ha seleccionado un movimeinto.", "Error", JOptionPane.ERROR_MESSAGE);
             }

@@ -36,7 +36,7 @@ import javax.swing.event.DocumentListener;
 public class ValidarAcceso implements ActionListener, DocumentListener {
 
     MySQLConexion metodos = new MySQLConexion();
-    private PantallaPrincipal ManteAdmiView;
+    public static PantallaPrincipal ManteAdmiView;
     private SolicitudUsuarioPassword solUsePa;
     public static Usuario current;
     public static Persona perCurrent;

@@ -18,8 +18,9 @@ public class Movimiento {
     private Integer cantidad;
     private Integer tipo;
     private String fecha;
+    private Double monto;
 
-    public Movimiento(Integer idMovimiento, String codigo, Integer idPersona, Integer idProveedor, Integer idArticulo, Integer cantidad, Integer tipo, String fecha) {
+    public Movimiento(Integer idMovimiento, String codigo, Integer idPersona, Integer idProveedor, Integer idArticulo, Integer cantidad, Integer tipo, String fecha, Double monto) {
         this.idMovimiento = idMovimiento;
         this.codigo = codigo;
         this.idPersona = idPersona;
@@ -28,6 +29,15 @@ public class Movimiento {
         this.cantidad = cantidad;
         this.tipo = tipo;
         this.fecha = fecha;
+        this.monto = monto;
+    }
+
+    public Double getMonto() {
+        return monto;
+    }
+
+    public void setMonto(Double monto) {
+        this.monto = monto;
     }
 
     public String getCodigo() {

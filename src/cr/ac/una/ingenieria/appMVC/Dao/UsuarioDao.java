@@ -43,7 +43,7 @@ public class UsuarioDao implements IBaseDao<Usuario> {
                 + "(?,?,?,?)");
         cs.setString(1, obj.getAlias());
         cs.setString(2, obj.getPassword());
-        cs.setInt(3, 1);//obj.getRol());
+        cs.setInt(3, obj.getRol());
         cs.setInt(4, obj.getIdPersona());
         cs.executeUpdate();
         con.close();
