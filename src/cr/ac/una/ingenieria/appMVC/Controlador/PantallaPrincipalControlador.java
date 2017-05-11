@@ -575,12 +575,19 @@ public class PantallaPrincipalControlador implements ActionListener {
         switch (rol) {
             case 1:
                 this.pantPrinView.jMenu_Registro.setVisible(false);
+                this.pantPrinView.LbTituloCuadro.setVisible(false);
+                this.pantPrinView.jTArticulo.setVisible(false);
+               
+                
                 break;
 
             case 2:
                 this.pantPrinView.jMenu_Movimiento.setVisible(false);
                 this.pantPrinView.jMenu_Mantenimiento.setVisible(false);
                 this.pantPrinView.jMenu_Herramientas.setVisible(false);
+                
+               
+               
                 break;
         }
     }
