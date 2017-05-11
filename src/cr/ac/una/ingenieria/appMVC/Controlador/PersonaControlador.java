@@ -182,11 +182,11 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                         this.Mod_Reg_PersonaView.jtxtCorreo.setText(null);
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error al modificar a la Persona:" + ex.getMessage(),
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception ex) {
-                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error al modificar a la Persona:" + ex.getMessage(),
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }

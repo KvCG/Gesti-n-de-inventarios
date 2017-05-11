@@ -52,15 +52,11 @@ public class UsuarioDao implements IBaseDao<Usuario> {
     @Override
     public void modificar(Usuario obj) throws SQLException {
         Connection con = conexion.getConexion();
-
-        CallableStatement cs = con.prepareCall("update usuario "
-                + "set alias = ?, password = ?,"
-                + "rol = ?,"
-                + "where alias = ?");
-        cs.setString(1, obj.getAlias());
-        cs.setString(2, obj.getPassword());
-        cs.setInt(3, obj.getRol());
-        cs.setString(4, obj.getAlias());
+        CallableStatement cs = con.prepareCall("update usuario set password = ?, rol = ?"
+                                               + " where alias = ?");
+        cs.setString(1, obj.getPassword());
+        cs.setInt(2, obj.getRol());
+        cs.setString(3, obj.getAlias());
         cs.executeUpdate();
         con.close();
     }

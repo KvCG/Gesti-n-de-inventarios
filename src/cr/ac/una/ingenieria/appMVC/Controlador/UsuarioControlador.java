@@ -49,16 +49,17 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
 
             @Override
             public void caretUpdate(CaretEvent e) {
-                if(!mantUsuarioView.txtPersonaId.getText().isEmpty()){
+                if (!mantUsuarioView.txtPersonaId.getText().isEmpty()) {
                     cargaPersona();
                 }
             }
         });
-        this.mantUsuarioView.btModificar.setEnabled(false);
+
         this.mantUsuarioView.btEliminar.setEnabled(false);
         this.mantUsuarioView.txtUsuarioBuscar.setVisible(false);
         this.mantUsuarioView.txtCedula.setEnabled(false);
         this.mantUsuarioView.txtPersonaId.setVisible(false);
+        
     }
 
     public UsuarioControlador() {
@@ -134,25 +135,27 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 JOptionPane.showMessageDialog(mantUsuarioView, "Error faltan espacios por rellenar", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
             } else {
                 Usuario u = new Usuario();
-                //if (this.isEmail(this.mantProveedorView.txtCorreo.getText())) {
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
                 u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
+                
                 u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
                 Persona p = new Persona();
                 p.setCedula(this.mantUsuarioView.txtPersonaId.getText());
                 try {
                     p = personaBLModelo.obtenerPorId(p);
                     u.setIdPersona(p.getIdpersona());
-                    if(this.isPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()))){
-                     this.usuarioBlModelo.insertar(u);
-                     JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido ingresado correctamente", "Usuario Agreagado", JOptionPane.INFORMATION_MESSAGE);
-                     this.clean();
-                    }else {
-                        JOptionPane.showMessageDialog(mantUsuarioView, "La contraseña debe poseer mayusculas, minusculas, numeros y poseer de 8 a 15 caracteres", 
-                                                                         " Error al ingresar la contraseña:", JOptionPane.ERROR_MESSAGE);
+                    if (this.isPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()))) {
+                        this.usuarioBlModelo.insertar(u);
+                        JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido ingresado correctamente", "Usuario Agreagado", JOptionPane.INFORMATION_MESSAGE);
+                        this.clean();
+                        this.mantUsuarioView.btEliminar.setEnabled(false);
+                        this.mantUsuarioView.btModificar.setEnabled(true);
+                    } else {
+                        JOptionPane.showMessageDialog(mantUsuarioView, "La contraseña debe poseer mayusculas, minusculas, numeros y poseer de 8 a 15 caracteres",
+                                " Error al ingresar la contraseña:", JOptionPane.ERROR_MESSAGE);
                         this.mantUsuarioView.txtContraseña.setText(null);
                     }
-                   
+
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(mantUsuarioView, "Error al agregar el Usuario:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -179,6 +182,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                     this.mantUsuarioView.txtPersonaId.setText(null);
                     this.mantUsuarioView.txtUsuario.setText(null);
                     this.mantUsuarioView.btEliminar.setEnabled(false);
+
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario no sera eliminado ",
@@ -197,32 +201,35 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         }
 
         if (e.getSource() == this.mantUsuarioView.btModificar) {
+            
             if (this.isEmpty()) {
                 JOptionPane.showMessageDialog(mantUsuarioView, "Error primero debe seleccionar un Usuario:", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 Usuario u = new Usuario();
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
-                try {
-                    u = usuarioBlModelo.obtenerPorId(u);
-                } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                u.setAlias(this.mantUsuarioView.txtUsuario.getText());
-                u.setPassword(this.mantUsuarioView.txtContraseña.getPassword().toString());
-                u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
-                try {
-                    this.usuarioBlModelo.modificar(u);
-                    JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario ha sido modificado correctamente",
-                            "Usuario Modificado", JOptionPane.INFORMATION_MESSAGE);
 
-                    this.mantUsuarioView.txtUsuario.setText(u.getAlias());
-                    this.mantUsuarioView.txtContraseña.setText(u.getPassword());
-                    this.clean();
-                    this.mantUsuarioView.btEliminar.setEnabled(false);
+                try {
+                    if (this.isPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()))) {
+                        u = usuarioBlModelo.obtenerPorId(u);
+                        u.setAlias(this.mantUsuarioView.txtUsuario.getText());
+                        u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
+                        u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
+                        this.usuarioBlModelo.modificar(u);
+                        this.clean();
+                        this.mantUsuarioView.btEliminar.setEnabled(false);
+                        this.mantUsuarioView.txtUsuario.setEnabled(true);
+
+                        JOptionPane.showMessageDialog(mantUsuarioView, "El usuario ha sido modificado correctamente",
+                                "Usuario madificado", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(mantUsuarioView, "La contraseña debe poseer mayusculas, minusculas, numeros y poseer de 8 a 15 caracteres",
+                                " Error al ingresar la contraseña:", JOptionPane.ERROR_MESSAGE);
+                        this.mantUsuarioView.txtContraseña.setText(null);
+                    }
+
                 } catch (SQLException ex) {
                     Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(mantUsuarioView, "Error al modificar usuario:" + ex.getMessage(),
+                    JOptionPane.showMessageDialog(mantUsuarioView, "Error al modificar al usuario:" + ex.getMessage(),
                             "Error", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception ex) {
                     Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -231,12 +238,11 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 }
 
             }
-//        
         }
         if (e.getSource() == this.mantUsuarioView.btCancelar) {
             this.clean();
             this.mantUsuarioView.btEliminar.setEnabled(false);
-            this.mantUsuarioView.btModificar.setEnabled(false);
+
         }
         if (e.getSource() == this.mantUsuarioView.btBuscar) {
             if (!mantUsuarioView.txtUsuario.getText().isEmpty()) {
@@ -256,10 +262,10 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
             personaBcontrolador = new PersonaBuscarControlador(mantPersonaBView, personaBLModelo, mantUsuarioView.txtPersonaId);
             personaBcontrolador.getPersonaBuscarView().setVisible(true);
             this.mantUsuarioView.btEliminar.setEnabled(true);
+            this.mantUsuarioView.btModificar.setEnabled(true);
         }
     }
-    
-    
+
     public boolean isPassword(String password) {
         Pattern pat = null;
         Matcher mat = null;
@@ -292,6 +298,8 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         if (!this.mantUsuarioView.txtPersonaId.getText().isEmpty()) {
             u.setCedula(this.mantUsuarioView.txtPersonaId.getText());
             try {
+                this.mantUsuarioView.txtUsuario.setEnabled(true);
+                this.mantUsuarioView.btInsertar.setEnabled(true);
                 u = personaBLModelo.obtenerPorId(u);
                 mantUsuarioView.txtCedula.setText(u.getCedula() + " - " + u.getNombre() + " " + u.getApellidos());
             } catch (SQLException ex) {
@@ -302,9 +310,8 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         }
     }
 
-    
-
     private void cargarusuario() {
+        
         Usuario u = new Usuario();
         if (!this.mantUsuarioView.txtUsuarioBuscar.getText().isEmpty()) {
             try {
@@ -316,7 +323,8 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 p = personaBLModelo.obtenerPorId2(p);
 
                 this.mantUsuarioView.txtPersonaId.setText(p.getCedula());
-
+                this.mantUsuarioView.txtUsuario.setEnabled(false);
+                this.mantUsuarioView.btInsertar.setEnabled(false);
                 this.mantUsuarioView.txtUsuario.setText(u.getAlias());
                 this.mantUsuarioView.txtContraseña.setText(u.getPassword());
                 this.mantUsuarioView.cbRol.setSelectedIndex(u.getRol());
