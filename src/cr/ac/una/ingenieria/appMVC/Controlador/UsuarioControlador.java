@@ -139,14 +139,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
                 
                 u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
-//                if(this.mantUsuarioView.cbRol.getSelectedIndex()==1){
-//                    System.out.println("administrador");
-//                }if(this.mantUsuarioView.cbRol.getSelectedIndex()==2){
-//                    System.out.println("inventario");
-//                }else
-//                    System.out.println("bodega");
                 
-                    
                 Persona p = new Persona();
                 p.setCedula(this.mantUsuarioView.txtPersonaId.getText());
                 try {
@@ -209,10 +202,6 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         }
 
         if (e.getSource() == this.mantUsuarioView.btModificar) {
-            
-            if (this.isEmpty()) {
-                JOptionPane.showMessageDialog(mantUsuarioView, "Error primero debe seleccionar un Usuario:", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
                 Usuario u = new Usuario();
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
 
@@ -245,26 +234,23 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
 
-            }
+            
         }
         if (e.getSource() == this.mantUsuarioView.btCancelar) {
             this.clean();
+            this.mantUsuarioView.btModificar.setEnabled(false);
             this.mantUsuarioView.btEliminar.setEnabled(false);
             this.mantUsuarioView.txtUsuario.setEnabled(true);
             this.mantUsuarioView.btInsertar.setEnabled(true);
 
         }
         if (e.getSource() == this.mantUsuarioView.btBuscar) {
-            if (!mantUsuarioView.txtUsuario.getText().isEmpty()) {
                 MantUsuarioBuscar mantUsuarioBuscarView = new MantUsuarioBuscar();
                 UsuarioBuscarControlador usuarioBControlador;
                 usuarioBControlador = new UsuarioBuscarControlador(mantUsuarioBuscarView, usuarioBlModelo, mantUsuarioView.txtUsuarioBuscar);
                 usuarioBControlador.getUsuarioBuscarView().setVisible(true);
                 this.mantUsuarioView.btEliminar.setEnabled(true);
-                
-            } else {
-                JOptionPane.showMessageDialog(mantUsuarioView, "Debes digitar el nombre del usuario primero", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                this.mantUsuarioView.btModificar.setEnabled(true);
         }
 
         if (e.getSource() == this.mantUsuarioView.btBuscarPersona) {

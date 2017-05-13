@@ -1,15 +1,18 @@
-
 package cr.ac.una.ingenieria.appMVC.Conexion;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Gustavo
  */
 public class MySQLConexion {
+    
     private Connection con;
     private String usuario;
     private String password;
@@ -25,8 +28,8 @@ public class MySQLConexion {
      * @param baseDatos
      * @param puerto
      */
-    public MySQLConexion(String usuario, String password, String server, 
-                         String baseDatos, String puerto){
+    public MySQLConexion(String usuario, String password, String server,
+            String baseDatos, String puerto) {
         this.usuario = usuario;
         this.password = password;
         this.server = server;
@@ -35,47 +38,62 @@ public class MySQLConexion {
     }
 
     /**
-     *conexion con la base de datos
+     * conexion con la base de datos
      */
-    public MySQLConexion(){
-        this.usuario = "root";
-        this.password = "root";
-
-        //this.password = "";
-
-//        this.password = "";
-
-        this.server = "127.0.0.1";
-        this.baseDatos = "caemdejeh";
-        this.puerto = "3306";
+    public MySQLConexion() {
+        String line;
+        Integer con = 0;
+        try {
+            BufferedReader in = new BufferedReader(new FileReader("config.txt"));
+            while ((line = in.readLine()) != null) {
+                switch (con) {
+                    case 0:
+                        this.usuario = line;
+                    case 1:
+                        this.password = line;
+                    case 2:
+                        this.server = line;
+                    case 3:
+                        this.baseDatos = line;
+                    case 4:
+                        this.puerto = line;
+                }
+                con++;
+            }
+            in.close();
+        } catch (FileNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "No se encuentra el archivo de configuracion", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        } catch (IOException ex1) {
+            JOptionPane.showMessageDialog(null, "No se puede leer el archivo de configuracion", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    
+
     /**
      *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
-    public Connection getConexion() throws SQLException{
-        try {            
+    public Connection getConexion() throws SQLException {
+        try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            String stringConexion = "jdbc:MySql://"+server+":"+puerto+"/"+baseDatos;
+            String stringConexion = "jdbc:MySql://" + server + ":" + puerto + "/" + baseDatos;
             con = DriverManager.getConnection(stringConexion, usuario, password);
             return con;
             
         } catch (Exception e) {
-            System.out.println("Error:"+e.getMessage());
+            System.out.println("Error:" + e.getMessage());
             return null;
         }
     }
-    
+
     /**
      *
      * @throws SQLException
      */
-    public void cerrarConexion() throws SQLException{
+    public void cerrarConexion() throws SQLException {
         con.close();
     }
-    
+
     /**
      *
      * @return
@@ -174,8 +192,7 @@ public class MySQLConexion {
 
     /**
      *
-     * @param 
-     * @return
+     * @param @return
      */
     public CallableStatement prepareCall(String select_MAXPK_idFacturacion_from_Facturaci) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

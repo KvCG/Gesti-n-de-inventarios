@@ -72,7 +72,7 @@ public class MovimientoDao implements IBaseDao<Movimiento> {
     @Override
     public Integer obtenerConsecutivo() throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("select GroupAmount, count(*) GroupAmountTimes from "
+        CallableStatement cs = con.prepareCall("select ifnull(GroupAmount,0), count(*) GroupAmountTimes from "
                 + "(select count(codigo) as GroupAmount from"
                 + " movimiento group by codigo) as SubQuery;");
         ResultSet result = cs.executeQuery();
