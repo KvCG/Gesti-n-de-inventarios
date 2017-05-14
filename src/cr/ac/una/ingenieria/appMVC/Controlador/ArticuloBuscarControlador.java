@@ -104,9 +104,7 @@ public class ArticuloBuscarControlador implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.articuloBuscarView.btBuscar) {
-            llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
-        }
+       
 
         if (e.getSource() == this.articuloBuscarView.btSeleccionar) {
             int fila = this.articuloBuscarView.jTBuscarArticulo.getSelectedRow();

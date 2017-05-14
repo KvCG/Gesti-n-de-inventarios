@@ -8,7 +8,8 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
      */
     public MantArticuloBuscar() {        
         initComponents();
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);    
+        this.setResizable(false);
     }
 
     /**
@@ -23,7 +24,6 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
         buttonGroup_Estado = new javax.swing.ButtonGroup();
         LbNombre = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
-        btBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTBuscarArticulo = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
@@ -42,8 +42,6 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
                 txtBuscarKeyTyped(evt);
             }
         });
-
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Buscar02.png"))); // NOI18N
 
         jTBuscarArticulo = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex,int colIndex){
@@ -89,13 +87,13 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
         });
 
         jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Activo.setText("ACTIVO");
+        jRadioButton_Activo.setText("Activo");
 
         jRadioButton_Inactiva.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Inactiva.setText("INACTIVO");
+        jRadioButton_Inactiva.setText("Inactivo");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("ESTADO DEL ARTICULO");
+        jLabel1.setText("Estado del articulo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,8 +106,7 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscar))
+                        .addGap(55, 55, 55))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -127,7 +124,6 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btBuscar)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LbNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -198,7 +194,6 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LbNombre;
-    public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
     public javax.swing.ButtonGroup buttonGroup_Estado;
     private javax.swing.JLabel jLabel1;

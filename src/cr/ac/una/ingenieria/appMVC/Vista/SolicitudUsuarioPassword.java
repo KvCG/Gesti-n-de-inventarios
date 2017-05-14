@@ -4,6 +4,8 @@ package cr.ac.una.ingenieria.appMVC.Vista;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -18,6 +20,10 @@ public class SolicitudUsuarioPassword extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        try {
+            UIManager.setLookAndFeel(ch.randelshofer.quaqua.QuaquaManager.getLookAndFeel());
+        } catch (UnsupportedLookAndFeelException ez) {
+        }
     }
     
     

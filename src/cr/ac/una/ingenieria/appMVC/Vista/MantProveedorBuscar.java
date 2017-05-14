@@ -31,7 +31,6 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
         buttonGroup_Estado = new javax.swing.ButtonGroup();
         LbNombre = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
-        btBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbProveedor = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
@@ -55,8 +54,6 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
                 txtBuscarKeyTyped(evt);
             }
         });
-
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Buscar02.png"))); // NOI18N
 
         tbProveedor = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
@@ -101,13 +98,13 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
         });
 
         jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Activo.setText("ACTIVO");
+        jRadioButton_Activo.setText("Activo");
 
         jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Inactivo.setText("INACTIVO");
+        jRadioButton_Inactivo.setText("Inactivo");
 
         jLabel_Est_Proveedor.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel_Est_Proveedor.setText("ESTADO DEL PROVEEDOR");
+        jLabel_Est_Proveedor.setText("Estado del proveedor");
         jLabel_Est_Proveedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,17 +118,15 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscar))
+                        .addGap(55, 55, 55))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButton_Activo)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton_Inactivo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btSeleccionar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
                         .addComponent(jLabel_Est_Proveedor)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -141,10 +136,9 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btBuscar)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LbNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel_Est_Proveedor)
@@ -222,7 +216,6 @@ public class MantProveedorBuscar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LbNombre;
-    public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
     public javax.swing.ButtonGroup buttonGroup_Estado;
     private javax.swing.JLabel jLabel_Est_Proveedor;

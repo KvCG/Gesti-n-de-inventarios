@@ -33,6 +33,7 @@ public class TipoArticuloControlador implements ActionListener {
         this.Mod_TipoArtView.btn_Buscar.addActionListener(this);
         this.Mod_TipoArtView.btn_Cancelar.addActionListener(this);
         this.Mod_TipoArtView.btn_Eliminar.addActionListener(this);
+        this.Mod_TipoArtView.jtf_IdTipoArticulo.setVisible(false);
         iniciarPantalla();
     }
 

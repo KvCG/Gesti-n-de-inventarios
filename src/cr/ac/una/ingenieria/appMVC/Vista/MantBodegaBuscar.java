@@ -67,19 +67,24 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
 
         btn_Seleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_Seleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"))); // NOI18N
-        btn_Seleccionar.setText("SELECCIONAR");
+        btn_Seleccionar.setText("Selecionar");
 
         Jlabel_Bodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        Jlabel_Bodega.setText("BODEGA");
+        Jlabel_Bodega.setText("Bodega:");
 
         jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Activo.setText("ACTIVO");
+        jRadioButton_Activo.setText("Activo");
 
         jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Inactivo.setText("INACTIVO");
+        jRadioButton_Inactivo.setText("Inactivo");
+        jRadioButton_Inactivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton_InactivoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("ESTADO DE LA BODEGA");
+        jLabel1.setText("Estado de la bodega");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,7 +107,7 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
                                         .addComponent(Jlabel_Bodega)
                                         .addGap(18, 18, 18)
                                         .addComponent(jtf_BuscarBodega)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 16, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jRadioButton_Activo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -138,6 +143,10 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
             this.btn_Seleccionar.doClick(500);
         } 
     }//GEN-LAST:event_jtabla_BuscarBodegaMouseClicked
+
+    private void jRadioButton_InactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_InactivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton_InactivoActionPerformed
 
     /**
      * @param args the command line arguments

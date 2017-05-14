@@ -38,13 +38,13 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
         setTitle("BUSCAR TIPO ARTICULO");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("TIPO ARTICULO");
+        jLabel1.setText("Tipo:");
 
         jtf_BuscarTipoArticulo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         btn_Seleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_Seleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"))); // NOI18N
-        btn_Seleccionar.setText("SELECCIONAR");
+        btn_Seleccionar.setText("Selecionar");
 
         jtabla_BuscarTipoArticulo = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex,int colIndex){
@@ -81,13 +81,13 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jtabla_BuscarTipoArticulo);
 
         jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Activo.setText("ACTIVO");
+        jRadioButton_Activo.setText("Activo");
 
         jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Inactivo.setText("INACTIVO");
+        jRadioButton_Inactivo.setText("Inactivo");
 
         jLabel_Est_Tip_Art.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel_Est_Tip_Art.setText("ESTADO DEL TIPO ARTICULO");
+        jLabel_Est_Tip_Art.setText("Estado de los tipos:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

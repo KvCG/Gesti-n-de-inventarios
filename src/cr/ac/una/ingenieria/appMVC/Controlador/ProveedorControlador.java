@@ -85,6 +85,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
         this.mantProveedorView.btModificar.setEnabled(false);
         this.mantProveedorView.btEliminar.setEnabled(false);
         this.mantProveedorView.txtIdProveedor.setEnabled(false);
+        this.mantProveedorView.txtIdProveedor.setVisible(false);
         //inicializarPantalla();
 
     }

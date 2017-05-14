@@ -92,13 +92,13 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
         });
 
         jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Activo.setText("ACTIVO");
+        jRadioButton_Activo.setText("Activo");
 
         jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Inactivo.setText("INACTIVO");
+        jRadioButton_Inactivo.setText("Inactivo");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("ESTADO DE LA PERSONA");
+        jLabel1.setText("Estado de los registros:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

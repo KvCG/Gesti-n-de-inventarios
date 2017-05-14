@@ -35,7 +35,7 @@ public class ProveedorBuscarControlador implements ActionListener {
         this.proovedorBuscarView = proovedorBuscarView;
         this.proveedorBLModelo = proveedorBLModelo;
         this.txtRespuesta = txtRespuesta;
-        this.proovedorBuscarView.btBuscar.addActionListener(this);
+
         this.proovedorBuscarView.btSeleccionar.addActionListener(this);
         this.proovedorBuscarView.txtBuscar.addCaretListener(new CaretListener() {
             @Override
@@ -108,9 +108,7 @@ public class ProveedorBuscarControlador implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.proovedorBuscarView.btBuscar) {
-            llenarTabla(this.proovedorBuscarView.tbProveedor);
-        }
+
 
         if (e.getSource() == this.proovedorBuscarView.btSeleccionar) {
             int fila = this.proovedorBuscarView.tbProveedor.getSelectedRow();

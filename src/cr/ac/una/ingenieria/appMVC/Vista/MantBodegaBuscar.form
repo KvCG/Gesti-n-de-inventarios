@@ -50,7 +50,7 @@
                                       <Component id="jtf_BuscarBodega" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jRadioButton_Activo" min="-2" max="-2" attributes="0"/>
@@ -162,7 +162,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="SELECCIONAR"/>
+        <Property name="text" type="java.lang.String" value="Selecionar"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -173,7 +173,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="BODEGA"/>
+        <Property name="text" type="java.lang.String" value="Bodega:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRadioButton_Activo">
@@ -181,7 +181,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ACTIVO"/>
+        <Property name="text" type="java.lang.String" value="Activo"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -192,8 +192,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="INACTIVO"/>
+        <Property name="text" type="java.lang.String" value="Inactivo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton_InactivoActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
@@ -203,7 +206,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="ESTADO DE LA BODEGA"/>
+        <Property name="text" type="java.lang.String" value="Estado de la bodega"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>

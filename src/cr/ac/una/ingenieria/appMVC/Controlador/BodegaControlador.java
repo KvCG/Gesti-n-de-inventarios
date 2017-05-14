@@ -32,6 +32,7 @@ public class BodegaControlador implements ActionListener {
         this.ModBodegaView.btn_Buscar.addActionListener(this);
         this.ModBodegaView.btn_Cancelar.addActionListener(this);
         this.ModBodegaView.btn_Eliminar.addActionListener(this);
+        this.ModBodegaView.jtf_IDBodega.setVisible(false);
         iniciarPantalla();
     }
 
@@ -139,7 +140,7 @@ public class BodegaControlador implements ActionListener {
             MantBodegaBuscar Mant_BuscarBodega = new MantBodegaBuscar();
 
             BodegaBuscarControlador BuscarBodegaControl = new BodegaBuscarControlador(Mant_BuscarBodega, Bodbl,
-                    this.ModBodegaView.jtf_IDBodega,
+                   this.ModBodegaView.jtf_IDBodega,
                     this.ModBodegaView.jtf_TipoBodega,
                     this.ModBodegaView.jtf_Nombre,
                     this.ModBodegaView.jcb_Estado);
