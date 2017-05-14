@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cr.ac.una.ingenieria.appMVC.Vista;
 
-/**
- *
- * @author Michael
- */
 public class MantBodegaBuscar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form a
-     */
-    public MantBodegaBuscar() {
+ 
+    public MantBodegaBuscar() {        
         initComponents();
+        setLocationRelativeTo(null);        
     }
 
     /**
@@ -27,10 +18,14 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jrb_Grupo_Botones = new javax.swing.ButtonGroup();
         jtf_BuscarBodega = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtabla_BuscarBodega = new javax.swing.JTable();
         btn_Seleccionar = new javax.swing.JButton();
+        Jlabel_Bodega = new javax.swing.JLabel();
+        jRadioButton_Activo = new javax.swing.JRadioButton();
+        jRadioButton_Inactivo = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -62,6 +57,7 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
             }
         });
         jtabla_BuscarBodega.setFocusable(false);
+        jtabla_BuscarBodega.getTableHeader().setReorderingAllowed(false);
         jtabla_BuscarBodega.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtabla_BuscarBodegaMouseClicked(evt);
@@ -70,10 +66,21 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtabla_BuscarBodega);
 
         btn_Seleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_Seleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"))); // NOI18N
         btn_Seleccionar.setText("SELECCIONAR");
 
+        Jlabel_Bodega.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        Jlabel_Bodega.setText("BODEGA");
+
+        jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Activo.setText("ACTIVO");
+
+        jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Inactivo.setText("INACTIVO");
+
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("BODEGA");
+        jLabel1.setText("ESTADO DE LA BODEGA");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,27 +88,46 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jtf_BuscarBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_Seleccionar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Jlabel_Bodega)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jtf_BuscarBodega)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jRadioButton_Activo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton_Inactivo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_Seleccionar)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtf_BuscarBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Seleccionar))
+                    .addComponent(Jlabel_Bodega)
+                    .addComponent(jtf_BuscarBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Seleccionar)
+                    .addComponent(jRadioButton_Activo)
+                    .addComponent(jRadioButton_Inactivo))
+                .addContainerGap())
         );
 
         pack();
@@ -150,9 +176,13 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Jlabel_Bodega;
     public javax.swing.JButton btn_Seleccionar;
     private javax.swing.JLabel jLabel1;
+    public javax.swing.JRadioButton jRadioButton_Activo;
+    public javax.swing.JRadioButton jRadioButton_Inactivo;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.ButtonGroup jrb_Grupo_Botones;
     public javax.swing.JTable jtabla_BuscarBodega;
     public javax.swing.JTextField jtf_BuscarBodega;
     // End of variables declaration//GEN-END:variables

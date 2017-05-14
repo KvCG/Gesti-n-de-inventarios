@@ -1,22 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cr.ac.una.ingenieria.appMVC.Vista;
 
-/**
- *
- * @author Gustavo
- */
 public class MantArticuloBuscar extends javax.swing.JFrame {
 
     /**
      * Creates new form MantArticuloBuscar
      */
-    public MantArticuloBuscar() {
+    public MantArticuloBuscar() {        
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);        
     }
 
     /**
@@ -28,16 +20,21 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup_Estado = new javax.swing.ButtonGroup();
         LbNombre = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTBuscarArticulo = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
+        jRadioButton_Activo = new javax.swing.JRadioButton();
+        jRadioButton_Inactiva = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Articulos");
 
+        LbNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         LbNombre.setText("Nombre:");
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -46,8 +43,14 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
             }
         });
 
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/buscar.png"))); // NOI18N
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Buscar02.png"))); // NOI18N
 
+        jTBuscarArticulo = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex,int colIndex){
+                return false;
+            }
+        };
+        jTBuscarArticulo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jTBuscarArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -68,15 +71,31 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
             }
         });
         jTBuscarArticulo.setFocusable(false);
+        jTBuscarArticulo.getTableHeader().setReorderingAllowed(false);
+        jTBuscarArticulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscarArticuloMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTBuscarArticulo);
 
-        btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/aprobado.png"))); // NOI18N
+        btSeleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"))); // NOI18N
         btSeleccionar.setText("Seleccionar");
         btSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSeleccionarActionPerformed(evt);
             }
         });
+
+        jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Activo.setText("ACTIVO");
+
+        jRadioButton_Inactiva.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Inactiva.setText("INACTIVO");
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setText("ESTADO DEL ARTICULO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,12 +107,18 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btBuscar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButton_Activo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jRadioButton_Inactiva)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btSeleccionar)))
                 .addContainerGap())
         );
@@ -108,7 +133,12 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSeleccionar)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton_Activo)
+                    .addComponent(jRadioButton_Inactiva)
+                    .addComponent(btSeleccionar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -124,6 +154,12 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
     private void btSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSeleccionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btSeleccionarActionPerformed
+
+    private void jTBuscarArticuloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscarArticuloMouseClicked
+        if(evt.getClickCount() == 2){
+            this.btSeleccionar.doClick(500);
+        }
+    }//GEN-LAST:event_jTBuscarArticuloMouseClicked
 
     /**
      * @param args the command line arguments
@@ -164,6 +200,10 @@ public class MantArticuloBuscar extends javax.swing.JFrame {
     private javax.swing.JLabel LbNombre;
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
+    public javax.swing.ButtonGroup buttonGroup_Estado;
+    private javax.swing.JLabel jLabel1;
+    public javax.swing.JRadioButton jRadioButton_Activo;
+    public javax.swing.JRadioButton jRadioButton_Inactiva;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTBuscarArticulo;
     public javax.swing.JTextField txtBuscar;

@@ -51,12 +51,14 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
             }
         });
 
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/buscar.png"))); // NOI18N
+        btBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/buscar.png"))); // NOI18N
         btBuscar.setText("Buscar");
 
         tbArtProv = new javax.swing.JTable(){
-            public boolean isCellEditable(int rowIndex, int colIndex){
-                return false;}
+            public boolean isCellEditable(int rowIndex,int colIndex){
+                return false;
+            }
         };
         tbArtProv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,15 +74,32 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         tbArtProv.setFocusable(false);
+        tbArtProv.setOpaque(false);
+        tbArtProv.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tbArtProv);
+        if (tbArtProv.getColumnModel().getColumnCount() > 0) {
+            tbArtProv.getColumnModel().getColumn(0).setResizable(false);
+            tbArtProv.getColumnModel().getColumn(1).setResizable(false);
+            tbArtProv.getColumnModel().getColumn(2).setResizable(false);
+            tbArtProv.getColumnModel().getColumn(3).setResizable(false);
+            tbArtProv.getColumnModel().getColumn(4).setResizable(false);
+        }
 
-        btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/aprobado.png"))); // NOI18N
+        btSeleccionar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"))); // NOI18N
         btSeleccionar.setText("Seleccionar");
         btSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +117,7 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btBuscar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)

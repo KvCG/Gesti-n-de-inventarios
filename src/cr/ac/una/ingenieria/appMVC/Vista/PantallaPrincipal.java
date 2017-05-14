@@ -64,6 +64,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SIGACI");
 
+        jTArticulo = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex,int colIndex){
+                return false;
+            }
+        };
+        jTArticulo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jTArticulo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -84,9 +90,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             }
         ));
         jTArticulo.setFocusable(false);
+        jTArticulo.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTArticulo);
         if (jTArticulo.getColumnModel().getColumnCount() > 0) {
             jTArticulo.getColumnModel().getColumn(0).setResizable(false);
+            jTArticulo.getColumnModel().getColumn(1).setMinWidth(50);
+            jTArticulo.getColumnModel().getColumn(1).setPreferredWidth(50);
+            jTArticulo.getColumnModel().getColumn(1).setMaxWidth(50);
         }
 
         LbTituloCuadro.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N

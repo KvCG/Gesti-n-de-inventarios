@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.PersonaBL;
@@ -24,7 +19,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PersonaBuscarControlador implements ActionListener {
 
-    
     private MantPersonaBuscar personaBuscarView;
     private PersonaBL PersonaBLModelo;
     private JTextField txtRespuesta;
@@ -33,7 +27,7 @@ public class PersonaBuscarControlador implements ActionListener {
         this.personaBuscarView = personaBuscarView;
         this.PersonaBLModelo = PersonaBLModelo;
         this.txtRespuesta = txtRespuesta;
-        this.personaBuscarView.txtBuscar.addCaretListener(new CaretListener(){
+        this.personaBuscarView.txtBuscar.addCaretListener(new CaretListener() {
 
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -41,6 +35,9 @@ public class PersonaBuscarControlador implements ActionListener {
             }
         });
         this.personaBuscarView.btSeleccionar.addActionListener(this);
+        this.personaBuscarView.jRadioButton_Activo.addActionListener(this);
+        this.personaBuscarView.jRadioButton_Inactivo.addActionListener(this);
+        IniciarRadioBoton();
         llenarTabla(this.personaBuscarView.jTBuscarPersona);
     }
 
@@ -67,12 +64,16 @@ public class PersonaBuscarControlador implements ActionListener {
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
-    
-    
-    
+
+    public void IniciarRadioBoton() {
+        this.personaBuscarView.buttonGroup_Estado.add(this.personaBuscarView.jRadioButton_Activo);
+        this.personaBuscarView.buttonGroup_Estado.add(this.personaBuscarView.jRadioButton_Inactivo);
+        this.personaBuscarView.jRadioButton_Activo.setSelected(true);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-       if (e.getSource() == this.personaBuscarView.btBuscar) {
+        if (e.getSource() == this.personaBuscarView.btBuscar) {
             llenarTabla(this.personaBuscarView.jTBuscarPersona);
         }
 
@@ -82,22 +83,23 @@ public class PersonaBuscarControlador implements ActionListener {
                 String cedula = this.personaBuscarView.jTBuscarPersona.getValueAt(fila, 0).toString();
                 txtRespuesta.setText(cedula);
                 this.personaBuscarView.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(personaBuscarView, "Error debe seleccionar una Persona:", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
 
+        if (e.getSource() == this.personaBuscarView.jRadioButton_Activo
+                || e.getSource() == this.personaBuscarView.jRadioButton_Inactivo) {
+            this.llenarTabla(this.personaBuscarView.jTBuscarPersona);
         }
     }
+
     public void llenarTabla(JTable tablaPersona) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaPersona.setModel(modeloTabla);
 
-        
         modeloTabla.addColumn("Cedula");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Apellido");
         modeloTabla.addColumn("Estado");
-
         Object fila[] = new Object[4];
 
         String Sql = "where nombre like '%" + this.personaBuscarView.txtBuscar.getText() + "%'"
@@ -106,17 +108,28 @@ public class PersonaBuscarControlador implements ActionListener {
         try {
             for (Object oAux : PersonaBLModelo.obtenerConWhere(new Persona(), Sql)) {
                 Persona p = (Persona) oAux;
-                fila[0] = p.getCedula();
-                fila[1] = p.getNombre();
-                fila[2] = p.getApellidos();
-                if(p.getEstado()==true){
-                    fila[3] = "activo";
-                }else{
-                    fila[3] = "inactivo";
+                if (this.personaBuscarView.jRadioButton_Activo.isSelected()) {
+                    if (p.getEstado() == true) {
+                        fila[0] = p.getCedula();
+                        fila[1] = p.getNombre();
+                        fila[2] = p.getApellidos();
+                        if (p.getEstado() == true) {
+                            fila[3] = "Activo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
                 }
-                
-
-                modeloTabla.addRow(fila);
+                if (this.personaBuscarView.jRadioButton_Inactivo.isSelected()) {
+                    if (p.getEstado() == false) {
+                        fila[0] = p.getCedula();
+                        fila[1] = p.getNombre();
+                        fila[2] = p.getApellidos();
+                        if (p.getEstado() == false) {
+                            fila[3] = "Inactivo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
+                }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);

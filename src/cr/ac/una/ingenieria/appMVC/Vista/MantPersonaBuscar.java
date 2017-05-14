@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.ingenieria.appMVC.Vista;
 
-/**
- *
- * @author Gustavo
- */
 public class MantPersonaBuscar extends javax.swing.JFrame {
 
     /**
@@ -16,6 +7,7 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
      */
     public MantPersonaBuscar() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -27,16 +19,21 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup_Estado = new javax.swing.ButtonGroup();
         LbNombre = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTBuscarPersona = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
         btBuscar = new javax.swing.JButton();
+        jRadioButton_Activo = new javax.swing.JRadioButton();
+        jRadioButton_Inactivo = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscar Personas");
 
+        LbNombre.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         LbNombre.setText("Nombre:");
 
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -49,6 +46,7 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
             public boolean isCellEditable(int rowIndex, int colIndex){
                 return false;}
         };
+        jTBuscarPersona.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
         jTBuscarPersona.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -69,9 +67,16 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
             }
         });
         jTBuscarPersona.setFocusable(false);
+        jTBuscarPersona.getTableHeader().setReorderingAllowed(false);
+        jTBuscarPersona.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTBuscarPersonaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTBuscarPersona);
 
-        btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/aprobado.png"))); // NOI18N
+        btSeleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btSeleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"))); // NOI18N
         btSeleccionar.setText("Seleccionar");
         btSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,30 +84,45 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
             }
         });
 
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/buscar.png"))); // NOI18N
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Buscar02.png"))); // NOI18N
         btBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btBuscarActionPerformed(evt);
             }
         });
 
+        jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Activo.setText("ACTIVO");
+
+        jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Inactivo.setText("INACTIVO");
+
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setText("ESTADO DE LA PERSONA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButton_Activo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRadioButton_Inactivo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btSeleccionar))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btSeleccionar)))
+                        .addComponent(btBuscar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,8 +135,13 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
                     .addComponent(btBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSeleccionar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton_Activo)
+                    .addComponent(jRadioButton_Inactivo)
+                    .addComponent(btSeleccionar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -125,8 +150,9 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
 
     private void txtBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyTyped
         char c = evt.getKeyChar();
-
-        if((c<'a'||c>'z')&&(c<'A'||c>'Z')) evt.consume();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtBuscarKeyTyped
 
     private void btSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSeleccionarActionPerformed
@@ -136,6 +162,12 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void jTBuscarPersonaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTBuscarPersonaMouseClicked
+        if (evt.getClickCount() == 2) {
+            this.btSeleccionar.doClick(500);
+        }
+    }//GEN-LAST:event_jTBuscarPersonaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -176,6 +208,10 @@ public class MantPersonaBuscar extends javax.swing.JFrame {
     private javax.swing.JLabel LbNombre;
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
+    public javax.swing.ButtonGroup buttonGroup_Estado;
+    private javax.swing.JLabel jLabel1;
+    public javax.swing.JRadioButton jRadioButton_Activo;
+    public javax.swing.JRadioButton jRadioButton_Inactivo;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTBuscarPersona;
     public javax.swing.JTextField txtBuscar;

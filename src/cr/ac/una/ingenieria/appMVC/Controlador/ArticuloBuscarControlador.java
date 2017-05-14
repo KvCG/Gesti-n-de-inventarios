@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ArticuloBL;
@@ -38,14 +33,18 @@ public class ArticuloBuscarControlador implements ActionListener {
         this.articuloBuscarView = articuloBuscarView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.txtRespuesta = txtRespuesta;
-        this.articuloBuscarView.txtBuscar.addCaretListener(new CaretListener() {
 
+        this.articuloBuscarView.btSeleccionar.addActionListener(this);
+        this.articuloBuscarView.jRadioButton_Activo.addActionListener(this);
+        this.articuloBuscarView.jRadioButton_Inactiva.addActionListener(this);
+        this.articuloBuscarView.txtBuscar.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
                 llenarTabla(articuloBuscarView.jTBuscarArticulo);
             }
         });
-        this.articuloBuscarView.btSeleccionar.addActionListener(this);
+
+        IniciarRadioBoton();
         llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
     }
 
@@ -88,12 +87,19 @@ public class ArticuloBuscarControlador implements ActionListener {
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
+
     /**
      *
      * @param txtRespuesta
      */
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
+    }
+
+    public void IniciarRadioBoton() {
+        this.articuloBuscarView.buttonGroup_Estado.add(this.articuloBuscarView.jRadioButton_Activo);
+        this.articuloBuscarView.buttonGroup_Estado.add(this.articuloBuscarView.jRadioButton_Inactiva);
+        this.articuloBuscarView.jRadioButton_Activo.setSelected(true);
     }
 
     @Override
@@ -108,10 +114,12 @@ public class ArticuloBuscarControlador implements ActionListener {
                 String codigo = this.articuloBuscarView.jTBuscarArticulo.getValueAt(fila, 0).toString();
                 txtRespuesta.setText(codigo);
                 this.articuloBuscarView.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(articuloBuscarView, "Error debe seleccionar un Articulo:", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
 
+        if (e.getSource() == this.articuloBuscarView.jRadioButton_Activo
+                || e.getSource() == this.articuloBuscarView.jRadioButton_Inactiva) {
+            this.llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
         }
     }
 
@@ -127,26 +135,34 @@ public class ArticuloBuscarControlador implements ActionListener {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Descripcion");
         modeloTabla.addColumn("Estado");
-
         Object fila[] = new Object[4];
-
         String Sql = "where nombre like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'"
                 + " or codigo like '%" + this.articuloBuscarView.txtBuscar.getText() + "%'";
-
         try {
             for (Object oAux : ArticuloBLModelo.obtenerConWhere(new Articulo(), Sql)) {
                 Articulo a = (Articulo) oAux;
-                fila[0] = a.getCodigo();
-                fila[1] = a.getNombre();
-                fila[2] = a.getDescripcion();
-                if(a.getEstado()==true){
-                    fila[3] = "activo";
-                }else{
-                    fila[3] = "inactivo";
+                if (this.articuloBuscarView.jRadioButton_Activo.isSelected()) {
+                    if (a.getEstado() == true) {
+                        fila[0] = a.getCodigo();
+                        fila[1] = a.getNombre();
+                        fila[2] = a.getDescripcion();
+                        if (a.getEstado() == true) {
+                            fila[3] = "Activo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
                 }
-                
-
-                modeloTabla.addRow(fila);
+                if (this.articuloBuscarView.jRadioButton_Inactiva.isSelected()) {
+                    if (a.getEstado() == false) {
+                        fila[0] = a.getCodigo();
+                        fila[1] = a.getNombre();
+                        fila[2] = a.getDescripcion();
+                        if (a.getEstado() == false) {
+                            fila[3] = "Inactivo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
+                }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);

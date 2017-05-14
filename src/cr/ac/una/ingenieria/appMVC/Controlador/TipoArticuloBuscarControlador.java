@@ -1,4 +1,3 @@
-
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.TipoArticuloBL;
@@ -18,14 +17,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Michael
  */
-public class TipoArticuloBuscarControlador implements ActionListener{
+public class TipoArticuloBuscarControlador implements ActionListener {
+
     private MantBusarTipoArticulo mantBusarTipoArticuloView;
     private TipoArticuloBL TipArtBL;
     private JTextField txt_IdTipoArticulo;
     private JTextField txt_Descripcion;
     private JComboBox jcb_estado;
 
-    public TipoArticuloBuscarControlador(MantBusarTipoArticulo mantBusarTipoArticuloView, 
+    public TipoArticuloBuscarControlador(MantBusarTipoArticulo mantBusarTipoArticuloView,
             TipoArticuloBL TipArtBL, JTextField txt_IdTipoArticulo, JTextField txt_Descripcion,
             JComboBox jcb_estado) {
         this.mantBusarTipoArticuloView = mantBusarTipoArticuloView;
@@ -33,10 +33,13 @@ public class TipoArticuloBuscarControlador implements ActionListener{
         this.txt_IdTipoArticulo = txt_IdTipoArticulo;
         this.txt_Descripcion = txt_Descripcion;
         this.jcb_estado = jcb_estado;
-        
+
         this.mantBusarTipoArticuloView.btn_Seleccionar.addActionListener(this);
+        this.mantBusarTipoArticuloView.jRadioButton_Activo.addActionListener(this);
+        this.mantBusarTipoArticuloView.jRadioButton_Inactivo.addActionListener(this);
+        iniciarPantalla();
         this.llenarTabla(this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo);
-        
+
         this.mantBusarTipoArticuloView.jtf_BuscarTipoArticulo.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent ce) {
@@ -45,6 +48,7 @@ public class TipoArticuloBuscarControlador implements ActionListener{
         });
     }//fin constructor
 //-------------------get's------------------------------
+
     public MantBusarTipoArticulo getMantBusarTipoArticuloView() {
         return mantBusarTipoArticuloView;
     }
@@ -64,9 +68,8 @@ public class TipoArticuloBuscarControlador implements ActionListener{
     public JComboBox getJcb_estado() {
         return jcb_estado;
     }
-    
-    //-------------------Set's------------------------------
 
+    //-------------------Set's------------------------------
     public void setMantBusarTipoArticuloView(MantBusarTipoArticulo mantBusarTipoArticuloView) {
         this.mantBusarTipoArticuloView = mantBusarTipoArticuloView;
     }
@@ -86,57 +89,82 @@ public class TipoArticuloBuscarControlador implements ActionListener{
     public void setJcb_estado(JComboBox jcb_estado) {
         this.jcb_estado = jcb_estado;
     }
-    
-    public  void llenarTabla(JTable tablaTipArt){
+
+    public void iniciarPantalla() {
+        this.mantBusarTipoArticuloView.buttonGroup.add(this.mantBusarTipoArticuloView.jRadioButton_Activo);
+        this.mantBusarTipoArticuloView.buttonGroup.add(this.mantBusarTipoArticuloView.jRadioButton_Inactivo);
+        this.mantBusarTipoArticuloView.jRadioButton_Activo.setSelected(true);
+    }
+
+    public void llenarTabla(JTable tablaTipArt) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaTipArt.setModel(modeloTabla);
-        
+
         modeloTabla.addColumn("ID");
         modeloTabla.addColumn("TIPO");
         modeloTabla.addColumn("ESTADO");
-        Object fila [] = new Object[3];
-        
+        Object fila[] = new Object[3];
+
         String Sql = "Where descripcion like '%" + this.mantBusarTipoArticuloView.jtf_BuscarTipoArticulo.getText() + "%'"
                 + "or estado like'%" + this.mantBusarTipoArticuloView.jtf_BuscarTipoArticulo.getText() + "%'"
                 + "or codigo like'%" + this.mantBusarTipoArticuloView.jtf_BuscarTipoArticulo.getText() + "%'";
-        
+
         try {
-            for(Object oAux : this.TipArtBL.obtenerConWhere(new TipoArticulo(), Sql)){
-                TipoArticulo ta = (TipoArticulo)oAux;
-                fila[0] = ta.getCodigo();
-                fila[1] = ta.getDescripcion();
-                if(ta.getEstado() == true)
-                    fila[2] = "ACTIVO";
-                else
-                    fila[2] = "INACTIVO";
-                modeloTabla.addRow(fila);
+            for (Object oAux : this.TipArtBL.obtenerConWhere(new TipoArticulo(), Sql)) {
+                TipoArticulo ta = (TipoArticulo) oAux;
+                if (this.mantBusarTipoArticuloView.jRadioButton_Activo.isSelected()) {
+                    if (ta.getEstado() == true) {
+                        fila[0] = ta.getCodigo();
+                        fila[1] = ta.getDescripcion();
+                        if (ta.getEstado() == true) {
+                            fila[2] = "ACTIVO";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
+                }
+
+                if (this.mantBusarTipoArticuloView.jRadioButton_Inactivo.isSelected()) {
+                    if (ta.getEstado() == false) {
+                        fila[0] = ta.getCodigo();
+                        fila[1] = ta.getDescripcion();
+                        if (ta.getEstado() == false) {
+                            fila[2] = "INACTIVO";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
+                }
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"NO SE PUDO CARGAR LOS DATOS \n"
-                    +e.getMessage() +" ","ERROR",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "NO SE PUDO CARGAR LOS DATOS \n"
+                    + e.getMessage() + " ", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getRowCount() != 0 &&
-           this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getSelectedRow() != -1){
-            
+        if (this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getRowCount() != 0
+                && this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getSelectedRow() != -1) {
+
             int fila = this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getSelectedRow();
-            
+
             String id = this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getValueAt(fila, 0).toString();
             String des = this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getValueAt(fila, 1).toString();
             String est = this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo.getValueAt(fila, 2).toString();
-            
+
             this.txt_IdTipoArticulo.setText(id);
             this.txt_Descripcion.setText(des);
             this.jcb_estado.setSelectedItem(est);
-            
+
             this.mantBusarTipoArticuloView.dispose();
+//        }
+//        else{
+//            JOptionPane.showMessageDialog(null,"SELECCIONE UNA OPCION \n"
+//                        + "DE LA LISTA","ALERTA",JOptionPane.WARNING_MESSAGE);
         }
-        else{
-            JOptionPane.showMessageDialog(null,"SELECCIONE UNA OPCION \n"
-                        + "DE LA LISTA","ALERTA",JOptionPane.WARNING_MESSAGE);
+
+        if (ae.getSource() == this.mantBusarTipoArticuloView.jRadioButton_Activo
+                || ae.getSource() == this.mantBusarTipoArticuloView.jRadioButton_Inactivo) {
+            this.llenarTabla(this.mantBusarTipoArticuloView.jtabla_BuscarTipoArticulo);
         }
-    }    
+    }
 }

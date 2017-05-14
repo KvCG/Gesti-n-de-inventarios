@@ -10,8 +10,9 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
     /**
      * Creates new form MantBusarTipoArticulo
      */
-    public MantBusarTipoArticulo() {
+    public MantBusarTipoArticulo() {        
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -23,11 +24,15 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jtf_BuscarTipoArticulo = new javax.swing.JTextField();
         btn_Seleccionar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtabla_BuscarTipoArticulo = new javax.swing.JTable();
+        jRadioButton_Activo = new javax.swing.JRadioButton();
+        jRadioButton_Inactivo = new javax.swing.JRadioButton();
+        jLabel_Est_Tip_Art = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("BUSCAR TIPO ARTICULO");
@@ -38,6 +43,7 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
         jtf_BuscarTipoArticulo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         btn_Seleccionar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_Seleccionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"))); // NOI18N
         btn_Seleccionar.setText("SELECCIONAR");
 
         jtabla_BuscarTipoArticulo = new javax.swing.JTable(){
@@ -66,12 +72,22 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
             }
         });
         jtabla_BuscarTipoArticulo.setFocusable(false);
+        jtabla_BuscarTipoArticulo.getTableHeader().setReorderingAllowed(false);
         jtabla_BuscarTipoArticulo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtabla_BuscarTipoArticuloMouseClicked(evt);
             }
         });
         jScrollPane4.setViewportView(jtabla_BuscarTipoArticulo);
+
+        jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Activo.setText("ACTIVO");
+
+        jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jRadioButton_Inactivo.setText("INACTIVO");
+
+        jLabel_Est_Tip_Art.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel_Est_Tip_Art.setText("ESTADO DEL TIPO ARTICULO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,14 +96,21 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jRadioButton_Activo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton_Inactivo)
+                                .addGap(22, 22, 22))
+                            .addComponent(jLabel_Est_Tip_Art))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_Seleccionar))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jtf_BuscarTipoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_Seleccionar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jtf_BuscarTipoArticulo)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,11 +119,18 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jtf_BuscarTipoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Seleccionar))
+                    .addComponent(jtf_BuscarTipoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel_Est_Tip_Art)
+                    .addComponent(btn_Seleccionar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton_Activo)
+                    .addComponent(jRadioButton_Inactivo))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -149,7 +179,11 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_Seleccionar;
+    public javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_Est_Tip_Art;
+    public javax.swing.JRadioButton jRadioButton_Activo;
+    public javax.swing.JRadioButton jRadioButton_Inactivo;
     private javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JTable jtabla_BuscarTipoArticulo;
     public javax.swing.JTextField jtf_BuscarTipoArticulo;

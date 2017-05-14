@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
@@ -18,10 +13,6 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Gustavo
- */
 public class ProveedorBuscarControlador implements ActionListener {
 
     private MantProveedorBuscar proovedorBuscarView;
@@ -54,6 +45,9 @@ public class ProveedorBuscarControlador implements ActionListener {
         });
 
         this.proovedorBuscarView.btSeleccionar.addActionListener(this);
+        this.proovedorBuscarView.jRadioButton_Activo.addActionListener(this);
+        this.proovedorBuscarView.jRadioButton_Inactivo.addActionListener(this);
+        iniciarPantalla();
         llenarTabla(this.proovedorBuscarView.tbProveedor);
     }
 
@@ -104,6 +98,13 @@ public class ProveedorBuscarControlador implements ActionListener {
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
+    
+    public void iniciarPantalla() {
+        this.proovedorBuscarView.buttonGroup_Estado.add(this.proovedorBuscarView.jRadioButton_Activo);
+        this.proovedorBuscarView.buttonGroup_Estado.add(this.proovedorBuscarView.jRadioButton_Inactivo);
+
+        this.proovedorBuscarView.jRadioButton_Activo.setSelected(true);
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -117,9 +118,11 @@ public class ProveedorBuscarControlador implements ActionListener {
                 Integer idProveedor = Integer.parseInt(this.proovedorBuscarView.tbProveedor.getValueAt(fila, 0).toString());
                 txtRespuesta.setText(String.valueOf(idProveedor));
                 this.proovedorBuscarView.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(proovedorBuscarView, "Error debe seleccionar un proveedor:", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+        if (e.getSource() == this.proovedorBuscarView.jRadioButton_Activo
+                || e.getSource() == this.proovedorBuscarView.jRadioButton_Inactivo) {
+            this.llenarTabla(this.proovedorBuscarView.tbProveedor);
         }
     }
 
@@ -140,20 +143,33 @@ public class ProveedorBuscarControlador implements ActionListener {
         Object fila[] = new Object[5];
 
         String Sql = "where nombre like '%" + this.proovedorBuscarView.txtBuscar.getText() + "%'";
-
         try {
             for (Object oAux : proveedorBLModelo.obtenerConWhere(new Proveedor(), Sql)) {
                 Proveedor p = (Proveedor) oAux;
-                fila[0] = p.getIdProvedor();
-                fila[1] = p.getNombre();
-                fila[2] = p.getTelefono();
-                fila[3] = p.getEmail();
-                if (p.getEstado() == true) {
-                    fila[4] = "activo";
-                } else {
-                    fila[4] = "inactivo";
+                if (this.proovedorBuscarView.jRadioButton_Activo.isSelected()) {
+                    if (p.getEstado() == true) {
+                        fila[0] = p.getIdProvedor();
+                        fila[1] = p.getNombre();
+                        fila[2] = p.getTelefono();
+                        fila[3] = p.getEmail();
+                        if (p.getEstado() == true) {
+                            fila[4] = "activo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
                 }
-                modeloTabla.addRow(fila);
+                if (this.proovedorBuscarView.jRadioButton_Inactivo.isSelected()) {
+                    if (p.getEstado() == false) {
+                        fila[0] = p.getIdProvedor();
+                        fila[1] = p.getNombre();
+                        fila[2] = p.getTelefono();
+                        fila[3] = p.getEmail();
+                        if (p.getEstado() == false) {
+                            fila[4] = "inactivo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
+                }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);

@@ -33,7 +33,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="LbNombre" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtBuscar" pref="394" max="32767" attributes="0"/>
+                      <Component id="txtBuscar" pref="413" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btBuscar" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -81,8 +81,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="btBuscar">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/buscar.png"/>
+          <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/buscar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
@@ -103,34 +106,34 @@
               <Table columnCount="5" rowCount="4">
                 <Column editable="true" title="idProovedor" type="java.lang.Object"/>
                 <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                <Column editable="true" title="Telefono" type="java.lang.Object"/>
+                <Column editable="false" title="Telefono" type="java.lang.Object"/>
                 <Column editable="true" title="Correo Elec." type="java.lang.Object"/>
-                <Column editable="true" title="Estado" type="java.lang.Boolean"/>
+                <Column editable="false" title="Estado" type="java.lang.Boolean"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -138,12 +141,13 @@
               </TableColumnModel>
             </Property>
             <Property name="focusable" type="boolean" value="false"/>
+            <Property name="opaque" type="boolean" value="false"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+              <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tbArtProv = new javax.swing.JTable(){&#xa;public boolean isCellEditable(int rowIndex, int colIndex){&#xa;    return false;}&#xa;};"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="tbArtProv = new javax.swing.JTable(){&#xa;    public boolean isCellEditable(int rowIndex,int colIndex){&#xa;        return false;&#xa;    }&#xa;};"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
         </Component>
@@ -151,8 +155,11 @@
     </Container>
     <Component class="javax.swing.JButton" name="btSeleccionar">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagenes/aprobado.png"/>
+          <Image iconType="3" name="/cr/ac/una/ingenieria/appMVC/Vista/Imagen/aprobado.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Seleccionar"/>
       </Properties>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.UsuarioBL;
@@ -16,10 +11,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Gustavo
- */
 public class UsuarioBuscarControlador implements ActionListener {
 
     private MantUsuarioBuscar usuarioBuscarView;
@@ -44,6 +35,9 @@ public class UsuarioBuscarControlador implements ActionListener {
         this.txtRespuesta = txtRespuesta;
         this.usuarioBuscarView.btBuscar.addActionListener(this);
         this.usuarioBuscarView.btSeleccionar.addActionListener(this);
+        this.usuarioBuscarView.jRadioButton_Activo.addActionListener(this);
+        this.usuarioBuscarView.jRadioButton_Inactivo.addActionListener(this);
+        this.iniciarRadioBoton();
         llenarTabla(this.usuarioBuscarView.jTableusuarios);
     }
 
@@ -95,6 +89,12 @@ public class UsuarioBuscarControlador implements ActionListener {
         this.txtRespuesta = txtRespuesta;
     }
 
+    public void iniciarRadioBoton() {
+        this.usuarioBuscarView.buttonGroup_Estado.add(this.usuarioBuscarView.jRadioButton_Activo);
+        this.usuarioBuscarView.buttonGroup_Estado.add(this.usuarioBuscarView.jRadioButton_Inactivo);
+        this.usuarioBuscarView.jRadioButton_Activo.setSelected(true);
+    }
+
     /**
      *
      * @param tablaUsuarios
@@ -107,19 +107,27 @@ public class UsuarioBuscarControlador implements ActionListener {
         Object fila[] = new Object[2];
 
         String Sql = "where alias like '%" + this.usuarioBuscarView.txtBuscar.getText() + "%'";
-
         try {
             for (Object oAux : UsuarioBLModelo.obtenerConWhere(new Usuario(), Sql)) {
                 Usuario u = (Usuario) oAux;
-                fila[0] = u.getAlias();
-                if(u.getEstado()==true){
-                    fila[1] = "activo";
-                }else{
-                    fila[1] = "inactivo";
+                if (this.usuarioBuscarView.jRadioButton_Activo.isSelected()) {
+                    if (u.getEstado() == true) {
+                        fila[0] = u.getAlias();
+                        if (u.getEstado() == true) {
+                            fila[1] = "Activo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
                 }
-                
-
-                modeloTabla.addRow(fila);
+                if (this.usuarioBuscarView.jRadioButton_Inactivo.isSelected()) {
+                    if (u.getEstado() == false) {
+                        fila[0] = u.getAlias();
+                        if (u.getEstado() == false) {
+                            fila[1] = "inactivo";
+                        }
+                        modeloTabla.addRow(fila);
+                    }
+                }
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
@@ -138,10 +146,12 @@ public class UsuarioBuscarControlador implements ActionListener {
                 String alias = this.usuarioBuscarView.jTableusuarios.getValueAt(fila, 0).toString();
                 txtRespuesta.setText(String.valueOf(alias));
                 this.usuarioBuscarView.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(usuarioBuscarView, "Error debe seleccionar un usuario:", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
+        }
+        
+        if(e.getSource() == this.usuarioBuscarView.jRadioButton_Activo ||
+           e.getSource() == this.usuarioBuscarView.jRadioButton_Inactivo){
+            this.llenarTabla(this.usuarioBuscarView.jTableusuarios);
         }
     }
 }
