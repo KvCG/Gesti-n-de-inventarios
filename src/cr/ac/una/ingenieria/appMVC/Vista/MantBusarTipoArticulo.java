@@ -35,7 +35,7 @@ public class MantBusarTipoArticulo extends javax.swing.JFrame {
         jLabel_Est_Tip_Art = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("BUSCAR TIPO ARTICULO");
+        setTitle("Buscar Tipos de Articulos");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Tipo:");

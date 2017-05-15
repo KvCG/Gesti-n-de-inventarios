@@ -40,8 +40,10 @@ public class Modulo_TipoArticulo extends javax.swing.JInternalFrame {
         lbCodigo2 = new javax.swing.JLabel();
         jtf_IdTipoArticulo = new javax.swing.JTextField();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("MANTENIMIENTO TIPO ARTICULO");
+        setTitle("Tipo de Articulos");
 
         btn_Guardar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btn_Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Guardar 00.png"))); // NOI18N

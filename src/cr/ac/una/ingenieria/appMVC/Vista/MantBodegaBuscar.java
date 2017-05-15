@@ -29,7 +29,7 @@ public class MantBodegaBuscar extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("BUSCAR BODEGA");
+        setTitle("Buscar Bodegas");
 
         jtabla_BuscarBodega = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex,int colIndex){

@@ -62,8 +62,10 @@ public class Modulo_Moviento extends javax.swing.JInternalFrame {
         lbTotal = new javax.swing.JLabel();
         lbCodigo2 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("MOVIMIENTO ARTICULO");
+        setTitle("Movimientos");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Responsable del \nMovimiento:");

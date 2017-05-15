@@ -102,15 +102,15 @@ public class TipoArticuloControlador implements ActionListener {
                     tipAr.setDescripcion(this.Mod_TipoArtView.jtf_Descripcion.getText());
                     String estado = this.Mod_TipoArtView.jcb_Estado.getSelectedItem().toString();
 
-                    if (estado.equals("ACTIVO")) {
+                    if (estado.equals("Activo")) {
                         tipAr.setEstado(true);
                     } else {
                         tipAr.setEstado(false);
                     }
 
                     this.TipArtBL.modificar(tipAr);
-                    JOptionPane.showMessageDialog(null, "SE ACTUALIZO CORRECTAMENTE", ""
-                            + "TIPO ARTICULO", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Se actulaizo conrectamente", ""
+                            + "Tipo Articulo", JOptionPane.YES_OPTION);
                     this.Mod_TipoArtView.jtf_IdTipoArticulo.setText("");
                     this.Mod_TipoArtView.jtf_Descripcion.setText("");
                     this.Mod_TipoArtView.jcb_Estado.setSelectedIndex(0);

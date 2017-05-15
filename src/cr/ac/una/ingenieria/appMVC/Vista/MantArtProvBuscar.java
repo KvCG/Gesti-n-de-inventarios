@@ -37,7 +37,7 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
         btSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Buscar Proveedores");
+        setTitle("Buscar Articulos por Proveedor");
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);

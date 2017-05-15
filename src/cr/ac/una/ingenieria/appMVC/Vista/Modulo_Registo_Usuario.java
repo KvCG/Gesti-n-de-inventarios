@@ -47,8 +47,10 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
         cbRol = new javax.swing.JComboBox<>();
         lbCodigo3 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("MODULO REGISTRO - USUARIO");
+        setTitle("Usuarios");
 
         jtxUsuario.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jtxUsuario.setText("Usuario:");
@@ -124,12 +126,22 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
                         .addGap(69, 69, 69)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(txtPersonaId, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(txtPersonaId, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtUsuarioBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(lbCodigo2))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jtxtCedPersona)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbCodigo3)
+                                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(18, 18, 18)
-                                .addComponent(txtUsuarioBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(61, 61, 61)
-                                .addComponent(lbCodigo2))
+                                .addComponent(btBuscarPersona))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jtxUsuario)
                                 .addGap(18, 18, 18)
@@ -137,13 +149,7 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jtxtContraseña)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtContraseña))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jtxtCedPersona)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btBuscarPersona))))
+                                .addComponent(txtContraseña))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btInsertar)
@@ -155,9 +161,6 @@ public class Modulo_Registo_Usuario extends javax.swing.JInternalFrame {
                         .addComponent(btEliminar)
                         .addGap(18, 18, 18)
                         .addComponent(btCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(lbCodigo3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addComponent(jtxtContraseña1)

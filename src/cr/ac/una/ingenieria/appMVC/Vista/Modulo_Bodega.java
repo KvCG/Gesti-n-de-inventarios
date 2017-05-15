@@ -42,8 +42,10 @@ public class Modulo_Bodega extends javax.swing.JInternalFrame {
         lbCodigo2 = new javax.swing.JLabel();
         jtf_IDBodega = new javax.swing.JTextField();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("MANTENIMIENTO BODEGA");
+        setTitle("Bodegas");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Tipo de bodega:");

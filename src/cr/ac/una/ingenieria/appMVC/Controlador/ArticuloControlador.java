@@ -414,7 +414,7 @@ public class ArticuloControlador implements ActionListener {
         try {
             for (Bodega b : this.bodegaBL.obtenerTodos()) {
                 if (b.getEstado() == true) {
-                    ModeloJcb.addElement(b.getTipo().toString());
+                    ModeloJcb.addElement(b.getNombre() + " - " + b.getTipo().toString());
                 }
             }
         } catch (Exception e) {

@@ -45,8 +45,10 @@ public class Modulo_Proveedores extends javax.swing.JInternalFrame {
         lbCodigo2 = new javax.swing.JLabel();
         txtIdProveedor = new javax.swing.JTextField();
 
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
-        setTitle("MODULO PROVEEDORES");
+        setTitle("Proveedores");
 
         jLTelefono.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLTelefono.setText("Telefono:");

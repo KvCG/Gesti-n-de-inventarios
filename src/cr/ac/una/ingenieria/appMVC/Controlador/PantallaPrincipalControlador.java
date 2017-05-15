@@ -347,7 +347,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             } else {
                 this.Mante_ArticulosView.show();
                 this.Mante_ArticulosView.toFront();
-                this.Mod_Inv = false;
+                
             }
         }
 
@@ -365,7 +365,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             } else {
                 this.Mod_ProveView.show();
                 this.Mod_ProveView.toFront();
-                this.Mod_Pro = false;
+                
             }
         }
 
@@ -383,7 +383,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             } else {
                 this.Mod_Reg_PerView.show();
                 this.Mod_Reg_PerView.toFront();
-                this.Mod_Reg_Per = false;
+                
             }
         }
 
@@ -401,7 +401,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             } else {
                 this.Mod_Reg_UsuView.show();
                 this.Mod_Reg_UsuView.toFront();
-                this.Mod_Reg_Usu = false;
+                
             }
         }
 
@@ -419,7 +419,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             } else {
                 this.vista.show();
                 this.vista.toFront();
-                this.Mod_Mov = false;
+                
             }
         }
 
@@ -436,7 +436,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             } else {
                 this.Mod_BodegaView.show();
                 this.Mod_BodegaView.toFront();
-                this.Mod_Bod = false;
+                
             }
         }
 
@@ -451,12 +451,9 @@ public class PantallaPrincipalControlador implements ActionListener {
                 this.Mod_TipoArticuloView.show();
                 this.Mod_Tip_Art = true;
             } else {
-                this.pantPrinView.jdpPrincipal.add(this.Mod_TipoArticuloView);
-                this.pantPrinView.jdpPrincipal.updateUI();
-                this.pantPrinView.jdpPrincipal.repaint();
                 this.Mod_TipoArticuloView.show();
                 this.Mod_TipoArticuloView.toFront();
-                Mod_Tip_Art = true;
+                
             }
         }
         /////////////////////////Reportes/////////////////////////////////////////////
