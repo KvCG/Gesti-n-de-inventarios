@@ -34,6 +34,7 @@ public class TipoArticuloControlador implements ActionListener {
         this.Mod_TipoArtView.btn_Cancelar.addActionListener(this);
         this.Mod_TipoArtView.btn_Eliminar.addActionListener(this);
         this.Mod_TipoArtView.jtf_IdTipoArticulo.setVisible(false);
+        this.Mod_TipoArtView.btn_Eliminar.setEnabled(false);
         iniciarPantalla();
     }
 
@@ -116,6 +117,7 @@ public class TipoArticuloControlador implements ActionListener {
                     this.Mod_TipoArtView.jcb_Estado.setSelectedIndex(0);
                     this.Mod_TipoArtView.btn_Editar.setEnabled(false);
                     this.Mod_TipoArtView.btn_Guardar.setEnabled(true);
+                    this.Mod_TipoArtView.btn_Eliminar.setEnabled(false);
                     this.cargarTipoArtCombo(ArticuloControlador.mantArticuloView.jcbTipo);
                 } catch (Exception e) {
                     Logger.getLogger(TipoArticuloControlador.class.getName()).log(Level.SEVERE, null, e);
@@ -149,7 +151,7 @@ public class TipoArticuloControlador implements ActionListener {
             this.Mod_TipoArtView.btn_Editar.setEnabled(false);
             this.Mod_TipoArtView.btn_Buscar.setEnabled(true);
             this.Mod_TipoArtView.btn_Cancelar.setEnabled(true);
-            this.Mod_TipoArtView.btn_Eliminar.setEnabled(true);
+            this.Mod_TipoArtView.btn_Eliminar.setEnabled(false);
         }//fin cancelar
         
         if(ae.getSource() == this.Mod_TipoArtView.btn_Eliminar){
@@ -165,6 +167,7 @@ public class TipoArticuloControlador implements ActionListener {
                     this.Mod_TipoArtView.jcb_Estado.setSelectedIndex(0);
                     this.Mod_TipoArtView.btn_Guardar.setEnabled(true);
                     this.Mod_TipoArtView.btn_Editar.setEnabled(false);
+                    this.Mod_TipoArtView.btn_Eliminar.setEnabled(false);
                     this.cargarTipoArtCombo(ArticuloControlador.mantArticuloView.jcbTipo);
                 } catch (Exception e) {
                     Logger.getLogger(TipoArticuloControlador.class.getName()).log(Level.SEVERE,null,e);

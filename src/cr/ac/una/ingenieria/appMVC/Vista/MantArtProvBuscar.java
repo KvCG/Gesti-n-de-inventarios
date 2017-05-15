@@ -31,7 +31,6 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
 
         LbNombre = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
-        btBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbArtProv = new javax.swing.JTable();
         btSeleccionar = new javax.swing.JButton();
@@ -51,10 +50,6 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
                 txtBuscarKeyTyped(evt);
             }
         });
-
-        btBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/buscar.png"))); // NOI18N
-        btBuscar.setText("Buscar");
 
         tbArtProv = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex,int colIndex){
@@ -119,8 +114,7 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscar))
+                        .addGap(97, 97, 97))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -130,9 +124,8 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btBuscar)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LbNombre))
                 .addGap(18, 18, 18)
@@ -202,7 +195,6 @@ public class MantArtProvBuscar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LbNombre;
-    public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tbArtProv;

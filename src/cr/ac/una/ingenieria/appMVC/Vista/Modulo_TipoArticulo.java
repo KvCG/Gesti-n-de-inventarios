@@ -32,13 +32,13 @@ public class Modulo_TipoArticulo extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         btn_Editar = new javax.swing.JButton();
         jtf_Descripcion = new javax.swing.JTextField();
-        btn_Buscar = new javax.swing.JButton();
         jcb_Estado = new javax.swing.JComboBox<>();
         btn_Cancelar = new javax.swing.JButton();
         btn_Eliminar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lbCodigo2 = new javax.swing.JLabel();
         jtf_IdTipoArticulo = new javax.swing.JTextField();
+        btn_Buscar = new javax.swing.JButton();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -60,9 +60,6 @@ public class Modulo_TipoArticulo extends javax.swing.JInternalFrame {
                 btn_EditarActionPerformed(evt);
             }
         });
-
-        btn_Buscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btn_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Busar.png"))); // NOI18N
 
         jcb_Estado.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jcb_Estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Inactivo" }));
@@ -88,6 +85,9 @@ public class Modulo_TipoArticulo extends javax.swing.JInternalFrame {
             }
         });
 
+        btn_Buscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btn_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Buscar02.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,38 +95,40 @@ public class Modulo_TipoArticulo extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(lbCodigo2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(49, 49, 49)
                         .addComponent(btn_Guardar)
                         .addGap(18, 18, 18)
                         .addComponent(btn_Editar)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_Buscar)
-                        .addGap(18, 18, 18)
                         .addComponent(btn_Cancelar)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_Eliminar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jtf_IdTipoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jtf_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jcb_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(122, 122, 122))
+                        .addComponent(btn_Eliminar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbCodigo2)
+                                .addGap(35, 35, 35)
+                                .addComponent(jtf_IdTipoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtf_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcb_Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_Buscar)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbCodigo2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCodigo2)
+                    .addComponent(jtf_IdTipoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -134,17 +136,15 @@ public class Modulo_TipoArticulo extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtf_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addComponent(jtf_IdTipoArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Buscar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_Guardar)
-                        .addComponent(btn_Editar)
-                        .addComponent(btn_Cancelar)
-                        .addComponent(btn_Eliminar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2))
+                    .addComponent(btn_Buscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 25, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_Guardar)
+                    .addComponent(btn_Editar)
+                    .addComponent(btn_Cancelar)
+                    .addComponent(btn_Eliminar))
+                .addGap(32, 32, 32))
         );
 
         pack();

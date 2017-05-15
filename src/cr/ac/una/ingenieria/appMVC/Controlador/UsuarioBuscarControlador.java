@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.table.DefaultTableModel;
 
 public class UsuarioBuscarControlador implements ActionListener {
@@ -33,12 +35,18 @@ public class UsuarioBuscarControlador implements ActionListener {
         this.usuarioBuscarView = usuarioBuscarView;
         this.UsuarioBLModelo = UsuarioBLModelo;
         this.txtRespuesta = txtRespuesta;
-        this.usuarioBuscarView.btBuscar.addActionListener(this);
+
         this.usuarioBuscarView.btSeleccionar.addActionListener(this);
         this.usuarioBuscarView.jRadioButton_Activo.addActionListener(this);
         this.usuarioBuscarView.jRadioButton_Inactivo.addActionListener(this);
         this.iniciarRadioBoton();
         llenarTabla(this.usuarioBuscarView.jTableusuarios);
+        this.usuarioBuscarView.txtBuscar.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                llenarTabla(usuarioBuscarView.jTableusuarios);
+            }
+        });
     }
 
     /**
@@ -136,9 +144,6 @@ public class UsuarioBuscarControlador implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.usuarioBuscarView.btBuscar) {
-            llenarTabla(this.usuarioBuscarView.jTableusuarios);
-        }
 
         if (e.getSource() == this.usuarioBuscarView.btSeleccionar) {
             int fila = this.usuarioBuscarView.jTableusuarios.getSelectedRow();
@@ -148,9 +153,9 @@ public class UsuarioBuscarControlador implements ActionListener {
                 this.usuarioBuscarView.setVisible(false);
             }
         }
-        
-        if(e.getSource() == this.usuarioBuscarView.jRadioButton_Activo ||
-           e.getSource() == this.usuarioBuscarView.jRadioButton_Inactivo){
+
+        if (e.getSource() == this.usuarioBuscarView.jRadioButton_Activo
+                || e.getSource() == this.usuarioBuscarView.jRadioButton_Inactivo) {
             this.llenarTabla(this.usuarioBuscarView.jTableusuarios);
         }
     }

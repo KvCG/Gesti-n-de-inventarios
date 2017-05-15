@@ -40,7 +40,7 @@ public class ArtProvBuscarControlador implements ActionListener {
         this.busqueda = busqueda;
         this.txtArt = txtArt;
         this.txtProv = txtProv;
-        this.artProvBuscarView.btBuscar.addActionListener(this);
+        
         this.artProvBuscarView.btSeleccionar.addActionListener(this);
         this.artProvBuscarView.txtBuscar.addCaretListener(new CaretListener() {
             @Override
@@ -107,10 +107,7 @@ public class ArtProvBuscarControlador implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.artProvBuscarView.btBuscar) {
-            llenarTabla(this.artProvBuscarView.tbArtProv);
-        }
-
+     
         if (e.getSource() == this.artProvBuscarView.btSeleccionar) {
             int fila = this.artProvBuscarView.tbArtProv.getSelectedRow();
             if (this.busqueda.equals("Proveedor")) {

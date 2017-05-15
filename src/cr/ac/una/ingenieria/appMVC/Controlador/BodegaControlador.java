@@ -33,6 +33,7 @@ public class BodegaControlador implements ActionListener {
         this.ModBodegaView.btn_Cancelar.addActionListener(this);
         this.ModBodegaView.btn_Eliminar.addActionListener(this);
         this.ModBodegaView.jtf_IDBodega.setVisible(false);
+        this.ModBodegaView.btn_Eliminar.setEnabled(false);
         iniciarPantalla();
     }
 
@@ -112,14 +113,15 @@ public class BodegaControlador implements ActionListener {
                     }
 
                     this.Bodbl.modificar(bo);
-                    JOptionPane.showMessageDialog(null, "SE AGREGO LA BODEGA CORRECTAMENTE", ""
-                            + "AGREGANDO BODEGA", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Se edito correctamente", ""
+                            + "Editando Bodega", JOptionPane.INFORMATION_MESSAGE);
                     this.ModBodegaView.jtf_IDBodega.setText("");
                     this.ModBodegaView.jtf_TipoBodega.setText("");
                     this.ModBodegaView.jtf_Nombre.setText("");
                     this.ModBodegaView.jcb_Estado.setSelectedIndex(0);
                     this.ModBodegaView.btn_Editar.setEnabled(false);
                     this.ModBodegaView.btn_Guardar.setEnabled(true);
+                    this.ModBodegaView.btn_Eliminar.setEnabled(false);
                     this.cargarBodegaCombo(ArticuloControlador.mantArticuloView.jcbBodega);
                 } catch (Exception e) {
                     Logger.getLogger(BodegaControlador.class.getName()).log(Level.SEVERE, null, e);
@@ -140,12 +142,13 @@ public class BodegaControlador implements ActionListener {
             MantBodegaBuscar Mant_BuscarBodega = new MantBodegaBuscar();
 
             BodegaBuscarControlador BuscarBodegaControl = new BodegaBuscarControlador(Mant_BuscarBodega, Bodbl,
-                   this.ModBodegaView.jtf_IDBodega,
+                    this.ModBodegaView.jtf_IDBodega,
                     this.ModBodegaView.jtf_TipoBodega,
                     this.ModBodegaView.jtf_Nombre,
                     this.ModBodegaView.jcb_Estado);
 
             BuscarBodegaControl.getBuscarBodegaView().setVisible(true);
+            this.ModBodegaView.btn_Eliminar.setEnabled(true);
         }//Fin evento boton buscar
 
         if (ae.getSource() == this.ModBodegaView.btn_Cancelar) {
@@ -154,7 +157,7 @@ public class BodegaControlador implements ActionListener {
             this.ModBodegaView.jtf_Nombre.setText("");
             this.ModBodegaView.jcb_Estado.setSelectedIndex(0);
             this.ModBodegaView.btn_Guardar.setEnabled(true);
-            this.ModBodegaView.btn_Eliminar.setEnabled(true);
+            this.ModBodegaView.btn_Eliminar.setEnabled(false);
             this.ModBodegaView.btn_Editar.setEnabled(false);
             this.ModBodegaView.btn_Cancelar.setEnabled(true);
             this.ModBodegaView.btn_Buscar.setEnabled(true);
@@ -176,6 +179,7 @@ public class BodegaControlador implements ActionListener {
                     this.ModBodegaView.jcb_Estado.setSelectedIndex(0);
                     this.ModBodegaView.btn_Editar.setEnabled(false);
                     this.ModBodegaView.btn_Guardar.setEnabled(true);
+                    this.ModBodegaView.btn_Eliminar.setEnabled(false);
                     this.cargarBodegaCombo(ArticuloControlador.mantArticuloView.jcbBodega);
                 } catch (Exception e) {
                     Logger.getLogger(BodegaControlador.class.getName()).log(Level.SEVERE, null, e);

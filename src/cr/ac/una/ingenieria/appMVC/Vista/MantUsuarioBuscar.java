@@ -34,7 +34,6 @@ public class MantUsuarioBuscar extends javax.swing.JFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableusuarios = new javax.swing.JTable();
-        btBuscar = new javax.swing.JButton();
         jRadioButton_Activo = new javax.swing.JRadioButton();
         jRadioButton_Inactivo = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
@@ -92,18 +91,14 @@ public class MantUsuarioBuscar extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTableusuarios);
 
-        btBuscar.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Buscar02.png"))); // NOI18N
-        btBuscar.setText("Buscar");
-
         jRadioButton_Activo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Activo.setText("ACTIVO");
+        jRadioButton_Activo.setText("Activo");
 
         jRadioButton_Inactivo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jRadioButton_Inactivo.setText("INACTIVO");
+        jRadioButton_Inactivo.setText("Inactivo");
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("ESTADO DE USUARIO");
+        jLabel1.setText("Estado de los registros:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,14 +110,13 @@ public class MantUsuarioBuscar extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 318, Short.MAX_VALUE))
+                        .addGap(0, 320, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(LbNombre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBuscar))
+                        .addGap(95, 95, 95))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButton_Activo)
                         .addGap(18, 18, 18)
@@ -134,12 +128,11 @@ public class MantUsuarioBuscar extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btBuscar)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LbNombre))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
@@ -209,7 +202,6 @@ public class MantUsuarioBuscar extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LbNombre;
-    public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
     public javax.swing.ButtonGroup buttonGroup_Estado;
     private javax.swing.JLabel jLabel1;
