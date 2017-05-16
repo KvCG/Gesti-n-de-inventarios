@@ -98,7 +98,8 @@ public class PantallaPrincipalControlador implements ActionListener {
         this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);//listo
-        this.pantPrinView.jbtn_Gen_Orden_Compra.addActionListener(this);
+        this.pantPrinView.jbtn_Gen_Orden_Compra.addActionListener(this);//listo
+        this.pantPrinView.Bt_Refrescar.addActionListener(this);
         sesion(ValidarAcceso.current.getRol());
         
         inicializarPantalla();
@@ -456,6 +457,9 @@ public class PantallaPrincipalControlador implements ActionListener {
                 
             }
         }
+        if (e.getSource() == this.pantPrinView.Bt_Refrescar) {
+            this.llenarTabla(this.pantPrinView.jTArticulo);
+        }
         /////////////////////////Reportes/////////////////////////////////////////////
 
         if (e.getSource() == this.pantPrinView.jMenuItem_ReporteArticulos_General) {
@@ -570,7 +574,7 @@ public class PantallaPrincipalControlador implements ActionListener {
                 if (a.getCantidad() <= a.getPuntoPedido()) {
                     fila[3] = "Comprar";
                 } else {
-                    fila[3] = "cercar del punto de Pedido";
+                    fila[3] = "Proximo a Comprar";
                 }
                 modeloTabla.addRow(fila);
                 }
