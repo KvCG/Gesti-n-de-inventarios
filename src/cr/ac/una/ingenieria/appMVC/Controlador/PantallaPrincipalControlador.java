@@ -551,6 +551,7 @@ public class PantallaPrincipalControlador implements ActionListener {
             for (Object oAux : articuloBlModelo1.obtenerConWhere(new Articulo(), Sql)) {
 
                 Articulo a = (Articulo) oAux;
+                if (a.getEstado() == true) {
                 fila[0] = a.getNombre();
                 fila[1] = a.getCantidad();
                 fila[2] = a.getPuntoPedido();
@@ -561,6 +562,7 @@ public class PantallaPrincipalControlador implements ActionListener {
                 }
 
                 modeloTabla.addRow(fila);
+                }
             }
 
         } catch (SQLException ex) {
