@@ -98,8 +98,9 @@ public class PantallaPrincipalControlador implements ActionListener {
         this.pantPrinView.jMenuItem_ReporteArticulos_Exentos.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_Proveedores.addActionListener(this);//listo
         this.pantPrinView.jMenuItem_Reporte_ListaPrecio.addActionListener(this);//listo
+        this.pantPrinView.jbtn_Gen_Orden_Compra.addActionListener(this);
         sesion(ValidarAcceso.current.getRol());
-
+        
         inicializarPantalla();
 
         llenarTabla(this.pantPrinView.jTArticulo);
@@ -161,7 +162,6 @@ public class PantallaPrincipalControlador implements ActionListener {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
             JasperViewer visor = new JasperViewer(jasperPrint, false);
             visor.setVisible(true);
-            //JasperExportManager.exportReportToPdfFile(jasperPrint, directorio + separador + "Reportes\\" + reporte + ".pdf");
 
             File file = new File(directorio + separador + "src\\cr\\ac\\una\\ingenieria\\appMVC\\Vista\\Reportes\\" + reporte + ".pdf"); // Este codigo sirve para abrir los archivos de cualquier tipo
             System.out.println(file.getAbsolutePath());
@@ -529,6 +529,18 @@ public class PantallaPrincipalControlador implements ActionListener {
                 Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        if(e.getSource() == this.pantPrinView.jbtn_Gen_Orden_Compra){
+            try {
+                this.creaReporte("Orden_de_Compra.jrxml");
+            } catch (IOException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(PantallaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     static public void llenarTabla(JTable tablaArticulo) {
@@ -559,7 +571,6 @@ public class PantallaPrincipalControlador implements ActionListener {
                 } else {
                     fila[3] = "cercar del punto de Pedido";
                 }
-
                 modeloTabla.addRow(fila);
             }
 
@@ -574,17 +585,11 @@ public class PantallaPrincipalControlador implements ActionListener {
                 this.pantPrinView.jMenu_Registro.setVisible(false);
                 this.pantPrinView.LbTituloCuadro.setVisible(false);
                 this.pantPrinView.jTArticulo.setVisible(false);
-               
-                
                 break;
-
             case 2:
                 this.pantPrinView.jMenu_Movimiento.setVisible(false);
                 this.pantPrinView.jMenu_Mantenimiento.setVisible(false);
                 this.pantPrinView.jMenu_Herramientas.setVisible(false);
-                
-               
-               
                 break;
         }
     }

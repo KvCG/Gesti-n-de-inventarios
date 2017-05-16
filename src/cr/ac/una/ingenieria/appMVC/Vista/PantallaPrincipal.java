@@ -6,8 +6,6 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setTitle("SIGACI");
         this.setLocationRelativeTo(null);
         this.setExtendedState(PantallaPrincipal.MAXIMIZED_BOTH);
-        
-        
         initComponents();
     }
     
@@ -21,6 +19,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTArticulo = new javax.swing.JTable();
         LbTituloCuadro = new javax.swing.JLabel();
+        jbtn_Gen_Orden_Compra = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_Mantenimiento = new javax.swing.JMenu();
         jMenuItem_Articulo = new javax.swing.JMenuItem();
@@ -89,8 +88,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         LbTituloCuadro.setForeground(new java.awt.Color(255, 255, 255));
         LbTituloCuadro.setText(" Punto de Pedido");
 
+        jbtn_Gen_Orden_Compra.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jbtn_Gen_Orden_Compra.setText("GENERAR ORDEN DE COMPRA");
+        jbtn_Gen_Orden_Compra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         jdpPrincipal.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpPrincipal.setLayer(LbTituloCuadro, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpPrincipal.setLayer(jbtn_Gen_Orden_Compra, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpPrincipalLayout = new javax.swing.GroupLayout(jdpPrincipal);
         jdpPrincipal.setLayout(jdpPrincipalLayout);
@@ -102,6 +106,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             .addGroup(jdpPrincipalLayout.createSequentialGroup()
                 .addGap(393, 393, 393)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jdpPrincipalLayout.createSequentialGroup()
+                .addGap(520, 520, 520)
+                .addComponent(jbtn_Gen_Orden_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jdpPrincipalLayout.setVerticalGroup(
             jdpPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +116,10 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addGap(162, 162, 162)
                 .addComponent(LbTituloCuadro, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtn_Gen_Orden_Compra)
+                .addContainerGap())
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -375,6 +385,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu_ReportesArticulos;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTArticulo;
+    public javax.swing.JButton jbtn_Gen_Orden_Compra;
     public javax.swing.JDesktopPane jdpPrincipal;
     // End of variables declaration//GEN-END:variables
 }
