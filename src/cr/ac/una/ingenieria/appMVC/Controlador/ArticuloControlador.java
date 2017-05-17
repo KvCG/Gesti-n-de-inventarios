@@ -166,6 +166,12 @@ public class ArticuloControlador implements ActionListener {
                 a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.txtPrecio.getText()));
                 a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
                 a.setCantidad(0);
+                String estado = this.mantArticuloView.jcb_Estado_Articulo.getSelectedItem().toString();
+                if(estado.equals("Activa")){
+                    a.setEstado(true);
+                }else{
+                    a.setEstado(false);
+                }
                 if (this.mantArticuloView.chbImpuestos.isSelected()) {
                     a.setImpuesto("Gravado");
                 } else {
@@ -218,6 +224,8 @@ public class ArticuloControlador implements ActionListener {
                     this.clean();
                     this.mantArticuloView.btEliminar.setEnabled(false);
                     this.mantArticuloView.btModificar.setEnabled(false);
+                    this.mantArticuloView.btInsertar.setEnabled(true);
+                    this.mantArticuloView.jcb_Estado_Articulo.setSelectedIndex(0);
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo no sera eliminado ",
@@ -238,7 +246,7 @@ public class ArticuloControlador implements ActionListener {
             } else {
                 Articulo a = new Articulo();
                 a.setCodigo(this.mantArticuloView.txtCodigo.getText());
-
+                
                 try {
                     a = ArticuloBLModelo.obtenerPorId(a);
                     a.setNombre(this.mantArticuloView.txtNombre.getText());
@@ -246,6 +254,12 @@ public class ArticuloControlador implements ActionListener {
                     a.setPrecioVenta(Double.parseDouble(this.mantArticuloView.txtPrecio.getText()));
                     a.setPuntoPedido(Integer.parseInt(this.mantArticuloView.txtPuntoPedido.getText()));
                     a.setCantidad(Integer.parseInt(this.mantArticuloView.txtCantidad.getText()));
+                    String estado = this.mantArticuloView.jcb_Estado_Articulo.getSelectedItem().toString();
+                    if(estado.equals("Activa")){
+                        a.setEstado(true);
+                    }else{
+                        a.setEstado(false);
+                    }
                     if (this.mantArticuloView.chbImpuestos.isSelected()) {
                         a.setImpuesto("Gravado");
                     } else {
@@ -279,6 +293,8 @@ public class ArticuloControlador implements ActionListener {
                     this.artProvBl.modificar(artPro);
                     this.clean();
                     this.mantArticuloView.btEliminar.setEnabled(false);
+                    this.mantArticuloView.btModificar.setEnabled(false);
+                    this.mantArticuloView.btInsertar.setEnabled(true);
                     this.mantArticuloView.txtCodigo.setEnabled(true);
                     JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido modificado correctamente",
                             "Articulo maodificado Modificado", JOptionPane.INFORMATION_MESSAGE);
@@ -301,9 +317,10 @@ public class ArticuloControlador implements ActionListener {
             this.mantArticuloView.txtTelefonoProv.setText(null);
             this.mantArticuloView.btEliminar.setEnabled(false);
             this.mantArticuloView.btModificar.setEnabled(false);
+            this.mantArticuloView.jcb_Estado_Articulo.setSelectedIndex(0);
             this.mantArticuloView.txtCodigo.setEnabled(true);
         }
-
+        
         if (e.getSource() == this.mantArticuloView.btBuscar) {
             if (this.mantArticuloView.txtNombreProv.getText().isEmpty()) {
                 MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
@@ -361,6 +378,12 @@ public class ArticuloControlador implements ActionListener {
                 this.mantArticuloView.txtCantidad.setText(String.valueOf(a.getCantidad().toString()));
                 this.mantArticuloView.txtPrecio.setText(String.valueOf(a.getPrecioVenta()));
                 this.mantArticuloView.txtPuntoPedido.setText(String.valueOf(a.getPuntoPedido()));
+                if(a.getEstado() == true){
+                    this.mantArticuloView.jcb_Estado_Articulo.setSelectedItem("Activa");
+                }else{
+                    this.mantArticuloView.jcb_Estado_Articulo.setSelectedItem("Inactiva");
+                }
+                
                 if (a.getImpuesto().equals("Gravado")) {
                     this.mantArticuloView.chbImpuestos.setSelected(true);
                 } else {

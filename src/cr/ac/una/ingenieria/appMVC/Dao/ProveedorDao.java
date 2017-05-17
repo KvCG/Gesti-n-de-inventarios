@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cr.ac.una.ingenieria.appMVC.Dao;
 
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
@@ -38,12 +34,13 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
     public void insertar(Proveedor obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into proveedor(nombre,email,telefono,"
-                                             + "direccion) values "
-                                             + "(?,?,?,?)");
+                                             + "direccion,estado) values "
+                                             + "(?,?,?,?,?)");
         cs.setString(1, obj.getNombre());
         cs.setString(2, obj.getEmail());
         cs.setString(3, obj.getTelefono());
         cs.setString(4, obj.getDireccion());
+        cs.setBoolean(5, obj.getEstado());
         cs.executeUpdate();
         con.close();
     }
@@ -57,15 +54,17 @@ public class ProveedorDao implements IBaseDao<Proveedor> {
     public void modificar(Proveedor obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("update proveedor set nombre= ?,"
+        CallableStatement cs = con.prepareCall("update proveedor set nombre=?,"
                                             + "email=?, telefono=?,"
-                                            + "direccion=?"
-                                            + "where idproveedor=? ");
+                                            + "direccion=?,estado=? "
+                                            + "where idproveedor=?");
         cs.setString(1, obj.getNombre());
         cs.setString(2, obj.getEmail());
         cs.setString(3, obj.getTelefono());
         cs.setString(4, obj.getDireccion());
-        cs.setInt(5, obj.getIdProvedor());
+        cs.setBoolean(5, obj.getEstado());
+        cs.setInt(6, obj.getIdProvedor());
+        
         cs.executeUpdate();
         con.close();
     }

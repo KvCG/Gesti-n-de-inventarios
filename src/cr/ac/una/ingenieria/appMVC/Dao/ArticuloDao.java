@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cr.ac.una.ingenieria.appMVC.Dao;
 
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
@@ -38,8 +34,8 @@ public class ArticuloDao implements IBaseDao<Articulo> {
     public void insertar(Articulo obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into articulo(codigo,nombre,descripcion,cod_tipo_articulo,"
-                + "precio_venta,cantidad,bodega,punto_de_pedido,impuesto) values "
-                + "(?,?,?,?,?,?,?,?,?)");
+                + "precio_venta,cantidad,bodega,punto_de_pedido,estado,impuesto) values "
+                + "(?,?,?,?,?,?,?,?,?,?)");
 
         cs.setString(1, obj.getCodigo());
         cs.setString(2, obj.getNombre());
@@ -49,7 +45,8 @@ public class ArticuloDao implements IBaseDao<Articulo> {
         cs.setInt(6, obj.getCantidad());
         cs.setInt(7, obj.getBodega());
         cs.setInt(8, obj.getPuntoPedido());
-        cs.setString(9, obj.getImpuesto());
+        cs.setBoolean(9, obj.getEstado());
+        cs.setString(10, obj.getImpuesto());
         
         cs.executeUpdate();
         con.close();
@@ -67,7 +64,7 @@ public class ArticuloDao implements IBaseDao<Articulo> {
                 + "descripcion=?,cod_tipo_articulo = ?,"
                 + "precio_venta = ?, cantidad = ?,"
                 + "bodega=?, punto_de_pedido = ?, "
-                + "impuesto=? "
+                + "estado = ?, impuesto=? "
                 + "where codigo = ?");
         cs.setString(1, obj.getCodigo());
         cs.setString(2, obj.getNombre());
@@ -77,8 +74,9 @@ public class ArticuloDao implements IBaseDao<Articulo> {
         cs.setInt(6, obj.getCantidad());
         cs.setInt(7, obj.getBodega());
         cs.setInt(8, obj.getPuntoPedido());
-        cs.setString(9, obj.getImpuesto());
-        cs.setString(10, obj.getCodigo());
+        cs.setBoolean(9, obj.getEstado());
+        cs.setString(10, obj.getImpuesto());
+        cs.setString(11, obj.getCodigo());
         cs.executeUpdate();
         con.close();
 

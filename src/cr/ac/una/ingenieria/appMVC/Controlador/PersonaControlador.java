@@ -19,14 +19,14 @@ import javax.swing.event.DocumentListener;
  *
  * @author Michael
  */
-public class PersonaControlador implements ActionListener, DocumentListener{
+public class PersonaControlador implements ActionListener, DocumentListener {
+
     private Modulo_Registo_Persona Mod_Reg_PersonaView;
     private PersonaBL PersBL;
 
     public PersonaControlador() {
     }
-    
-    
+
     public PersonaControlador(Modulo_Registo_Persona Mod_Reg_PersonaView, PersonaBL PersBL) {
         this.Mod_Reg_PersonaView = Mod_Reg_PersonaView;
         this.PersBL = PersBL;
@@ -42,7 +42,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         this.Mod_Reg_PersonaView.txtCodigoBuscar.setVisible(false);
         this.Mod_Reg_PersonaView.jtxtId.setVisible(false);
         inicializarPantalla();
-        
+
     }
 
     public Modulo_Registo_Persona getMod_Reg_PersonaView() {
@@ -61,13 +61,11 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         this.PersBL = PersBL;
     }
 
-  
-    
- 
-      private void inicializarPantalla() {
-        
-   }
-       
+    private void inicializarPantalla() {
+        this.Mod_Reg_PersonaView.btModificar.setEnabled(false);
+        this.Mod_Reg_PersonaView.btEliminar.setEnabled(false);
+    }
+
     private boolean isEmpty() {
         if (this.Mod_Reg_PersonaView.jtxtCedula.getText().equals("")
                 || this.Mod_Reg_PersonaView.jtxtNombre.getText().equals("")
@@ -83,15 +81,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         this.Mod_Reg_PersonaView.jtxtNombre.setText(null);
         this.Mod_Reg_PersonaView.jtxtApellido.setText(null);
         this.Mod_Reg_PersonaView.jtxtCorreo.setText(null);
-        
-        
     }
-    
-
-   
-    
-    
-   
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -101,11 +91,16 @@ public class PersonaControlador implements ActionListener, DocumentListener{
 
             } else {
                 Persona p = new Persona();
-                //p.setIdpersona(1);
                 p.setCedula(this.Mod_Reg_PersonaView.jtxtCedula.getText());
                 p.setNombre(this.Mod_Reg_PersonaView.jtxtNombre.getText());
                 p.setApellidos(this.Mod_Reg_PersonaView.jtxtApellido.getText());
                 p.setCorreo(this.Mod_Reg_PersonaView.jtxtCorreo.getText());
+                String estado = this.Mod_Reg_PersonaView.jcb_Estado_Personal.getSelectedItem().toString();
+                if (estado.equals("Activa")) {
+                    p.setEstado(true);
+                } else {
+                    p.setEstado(false);
+                }
                 try {
                     if (this.isEmail(this.Mod_Reg_PersonaView.jtxtCorreo.getText())) {
                         this.PersBL.insertar(p);
@@ -117,7 +112,6 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                         JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error ingrese el correo nuevamente:", "Error en ingresar correo", JOptionPane.ERROR_MESSAGE);
                         this.Mod_Reg_PersonaView.jtxtCorreo.setText(null);
                     }
-
                 } catch (SQLException ex) {
                     Logger.getLogger(PersonaControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "Error al agregar a la Persona:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -127,6 +121,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                 }
             }
         }
+
         if (e.getSource() == this.Mod_Reg_PersonaView.btEliminar) {
             Persona p = new Persona();
             String cedula = this.Mod_Reg_PersonaView.jtxtCedula.getText();
@@ -141,7 +136,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                     this.Mod_Reg_PersonaView.jtxtNombre.setText(null);
                     this.Mod_Reg_PersonaView.jtxtApellido.setText(null);
                     this.Mod_Reg_PersonaView.jtxtCorreo.setText(null);
-                    this.Mod_Reg_PersonaView.btEliminar.setEnabled(false);
+                    this.inicializarPantalla();
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "La Persona no sera eliminada ",
@@ -171,9 +166,15 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                         p.setNombre(this.Mod_Reg_PersonaView.jtxtNombre.getText());
                         p.setApellidos(this.Mod_Reg_PersonaView.jtxtApellido.getText());
                         p.setCorreo(this.Mod_Reg_PersonaView.jtxtCorreo.getText());
+                        String estado = this.Mod_Reg_PersonaView.jcb_Estado_Personal.getSelectedItem().toString();
+                        if (estado.equals("Activa")) {
+                            p.setEstado(true);
+                        } else {
+                            p.setEstado(false);
+                        }
                         this.PersBL.modificar(p);
                         this.clean();
-                        this.Mod_Reg_PersonaView.btEliminar.setEnabled(false);
+                        this.inicializarPantalla();
                         this.Mod_Reg_PersonaView.jtxtCedula.setEnabled(true);
                         JOptionPane.showMessageDialog(Mod_Reg_PersonaView, "La Persona ha sido modificada correctamente",
                                 "Persona madificada", JOptionPane.INFORMATION_MESSAGE);
@@ -195,7 +196,7 @@ public class PersonaControlador implements ActionListener, DocumentListener{
         }
         if (e.getSource() == this.Mod_Reg_PersonaView.btCancelar) {
             this.clean();
-            this.Mod_Reg_PersonaView.btEliminar.setEnabled(false);
+            this.inicializarPantalla();
             this.Mod_Reg_PersonaView.jtxtCedula.setEnabled(true);
         }
 
@@ -249,6 +250,11 @@ public class PersonaControlador implements ActionListener, DocumentListener{
                 this.Mod_Reg_PersonaView.jtxtNombre.setText(p.getNombre());
                 this.Mod_Reg_PersonaView.jtxtApellido.setText(p.getApellidos());
                 this.Mod_Reg_PersonaView.jtxtCorreo.setText(p.getCorreo());
+                if(p.getEstado() == true){
+                    this.Mod_Reg_PersonaView.jcb_Estado_Personal.setSelectedItem("Activa");
+                }else{
+                    this.Mod_Reg_PersonaView.jcb_Estado_Personal.setSelectedItem("Inactiva");
+                }
                 this.Mod_Reg_PersonaView.btModificar.setEnabled(true);
                 this.Mod_Reg_PersonaView.jtxtCedula.setEnabled(false);
 

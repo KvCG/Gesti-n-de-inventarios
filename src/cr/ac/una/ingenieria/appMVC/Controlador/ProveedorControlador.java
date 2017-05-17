@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cr.ac.una.ingenieria.appMVC.Controlador;
 
 import cr.ac.una.ingenieria.appMVC.BL.ProveedorBL;
@@ -18,15 +14,9 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-/**
- *
- * @author Gustavo
- */
 public class ProveedorControlador implements ActionListener, DocumentListener {
 
     private Modulo_Proveedores mantProveedorView;
@@ -92,6 +82,8 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
 
     private void inicializarPantalla() {
         this.mantProveedorView.txtIdProveedor.setEnabled(false);
+        this.mantProveedorView.btEliminar.setEnabled(false);
+        this.mantProveedorView.btModificar.setEnabled(false);
         //llenarTabla(this.mantProveedorView.jTableProveedor);
     }
 
@@ -111,6 +103,12 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
                 p.setTelefono(this.mantProveedorView.txtTelefono.getText());
                 p.setEmail(this.mantProveedorView.txtCorreo.getText());
                 p.setDireccion(this.mantProveedorView.txtDireccion.getText());
+                String estado = this.mantProveedorView.jcb_Estado_Proveedor.getSelectedItem().toString();
+                if(estado.equals("Activa")){
+                    p.setEstado(true);
+                }else{
+                    p.setEstado(false);
+                }
                 try {
                     if (this.isEmail(this.mantProveedorView.txtCorreo.getText())) {
                         this.ProveedorBLModelo.insertar(p);
@@ -122,7 +120,6 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
                         this.mantProveedorView.txtTelefono.setText(null);
                         this.mantProveedorView.txtCorreo.setText(null);
                         this.mantProveedorView.txtDireccion.setText(null);
-                        this.mantProveedorView.btModificar.setEnabled(true);
                     } else {
                         JOptionPane.showMessageDialog(mantProveedorView, "Error ingrese el correo nuevamente:", "Error en ingresar correo", JOptionPane.ERROR_MESSAGE);
                         this.mantProveedorView.txtCorreo.setText(null);
@@ -137,6 +134,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
                 }
             }
         }
+        
         if (e.getSource() == this.mantProveedorView.btEliminar) {
             Proveedor p = new Proveedor();
             int idProveedor = Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText());
@@ -152,8 +150,10 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
                     this.mantProveedorView.txtTelefono.setText(null);
                     this.mantProveedorView.txtCorreo.setText(null);
                     this.mantProveedorView.txtDireccion.setText(null);
-                    this.mantProveedorView.btModificar.setEnabled(true);
+                    this.mantProveedorView.jcb_Estado_Proveedor.setSelectedIndex(0);
+                    this.mantProveedorView.btModificar.setEnabled(false);
                     this.mantProveedorView.btEliminar.setEnabled(false);
+                    this.mantProveedorView.btInsertar.setEnabled(true);
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor no sera eliminado ",
@@ -181,8 +181,17 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
                         p.setEmail(this.mantProveedorView.txtCorreo.getText());
                         p.setTelefono(String.valueOf(this.mantProveedorView.txtTelefono.getText()));
                         p.setDireccion(this.mantProveedorView.txtDireccion.getText());
+                        String estado = this.mantProveedorView.jcb_Estado_Proveedor.getSelectedItem().toString();
+                        if(estado.equals("Activa")){
+                            p.setEstado(true);
+                        }else{
+                            p.setEstado(false);
+                        }                        
                         this.ProveedorBLModelo.modificar(p);
                         this.mantProveedorView.btEliminar.setEnabled(false);
+                        this.mantProveedorView.btModificar.setEnabled(false);
+                        this.mantProveedorView.btInsertar.setEnabled(true);
+                        this.mantProveedorView.jcb_Estado_Proveedor.setSelectedIndex(0);
                         this.mantProveedorView.txtIdProveedor.setEnabled(true);
                     }
                 } catch (SQLException ex) {
@@ -190,7 +199,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
                 }
 
                 try {
-
+                    
                     this.ProveedorBLModelo.modificar(p);
                     JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido modificado correctamente",
                             "Proveedor Modificado", JOptionPane.INFORMATION_MESSAGE);
@@ -221,6 +230,7 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
             this.mantProveedorView.txtIdProveedor.setText(null);
             this.mantProveedorView.txtCorreo.setText(null);
             this.mantProveedorView.txtNombre.setText(null);
+            this.mantProveedorView.jcb_Estado_Proveedor.setSelectedIndex(0);
             this.mantProveedorView.btEliminar.setEnabled(false);
         }
         if (e.getSource() == this.mantProveedorView.btBuscar) {
@@ -276,6 +286,11 @@ public class ProveedorControlador implements ActionListener, DocumentListener {
                 this.mantProveedorView.txtTelefono.setText(p.getTelefono());
                 this.mantProveedorView.txtDireccion.setText(p.getDireccion());
                 this.mantProveedorView.txtCorreo.setText(p.getEmail());
+                if(p.getEstado() == true){
+                    this.mantProveedorView.jcb_Estado_Proveedor.setSelectedItem("Activa");
+                }else{
+                    this.mantProveedorView.jcb_Estado_Proveedor.setSelectedItem("Inactiva");
+                }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantProveedorView, "Error no se pudo consultar el Proveedor (" + ex.getMessage() + ")",
                         "Error al cargar el Proveedor", JOptionPane.ERROR_MESSAGE);

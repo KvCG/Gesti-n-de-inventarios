@@ -39,12 +39,13 @@ public class UsuarioDao implements IBaseDao<Usuario> {
         Connection con = conexion.getConexion();
 
         CallableStatement cs = con.prepareCall("insert into usuario (alias,"
-                + "password,rol,persona) values "
-                + "(?,?,?,?)");
+                + "password,rol,estado,persona) values "
+                + "(?,?,?,?,?)");
         cs.setString(1, obj.getAlias());
         cs.setString(2, obj.getPassword());
         cs.setInt(3, obj.getRol());
-        cs.setInt(4, obj.getIdPersona());
+        cs.setBoolean(4, obj.getEstado());
+        cs.setInt(5, obj.getIdPersona());        
         cs.executeUpdate();
         con.close();
     }
@@ -52,11 +53,13 @@ public class UsuarioDao implements IBaseDao<Usuario> {
     @Override
     public void modificar(Usuario obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("update usuario set password = ?, rol = ?"
+        CallableStatement cs = con.prepareCall("update usuario set password = ?, rol = ?,"
+                                               + "estado = ?"
                                                + " where alias = ?");
         cs.setString(1, obj.getPassword());
         cs.setInt(2, obj.getRol());
-        cs.setString(3, obj.getAlias());
+        cs.setBoolean(3, obj.getEstado());
+        cs.setString(4, obj.getAlias());
         cs.executeUpdate();
         con.close();
     }

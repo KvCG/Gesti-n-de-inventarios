@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cr.ac.una.ingenieria.appMVC.Dao;
 
 import cr.ac.una.ingenieria.appMVC.Conexion.MySQLConexion;
@@ -14,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Gustavo
- */
 public class PersonaDao implements IBaseDao<Persona> {
 
     private final MySQLConexion conexion;
@@ -29,13 +21,14 @@ public class PersonaDao implements IBaseDao<Persona> {
     @Override
     public void insertar(Persona obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into persona (cedula,nombre,apellidos,correo)"
-                + " values (?,?,?,?)");
+        CallableStatement cs = con.prepareCall("insert into persona (cedula,nombre,apellidos,correo,estado)"
+                + " values (?,?,?,?,?)");
 
         cs.setString(1, obj.getCedula());
         cs.setString(2, obj.getNombre());
         cs.setString(3, obj.getApellidos());
         cs.setString(4, obj.getCorreo());
+        cs.setBoolean(5, obj.getEstado());
         cs.executeUpdate();
         con.close();
     }
@@ -43,13 +36,17 @@ public class PersonaDao implements IBaseDao<Persona> {
     @Override
     public void modificar(Persona obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("update persona set nombre = ?,apellidos = ?,correo = ?"
+        CallableStatement cs = con.prepareCall("update persona set nombre = ?,"
+                + "apellidos = ?,"
+                + "correo = ?,"
+                + "estado = ?"
                 + " where cedula = ?");
 
         cs.setString(1, obj.getNombre());
         cs.setString(2, obj.getApellidos());
         cs.setString(3, obj.getCorreo());
-        cs.setString(4, obj.getCedula());
+        cs.setBoolean(4, obj.getEstado());
+        cs.setString(5, obj.getCedula());
         cs.executeUpdate();
         con.close();
     }

@@ -46,6 +46,8 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         jtxtCedula = new javax.swing.JTextField();
         lbCodigo2 = new javax.swing.JLabel();
         btBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jcb_Estado_Personal = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
@@ -94,6 +96,12 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
         btBuscar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/ingenieria/appMVC/Vista/Imagen/Buscar02.png"))); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel1.setText("Estado:");
+
+        jcb_Estado_Personal.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jcb_Estado_Personal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activa", "Inactiva" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,15 +115,6 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
                         .addComponent(jtxtId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtCodigoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btGuardar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btEliminar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,15 +132,31 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
                                 .addComponent(jtxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(lb_Apellidos)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGap(21, 21, 21)
                                     .addComponent(lb_Correo)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jtxtCorreo))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(lb_Apellidos)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jtxtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(50, 50, 50))
+                                    .addComponent(jtxtCorreo)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jcb_Estado_Personal, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(btGuardar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btModificar)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btCancelar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btEliminar)))
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,14 +191,18 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
                         .addGap(3, 3, 3)
                         .addComponent(lb_Correo))
                     .addComponent(jtxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jcb_Estado_Personal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btGuardar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btModificar)
                         .addComponent(btCancelar)
                         .addComponent(btEliminar)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,6 +219,8 @@ public class Modulo_Registo_Persona extends javax.swing.JInternalFrame {
     public javax.swing.JButton btEliminar;
     public javax.swing.JButton btGuardar;
     public javax.swing.JButton btModificar;
+    private javax.swing.JLabel jLabel1;
+    public javax.swing.JComboBox<String> jcb_Estado_Personal;
     public javax.swing.JTextField jtxtApellido;
     public javax.swing.JTextField jtxtCedula;
     public javax.swing.JTextField jtxtCorreo;

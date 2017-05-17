@@ -137,7 +137,12 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 Usuario u = new Usuario();
                 u.setAlias(this.mantUsuarioView.txtUsuario.getText());
                 u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
-                
+                String estado = this.mantUsuarioView.jcb_Estado_Usuario.getSelectedItem().toString();
+                if(estado.equals(true)){
+                    u.setEstado(true);
+                }else{
+                    u.setEstado(false);
+                }                
                 u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
                 
                 Persona p = new Persona();
@@ -182,8 +187,8 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                     this.mantUsuarioView.txtCedula.setText(null);
                     this.mantUsuarioView.txtPersonaId.setText(null);
                     this.mantUsuarioView.txtUsuario.setText(null);
+                    this.mantUsuarioView.jcb_Estado_Usuario.setSelectedIndex(0);
                     this.mantUsuarioView.btEliminar.setEnabled(false);
-
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(mantUsuarioView, "El Usuario no sera eliminado ",
@@ -211,11 +216,22 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                         u.setAlias(this.mantUsuarioView.txtUsuario.getText());
                         u.setPassword(String.valueOf(this.mantUsuarioView.txtContraseña.getPassword()));
                         u.setRol(this.mantUsuarioView.cbRol.getSelectedIndex());
+                        String estado = this.mantUsuarioView.jcb_Estado_Usuario.getSelectedItem().toString();                        
+                        if(estado.equals("Activa")){
+                            u.setEstado(true);
+                            System.out.println(u.getEstado());
+                        }else{
+                            u.setEstado(false);
+                            System.out.println(u.getEstado());
+                        }                        
                         this.usuarioBlModelo.modificar(u);
-                        this.clean();
+                        this.clean();                        
                         this.mantUsuarioView.btEliminar.setEnabled(false);
+                        this.mantUsuarioView.btModificar.setEnabled(false);
+                        this.mantUsuarioView.btInsertar.setEnabled(true);
                         this.mantUsuarioView.txtUsuario.setEnabled(true);
-
+                        this.mantUsuarioView.jcb_Estado_Usuario.setSelectedIndex(0);
+                        
                         JOptionPane.showMessageDialog(mantUsuarioView, "El usuario ha sido modificado correctamente",
                                 "Usuario madificado", JOptionPane.INFORMATION_MESSAGE);
                     } else {
@@ -233,21 +249,23 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                     JOptionPane.showMessageDialog(mantUsuarioView, "Error al modificar usuario:" + ex.getMessage(),
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-            
         }
+        
         if (e.getSource() == this.mantUsuarioView.btCancelar) {
             this.clean();
             this.mantUsuarioView.btModificar.setEnabled(false);
             this.mantUsuarioView.btEliminar.setEnabled(false);
             this.mantUsuarioView.txtUsuario.setEnabled(true);
+            this.mantUsuarioView.jcb_Estado_Usuario.setSelectedIndex(0);
             this.mantUsuarioView.btInsertar.setEnabled(true);
-
         }
+        
         if (e.getSource() == this.mantUsuarioView.btBuscar) {
                 MantUsuarioBuscar mantUsuarioBuscarView = new MantUsuarioBuscar();
                 UsuarioBuscarControlador usuarioBControlador;
-                usuarioBControlador = new UsuarioBuscarControlador(mantUsuarioBuscarView, usuarioBlModelo, mantUsuarioView.txtUsuarioBuscar);
+                
+                usuarioBControlador = new UsuarioBuscarControlador(mantUsuarioBuscarView, usuarioBlModelo,
+                        mantUsuarioView.txtUsuarioBuscar);
                 usuarioBControlador.getUsuarioBuscarView().setVisible(true);
                 this.mantUsuarioView.btEliminar.setEnabled(true);
                 this.mantUsuarioView.btModificar.setEnabled(true);
@@ -325,6 +343,10 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 this.mantUsuarioView.txtUsuario.setText(u.getAlias());
                 this.mantUsuarioView.txtContraseña.setText(u.getPassword());
                 this.mantUsuarioView.cbRol.setSelectedIndex(u.getRol());
+                if(u.getEstado() == true){
+                    this.mantUsuarioView.jcb_Estado_Usuario.setSelectedIndex(0);                    
+                }else
+                    this.mantUsuarioView.jcb_Estado_Usuario.setSelectedIndex(1);
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantUsuarioView, "Error no se pudo consultar el Usuario (" + ex.getMessage() + ")",
                         "Error al cargar el Usuario", JOptionPane.ERROR_MESSAGE);
